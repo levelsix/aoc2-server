@@ -3,6 +3,7 @@ package com.lvl6.aoc2.po;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -13,9 +14,17 @@ public class User {
 
 	@Id
 	protected UUID id = UUID.randomUUID();
+	
+	@Column
 	protected String userName = "";
+	
+	@Column
 	protected String email = "";
+	
+	@Column
 	protected Date lastLogin = new Date();
+	
+	@Column
 	protected Date signupDate = new Date();
 
 	
@@ -74,6 +83,13 @@ public class User {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", userName=" + userName + ", email=" + email + ", lastLogin=" + lastLogin
+				+ ", signupDate=" + signupDate + "]";
 	}
 
 	

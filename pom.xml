@@ -33,7 +33,7 @@
 		<cassandra.targetCassandraVersion>1.2</cassandra.targetCassandraVersion>
 		<cassandra.connectionPoolName>MainConnectionPool</cassandra.connectionPoolName>
 		<cassandra.seeds>localhost:9160</cassandra.seeds>
-		<cassandra.connectionsPerHost>1</cassandra.connectionsPerHost>
+		<cassandra.connectionsPerHost>5</cassandra.connectionsPerHost>
 		<cassandra.port>9160</cassandra.port>
 	</properties>
 	

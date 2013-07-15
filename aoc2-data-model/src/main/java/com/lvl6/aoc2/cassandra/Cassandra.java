@@ -1,11 +1,15 @@
 package com.lvl6.aoc2.cassandra;
 
+import org.mortbay.log.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
 import com.google.common.collect.ImmutableMap;
 import com.netflix.astyanax.AstyanaxContext;
 import com.netflix.astyanax.Keyspace;
+import com.netflix.astyanax.connectionpool.NodeDiscoveryType;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 import com.netflix.astyanax.connectionpool.impl.ConnectionPoolConfigurationImpl;
 import com.netflix.astyanax.connectionpool.impl.Slf4jConnectionPoolMonitorImpl;
@@ -15,12 +19,18 @@ import com.netflix.astyanax.thrift.ThriftFamilyFactory;
 @Component
 public class Cassandra implements InitializingBean {
 
-	protected String clusterName;
+	
+	
+	private static final Logger log = LoggerFactory.getLogger(Cassandra.class);
+	
 	protected String keyspaceName;
 	protected String cqlVersion;
 	protected String targetCassandraVersion;
 	protected String connectionPoolName;
-	protected String seeds ;
+	
+	protected String clusterName = "Test Cluster";
+	protected String seeds = "localhost:9160";
+	
 	protected Integer connectionsPerHost = 1;
 	protected Integer port = 9160;
 
@@ -33,28 +43,36 @@ public class Cassandra implements InitializingBean {
 	}
 
 	protected void setupContext() {
-		context = new AstyanaxContext
-				.Builder()
-				.forCluster(getClusterName())
-				.forKeyspace(getKeyspaceName())
-				.withAstyanaxConfiguration(
-					new AstyanaxConfigurationImpl()
-						//.setDiscoveryType(NodeDiscoveryType.RING_DESCRIBE)
-						//.setConnectionPoolType(ConnectionPoolType.ROUND_ROBIN)
-						.setCqlVersion(getCqlVersion())
-						.setTargetCassandraVersion(getTargetCassandraVersion()))
-				.withConnectionPoolConfiguration(
-					new ConnectionPoolConfigurationImpl(getConnectionPoolName())
-						.setPort(getPort())
-						.setMaxConnsPerHost(getConnectionsPerHost())
-						.setSeeds(getSeeds()))
-				.withConnectionPoolMonitor(new Slf4jConnectionPoolMonitorImpl())
-			.buildKeyspace(ThriftFamilyFactory.getInstance());
-		keyspace = context.getClient();
+		log.info("Creating cassandra context: {}", this);
+		try {
+		    if (context == null) {
+		        context = new AstyanaxContext.Builder()
+		           .forCluster(getClusterName())
+		           .forKeyspace(getKeyspaceName())    
+		           .withConnectionPoolConfiguration(
+		               new ConnectionPoolConfigurationImpl(getConnectionPoolName())
+		               .setPort(getPort())
+		               .setMaxConnsPerHost(getConnectionsPerHost())
+		               .setSeeds(getSeeds()))
+		           .withConnectionPoolMonitor(new Slf4jConnectionPoolMonitorImpl())
+		           .withAstyanaxConfiguration(
+		               new AstyanaxConfigurationImpl()
+		               .setCqlVersion(getCqlVersion())
+		               .setTargetCassandraVersion(getTargetCassandraVersion())
+		 	      .setDiscoveryType(NodeDiscoveryType.RING_DESCRIBE))
+		           .buildKeyspace(ThriftFamilyFactory.getInstance());
+		       context.start();
+		       keyspace = context.getClient();
+		       setupKeyspace();
+		     }
+		}catch(Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	//TODO: setup replication
 	protected void setupKeyspace() throws ConnectionException {
+		try {
 		getKeyspace().createKeyspace(ImmutableMap
 			.<String, Object> builder()
 			.put("strategy_options",
@@ -62,6 +80,9 @@ public class Cassandra implements InitializingBean {
 				.build())
 			.put("strategy_class", "SimpleStrategy")
 			.build());
+		}catch(Exception e) {
+			Log.info("Keyspace {} already exists", getKeyspaceName());
+		}
 	}
 
 	
@@ -153,5 +174,18 @@ public class Cassandra implements InitializingBean {
 	public void setKeyspace(Keyspace keyspace) {
 		this.keyspace = keyspace;
 	}
+
+	@Override
+	public String toString() {
+		return "Cassandra [keyspaceName=" + keyspaceName + ", cqlVersion=" + cqlVersion
+				+ ", targetCassandraVersion=" + targetCassandraVersion + ", connectionPoolName="
+				+ connectionPoolName + ", clusterName=" + clusterName + ", seeds=" + seeds
+				+ ", connectionsPerHost=" + connectionsPerHost + ", port=" + port + "]";
+	}
+	
+	
+	
+	
+	
 
 }

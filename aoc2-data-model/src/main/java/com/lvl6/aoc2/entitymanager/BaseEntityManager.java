@@ -1,5 +1,7 @@
 package com.lvl6.aoc2.entitymanager;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,6 +17,9 @@ import com.netflix.astyanax.serializers.StringSerializer;
 
 abstract public class BaseEntityManager<Clas, Ky>  implements InitializingBean{
 
+	
+	private static final Logger log = LoggerFactory.getLogger(BaseEntityManager.class);
+	
 	@Autowired
 	protected Cassandra cassandra;
 	
@@ -48,16 +53,22 @@ abstract public class BaseEntityManager<Clas, Ky>  implements InitializingBean{
 	
 
 	protected void createColumnFamily() throws ConnectionException {
-		columnFamily = new ColumnFamily<Ky, String>(type.getName().toLowerCase(), getSerializer(), StringSerializer.get());
+		try {
+		columnFamily = new ColumnFamily<Ky, String>(type.getSimpleName().toLowerCase(), getSerializer(), StringSerializer.get());
 		cassandra.getKeyspace().createColumnFamily(columnFamily, getIndexes());
+		}catch(Exception e) {
+			log.info("Column family {} already exists", columnFamily.getName());
+		}
 	}
 
 	
 	protected void setupEntityManager() throws ConnectionException{
+		log.info("Building entity manager for {} and keyspace {}", type.getSimpleName(), cassandra.getKeyspace().getKeyspaceName());
 		em = new DefaultEntityManager.Builder<Clas, Ky>()
 		.withEntityType(type)
 		.withKeyspace(cassandra.getKeyspace())
 		.withColumnFamily(columnFamily)
+		.withAutoCommit(true)
 		.build();
 	}
 	
