@@ -20,7 +20,7 @@
 	<context:component-scan base-package="com.lvl6.aoc2" />
 	
 
-	<bean id="cassandra" scope="singleton">
+	<bean id="cassandra" scope="singleton" class="com.lvl6.aoc2.cassandra.Cassandra">
 		<property name="clusterName" value="${cassandra.clusterName}" />
 		<property name="keyspaceName" value="${cassandra.keyspaceName}" />
 		<property name="cqlVersion" value="${cassandra.cqlVersion}" />

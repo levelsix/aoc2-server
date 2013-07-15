@@ -37,6 +37,7 @@ abstract public class BaseEntityManager<Clas, Ky>  implements InitializingBean{
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
+		createColumnFamily();
 		setupEntityManager();
 	}
 

@@ -27,7 +27,18 @@
 	<properties>
 		<astyanax.version>1.56.42</astyanax.version>
 		<org.springframework.version>3.2.3.RELEASE</org.springframework.version>
+		<cassandra.clusterName>Test Cluster</cassandra.clusterName>
+		<cassandra.keyspaceName>aoc2dev</cassandra.keyspaceName>
+		<cassandra.cqlVersion>3.0.0</cassandra.cqlVersion>
+		<cassandra.targetCassandraVersion>1.2</cassandra.targetCassandraVersion>
+		<cassandra.connectionPoolName>MainConnectionPool</cassandra.connectionPoolName>
+		<cassandra.seeds>localhost:9160</cassandra.seeds>
+		<cassandra.connectionsPerHost>1</cassandra.connectionsPerHost>
+		<cassandra.port>9160</cassandra.port>
 	</properties>
+	
+	
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>

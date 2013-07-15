@@ -6,10 +6,9 @@ import org.springframework.stereotype.Component;
 import com.google.common.collect.ImmutableMap;
 import com.netflix.astyanax.AstyanaxContext;
 import com.netflix.astyanax.Keyspace;
-import com.netflix.astyanax.connectionpool.NodeDiscoveryType;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 import com.netflix.astyanax.connectionpool.impl.ConnectionPoolConfigurationImpl;
-import com.netflix.astyanax.connectionpool.impl.CountingConnectionPoolMonitor;
+import com.netflix.astyanax.connectionpool.impl.Slf4jConnectionPoolMonitorImpl;
 import com.netflix.astyanax.impl.AstyanaxConfigurationImpl;
 import com.netflix.astyanax.thrift.ThriftFamilyFactory;
 
@@ -21,8 +20,8 @@ public class Cassandra implements InitializingBean {
 	protected String cqlVersion;
 	protected String targetCassandraVersion;
 	protected String connectionPoolName;
-	protected String seeds;
-	protected Integer connectionsPerHost = 20;
+	protected String seeds ;
+	protected Integer connectionsPerHost = 1;
 	protected Integer port = 9160;
 
 	protected AstyanaxContext<Keyspace> context;
@@ -34,18 +33,23 @@ public class Cassandra implements InitializingBean {
 	}
 
 	protected void setupContext() {
-		context = new AstyanaxContext.Builder()
+		context = new AstyanaxContext
+				.Builder()
 				.forCluster(getClusterName())
 				.forKeyspace(getKeyspaceName())
 				.withAstyanaxConfiguration(
-						new AstyanaxConfigurationImpl().setDiscoveryType(NodeDiscoveryType.RING_DESCRIBE)
-								.setCqlVersion(getCqlVersion())
-								.setTargetCassandraVersion(getTargetCassandraVersion()))
+					new AstyanaxConfigurationImpl()
+						//.setDiscoveryType(NodeDiscoveryType.RING_DESCRIBE)
+						//.setConnectionPoolType(ConnectionPoolType.ROUND_ROBIN)
+						.setCqlVersion(getCqlVersion())
+						.setTargetCassandraVersion(getTargetCassandraVersion()))
 				.withConnectionPoolConfiguration(
-						new ConnectionPoolConfigurationImpl(getConnectionPoolName()).setPort(getPort())
-								.setMaxConnsPerHost(getConnectionsPerHost()).setSeeds(getSeeds()))
-				.withConnectionPoolMonitor(new CountingConnectionPoolMonitor())
-				.buildKeyspace(ThriftFamilyFactory.getInstance());
+					new ConnectionPoolConfigurationImpl(getConnectionPoolName())
+						.setPort(getPort())
+						.setMaxConnsPerHost(getConnectionsPerHost())
+						.setSeeds(getSeeds()))
+				.withConnectionPoolMonitor(new Slf4jConnectionPoolMonitorImpl())
+			.buildKeyspace(ThriftFamilyFactory.getInstance());
 		keyspace = context.getClient();
 	}
 
@@ -129,6 +133,9 @@ public class Cassandra implements InitializingBean {
 	}
 
 	public AstyanaxContext<Keyspace> getContext() {
+		if(context == null) {
+			setupContext();
+		}
 		return context;
 	}
 
@@ -137,6 +144,9 @@ public class Cassandra implements InitializingBean {
 	}
 
 	public Keyspace getKeyspace() {
+		if(keyspace == null) {
+			setupContext();
+		}
 		return keyspace;
 	}
 

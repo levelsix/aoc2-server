@@ -13,10 +13,10 @@ public class User {
 
 	@Id
 	protected UUID id = UUID.randomUUID();
-	protected String userName;
-	protected String email;
-	protected Date lastLogin;
-	protected Date signupDate;
+	protected String userName = "";
+	protected String email = "";
+	protected Date lastLogin = new Date();
+	protected Date signupDate = new Date();
 
 	
 	
