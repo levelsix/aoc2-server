@@ -6,15 +6,15 @@
 		<artifactId>aoc2-server</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>aoc2-services</artifactId>
-	<name>AoC 2 Services</name>
+	<artifactId>aoc2-proto-buff</artifactId>
+	<name>AoC 2 Protocol Buffers</name>
 
 
 
 	<dependencies>
 		<dependency>
 			<groupId>com.lvl6.aoc2</groupId>
-			<artifactId>aoc2-proto-buff</artifactId>
+			<artifactId>aoc2-data-model</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
