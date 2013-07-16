@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.collect.ImmutableMap;
 import com.lvl6.aoc2.cassandra.Cassandra;
+import com.lvl6.aoc2.po.BasePersistentObject;
 import com.netflix.astyanax.Serializer;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 import com.netflix.astyanax.entitystore.DefaultEntityManager;
@@ -15,7 +16,7 @@ import com.netflix.astyanax.model.ColumnFamily;
 import com.netflix.astyanax.serializers.SerializerTypeInferer;
 import com.netflix.astyanax.serializers.StringSerializer;
 
-abstract public class BaseEntityManager<Clas, Ky>  implements InitializingBean{
+abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  implements InitializingBean{
 
 	
 	private static final Logger log = LoggerFactory.getLogger(BaseEntityManager.class);
@@ -55,7 +56,7 @@ abstract public class BaseEntityManager<Clas, Ky>  implements InitializingBean{
 	protected void createColumnFamily() throws ConnectionException {
 		try {
 		columnFamily = new ColumnFamily<Ky, String>(type.getSimpleName().toLowerCase(), getSerializer(), StringSerializer.get());
-		cassandra.getKeyspace().createColumnFamily(columnFamily, getIndexes());
+		//cassandra.getKeyspace().createColumnFamily(columnFamily, getIndexes());
 		}catch(Exception e) {
 			log.info("Column family {} already exists", columnFamily.getName());
 		}
@@ -70,6 +71,52 @@ abstract public class BaseEntityManager<Clas, Ky>  implements InitializingBean{
 		.withColumnFamily(columnFamily)
 		.withAutoCommit(true)
 		.build();
+		try {
+			Clas cls = this.type.newInstance();
+			createTable(cls);
+			updateTable(cls);
+			addOrRemoveIndexes(cls);
+		}catch(Exception e) {
+			log.warn("Error creating storage for {}", type.getSimpleName(), e);
+		}
+	}
+	
+	
+	protected void createTable(Clas cls) {
+		try {
+			cassandra.getKeyspace()
+			    .prepareQuery(columnFamily)
+			    .withCql(cls.getTableCreateStatement())
+			    .execute();
+		}catch(Exception e) {
+			log.info("Could not create table for {} message: {}", type.getSimpleName(), e.getMessage());
+		}
+	}
+	
+	protected void updateTable(Clas cls) {
+		for(String update : cls.getTableUpdateStatements()) {
+			try {
+				cassandra.getKeyspace()
+				    .prepareQuery(columnFamily)
+				    .withCql(update)
+				    .execute();
+			}catch(Exception e) {
+				log.info("Could not update table {} message: {}", type.getSimpleName(), e.getMessage());
+			}
+		}
+	}
+	
+	protected void addOrRemoveIndexes(Clas cls) {
+		for(String index : cls.getIndexCreateStatements()) {
+			try {
+				cassandra.getKeyspace()
+				    .prepareQuery(columnFamily)
+				    .withCql(index)
+				    .execute();
+			}catch(Exception e) {
+				log.info("Could not create index for table {} message: {}", type.getSimpleName(), e.getMessage());
+			}
+		}
 	}
 	
 

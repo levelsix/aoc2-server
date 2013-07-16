@@ -32,7 +32,7 @@
 		<cassandra.cqlVersion>3.0.0</cassandra.cqlVersion>
 		<cassandra.targetCassandraVersion>1.2</cassandra.targetCassandraVersion>
 		<cassandra.connectionPoolName>MainConnectionPool</cassandra.connectionPoolName>
-		<cassandra.seeds>robot.lvl6.com:9160</cassandra.seeds>
+		<cassandra.seeds>localhost:9160</cassandra.seeds>
 		<cassandra.connectionsPerHost>5</cassandra.connectionsPerHost>
 		<cassandra.port>9160</cassandra.port>
 	</properties>
