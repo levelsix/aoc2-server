@@ -14,8 +14,16 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.lvl6.aoc2</groupId>
-			<artifactId>aoc2-amqp</artifactId>
+			<artifactId>aoc2-services</artifactId>
 			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-ip</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.notnoop.apns</groupId>
+			<artifactId>apns</artifactId>
 		</dependency>
 	</dependencies>
 
