@@ -17,6 +17,10 @@
 			<artifactId>aoc2-data-model</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.protobuf</groupId>
+			<artifactId>protobuf-java</artifactId>
+		</dependency>
 	</dependencies>
 
 
