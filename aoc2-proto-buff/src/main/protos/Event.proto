@@ -1,6 +1,6 @@
 import "Info.proto";
 
-package com.lvl6.proto;
+package com.lvl6.aoc2.proto;
 
 option java_outer_classname = "EventProto";
 
@@ -33,7 +33,7 @@ message StartupResponseProto {
 message UserCreateRequestProto {
      optional string udid = 1;
      optional string name = 2;
-     optional PlayerClass class = 3;
+     optional PlayerClass playerClass = 3;
      //optional LocationProto userLocation = 6;     
      optional string referrerCode = 7;
      optional string deviceToken = 8;
