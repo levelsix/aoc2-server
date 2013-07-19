@@ -59,7 +59,7 @@ public class Cassandra implements InitializingBean {
 		               new AstyanaxConfigurationImpl()
 		               .setCqlVersion(getCqlVersion())
 		               .setTargetCassandraVersion(getTargetCassandraVersion())
-		 	      .setDiscoveryType(NodeDiscoveryType.RING_DESCRIBE))
+		 	      .setDiscoveryType(NodeDiscoveryType.NONE))
 		           .buildKeyspace(ThriftFamilyFactory.getInstance());
 		       context.start();
 		       keyspace = context.getClient();
