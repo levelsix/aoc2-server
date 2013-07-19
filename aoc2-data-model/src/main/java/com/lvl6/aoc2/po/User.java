@@ -28,7 +28,60 @@ public class User extends BasePersistentObject{
 	
 	@Column(name="signup_date")
 	protected Date signupDate = new Date();
+	
+	@Column(name="level")
+	protected int level = 0;
+	
+	@Column(name="experience")
+	protected int experience = 0;
 
+	@Column(name="gold")
+	protected int gold = 0;
+	
+	@Column(name="tonic")
+	protected int tonic = 0;
+	
+	//in game currency
+	@Column(name="diamonds")
+	protected int diamonds = 0;
+	
+	@Column(name="class_type")
+	protected int classType = 0;
+
+	@Column(name="max_hp")
+	protected int maxHp = 0;
+	
+	@Column(name="hp")
+	protected int hp = 0;
+	
+	@Column(name="hp_regen_start_time")
+	protected Date hpRegenStartTime = new Date();
+
+	@Column(name="max_mana")
+	protected int maxMana = 0;
+	
+	@Column(name="mana")
+	protected int mana = 0;
+	
+	@Column(name="mana_regen_start_time")
+	protected Date manaRegenStartTime = new Date();
+	
+	//if user has a gameCenterId use that id, else generate random string
+	@Column(name="game_center_id")
+	protected String gameCenterId = "";
+	
+	@Column(name="clan_id")
+	protected int clanId = 0;
+	
+	@Column(name="weapon_user_equip_id")
+	protected int weaponUserEquipId = 0;
+	
+	@Column(name="lower_body_user_equip_id")
+	protected int lowerBodyUserEquipId = 0;
+	
+	@Column(name="upper_body_user_equip_id")
+	protected int upperBodyUserEquipId = 0;
+	
 	
 	
 	
@@ -62,7 +115,108 @@ public class User extends BasePersistentObject{
 	public void setSignupDate(Date signupDate) {
 		this.signupDate = signupDate;
 	}
-	
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	public int getExperience() {
+		return experience;
+	}
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
+	public int getGold() {
+		return gold;
+	}
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+	public int getTonic() {
+		return tonic;
+	}
+	public void setTonic(int tonic) {
+		this.tonic = tonic;
+	}
+	public int getDiamonds() {
+		return diamonds;
+	}
+	public void setDiamonds(int diamonds) {
+		this.diamonds = diamonds;
+	}
+	public int getClassType() {
+		return classType;
+	}
+	public void setClassType(int classType) {
+		this.classType = classType;
+	}
+	public int getMaxHp() {
+		return maxHp;
+	}
+	public void setMaxHp(int maxHp) {
+		this.maxHp = maxHp;
+	}
+	public int getHp() {
+		return hp;
+	}
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+	public Date getHpRegenStartTime() {
+		return hpRegenStartTime;
+	}
+	public void setHpRegenStartTime(Date hpRegenStartTime) {
+		this.hpRegenStartTime = hpRegenStartTime;
+	}
+	public int getMaxMana() {
+		return maxMana;
+	}
+	public void setMaxMana(int maxMana) {
+		this.maxMana = maxMana;
+	}
+	public int getMana() {
+		return mana;
+	}
+	public void setMana(int mana) {
+		this.mana = mana;
+	}
+	public Date getManaRegenStartTime() {
+		return manaRegenStartTime;
+	}
+	public void setManaRegenStartTime(Date manaRegenStartTime) {
+		this.manaRegenStartTime = manaRegenStartTime;
+	}
+	public String getGameCenterId() {
+		return gameCenterId;
+	}
+	public void setGameCenterId(String gameCenterId) {
+		this.gameCenterId = gameCenterId;
+	}
+	public int getClanId() {
+		return clanId;
+	}
+	public void setClanId(int clanId) {
+		this.clanId = clanId;
+	}
+	public int getWeaponUserEquipId() {
+		return weaponUserEquipId;
+	}
+	public void setWeaponUserEquipId(int weaponUserEquipId) {
+		this.weaponUserEquipId = weaponUserEquipId;
+	}
+	public int getLowerBodyUserEquipId() {
+		return lowerBodyUserEquipId;
+	}
+	public void setLowerBodyUserEquipId(int lowerBodyUserEquipId) {
+		this.lowerBodyUserEquipId = lowerBodyUserEquipId;
+	}
+	public int getUpperBodyUserEquipId() {
+		return upperBodyUserEquipId;
+	}
+	public void setUpperBodyUserEquipId(int upperBodyUserEquipId) {
+		this.upperBodyUserEquipId = upperBodyUserEquipId;
+	}
 	
 	
 	@Override
@@ -92,8 +246,18 @@ public class User extends BasePersistentObject{
 	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", email=" + email + ", lastLogin=" + lastLogin
-				+ ", signupDate=" + signupDate + "]";
+		return "User [id=" + id + ", userName=" + userName + ", email=" + email
+				+ ", lastLogin=" + lastLogin + ", signupDate=" + signupDate
+				+ ", level=" + level + ", experience=" + experience + ", gold="
+				+ gold + ", tonic=" + tonic + ", diamonds=" + diamonds
+				+ ", classType=" + classType + ", maxHp=" + maxHp + ", hp="
+				+ hp + ", hpRegenStartTime=" + hpRegenStartTime + ", maxMana="
+				+ maxMana + ", mana=" + mana + ", manaRegenStartTime="
+				+ manaRegenStartTime + ", gameCenterId=" + gameCenterId
+				+ ", clanId=" + clanId + ", weaponUserEquipId="
+				+ weaponUserEquipId + ", lowerBodyUserEquipId="
+				+ lowerBodyUserEquipId + ", upperBodyUserEquipId="
+				+ upperBodyUserEquipId + "]";
 	}
 	
 	
