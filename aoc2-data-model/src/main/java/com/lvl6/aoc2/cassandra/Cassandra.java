@@ -28,8 +28,8 @@ public class Cassandra implements InitializingBean {
 	protected String targetCassandraVersion;
 	protected String connectionPoolName;
 	
-	protected String clusterName = "Test Cluster";
-	protected String seeds = "localhost:9160";
+	protected String clusterName = "";
+	protected String seeds = "";
 	
 	protected Integer connectionsPerHost = 1;
 	protected Integer port = 9160;
