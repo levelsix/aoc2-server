@@ -81,6 +81,14 @@ public class User extends BasePersistentObject{
 	
 	@Column(name="upper_body_user_equip_id")
 	protected int upperBodyUserEquipId = 0;
+
+	@Column(name="attack_points")
+	protected int attackPoints = 5;
+	
+	@Column(name="defense_points")
+	protected int defensePoints = 5;
+	
+	
 	
 	
 	
@@ -217,6 +225,19 @@ public class User extends BasePersistentObject{
 	public void setUpperBodyUserEquipId(int upperBodyUserEquipId) {
 		this.upperBodyUserEquipId = upperBodyUserEquipId;
 	}
+	public int getAttackPoints() {
+		return attackPoints;
+	}
+	public void setAttackPoints(int attackPoints) {
+		this.attackPoints = attackPoints;
+	}
+	public int getDefensePoints() {
+		return defensePoints;
+	}
+	public void setDefensePoints(int defensePoints) {
+		this.defensePoints = defensePoints;
+	}
+	
 	
 	
 	@Override
@@ -257,7 +278,8 @@ public class User extends BasePersistentObject{
 				+ ", clanId=" + clanId + ", weaponUserEquipId="
 				+ weaponUserEquipId + ", lowerBodyUserEquipId="
 				+ lowerBodyUserEquipId + ", upperBodyUserEquipId="
-				+ upperBodyUserEquipId + "]";
+				+ upperBodyUserEquipId + ", attackPoints=" + attackPoints
+				+ ", defensePoints=" + defensePoints + "]";
 	}
 	
 	
@@ -269,6 +291,25 @@ public class User extends BasePersistentObject{
 				" email varchar," +
 				" last_login timestamp," +
 				" signup_date timestamp," +
+				" level int," +
+				" experience int," +
+				" gold int," +
+				" tonic int," +
+				" diamonds int," +
+				" class_type int," +
+				" max_hp int," +
+				" hp int," +
+				" hp_regen_start_time int," +
+				" max_mana int," +
+				" mana int," +
+				" mana_regen_start_time int," +
+				" game_center_id varchar," +
+				" clan_id int," +
+				" weapon_user_equip_id int," +
+				" lower_body_user_equip_id int," +
+				" upper_body_user_equip_id int," +
+				" attack_points int," +
+				" defense_points int," +
 				" primary key (id))" +
 				" with compact storage;";
 	}
