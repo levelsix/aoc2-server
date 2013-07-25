@@ -56,12 +56,23 @@ public class Spells extends BasePersistentObject{
 	@Column(name="cooldown")
 	protected int cooldown = 0;
 	
+	@Column(name="range")
+	protected int range = 0;
+	
 	@Column(name="level_requirement")
 	protected int levelRequirement = 0;
 	
 	@Column(name="spell_level")
 	protected int spellLevel = 0;
 	
+	@Column(name="research_cost")
+	protected int researchCost = 0;
+	
+	@Column(name="research_time")
+	protected int researchTime = 0;
+	
+	@Column(name="research_resource")
+	protected int researchResource = 0;
 	
 	public int getId() {
 		return id;
@@ -159,8 +170,30 @@ public class Spells extends BasePersistentObject{
 	public void setSpellLevel(int spellLevel) {
 		this.spellLevel = spellLevel;
 	}
-	
-	
+	public int getRange() {
+		return range;
+	}
+	public void setRange(int range) {
+		this.range = range;
+	}
+	public int getResearchCost() {
+		return researchCost;
+	}
+	public void setResearchCost(int researchCost) {
+		this.researchCost = researchCost;
+	}
+	public int getResearchTime() {
+		return researchTime;
+	}
+	public void setResearchTime(int researchTime) {
+		this.researchTime = researchTime;
+	}
+	public int getResearchResource() {
+		return researchResource;
+	}
+	public void setResearchResource(int researchResource) {
+		this.researchResource = researchResource;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -176,6 +209,10 @@ public class Spells extends BasePersistentObject{
 		result = prime * result + id;
 		result = prime * result + levelRequirement;
 		result = prime * result + manaCost;
+		result = prime * result + range;
+		result = prime * result + researchCost;
+		result = prime * result + researchResource;
+		result = prime * result + researchTime;
 		result = prime * result + size;
 		result = prime * result + speed;
 		result = prime * result + spellLevel;
@@ -215,6 +252,14 @@ public class Spells extends BasePersistentObject{
 			return false;
 		if (manaCost != other.manaCost)
 			return false;
+		if (range != other.range)
+			return false;
+		if (researchCost != other.researchCost)
+			return false;
+		if (researchResource != other.researchResource)
+			return false;
+		if (researchTime != other.researchTime)
+			return false;
 		if (size != other.size)
 			return false;
 		if (speed != other.speed)
@@ -241,8 +286,10 @@ public class Spells extends BasePersistentObject{
 				+ ", duration=" + duration + ", elementalType=" + elementalType
 				+ ", speed=" + speed + ", targetted=" + targetted + ", size="
 				+ size + ", castTime=" + castTime + ", cooldown=" + cooldown
-				+ ", levelRequirement=" + levelRequirement + ", spellLevel="
-				+ spellLevel + "]";
+				+ ", range=" + range + ", levelRequirement=" + levelRequirement
+				+ ", spellLevel=" + spellLevel + ", researchCost="
+				+ researchCost + ", researchTime=" + researchTime
+				+ ", researchResource=" + researchResource + "]";
 	}
 	
 	
@@ -263,8 +310,13 @@ public class Spells extends BasePersistentObject{
 				" size int, " +
 				" cast_time int" +
 				" cooldown int," +
+				" range int," +
 				" level_requirement," +
 				" spellLevel," +
+				" research_cost int," +
+				" research_time int," +
+				" research_resource int," +
+				" primary key (id))" +
 				" with compact storage;";
 	}
 	
@@ -281,6 +333,7 @@ public class Spells extends BasePersistentObject{
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index element_type on spells(element_type);");
+		indexes.add("create index class_type on spells(class_type);");
 		return indexes;
 	}
 	
