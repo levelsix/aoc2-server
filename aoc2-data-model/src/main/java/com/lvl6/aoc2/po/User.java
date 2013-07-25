@@ -69,10 +69,153 @@ public class User extends BasePersistentObject{
 	
 	@Column(name="last_login")
 	protected Date lastLogin = new Date();
+
+	public UUID getId() {
+		return id;
+	}
+
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public int getExperience() {
+		return experience;
+	}
+
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
+
+	public int getGold() {
+		return gold;
+	}
+
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+
+	public int getTonic() {
+		return tonic;
+	}
+
+	public void setTonic(int tonic) {
+		this.tonic = tonic;
+	}
+
+	public int getGems() {
+		return gems;
+	}
+
+	public void setGems(int gems) {
+		this.gems = gems;
+	}
+
+	public int getClassType() {
+		return classType;
+	}
+
+	public void setClassType(int classType) {
+		this.classType = classType;
+	}
+
+	public int getMaxHp() {
+		return maxHp;
+	}
+
+	public void setMaxHp(int maxHp) {
+		this.maxHp = maxHp;
+	}
+
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
+	}
+
+	public Date getLastTimeHpRegened() {
+		return lastTimeHpRegened;
+	}
+
+	public void setLastTimeHpRegened(Date lastTimeHpRegened) {
+		this.lastTimeHpRegened = lastTimeHpRegened;
+	}
+
+	public int getMaxMana() {
+		return maxMana;
+	}
+
+	public void setMaxMana(int maxMana) {
+		this.maxMana = maxMana;
+	}
+
+	public int getMana() {
+		return mana;
+	}
+
+	public void setMana(int mana) {
+		this.mana = mana;
+	}
+
+	public Date getLastTimeManaRegened() {
+		return lastTimeManaRegened;
+	}
+
+	public void setLastTimeManaRegened(Date lastTimeManaRegened) {
+		this.lastTimeManaRegened = lastTimeManaRegened;
+	}
+
+	public String getGameCenterId() {
+		return gameCenterId;
+	}
+
+	public void setGameCenterId(String gameCenterId) {
+		this.gameCenterId = gameCenterId;
+	}
+
+	public Date getSignupDate() {
+		return signupDate;
+	}
+
+	public void setSignupDate(Date signupDate) {
+		this.signupDate = signupDate;
+	}
+
+	public int getClanId() {
+		return clanId;
+	}
+
+	public void setClanId(int clanId) {
+		this.clanId = clanId;
+	}
+
+	public Date getLastLogin() {
+		return lastLogin;
+	}
+
+	public void setLastLogin(Date lastLogin) {
+		this.lastLogin = lastLogin;
+	}
 	
-	@Column(name="email")
-	protected String email = "";
-	
+//	@Column(name="email")
+//	protected String email = "";
 	
 	
 	
@@ -120,11 +263,5 @@ public class User extends BasePersistentObject{
 		indexes.add("create index user_game_center_id_index on user (game_center_id);");
 		return indexes;
 	}
-	
-
-	
-	
-	
-	
 	
 }
