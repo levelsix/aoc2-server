@@ -20,15 +20,6 @@ public class User extends BasePersistentObject{
 	@Column(name="user_name")
 	protected String userName = "";
 	
-	@Column(name="email")
-	protected String email = "";
-	
-	@Column(name="last_login")
-	protected Date lastLogin = new Date();
-	
-	@Column(name="signup_date")
-	protected Date signupDate = new Date();
-	
 	@Column(name="level")
 	protected int level = 0;
 	
@@ -42,8 +33,8 @@ public class User extends BasePersistentObject{
 	protected int tonic = 0;
 	
 	//in game currency
-	@Column(name="diamonds")
-	protected int diamonds = 0;
+	@Column(name="gems")
+	protected int gems = 0;
 	
 	@Column(name="class_type")
 	protected int classType = 0;
@@ -54,8 +45,8 @@ public class User extends BasePersistentObject{
 	@Column(name="hp")
 	protected int hp = 0;
 	
-	@Column(name="hp_regen_start_time")
-	protected Date hpRegenStartTime = new Date();
+	@Column(name="last_time_hp_regened")
+	protected Date lastTimeHpRegened = new Date();
 
 	@Column(name="max_mana")
 	protected int maxMana = 0;
@@ -63,224 +54,26 @@ public class User extends BasePersistentObject{
 	@Column(name="mana")
 	protected int mana = 0;
 	
-	@Column(name="mana_regen_start_time")
-	protected Date manaRegenStartTime = new Date();
+	@Column(name="last_time_mana_regened")
+	protected Date lastTimeManaRegened = new Date();
 	
 	//if user has a gameCenterId use that id, else generate random string
 	@Column(name="game_center_id")
 	protected String gameCenterId = "";
 	
+	@Column(name="signup_date")
+	protected Date signupDate = new Date();
+	
 	@Column(name="clan_id")
 	protected int clanId = 0;
 	
-	@Column(name="weapon_user_equip_id")
-	protected int weaponUserEquipId = 0;
+	@Column(name="last_login")
+	protected Date lastLogin = new Date();
 	
-	@Column(name="lower_body_user_equip_id")
-	protected int lowerBodyUserEquipId = 0;
-	
-	@Column(name="upper_body_user_equip_id")
-	protected int upperBodyUserEquipId = 0;
-
-	@Column(name="attack_points")
-	protected int attackPoints = 5;
-	
-	@Column(name="defense_points")
-	protected int defensePoints = 5;
+	@Column(name="email")
+	protected String email = "";
 	
 	
-	
-	
-	
-	
-	public UUID getId() {
-		return id;
-	}
-	public void setId(UUID id) {
-		this.id = id;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public Date getLastLogin() {
-		return lastLogin;
-	}
-	public void setLastLogin(Date lastLogin) {
-		this.lastLogin = lastLogin;
-	}
-	public Date getSignupDate() {
-		return signupDate;
-	}
-	public void setSignupDate(Date signupDate) {
-		this.signupDate = signupDate;
-	}
-	public int getLevel() {
-		return level;
-	}
-	public void setLevel(int level) {
-		this.level = level;
-	}
-	public int getExperience() {
-		return experience;
-	}
-	public void setExperience(int experience) {
-		this.experience = experience;
-	}
-	public int getGold() {
-		return gold;
-	}
-	public void setGold(int gold) {
-		this.gold = gold;
-	}
-	public int getTonic() {
-		return tonic;
-	}
-	public void setTonic(int tonic) {
-		this.tonic = tonic;
-	}
-	public int getDiamonds() {
-		return diamonds;
-	}
-	public void setDiamonds(int diamonds) {
-		this.diamonds = diamonds;
-	}
-	public int getClassType() {
-		return classType;
-	}
-	public void setClassType(int classType) {
-		this.classType = classType;
-	}
-	public int getMaxHp() {
-		return maxHp;
-	}
-	public void setMaxHp(int maxHp) {
-		this.maxHp = maxHp;
-	}
-	public int getHp() {
-		return hp;
-	}
-	public void setHp(int hp) {
-		this.hp = hp;
-	}
-	public Date getHpRegenStartTime() {
-		return hpRegenStartTime;
-	}
-	public void setHpRegenStartTime(Date hpRegenStartTime) {
-		this.hpRegenStartTime = hpRegenStartTime;
-	}
-	public int getMaxMana() {
-		return maxMana;
-	}
-	public void setMaxMana(int maxMana) {
-		this.maxMana = maxMana;
-	}
-	public int getMana() {
-		return mana;
-	}
-	public void setMana(int mana) {
-		this.mana = mana;
-	}
-	public Date getManaRegenStartTime() {
-		return manaRegenStartTime;
-	}
-	public void setManaRegenStartTime(Date manaRegenStartTime) {
-		this.manaRegenStartTime = manaRegenStartTime;
-	}
-	public String getGameCenterId() {
-		return gameCenterId;
-	}
-	public void setGameCenterId(String gameCenterId) {
-		this.gameCenterId = gameCenterId;
-	}
-	public int getClanId() {
-		return clanId;
-	}
-	public void setClanId(int clanId) {
-		this.clanId = clanId;
-	}
-	public int getWeaponUserEquipId() {
-		return weaponUserEquipId;
-	}
-	public void setWeaponUserEquipId(int weaponUserEquipId) {
-		this.weaponUserEquipId = weaponUserEquipId;
-	}
-	public int getLowerBodyUserEquipId() {
-		return lowerBodyUserEquipId;
-	}
-	public void setLowerBodyUserEquipId(int lowerBodyUserEquipId) {
-		this.lowerBodyUserEquipId = lowerBodyUserEquipId;
-	}
-	public int getUpperBodyUserEquipId() {
-		return upperBodyUserEquipId;
-	}
-	public void setUpperBodyUserEquipId(int upperBodyUserEquipId) {
-		this.upperBodyUserEquipId = upperBodyUserEquipId;
-	}
-	public int getAttackPoints() {
-		return attackPoints;
-	}
-	public void setAttackPoints(int attackPoints) {
-		this.attackPoints = attackPoints;
-	}
-	public int getDefensePoints() {
-		return defensePoints;
-	}
-	public void setDefensePoints(int defensePoints) {
-		this.defensePoints = defensePoints;
-	}
-	
-	
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User other = (User) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-	
-	
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", email=" + email
-				+ ", lastLogin=" + lastLogin + ", signupDate=" + signupDate
-				+ ", level=" + level + ", experience=" + experience + ", gold="
-				+ gold + ", tonic=" + tonic + ", diamonds=" + diamonds
-				+ ", classType=" + classType + ", maxHp=" + maxHp + ", hp="
-				+ hp + ", hpRegenStartTime=" + hpRegenStartTime + ", maxMana="
-				+ maxMana + ", mana=" + mana + ", manaRegenStartTime="
-				+ manaRegenStartTime + ", gameCenterId=" + gameCenterId
-				+ ", clanId=" + clanId + ", weaponUserEquipId="
-				+ weaponUserEquipId + ", lowerBodyUserEquipId="
-				+ lowerBodyUserEquipId + ", upperBodyUserEquipId="
-				+ upperBodyUserEquipId + ", attackPoints=" + attackPoints
-				+ ", defensePoints=" + defensePoints + "]";
-	}
 	
 	
 	@Override
@@ -288,28 +81,23 @@ public class User extends BasePersistentObject{
 		return "create table user (" +
 				" id uuid," +
 				" user_name varchar," +
-				" email varchar," +
-				" last_login timestamp," +
-				" signup_date timestamp," +
 				" level int," +
 				" experience int," +
 				" gold int," +
 				" tonic int," +
-				" diamonds int," +
+				" gems int," +
 				" class_type int," +
 				" max_hp int," +
 				" hp int," +
-				" hp_regen_start_time int," +
+				" last_time_hp_regened int," +
 				" max_mana int," +
 				" mana int," +
-				" mana_regen_start_time int," +
+				" last_time_mana_regened int," +
 				" game_center_id varchar," +
+				" signup_date timestamp," +
 				" clan_id int," +
-				" weapon_user_equip_id int," +
-				" lower_body_user_equip_id int," +
-				" upper_body_user_equip_id int," +
-				" attack_points int," +
-				" defense_points int," +
+				" last_login timestamp," +
+				//" email varchar," +
 				" primary key (id))" +
 				" with compact storage;";
 	}
@@ -329,6 +117,7 @@ public class User extends BasePersistentObject{
 		indexes.add("create index user_email_index on user (email);");
 		indexes.add("create index user_user_name_index on user (user_name);");
 		indexes.add("create index user_last_login_index on user (last_login);");
+		indexes.add("create index user_game_center_id_index on user (game_center_id);");
 		return indexes;
 	}
 	
