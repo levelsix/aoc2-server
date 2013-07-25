@@ -54,7 +54,7 @@ public class TestUserEntityManager {
 	@Test
 	public void testCreatingUser() throws ConnectionException{
 		User user = new User();
-		user.setEmail("anyone@anyserver.com");
+		//user.setEmail("anyone@anyserver.com");
 		user.setUserName("someUser");
 		log.info("Saving user: {}", user);
 		um.get().put(user);
@@ -66,6 +66,6 @@ public class TestUserEntityManager {
 		User user2 = um.get().get(user.getId());
 		assertNotNull(user2);
 		assertTrue("Usernames equal", user.getUserName().equals(user2.getUserName()));
-		assertTrue("Emails equal", user.getEmail().equals(user2.getEmail()));
+		//assertTrue("Emails equal", user.getEmail().equals(user2.getEmail()));
 	}
 }
