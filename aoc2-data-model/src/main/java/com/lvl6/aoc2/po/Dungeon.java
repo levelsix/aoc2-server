@@ -1,6 +1,5 @@
 package com.lvl6.aoc2.po;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -12,10 +11,10 @@ import javax.persistence.Id;
 
 
 @Entity
-public class Dungeons extends BasePersistentObject{
+public class Dungeon extends BasePersistentObject{
 
 	@Id
-	protected int id = 0;
+	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="level_requirement")
 	protected int levelRequirement = 0;
@@ -23,16 +22,19 @@ public class Dungeons extends BasePersistentObject{
 	@Column(name="time_limit")
 	protected int timeLimit = 0;
 	
-	@Column(name="number_of_rooms")
-	protected int numberOfRooms = 0;
+	@Column(name="num_rooms")
+	protected int numRooms = 0;
 	
+	@Column(name="name")
+	protected String name = "Inferno";
 	
-	public int getId() {
+
+	public UUID getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 
@@ -57,23 +59,34 @@ public class Dungeons extends BasePersistentObject{
 	}
 
 
-	public int getNumberOfRooms() {
-		return numberOfRooms;
+	public int getNumRooms() {
+		return numRooms;
 	}
 
 
-	public void setNumberOfRooms(int numberOfRooms) {
-		this.numberOfRooms = numberOfRooms;
+	public void setNumRooms(int numRooms) {
+		this.numRooms = numRooms;
 	}
-	
-	
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + levelRequirement;
-		result = prime * result + numberOfRooms;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + numRooms;
 		result = prime * result + timeLimit;
 		return result;
 	}
@@ -87,12 +100,20 @@ public class Dungeons extends BasePersistentObject{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Dungeons other = (Dungeons) obj;
-		if (id != other.id)
+		Dungeon other = (Dungeon) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (levelRequirement != other.levelRequirement)
 			return false;
-		if (numberOfRooms != other.numberOfRooms)
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (numRooms != other.numRooms)
 			return false;
 		if (timeLimit != other.timeLimit)
 			return false;
@@ -102,19 +123,21 @@ public class Dungeons extends BasePersistentObject{
 
 	@Override
 	public String toString() {
-		return "Dungeons [id=" + id + ", levelRequirement=" + levelRequirement
-				+ ", timeLimit=" + timeLimit + ", numberOfRooms="
-				+ numberOfRooms + "]";
+		return "Dungeon [id=" + id + ", levelRequirement=" + levelRequirement
+				+ ", timeLimit=" + timeLimit + ", numRooms=" + numRooms
+				+ ", name=" + name + "]";
 	}
 
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user (" +
-				" id int," +
+		return "create table dungeon (" +
+				" id uuid," +
 				" level_requirement int," +
 				" time_limit int," +
-				" number_of_rooms int," +
+				" num_rooms int," +
+				" name varchar," +
+				" primary key (id))" +
 				" with compact storage;";
 	}
 	
@@ -130,14 +153,8 @@ public class Dungeons extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index level_requirement on dungeons(level_requirement);");
+		indexes.add("create index level_requirement on dungeon(level_requirement);");
 		return indexes;
 	}
-	
-
-	
-	
-	
-	
 	
 }
