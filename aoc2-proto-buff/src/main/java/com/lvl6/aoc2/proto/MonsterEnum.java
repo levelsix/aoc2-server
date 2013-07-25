@@ -8,46 +8,20 @@ public final class MonsterEnum {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  /**
-   * Protobuf enum {@code com.lvl6.aoc2.proto.MonsterType}
-   *
-   * <pre>
-   *Example placeholder values until we have
-   *action assets
-   * </pre>
-   */
   public enum MonsterType
       implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>GOBLIN = 0;</code>
-     */
     GOBLIN(0, 0),
-    /**
-     * <code>TROLL = 1;</code>
-     */
     TROLL(1, 1),
-    /**
-     * <code>DRAGON = 2;</code>
-     */
     DRAGON(2, 2),
     ;
-
-    /**
-     * <code>GOBLIN = 0;</code>
-     */
+    
     public static final int GOBLIN_VALUE = 0;
-    /**
-     * <code>TROLL = 1;</code>
-     */
     public static final int TROLL_VALUE = 1;
-    /**
-     * <code>DRAGON = 2;</code>
-     */
     public static final int DRAGON_VALUE = 2;
-
-
+    
+    
     public final int getNumber() { return value; }
-
+    
     public static MonsterType valueOf(int value) {
       switch (value) {
         case 0: return GOBLIN;
@@ -56,7 +30,7 @@ public final class MonsterEnum {
         default: return null;
       }
     }
-
+    
     public static com.google.protobuf.Internal.EnumLiteMap<MonsterType>
         internalGetValueMap() {
       return internalValueMap;
@@ -68,7 +42,7 @@ public final class MonsterEnum {
               return MonsterType.valueOf(number);
             }
           };
-
+    
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
       return getDescriptor().getValues().get(index);
@@ -81,9 +55,11 @@ public final class MonsterEnum {
         getDescriptor() {
       return com.lvl6.aoc2.proto.MonsterEnum.getDescriptor().getEnumTypes().get(0);
     }
-
-    private static final MonsterType[] VALUES = values();
-
+    
+    private static final MonsterType[] VALUES = {
+      GOBLIN, TROLL, DRAGON, 
+    };
+    
     public static MonsterType valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
@@ -92,19 +68,19 @@ public final class MonsterEnum {
       }
       return VALUES[desc.getIndex()];
     }
-
+    
     private final int index;
     private final int value;
-
+    
     private MonsterType(int index, int value) {
       this.index = index;
       this.value = value;
     }
-
+    
     // @@protoc_insertion_point(enum_scope:com.lvl6.aoc2.proto.MonsterType)
   }
-
-
+  
+  
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -130,6 +106,6 @@ public final class MonsterEnum {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
   }
-
+  
   // @@protoc_insertion_point(outer_class_scope)
 }

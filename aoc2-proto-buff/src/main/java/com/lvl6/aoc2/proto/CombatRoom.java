@@ -10,235 +10,97 @@ public final class CombatRoom {
   }
   public interface CombatRoomProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
-
+    
     // optional int32 roomID = 1;
-    /**
-     * <code>optional int32 roomID = 1;</code>
-     */
     boolean hasRoomID();
-    /**
-     * <code>optional int32 roomID = 1;</code>
-     */
     int getRoomID();
-
+    
     // optional int32 dungeon = 2;
-    /**
-     * <code>optional int32 dungeon = 2;</code>
-     */
     boolean hasDungeon();
-    /**
-     * <code>optional int32 dungeon = 2;</code>
-     */
     int getDungeon();
-
+    
     // repeated int32 monsters = 3;
-    /**
-     * <code>repeated int32 monsters = 3;</code>
-     */
     java.util.List<java.lang.Integer> getMonstersList();
-    /**
-     * <code>repeated int32 monsters = 3;</code>
-     */
     int getMonstersCount();
-    /**
-     * <code>repeated int32 monsters = 3;</code>
-     */
     int getMonsters(int index);
   }
-  /**
-   * Protobuf type {@code com.lvl6.aoc2.proto.CombatRoomProto}
-   */
   public static final class CombatRoomProto extends
       com.google.protobuf.GeneratedMessage
       implements CombatRoomProtoOrBuilder {
     // Use CombatRoomProto.newBuilder() to construct.
-    private CombatRoomProto(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private CombatRoomProto(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private CombatRoomProto(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private CombatRoomProto(boolean noInit) {}
+    
     private static final CombatRoomProto defaultInstance;
     public static CombatRoomProto getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public CombatRoomProto getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private CombatRoomProto(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              roomID_ = input.readInt32();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              dungeon_ = input.readInt32();
-              break;
-            }
-            case 24: {
-              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-                monsters_ = new java.util.ArrayList<java.lang.Integer>();
-                mutable_bitField0_ |= 0x00000004;
-              }
-              monsters_.add(input.readInt32());
-              break;
-            }
-            case 26: {
-              int length = input.readRawVarint32();
-              int limit = input.pushLimit(length);
-              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004) && input.getBytesUntilLimit() > 0) {
-                monsters_ = new java.util.ArrayList<java.lang.Integer>();
-                mutable_bitField0_ |= 0x00000004;
-              }
-              while (input.getBytesUntilLimit() > 0) {
-                monsters_.add(input.readInt32());
-              }
-              input.popLimit(limit);
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-          monsters_ = java.util.Collections.unmodifiableList(monsters_);
-        }
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
+    
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.lvl6.aoc2.proto.CombatRoom.internal_static_com_lvl6_aoc2_proto_CombatRoomProto_descriptor;
     }
-
+    
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.lvl6.aoc2.proto.CombatRoom.internal_static_com_lvl6_aoc2_proto_CombatRoomProto_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto.class, com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto.Builder.class);
+      return com.lvl6.aoc2.proto.CombatRoom.internal_static_com_lvl6_aoc2_proto_CombatRoomProto_fieldAccessorTable;
     }
-
-    public static com.google.protobuf.Parser<CombatRoomProto> PARSER =
-        new com.google.protobuf.AbstractParser<CombatRoomProto>() {
-      public CombatRoomProto parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new CombatRoomProto(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<CombatRoomProto> getParserForType() {
-      return PARSER;
-    }
-
+    
     private int bitField0_;
     // optional int32 roomID = 1;
     public static final int ROOMID_FIELD_NUMBER = 1;
     private int roomID_;
-    /**
-     * <code>optional int32 roomID = 1;</code>
-     */
     public boolean hasRoomID() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    /**
-     * <code>optional int32 roomID = 1;</code>
-     */
     public int getRoomID() {
       return roomID_;
     }
-
+    
     // optional int32 dungeon = 2;
     public static final int DUNGEON_FIELD_NUMBER = 2;
     private int dungeon_;
-    /**
-     * <code>optional int32 dungeon = 2;</code>
-     */
     public boolean hasDungeon() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    /**
-     * <code>optional int32 dungeon = 2;</code>
-     */
     public int getDungeon() {
       return dungeon_;
     }
-
+    
     // repeated int32 monsters = 3;
     public static final int MONSTERS_FIELD_NUMBER = 3;
     private java.util.List<java.lang.Integer> monsters_;
-    /**
-     * <code>repeated int32 monsters = 3;</code>
-     */
     public java.util.List<java.lang.Integer>
         getMonstersList() {
       return monsters_;
     }
-    /**
-     * <code>repeated int32 monsters = 3;</code>
-     */
     public int getMonstersCount() {
       return monsters_.size();
     }
-    /**
-     * <code>repeated int32 monsters = 3;</code>
-     */
     public int getMonsters(int index) {
       return monsters_.get(index);
     }
-
+    
     private void initFields() {
       roomID_ = 0;
       dungeon_ = 0;
-      monsters_ = java.util.Collections.emptyList();
+      monsters_ = java.util.Collections.emptyList();;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
-
+      
       memoizedIsInitialized = 1;
       return true;
     }
-
+    
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -253,12 +115,12 @@ public final class CombatRoom {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-
+    
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -281,83 +143,94 @@ public final class CombatRoom {
       memoizedSerializedSize = size;
       return size;
     }
-
+    
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-
+    
     public static com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
-
+    
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-
+    
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code com.lvl6.aoc2.proto.CombatRoomProto}
-     */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
        implements com.lvl6.aoc2.proto.CombatRoom.CombatRoomProtoOrBuilder {
@@ -365,21 +238,18 @@ public final class CombatRoom {
           getDescriptor() {
         return com.lvl6.aoc2.proto.CombatRoom.internal_static_com_lvl6_aoc2_proto_CombatRoomProto_descriptor;
       }
-
+      
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.lvl6.aoc2.proto.CombatRoom.internal_static_com_lvl6_aoc2_proto_CombatRoomProto_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto.class, com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto.Builder.class);
+        return com.lvl6.aoc2.proto.CombatRoom.internal_static_com_lvl6_aoc2_proto_CombatRoomProto_fieldAccessorTable;
       }
-
+      
       // Construct using com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -390,31 +260,31 @@ public final class CombatRoom {
       private static Builder create() {
         return new Builder();
       }
-
+      
       public Builder clear() {
         super.clear();
         roomID_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
         dungeon_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        monsters_ = java.util.Collections.emptyList();
+        monsters_ = java.util.Collections.emptyList();;
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
-
+      
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-
+      
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.lvl6.aoc2.proto.CombatRoom.internal_static_com_lvl6_aoc2_proto_CombatRoomProto_descriptor;
+        return com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto.getDescriptor();
       }
-
+      
       public com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto getDefaultInstanceForType() {
         return com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto.getDefaultInstance();
       }
-
+      
       public com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto build() {
         com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto result = buildPartial();
         if (!result.isInitialized()) {
@@ -422,7 +292,17 @@ public final class CombatRoom {
         }
         return result;
       }
-
+      
+      private com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
       public com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto buildPartial() {
         com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto result = new com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto(this);
         int from_bitField0_ = bitField0_;
@@ -444,7 +324,7 @@ public final class CombatRoom {
         onBuilt();
         return result;
       }
-
+      
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto) {
           return mergeFrom((com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto)other);
@@ -453,7 +333,7 @@ public final class CombatRoom {
           return this;
         }
       }
-
+      
       public Builder mergeFrom(com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto other) {
         if (other == com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto.getDefaultInstance()) return this;
         if (other.hasRoomID()) {
@@ -475,126 +355,124 @@ public final class CombatRoom {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
+      
       public final boolean isInitialized() {
         return true;
       }
-
+      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              roomID_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              dungeon_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              ensureMonstersIsMutable();
+              monsters_.add(input.readInt32());
+              break;
+            }
+            case 26: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              while (input.getBytesUntilLimit() > 0) {
+                addMonsters(input.readInt32());
+              }
+              input.popLimit(limit);
+              break;
+            }
           }
         }
-        return this;
       }
+      
       private int bitField0_;
-
+      
       // optional int32 roomID = 1;
       private int roomID_ ;
-      /**
-       * <code>optional int32 roomID = 1;</code>
-       */
       public boolean hasRoomID() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional int32 roomID = 1;</code>
-       */
       public int getRoomID() {
         return roomID_;
       }
-      /**
-       * <code>optional int32 roomID = 1;</code>
-       */
       public Builder setRoomID(int value) {
         bitField0_ |= 0x00000001;
         roomID_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 roomID = 1;</code>
-       */
       public Builder clearRoomID() {
         bitField0_ = (bitField0_ & ~0x00000001);
         roomID_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 dungeon = 2;
       private int dungeon_ ;
-      /**
-       * <code>optional int32 dungeon = 2;</code>
-       */
       public boolean hasDungeon() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional int32 dungeon = 2;</code>
-       */
       public int getDungeon() {
         return dungeon_;
       }
-      /**
-       * <code>optional int32 dungeon = 2;</code>
-       */
       public Builder setDungeon(int value) {
         bitField0_ |= 0x00000002;
         dungeon_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 dungeon = 2;</code>
-       */
       public Builder clearDungeon() {
         bitField0_ = (bitField0_ & ~0x00000002);
         dungeon_ = 0;
         onChanged();
         return this;
       }
-
+      
       // repeated int32 monsters = 3;
-      private java.util.List<java.lang.Integer> monsters_ = java.util.Collections.emptyList();
+      private java.util.List<java.lang.Integer> monsters_ = java.util.Collections.emptyList();;
       private void ensureMonstersIsMutable() {
         if (!((bitField0_ & 0x00000004) == 0x00000004)) {
           monsters_ = new java.util.ArrayList<java.lang.Integer>(monsters_);
           bitField0_ |= 0x00000004;
          }
       }
-      /**
-       * <code>repeated int32 monsters = 3;</code>
-       */
       public java.util.List<java.lang.Integer>
           getMonstersList() {
         return java.util.Collections.unmodifiableList(monsters_);
       }
-      /**
-       * <code>repeated int32 monsters = 3;</code>
-       */
       public int getMonstersCount() {
         return monsters_.size();
       }
-      /**
-       * <code>repeated int32 monsters = 3;</code>
-       */
       public int getMonsters(int index) {
         return monsters_.get(index);
       }
-      /**
-       * <code>repeated int32 monsters = 3;</code>
-       */
       public Builder setMonsters(
           int index, int value) {
         ensureMonstersIsMutable();
@@ -602,18 +480,12 @@ public final class CombatRoom {
         onChanged();
         return this;
       }
-      /**
-       * <code>repeated int32 monsters = 3;</code>
-       */
       public Builder addMonsters(int value) {
         ensureMonstersIsMutable();
         monsters_.add(value);
         onChanged();
         return this;
       }
-      /**
-       * <code>repeated int32 monsters = 3;</code>
-       */
       public Builder addAllMonsters(
           java.lang.Iterable<? extends java.lang.Integer> values) {
         ensureMonstersIsMutable();
@@ -621,33 +493,30 @@ public final class CombatRoom {
         onChanged();
         return this;
       }
-      /**
-       * <code>repeated int32 monsters = 3;</code>
-       */
       public Builder clearMonsters() {
-        monsters_ = java.util.Collections.emptyList();
+        monsters_ = java.util.Collections.emptyList();;
         bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:com.lvl6.aoc2.proto.CombatRoomProto)
     }
-
+    
     static {
       defaultInstance = new CombatRoomProto(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:com.lvl6.aoc2.proto.CombatRoomProto)
   }
-
+  
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_com_lvl6_aoc2_proto_CombatRoomProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_com_lvl6_aoc2_proto_CombatRoomProto_fieldAccessorTable;
-
+  
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -671,7 +540,9 @@ public final class CombatRoom {
           internal_static_com_lvl6_aoc2_proto_CombatRoomProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_lvl6_aoc2_proto_CombatRoomProto_descriptor,
-              new java.lang.String[] { "RoomID", "Dungeon", "Monsters", });
+              new java.lang.String[] { "RoomID", "Dungeon", "Monsters", },
+              com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto.class,
+              com.lvl6.aoc2.proto.CombatRoom.CombatRoomProto.Builder.class);
           return null;
         }
       };
@@ -680,6 +551,6 @@ public final class CombatRoom {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
   }
-
+  
   // @@protoc_insertion_point(outer_class_scope)
 }

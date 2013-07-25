@@ -10,426 +10,180 @@ public final class UserStruct {
   }
   public interface UserStructProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
-
+    
     // optional int32 userID = 1;
-    /**
-     * <code>optional int32 userID = 1;</code>
-     */
     boolean hasUserID();
-    /**
-     * <code>optional int32 userID = 1;</code>
-     */
     int getUserID();
-
+    
     // optional int32 structID = 2;
-    /**
-     * <code>optional int32 structID = 2;</code>
-     */
     boolean hasStructID();
-    /**
-     * <code>optional int32 structID = 2;</code>
-     */
     int getStructID();
-
+    
     // optional int32 structLevel = 3;
-    /**
-     * <code>optional int32 structLevel = 3;</code>
-     */
     boolean hasStructLevel();
-    /**
-     * <code>optional int32 structLevel = 3;</code>
-     */
     int getStructLevel();
-
+    
     // optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;
-    /**
-     * <code>optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;</code>
-     */
     boolean hasPosition();
-    /**
-     * <code>optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;</code>
-     */
     com.lvl6.aoc2.proto.Coordiante.CoordinateProto getPosition();
-    /**
-     * <code>optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;</code>
-     */
     com.lvl6.aoc2.proto.Coordiante.CoordinateProtoOrBuilder getPositionOrBuilder();
-
+    
     // optional int32 contents = 5;
-    /**
-     * <code>optional int32 contents = 5;</code>
-     */
     boolean hasContents();
-    /**
-     * <code>optional int32 contents = 5;</code>
-     */
     int getContents();
-
+    
     // optional int64 lastCollectTime = 6;
-    /**
-     * <code>optional int64 lastCollectTime = 6;</code>
-     */
     boolean hasLastCollectTime();
-    /**
-     * <code>optional int64 lastCollectTime = 6;</code>
-     */
     long getLastCollectTime();
-
+    
     // optional int64 purchaseTime = 7;
-    /**
-     * <code>optional int64 purchaseTime = 7;</code>
-     */
     boolean hasPurchaseTime();
-    /**
-     * <code>optional int64 purchaseTime = 7;</code>
-     */
     long getPurchaseTime();
-
+    
     // optional int64 lastUpgradeTime = 8;
-    /**
-     * <code>optional int64 lastUpgradeTime = 8;</code>
-     */
     boolean hasLastUpgradeTime();
-    /**
-     * <code>optional int64 lastUpgradeTime = 8;</code>
-     */
     long getLastUpgradeTime();
-
+    
     // optional int64 startUpgradeTime = 9;
-    /**
-     * <code>optional int64 startUpgradeTime = 9;</code>
-     */
     boolean hasStartUpgradeTime();
-    /**
-     * <code>optional int64 startUpgradeTime = 9;</code>
-     */
     long getStartUpgradeTime();
-
+    
     // optional bool isUpgrading = 10;
-    /**
-     * <code>optional bool isUpgrading = 10;</code>
-     */
     boolean hasIsUpgrading();
-    /**
-     * <code>optional bool isUpgrading = 10;</code>
-     */
     boolean getIsUpgrading();
   }
-  /**
-   * Protobuf type {@code com.lvl6.aoc2.proto.UserStructProto}
-   */
   public static final class UserStructProto extends
       com.google.protobuf.GeneratedMessage
       implements UserStructProtoOrBuilder {
     // Use UserStructProto.newBuilder() to construct.
-    private UserStructProto(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private UserStructProto(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private UserStructProto(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private UserStructProto(boolean noInit) {}
+    
     private static final UserStructProto defaultInstance;
     public static UserStructProto getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public UserStructProto getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private UserStructProto(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              userID_ = input.readInt32();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              structID_ = input.readInt32();
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              structLevel_ = input.readInt32();
-              break;
-            }
-            case 34: {
-              com.lvl6.aoc2.proto.Coordiante.CoordinateProto.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000008) == 0x00000008)) {
-                subBuilder = position_.toBuilder();
-              }
-              position_ = input.readMessage(com.lvl6.aoc2.proto.Coordiante.CoordinateProto.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(position_);
-                position_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000008;
-              break;
-            }
-            case 40: {
-              bitField0_ |= 0x00000010;
-              contents_ = input.readInt32();
-              break;
-            }
-            case 48: {
-              bitField0_ |= 0x00000020;
-              lastCollectTime_ = input.readInt64();
-              break;
-            }
-            case 56: {
-              bitField0_ |= 0x00000040;
-              purchaseTime_ = input.readInt64();
-              break;
-            }
-            case 64: {
-              bitField0_ |= 0x00000080;
-              lastUpgradeTime_ = input.readInt64();
-              break;
-            }
-            case 72: {
-              bitField0_ |= 0x00000100;
-              startUpgradeTime_ = input.readInt64();
-              break;
-            }
-            case 80: {
-              bitField0_ |= 0x00000200;
-              isUpgrading_ = input.readBool();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
+    
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.lvl6.aoc2.proto.UserStruct.internal_static_com_lvl6_aoc2_proto_UserStructProto_descriptor;
     }
-
+    
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.lvl6.aoc2.proto.UserStruct.internal_static_com_lvl6_aoc2_proto_UserStructProto_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.lvl6.aoc2.proto.UserStruct.UserStructProto.class, com.lvl6.aoc2.proto.UserStruct.UserStructProto.Builder.class);
+      return com.lvl6.aoc2.proto.UserStruct.internal_static_com_lvl6_aoc2_proto_UserStructProto_fieldAccessorTable;
     }
-
-    public static com.google.protobuf.Parser<UserStructProto> PARSER =
-        new com.google.protobuf.AbstractParser<UserStructProto>() {
-      public UserStructProto parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new UserStructProto(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<UserStructProto> getParserForType() {
-      return PARSER;
-    }
-
+    
     private int bitField0_;
     // optional int32 userID = 1;
     public static final int USERID_FIELD_NUMBER = 1;
     private int userID_;
-    /**
-     * <code>optional int32 userID = 1;</code>
-     */
     public boolean hasUserID() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    /**
-     * <code>optional int32 userID = 1;</code>
-     */
     public int getUserID() {
       return userID_;
     }
-
+    
     // optional int32 structID = 2;
     public static final int STRUCTID_FIELD_NUMBER = 2;
     private int structID_;
-    /**
-     * <code>optional int32 structID = 2;</code>
-     */
     public boolean hasStructID() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    /**
-     * <code>optional int32 structID = 2;</code>
-     */
     public int getStructID() {
       return structID_;
     }
-
+    
     // optional int32 structLevel = 3;
     public static final int STRUCTLEVEL_FIELD_NUMBER = 3;
     private int structLevel_;
-    /**
-     * <code>optional int32 structLevel = 3;</code>
-     */
     public boolean hasStructLevel() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    /**
-     * <code>optional int32 structLevel = 3;</code>
-     */
     public int getStructLevel() {
       return structLevel_;
     }
-
+    
     // optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;
     public static final int POSITION_FIELD_NUMBER = 4;
     private com.lvl6.aoc2.proto.Coordiante.CoordinateProto position_;
-    /**
-     * <code>optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;</code>
-     */
     public boolean hasPosition() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
-    /**
-     * <code>optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;</code>
-     */
     public com.lvl6.aoc2.proto.Coordiante.CoordinateProto getPosition() {
       return position_;
     }
-    /**
-     * <code>optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;</code>
-     */
     public com.lvl6.aoc2.proto.Coordiante.CoordinateProtoOrBuilder getPositionOrBuilder() {
       return position_;
     }
-
+    
     // optional int32 contents = 5;
     public static final int CONTENTS_FIELD_NUMBER = 5;
     private int contents_;
-    /**
-     * <code>optional int32 contents = 5;</code>
-     */
     public boolean hasContents() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
-    /**
-     * <code>optional int32 contents = 5;</code>
-     */
     public int getContents() {
       return contents_;
     }
-
+    
     // optional int64 lastCollectTime = 6;
     public static final int LASTCOLLECTTIME_FIELD_NUMBER = 6;
     private long lastCollectTime_;
-    /**
-     * <code>optional int64 lastCollectTime = 6;</code>
-     */
     public boolean hasLastCollectTime() {
       return ((bitField0_ & 0x00000020) == 0x00000020);
     }
-    /**
-     * <code>optional int64 lastCollectTime = 6;</code>
-     */
     public long getLastCollectTime() {
       return lastCollectTime_;
     }
-
+    
     // optional int64 purchaseTime = 7;
     public static final int PURCHASETIME_FIELD_NUMBER = 7;
     private long purchaseTime_;
-    /**
-     * <code>optional int64 purchaseTime = 7;</code>
-     */
     public boolean hasPurchaseTime() {
       return ((bitField0_ & 0x00000040) == 0x00000040);
     }
-    /**
-     * <code>optional int64 purchaseTime = 7;</code>
-     */
     public long getPurchaseTime() {
       return purchaseTime_;
     }
-
+    
     // optional int64 lastUpgradeTime = 8;
     public static final int LASTUPGRADETIME_FIELD_NUMBER = 8;
     private long lastUpgradeTime_;
-    /**
-     * <code>optional int64 lastUpgradeTime = 8;</code>
-     */
     public boolean hasLastUpgradeTime() {
       return ((bitField0_ & 0x00000080) == 0x00000080);
     }
-    /**
-     * <code>optional int64 lastUpgradeTime = 8;</code>
-     */
     public long getLastUpgradeTime() {
       return lastUpgradeTime_;
     }
-
+    
     // optional int64 startUpgradeTime = 9;
     public static final int STARTUPGRADETIME_FIELD_NUMBER = 9;
     private long startUpgradeTime_;
-    /**
-     * <code>optional int64 startUpgradeTime = 9;</code>
-     */
     public boolean hasStartUpgradeTime() {
       return ((bitField0_ & 0x00000100) == 0x00000100);
     }
-    /**
-     * <code>optional int64 startUpgradeTime = 9;</code>
-     */
     public long getStartUpgradeTime() {
       return startUpgradeTime_;
     }
-
+    
     // optional bool isUpgrading = 10;
     public static final int ISUPGRADING_FIELD_NUMBER = 10;
     private boolean isUpgrading_;
-    /**
-     * <code>optional bool isUpgrading = 10;</code>
-     */
     public boolean hasIsUpgrading() {
       return ((bitField0_ & 0x00000200) == 0x00000200);
     }
-    /**
-     * <code>optional bool isUpgrading = 10;</code>
-     */
     public boolean getIsUpgrading() {
       return isUpgrading_;
     }
-
+    
     private void initFields() {
       userID_ = 0;
       structID_ = 0;
@@ -446,11 +200,11 @@ public final class UserStruct {
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
-
+      
       memoizedIsInitialized = 1;
       return true;
     }
-
+    
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -486,12 +240,12 @@ public final class UserStruct {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-
+    
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -537,83 +291,94 @@ public final class UserStruct {
       memoizedSerializedSize = size;
       return size;
     }
-
+    
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-
+    
     public static com.lvl6.aoc2.proto.UserStruct.UserStructProto parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static com.lvl6.aoc2.proto.UserStruct.UserStructProto parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.UserStruct.UserStructProto parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static com.lvl6.aoc2.proto.UserStruct.UserStructProto parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.UserStruct.UserStructProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static com.lvl6.aoc2.proto.UserStruct.UserStructProto parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.UserStruct.UserStructProto parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static com.lvl6.aoc2.proto.UserStruct.UserStructProto parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static com.lvl6.aoc2.proto.UserStruct.UserStructProto parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static com.lvl6.aoc2.proto.UserStruct.UserStructProto parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
-
+    
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(com.lvl6.aoc2.proto.UserStruct.UserStructProto prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-
+    
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code com.lvl6.aoc2.proto.UserStructProto}
-     */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
        implements com.lvl6.aoc2.proto.UserStruct.UserStructProtoOrBuilder {
@@ -621,21 +386,18 @@ public final class UserStruct {
           getDescriptor() {
         return com.lvl6.aoc2.proto.UserStruct.internal_static_com_lvl6_aoc2_proto_UserStructProto_descriptor;
       }
-
+      
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.lvl6.aoc2.proto.UserStruct.internal_static_com_lvl6_aoc2_proto_UserStructProto_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.lvl6.aoc2.proto.UserStruct.UserStructProto.class, com.lvl6.aoc2.proto.UserStruct.UserStructProto.Builder.class);
+        return com.lvl6.aoc2.proto.UserStruct.internal_static_com_lvl6_aoc2_proto_UserStructProto_fieldAccessorTable;
       }
-
+      
       // Construct using com.lvl6.aoc2.proto.UserStruct.UserStructProto.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -647,7 +409,7 @@ public final class UserStruct {
       private static Builder create() {
         return new Builder();
       }
-
+      
       public Builder clear() {
         super.clear();
         userID_ = 0;
@@ -676,20 +438,20 @@ public final class UserStruct {
         bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
-
+      
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-
+      
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.lvl6.aoc2.proto.UserStruct.internal_static_com_lvl6_aoc2_proto_UserStructProto_descriptor;
+        return com.lvl6.aoc2.proto.UserStruct.UserStructProto.getDescriptor();
       }
-
+      
       public com.lvl6.aoc2.proto.UserStruct.UserStructProto getDefaultInstanceForType() {
         return com.lvl6.aoc2.proto.UserStruct.UserStructProto.getDefaultInstance();
       }
-
+      
       public com.lvl6.aoc2.proto.UserStruct.UserStructProto build() {
         com.lvl6.aoc2.proto.UserStruct.UserStructProto result = buildPartial();
         if (!result.isInitialized()) {
@@ -697,7 +459,17 @@ public final class UserStruct {
         }
         return result;
       }
-
+      
+      private com.lvl6.aoc2.proto.UserStruct.UserStructProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.aoc2.proto.UserStruct.UserStructProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
       public com.lvl6.aoc2.proto.UserStruct.UserStructProto buildPartial() {
         com.lvl6.aoc2.proto.UserStruct.UserStructProto result = new com.lvl6.aoc2.proto.UserStruct.UserStructProto(this);
         int from_bitField0_ = bitField0_;
@@ -750,7 +522,7 @@ public final class UserStruct {
         onBuilt();
         return result;
       }
-
+      
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.lvl6.aoc2.proto.UserStruct.UserStructProto) {
           return mergeFrom((com.lvl6.aoc2.proto.UserStruct.UserStructProto)other);
@@ -759,7 +531,7 @@ public final class UserStruct {
           return this;
         }
       }
-
+      
       public Builder mergeFrom(com.lvl6.aoc2.proto.UserStruct.UserStructProto other) {
         if (other == com.lvl6.aoc2.proto.UserStruct.UserStructProto.getDefaultInstance()) return this;
         if (other.hasUserID()) {
@@ -795,142 +567,164 @@ public final class UserStruct {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
+      
       public final boolean isInitialized() {
         return true;
       }
-
+      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.lvl6.aoc2.proto.UserStruct.UserStructProto parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.lvl6.aoc2.proto.UserStruct.UserStructProto) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              userID_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              structID_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              structLevel_ = input.readInt32();
+              break;
+            }
+            case 34: {
+              com.lvl6.aoc2.proto.Coordiante.CoordinateProto.Builder subBuilder = com.lvl6.aoc2.proto.Coordiante.CoordinateProto.newBuilder();
+              if (hasPosition()) {
+                subBuilder.mergeFrom(getPosition());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setPosition(subBuilder.buildPartial());
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              contents_ = input.readInt32();
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000020;
+              lastCollectTime_ = input.readInt64();
+              break;
+            }
+            case 56: {
+              bitField0_ |= 0x00000040;
+              purchaseTime_ = input.readInt64();
+              break;
+            }
+            case 64: {
+              bitField0_ |= 0x00000080;
+              lastUpgradeTime_ = input.readInt64();
+              break;
+            }
+            case 72: {
+              bitField0_ |= 0x00000100;
+              startUpgradeTime_ = input.readInt64();
+              break;
+            }
+            case 80: {
+              bitField0_ |= 0x00000200;
+              isUpgrading_ = input.readBool();
+              break;
+            }
           }
         }
-        return this;
       }
+      
       private int bitField0_;
-
+      
       // optional int32 userID = 1;
       private int userID_ ;
-      /**
-       * <code>optional int32 userID = 1;</code>
-       */
       public boolean hasUserID() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional int32 userID = 1;</code>
-       */
       public int getUserID() {
         return userID_;
       }
-      /**
-       * <code>optional int32 userID = 1;</code>
-       */
       public Builder setUserID(int value) {
         bitField0_ |= 0x00000001;
         userID_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 userID = 1;</code>
-       */
       public Builder clearUserID() {
         bitField0_ = (bitField0_ & ~0x00000001);
         userID_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 structID = 2;
       private int structID_ ;
-      /**
-       * <code>optional int32 structID = 2;</code>
-       */
       public boolean hasStructID() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional int32 structID = 2;</code>
-       */
       public int getStructID() {
         return structID_;
       }
-      /**
-       * <code>optional int32 structID = 2;</code>
-       */
       public Builder setStructID(int value) {
         bitField0_ |= 0x00000002;
         structID_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 structID = 2;</code>
-       */
       public Builder clearStructID() {
         bitField0_ = (bitField0_ & ~0x00000002);
         structID_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 structLevel = 3;
       private int structLevel_ ;
-      /**
-       * <code>optional int32 structLevel = 3;</code>
-       */
       public boolean hasStructLevel() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>optional int32 structLevel = 3;</code>
-       */
       public int getStructLevel() {
         return structLevel_;
       }
-      /**
-       * <code>optional int32 structLevel = 3;</code>
-       */
       public Builder setStructLevel(int value) {
         bitField0_ |= 0x00000004;
         structLevel_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 structLevel = 3;</code>
-       */
       public Builder clearStructLevel() {
         bitField0_ = (bitField0_ & ~0x00000004);
         structLevel_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;
       private com.lvl6.aoc2.proto.Coordiante.CoordinateProto position_ = com.lvl6.aoc2.proto.Coordiante.CoordinateProto.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.lvl6.aoc2.proto.Coordiante.CoordinateProto, com.lvl6.aoc2.proto.Coordiante.CoordinateProto.Builder, com.lvl6.aoc2.proto.Coordiante.CoordinateProtoOrBuilder> positionBuilder_;
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;</code>
-       */
       public boolean hasPosition() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;</code>
-       */
       public com.lvl6.aoc2.proto.Coordiante.CoordinateProto getPosition() {
         if (positionBuilder_ == null) {
           return position_;
@@ -938,9 +732,6 @@ public final class UserStruct {
           return positionBuilder_.getMessage();
         }
       }
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;</code>
-       */
       public Builder setPosition(com.lvl6.aoc2.proto.Coordiante.CoordinateProto value) {
         if (positionBuilder_ == null) {
           if (value == null) {
@@ -954,9 +745,6 @@ public final class UserStruct {
         bitField0_ |= 0x00000008;
         return this;
       }
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;</code>
-       */
       public Builder setPosition(
           com.lvl6.aoc2.proto.Coordiante.CoordinateProto.Builder builderForValue) {
         if (positionBuilder_ == null) {
@@ -968,9 +756,6 @@ public final class UserStruct {
         bitField0_ |= 0x00000008;
         return this;
       }
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;</code>
-       */
       public Builder mergePosition(com.lvl6.aoc2.proto.Coordiante.CoordinateProto value) {
         if (positionBuilder_ == null) {
           if (((bitField0_ & 0x00000008) == 0x00000008) &&
@@ -987,9 +772,6 @@ public final class UserStruct {
         bitField0_ |= 0x00000008;
         return this;
       }
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;</code>
-       */
       public Builder clearPosition() {
         if (positionBuilder_ == null) {
           position_ = com.lvl6.aoc2.proto.Coordiante.CoordinateProto.getDefaultInstance();
@@ -1000,17 +782,11 @@ public final class UserStruct {
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;</code>
-       */
       public com.lvl6.aoc2.proto.Coordiante.CoordinateProto.Builder getPositionBuilder() {
         bitField0_ |= 0x00000008;
         onChanged();
         return getPositionFieldBuilder().getBuilder();
       }
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;</code>
-       */
       public com.lvl6.aoc2.proto.Coordiante.CoordinateProtoOrBuilder getPositionOrBuilder() {
         if (positionBuilder_ != null) {
           return positionBuilder_.getMessageOrBuilder();
@@ -1018,9 +794,6 @@ public final class UserStruct {
           return position_;
         }
       }
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.CoordinateProto position = 4;</code>
-       */
       private com.google.protobuf.SingleFieldBuilder<
           com.lvl6.aoc2.proto.Coordiante.CoordinateProto, com.lvl6.aoc2.proto.Coordiante.CoordinateProto.Builder, com.lvl6.aoc2.proto.Coordiante.CoordinateProtoOrBuilder> 
           getPositionFieldBuilder() {
@@ -1034,222 +807,150 @@ public final class UserStruct {
         }
         return positionBuilder_;
       }
-
+      
       // optional int32 contents = 5;
       private int contents_ ;
-      /**
-       * <code>optional int32 contents = 5;</code>
-       */
       public boolean hasContents() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
-      /**
-       * <code>optional int32 contents = 5;</code>
-       */
       public int getContents() {
         return contents_;
       }
-      /**
-       * <code>optional int32 contents = 5;</code>
-       */
       public Builder setContents(int value) {
         bitField0_ |= 0x00000010;
         contents_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 contents = 5;</code>
-       */
       public Builder clearContents() {
         bitField0_ = (bitField0_ & ~0x00000010);
         contents_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int64 lastCollectTime = 6;
       private long lastCollectTime_ ;
-      /**
-       * <code>optional int64 lastCollectTime = 6;</code>
-       */
       public boolean hasLastCollectTime() {
         return ((bitField0_ & 0x00000020) == 0x00000020);
       }
-      /**
-       * <code>optional int64 lastCollectTime = 6;</code>
-       */
       public long getLastCollectTime() {
         return lastCollectTime_;
       }
-      /**
-       * <code>optional int64 lastCollectTime = 6;</code>
-       */
       public Builder setLastCollectTime(long value) {
         bitField0_ |= 0x00000020;
         lastCollectTime_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int64 lastCollectTime = 6;</code>
-       */
       public Builder clearLastCollectTime() {
         bitField0_ = (bitField0_ & ~0x00000020);
         lastCollectTime_ = 0L;
         onChanged();
         return this;
       }
-
+      
       // optional int64 purchaseTime = 7;
       private long purchaseTime_ ;
-      /**
-       * <code>optional int64 purchaseTime = 7;</code>
-       */
       public boolean hasPurchaseTime() {
         return ((bitField0_ & 0x00000040) == 0x00000040);
       }
-      /**
-       * <code>optional int64 purchaseTime = 7;</code>
-       */
       public long getPurchaseTime() {
         return purchaseTime_;
       }
-      /**
-       * <code>optional int64 purchaseTime = 7;</code>
-       */
       public Builder setPurchaseTime(long value) {
         bitField0_ |= 0x00000040;
         purchaseTime_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int64 purchaseTime = 7;</code>
-       */
       public Builder clearPurchaseTime() {
         bitField0_ = (bitField0_ & ~0x00000040);
         purchaseTime_ = 0L;
         onChanged();
         return this;
       }
-
+      
       // optional int64 lastUpgradeTime = 8;
       private long lastUpgradeTime_ ;
-      /**
-       * <code>optional int64 lastUpgradeTime = 8;</code>
-       */
       public boolean hasLastUpgradeTime() {
         return ((bitField0_ & 0x00000080) == 0x00000080);
       }
-      /**
-       * <code>optional int64 lastUpgradeTime = 8;</code>
-       */
       public long getLastUpgradeTime() {
         return lastUpgradeTime_;
       }
-      /**
-       * <code>optional int64 lastUpgradeTime = 8;</code>
-       */
       public Builder setLastUpgradeTime(long value) {
         bitField0_ |= 0x00000080;
         lastUpgradeTime_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int64 lastUpgradeTime = 8;</code>
-       */
       public Builder clearLastUpgradeTime() {
         bitField0_ = (bitField0_ & ~0x00000080);
         lastUpgradeTime_ = 0L;
         onChanged();
         return this;
       }
-
+      
       // optional int64 startUpgradeTime = 9;
       private long startUpgradeTime_ ;
-      /**
-       * <code>optional int64 startUpgradeTime = 9;</code>
-       */
       public boolean hasStartUpgradeTime() {
         return ((bitField0_ & 0x00000100) == 0x00000100);
       }
-      /**
-       * <code>optional int64 startUpgradeTime = 9;</code>
-       */
       public long getStartUpgradeTime() {
         return startUpgradeTime_;
       }
-      /**
-       * <code>optional int64 startUpgradeTime = 9;</code>
-       */
       public Builder setStartUpgradeTime(long value) {
         bitField0_ |= 0x00000100;
         startUpgradeTime_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int64 startUpgradeTime = 9;</code>
-       */
       public Builder clearStartUpgradeTime() {
         bitField0_ = (bitField0_ & ~0x00000100);
         startUpgradeTime_ = 0L;
         onChanged();
         return this;
       }
-
+      
       // optional bool isUpgrading = 10;
       private boolean isUpgrading_ ;
-      /**
-       * <code>optional bool isUpgrading = 10;</code>
-       */
       public boolean hasIsUpgrading() {
         return ((bitField0_ & 0x00000200) == 0x00000200);
       }
-      /**
-       * <code>optional bool isUpgrading = 10;</code>
-       */
       public boolean getIsUpgrading() {
         return isUpgrading_;
       }
-      /**
-       * <code>optional bool isUpgrading = 10;</code>
-       */
       public Builder setIsUpgrading(boolean value) {
         bitField0_ |= 0x00000200;
         isUpgrading_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional bool isUpgrading = 10;</code>
-       */
       public Builder clearIsUpgrading() {
         bitField0_ = (bitField0_ & ~0x00000200);
         isUpgrading_ = false;
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:com.lvl6.aoc2.proto.UserStructProto)
     }
-
+    
     static {
       defaultInstance = new UserStructProto(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:com.lvl6.aoc2.proto.UserStructProto)
   }
-
+  
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_com_lvl6_aoc2_proto_UserStructProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_com_lvl6_aoc2_proto_UserStructProto_fieldAccessorTable;
-
+  
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -1278,7 +979,9 @@ public final class UserStruct {
           internal_static_com_lvl6_aoc2_proto_UserStructProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_lvl6_aoc2_proto_UserStructProto_descriptor,
-              new java.lang.String[] { "UserID", "StructID", "StructLevel", "Position", "Contents", "LastCollectTime", "PurchaseTime", "LastUpgradeTime", "StartUpgradeTime", "IsUpgrading", });
+              new java.lang.String[] { "UserID", "StructID", "StructLevel", "Position", "Contents", "LastCollectTime", "PurchaseTime", "LastUpgradeTime", "StartUpgradeTime", "IsUpgrading", },
+              com.lvl6.aoc2.proto.UserStruct.UserStructProto.class,
+              com.lvl6.aoc2.proto.UserStruct.UserStructProto.Builder.class);
           return null;
         }
       };
@@ -1288,6 +991,6 @@ public final class UserStruct {
           com.lvl6.aoc2.proto.Coordiante.getDescriptor(),
         }, assigner);
   }
-
+  
   // @@protoc_insertion_point(outer_class_scope)
 }

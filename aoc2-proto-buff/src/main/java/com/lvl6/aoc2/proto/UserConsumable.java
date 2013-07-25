@@ -10,191 +10,78 @@ public final class UserConsumable {
   }
   public interface UserConsumablesProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
-
+    
     // optional int32 userID = 1;
-    /**
-     * <code>optional int32 userID = 1;</code>
-     */
     boolean hasUserID();
-    /**
-     * <code>optional int32 userID = 1;</code>
-     */
     int getUserID();
-
+    
     // optional int32 consumeableID = 2;
-    /**
-     * <code>optional int32 consumeableID = 2;</code>
-     */
     boolean hasConsumeableID();
-    /**
-     * <code>optional int32 consumeableID = 2;</code>
-     */
     int getConsumeableID();
-
+    
     // optional int32 quantity = 3;
-    /**
-     * <code>optional int32 quantity = 3;</code>
-     */
     boolean hasQuantity();
-    /**
-     * <code>optional int32 quantity = 3;</code>
-     */
     int getQuantity();
   }
-  /**
-   * Protobuf type {@code com.lvl6.aoc2.proto.UserConsumablesProto}
-   */
   public static final class UserConsumablesProto extends
       com.google.protobuf.GeneratedMessage
       implements UserConsumablesProtoOrBuilder {
     // Use UserConsumablesProto.newBuilder() to construct.
-    private UserConsumablesProto(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private UserConsumablesProto(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private UserConsumablesProto(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private UserConsumablesProto(boolean noInit) {}
+    
     private static final UserConsumablesProto defaultInstance;
     public static UserConsumablesProto getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public UserConsumablesProto getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private UserConsumablesProto(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              userID_ = input.readInt32();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              consumeableID_ = input.readInt32();
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              quantity_ = input.readInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
+    
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.lvl6.aoc2.proto.UserConsumable.internal_static_com_lvl6_aoc2_proto_UserConsumablesProto_descriptor;
     }
-
+    
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.lvl6.aoc2.proto.UserConsumable.internal_static_com_lvl6_aoc2_proto_UserConsumablesProto_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto.class, com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto.Builder.class);
+      return com.lvl6.aoc2.proto.UserConsumable.internal_static_com_lvl6_aoc2_proto_UserConsumablesProto_fieldAccessorTable;
     }
-
-    public static com.google.protobuf.Parser<UserConsumablesProto> PARSER =
-        new com.google.protobuf.AbstractParser<UserConsumablesProto>() {
-      public UserConsumablesProto parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new UserConsumablesProto(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<UserConsumablesProto> getParserForType() {
-      return PARSER;
-    }
-
+    
     private int bitField0_;
     // optional int32 userID = 1;
     public static final int USERID_FIELD_NUMBER = 1;
     private int userID_;
-    /**
-     * <code>optional int32 userID = 1;</code>
-     */
     public boolean hasUserID() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    /**
-     * <code>optional int32 userID = 1;</code>
-     */
     public int getUserID() {
       return userID_;
     }
-
+    
     // optional int32 consumeableID = 2;
     public static final int CONSUMEABLEID_FIELD_NUMBER = 2;
     private int consumeableID_;
-    /**
-     * <code>optional int32 consumeableID = 2;</code>
-     */
     public boolean hasConsumeableID() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    /**
-     * <code>optional int32 consumeableID = 2;</code>
-     */
     public int getConsumeableID() {
       return consumeableID_;
     }
-
+    
     // optional int32 quantity = 3;
     public static final int QUANTITY_FIELD_NUMBER = 3;
     private int quantity_;
-    /**
-     * <code>optional int32 quantity = 3;</code>
-     */
     public boolean hasQuantity() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    /**
-     * <code>optional int32 quantity = 3;</code>
-     */
     public int getQuantity() {
       return quantity_;
     }
-
+    
     private void initFields() {
       userID_ = 0;
       consumeableID_ = 0;
@@ -204,11 +91,11 @@ public final class UserConsumable {
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
-
+      
       memoizedIsInitialized = 1;
       return true;
     }
-
+    
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -223,12 +110,12 @@ public final class UserConsumable {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-
+    
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -246,83 +133,94 @@ public final class UserConsumable {
       memoizedSerializedSize = size;
       return size;
     }
-
+    
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-
+    
     public static com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
-
+    
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-
+    
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code com.lvl6.aoc2.proto.UserConsumablesProto}
-     */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
        implements com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProtoOrBuilder {
@@ -330,21 +228,18 @@ public final class UserConsumable {
           getDescriptor() {
         return com.lvl6.aoc2.proto.UserConsumable.internal_static_com_lvl6_aoc2_proto_UserConsumablesProto_descriptor;
       }
-
+      
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.lvl6.aoc2.proto.UserConsumable.internal_static_com_lvl6_aoc2_proto_UserConsumablesProto_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto.class, com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto.Builder.class);
+        return com.lvl6.aoc2.proto.UserConsumable.internal_static_com_lvl6_aoc2_proto_UserConsumablesProto_fieldAccessorTable;
       }
-
+      
       // Construct using com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -355,7 +250,7 @@ public final class UserConsumable {
       private static Builder create() {
         return new Builder();
       }
-
+      
       public Builder clear() {
         super.clear();
         userID_ = 0;
@@ -366,20 +261,20 @@ public final class UserConsumable {
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
-
+      
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-
+      
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.lvl6.aoc2.proto.UserConsumable.internal_static_com_lvl6_aoc2_proto_UserConsumablesProto_descriptor;
+        return com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto.getDescriptor();
       }
-
+      
       public com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto getDefaultInstanceForType() {
         return com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto.getDefaultInstance();
       }
-
+      
       public com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto build() {
         com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto result = buildPartial();
         if (!result.isInitialized()) {
@@ -387,7 +282,17 @@ public final class UserConsumable {
         }
         return result;
       }
-
+      
+      private com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
       public com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto buildPartial() {
         com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto result = new com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto(this);
         int from_bitField0_ = bitField0_;
@@ -408,7 +313,7 @@ public final class UserConsumable {
         onBuilt();
         return result;
       }
-
+      
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto) {
           return mergeFrom((com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto)other);
@@ -417,7 +322,7 @@ public final class UserConsumable {
           return this;
         }
       }
-
+      
       public Builder mergeFrom(com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto other) {
         if (other == com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto.getDefaultInstance()) return this;
         if (other.hasUserID()) {
@@ -432,146 +337,135 @@ public final class UserConsumable {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
+      
       public final boolean isInitialized() {
         return true;
       }
-
+      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              userID_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              consumeableID_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              quantity_ = input.readInt32();
+              break;
+            }
           }
         }
-        return this;
       }
+      
       private int bitField0_;
-
+      
       // optional int32 userID = 1;
       private int userID_ ;
-      /**
-       * <code>optional int32 userID = 1;</code>
-       */
       public boolean hasUserID() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional int32 userID = 1;</code>
-       */
       public int getUserID() {
         return userID_;
       }
-      /**
-       * <code>optional int32 userID = 1;</code>
-       */
       public Builder setUserID(int value) {
         bitField0_ |= 0x00000001;
         userID_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 userID = 1;</code>
-       */
       public Builder clearUserID() {
         bitField0_ = (bitField0_ & ~0x00000001);
         userID_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 consumeableID = 2;
       private int consumeableID_ ;
-      /**
-       * <code>optional int32 consumeableID = 2;</code>
-       */
       public boolean hasConsumeableID() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional int32 consumeableID = 2;</code>
-       */
       public int getConsumeableID() {
         return consumeableID_;
       }
-      /**
-       * <code>optional int32 consumeableID = 2;</code>
-       */
       public Builder setConsumeableID(int value) {
         bitField0_ |= 0x00000002;
         consumeableID_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 consumeableID = 2;</code>
-       */
       public Builder clearConsumeableID() {
         bitField0_ = (bitField0_ & ~0x00000002);
         consumeableID_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 quantity = 3;
       private int quantity_ ;
-      /**
-       * <code>optional int32 quantity = 3;</code>
-       */
       public boolean hasQuantity() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>optional int32 quantity = 3;</code>
-       */
       public int getQuantity() {
         return quantity_;
       }
-      /**
-       * <code>optional int32 quantity = 3;</code>
-       */
       public Builder setQuantity(int value) {
         bitField0_ |= 0x00000004;
         quantity_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 quantity = 3;</code>
-       */
       public Builder clearQuantity() {
         bitField0_ = (bitField0_ & ~0x00000004);
         quantity_ = 0;
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:com.lvl6.aoc2.proto.UserConsumablesProto)
     }
-
+    
     static {
       defaultInstance = new UserConsumablesProto(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:com.lvl6.aoc2.proto.UserConsumablesProto)
   }
-
+  
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_com_lvl6_aoc2_proto_UserConsumablesProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_com_lvl6_aoc2_proto_UserConsumablesProto_fieldAccessorTable;
-
+  
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -595,7 +489,9 @@ public final class UserConsumable {
           internal_static_com_lvl6_aoc2_proto_UserConsumablesProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_lvl6_aoc2_proto_UserConsumablesProto_descriptor,
-              new java.lang.String[] { "UserID", "ConsumeableID", "Quantity", });
+              new java.lang.String[] { "UserID", "ConsumeableID", "Quantity", },
+              com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto.class,
+              com.lvl6.aoc2.proto.UserConsumable.UserConsumablesProto.Builder.class);
           return null;
         }
       };
@@ -604,6 +500,6 @@ public final class UserConsumable {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
   }
-
+  
   // @@protoc_insertion_point(outer_class_scope)
 }

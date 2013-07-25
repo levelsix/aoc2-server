@@ -8,41 +8,20 @@ public final class EquipmentEnum {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  /**
-   * Protobuf enum {@code com.lvl6.aoc2.proto.EquipmentType}
-   */
   public enum EquipmentType
       implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>WEAPON = 0;</code>
-     */
     WEAPON(0, 0),
-    /**
-     * <code>UPPER_BODY = 1;</code>
-     */
     UPPER_BODY(1, 1),
-    /**
-     * <code>LOWER_BODY = 2;</code>
-     */
     LOWER_BODY(2, 2),
     ;
-
-    /**
-     * <code>WEAPON = 0;</code>
-     */
+    
     public static final int WEAPON_VALUE = 0;
-    /**
-     * <code>UPPER_BODY = 1;</code>
-     */
     public static final int UPPER_BODY_VALUE = 1;
-    /**
-     * <code>LOWER_BODY = 2;</code>
-     */
     public static final int LOWER_BODY_VALUE = 2;
-
-
+    
+    
     public final int getNumber() { return value; }
-
+    
     public static EquipmentType valueOf(int value) {
       switch (value) {
         case 0: return WEAPON;
@@ -51,7 +30,7 @@ public final class EquipmentEnum {
         default: return null;
       }
     }
-
+    
     public static com.google.protobuf.Internal.EnumLiteMap<EquipmentType>
         internalGetValueMap() {
       return internalValueMap;
@@ -63,7 +42,7 @@ public final class EquipmentEnum {
               return EquipmentType.valueOf(number);
             }
           };
-
+    
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
       return getDescriptor().getValues().get(index);
@@ -76,9 +55,11 @@ public final class EquipmentEnum {
         getDescriptor() {
       return com.lvl6.aoc2.proto.EquipmentEnum.getDescriptor().getEnumTypes().get(0);
     }
-
-    private static final EquipmentType[] VALUES = values();
-
+    
+    private static final EquipmentType[] VALUES = {
+      WEAPON, UPPER_BODY, LOWER_BODY, 
+    };
+    
     public static EquipmentType valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
@@ -87,19 +68,19 @@ public final class EquipmentEnum {
       }
       return VALUES[desc.getIndex()];
     }
-
+    
     private final int index;
     private final int value;
-
+    
     private EquipmentType(int index, int value) {
       this.index = index;
       this.value = value;
     }
-
+    
     // @@protoc_insertion_point(enum_scope:com.lvl6.aoc2.proto.EquipmentType)
   }
-
-
+  
+  
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -125,6 +106,6 @@ public final class EquipmentEnum {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
   }
-
+  
   // @@protoc_insertion_point(outer_class_scope)
 }

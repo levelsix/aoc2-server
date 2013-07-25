@@ -10,195 +10,78 @@ public final class Color {
   }
   public interface ColorProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
-
+    
     // optional int32 r = 1;
-    /**
-     * <code>optional int32 r = 1;</code>
-     */
     boolean hasR();
-    /**
-     * <code>optional int32 r = 1;</code>
-     */
     int getR();
-
+    
     // optional int32 g = 2;
-    /**
-     * <code>optional int32 g = 2;</code>
-     */
     boolean hasG();
-    /**
-     * <code>optional int32 g = 2;</code>
-     */
     int getG();
-
+    
     // optional int32 b = 3;
-    /**
-     * <code>optional int32 b = 3;</code>
-     */
     boolean hasB();
-    /**
-     * <code>optional int32 b = 3;</code>
-     */
     int getB();
   }
-  /**
-   * Protobuf type {@code com.lvl6.aoc2.proto.ColorProto}
-   *
-   * <pre>
-   *Use values [0,255] for RGB values
-   * </pre>
-   */
   public static final class ColorProto extends
       com.google.protobuf.GeneratedMessage
       implements ColorProtoOrBuilder {
     // Use ColorProto.newBuilder() to construct.
-    private ColorProto(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private ColorProto(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private ColorProto(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private ColorProto(boolean noInit) {}
+    
     private static final ColorProto defaultInstance;
     public static ColorProto getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public ColorProto getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ColorProto(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              r_ = input.readInt32();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              g_ = input.readInt32();
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              b_ = input.readInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
+    
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.lvl6.aoc2.proto.Color.internal_static_com_lvl6_aoc2_proto_ColorProto_descriptor;
     }
-
+    
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.lvl6.aoc2.proto.Color.internal_static_com_lvl6_aoc2_proto_ColorProto_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.lvl6.aoc2.proto.Color.ColorProto.class, com.lvl6.aoc2.proto.Color.ColorProto.Builder.class);
+      return com.lvl6.aoc2.proto.Color.internal_static_com_lvl6_aoc2_proto_ColorProto_fieldAccessorTable;
     }
-
-    public static com.google.protobuf.Parser<ColorProto> PARSER =
-        new com.google.protobuf.AbstractParser<ColorProto>() {
-      public ColorProto parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ColorProto(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<ColorProto> getParserForType() {
-      return PARSER;
-    }
-
+    
     private int bitField0_;
     // optional int32 r = 1;
     public static final int R_FIELD_NUMBER = 1;
     private int r_;
-    /**
-     * <code>optional int32 r = 1;</code>
-     */
     public boolean hasR() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    /**
-     * <code>optional int32 r = 1;</code>
-     */
     public int getR() {
       return r_;
     }
-
+    
     // optional int32 g = 2;
     public static final int G_FIELD_NUMBER = 2;
     private int g_;
-    /**
-     * <code>optional int32 g = 2;</code>
-     */
     public boolean hasG() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    /**
-     * <code>optional int32 g = 2;</code>
-     */
     public int getG() {
       return g_;
     }
-
+    
     // optional int32 b = 3;
     public static final int B_FIELD_NUMBER = 3;
     private int b_;
-    /**
-     * <code>optional int32 b = 3;</code>
-     */
     public boolean hasB() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    /**
-     * <code>optional int32 b = 3;</code>
-     */
     public int getB() {
       return b_;
     }
-
+    
     private void initFields() {
       r_ = 0;
       g_ = 0;
@@ -208,11 +91,11 @@ public final class Color {
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
-
+      
       memoizedIsInitialized = 1;
       return true;
     }
-
+    
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -227,12 +110,12 @@ public final class Color {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-
+    
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -250,87 +133,94 @@ public final class Color {
       memoizedSerializedSize = size;
       return size;
     }
-
+    
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-
+    
     public static com.lvl6.aoc2.proto.Color.ColorProto parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static com.lvl6.aoc2.proto.Color.ColorProto parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.Color.ColorProto parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static com.lvl6.aoc2.proto.Color.ColorProto parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.Color.ColorProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static com.lvl6.aoc2.proto.Color.ColorProto parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.Color.ColorProto parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static com.lvl6.aoc2.proto.Color.ColorProto parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static com.lvl6.aoc2.proto.Color.ColorProto parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static com.lvl6.aoc2.proto.Color.ColorProto parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
-
+    
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(com.lvl6.aoc2.proto.Color.ColorProto prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-
+    
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code com.lvl6.aoc2.proto.ColorProto}
-     *
-     * <pre>
-     *Use values [0,255] for RGB values
-     * </pre>
-     */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
        implements com.lvl6.aoc2.proto.Color.ColorProtoOrBuilder {
@@ -338,21 +228,18 @@ public final class Color {
           getDescriptor() {
         return com.lvl6.aoc2.proto.Color.internal_static_com_lvl6_aoc2_proto_ColorProto_descriptor;
       }
-
+      
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.lvl6.aoc2.proto.Color.internal_static_com_lvl6_aoc2_proto_ColorProto_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.lvl6.aoc2.proto.Color.ColorProto.class, com.lvl6.aoc2.proto.Color.ColorProto.Builder.class);
+        return com.lvl6.aoc2.proto.Color.internal_static_com_lvl6_aoc2_proto_ColorProto_fieldAccessorTable;
       }
-
+      
       // Construct using com.lvl6.aoc2.proto.Color.ColorProto.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -363,7 +250,7 @@ public final class Color {
       private static Builder create() {
         return new Builder();
       }
-
+      
       public Builder clear() {
         super.clear();
         r_ = 0;
@@ -374,20 +261,20 @@ public final class Color {
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
-
+      
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-
+      
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.lvl6.aoc2.proto.Color.internal_static_com_lvl6_aoc2_proto_ColorProto_descriptor;
+        return com.lvl6.aoc2.proto.Color.ColorProto.getDescriptor();
       }
-
+      
       public com.lvl6.aoc2.proto.Color.ColorProto getDefaultInstanceForType() {
         return com.lvl6.aoc2.proto.Color.ColorProto.getDefaultInstance();
       }
-
+      
       public com.lvl6.aoc2.proto.Color.ColorProto build() {
         com.lvl6.aoc2.proto.Color.ColorProto result = buildPartial();
         if (!result.isInitialized()) {
@@ -395,7 +282,17 @@ public final class Color {
         }
         return result;
       }
-
+      
+      private com.lvl6.aoc2.proto.Color.ColorProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.aoc2.proto.Color.ColorProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
       public com.lvl6.aoc2.proto.Color.ColorProto buildPartial() {
         com.lvl6.aoc2.proto.Color.ColorProto result = new com.lvl6.aoc2.proto.Color.ColorProto(this);
         int from_bitField0_ = bitField0_;
@@ -416,7 +313,7 @@ public final class Color {
         onBuilt();
         return result;
       }
-
+      
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.lvl6.aoc2.proto.Color.ColorProto) {
           return mergeFrom((com.lvl6.aoc2.proto.Color.ColorProto)other);
@@ -425,7 +322,7 @@ public final class Color {
           return this;
         }
       }
-
+      
       public Builder mergeFrom(com.lvl6.aoc2.proto.Color.ColorProto other) {
         if (other == com.lvl6.aoc2.proto.Color.ColorProto.getDefaultInstance()) return this;
         if (other.hasR()) {
@@ -440,146 +337,135 @@ public final class Color {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
+      
       public final boolean isInitialized() {
         return true;
       }
-
+      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.lvl6.aoc2.proto.Color.ColorProto parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.lvl6.aoc2.proto.Color.ColorProto) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              r_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              g_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              b_ = input.readInt32();
+              break;
+            }
           }
         }
-        return this;
       }
+      
       private int bitField0_;
-
+      
       // optional int32 r = 1;
       private int r_ ;
-      /**
-       * <code>optional int32 r = 1;</code>
-       */
       public boolean hasR() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional int32 r = 1;</code>
-       */
       public int getR() {
         return r_;
       }
-      /**
-       * <code>optional int32 r = 1;</code>
-       */
       public Builder setR(int value) {
         bitField0_ |= 0x00000001;
         r_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 r = 1;</code>
-       */
       public Builder clearR() {
         bitField0_ = (bitField0_ & ~0x00000001);
         r_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 g = 2;
       private int g_ ;
-      /**
-       * <code>optional int32 g = 2;</code>
-       */
       public boolean hasG() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional int32 g = 2;</code>
-       */
       public int getG() {
         return g_;
       }
-      /**
-       * <code>optional int32 g = 2;</code>
-       */
       public Builder setG(int value) {
         bitField0_ |= 0x00000002;
         g_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 g = 2;</code>
-       */
       public Builder clearG() {
         bitField0_ = (bitField0_ & ~0x00000002);
         g_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 b = 3;
       private int b_ ;
-      /**
-       * <code>optional int32 b = 3;</code>
-       */
       public boolean hasB() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>optional int32 b = 3;</code>
-       */
       public int getB() {
         return b_;
       }
-      /**
-       * <code>optional int32 b = 3;</code>
-       */
       public Builder setB(int value) {
         bitField0_ |= 0x00000004;
         b_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 b = 3;</code>
-       */
       public Builder clearB() {
         bitField0_ = (bitField0_ & ~0x00000004);
         b_ = 0;
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:com.lvl6.aoc2.proto.ColorProto)
     }
-
+    
     static {
       defaultInstance = new ColorProto(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:com.lvl6.aoc2.proto.ColorProto)
   }
-
+  
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_com_lvl6_aoc2_proto_ColorProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_com_lvl6_aoc2_proto_ColorProto_fieldAccessorTable;
-
+  
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -602,7 +488,9 @@ public final class Color {
           internal_static_com_lvl6_aoc2_proto_ColorProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_lvl6_aoc2_proto_ColorProto_descriptor,
-              new java.lang.String[] { "R", "G", "B", });
+              new java.lang.String[] { "R", "G", "B", },
+              com.lvl6.aoc2.proto.Color.ColorProto.class,
+              com.lvl6.aoc2.proto.Color.ColorProto.Builder.class);
           return null;
         }
       };
@@ -611,6 +499,6 @@ public final class Color {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
   }
-
+  
   // @@protoc_insertion_point(outer_class_scope)
 }

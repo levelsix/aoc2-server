@@ -8,49 +8,22 @@ public final class ClassEnum {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  /**
-   * Protobuf enum {@code com.lvl6.aoc2.proto.ClassType}
-   */
   public enum ClassType
       implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>WARRIOR = 0;</code>
-     */
     WARRIOR(0, 0),
-    /**
-     * <code>ARCHER = 1;</code>
-     */
     ARCHER(1, 1),
-    /**
-     * <code>WIZARD = 2;</code>
-     */
     WIZARD(2, 2),
-    /**
-     * <code>ALL = 3;</code>
-     */
     ALL(3, 3),
     ;
-
-    /**
-     * <code>WARRIOR = 0;</code>
-     */
+    
     public static final int WARRIOR_VALUE = 0;
-    /**
-     * <code>ARCHER = 1;</code>
-     */
     public static final int ARCHER_VALUE = 1;
-    /**
-     * <code>WIZARD = 2;</code>
-     */
     public static final int WIZARD_VALUE = 2;
-    /**
-     * <code>ALL = 3;</code>
-     */
     public static final int ALL_VALUE = 3;
-
-
+    
+    
     public final int getNumber() { return value; }
-
+    
     public static ClassType valueOf(int value) {
       switch (value) {
         case 0: return WARRIOR;
@@ -60,7 +33,7 @@ public final class ClassEnum {
         default: return null;
       }
     }
-
+    
     public static com.google.protobuf.Internal.EnumLiteMap<ClassType>
         internalGetValueMap() {
       return internalValueMap;
@@ -72,7 +45,7 @@ public final class ClassEnum {
               return ClassType.valueOf(number);
             }
           };
-
+    
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
       return getDescriptor().getValues().get(index);
@@ -85,9 +58,11 @@ public final class ClassEnum {
         getDescriptor() {
       return com.lvl6.aoc2.proto.ClassEnum.getDescriptor().getEnumTypes().get(0);
     }
-
-    private static final ClassType[] VALUES = values();
-
+    
+    private static final ClassType[] VALUES = {
+      WARRIOR, ARCHER, WIZARD, ALL, 
+    };
+    
     public static ClassType valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
@@ -96,19 +71,19 @@ public final class ClassEnum {
       }
       return VALUES[desc.getIndex()];
     }
-
+    
     private final int index;
     private final int value;
-
+    
     private ClassType(int index, int value) {
       this.index = index;
       this.value = value;
     }
-
+    
     // @@protoc_insertion_point(enum_scope:com.lvl6.aoc2.proto.ClassType)
   }
-
-
+  
+  
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -134,6 +109,6 @@ public final class ClassEnum {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
   }
-
+  
   // @@protoc_insertion_point(outer_class_scope)
 }

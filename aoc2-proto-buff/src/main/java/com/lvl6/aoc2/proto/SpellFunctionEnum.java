@@ -8,41 +8,20 @@ public final class SpellFunctionEnum {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  /**
-   * Protobuf enum {@code com.lvl6.aoc2.proto.SpellFunctionType}
-   */
   public enum SpellFunctionType
       implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>ATTACK = 0;</code>
-     */
     ATTACK(0, 0),
-    /**
-     * <code>BUFF = 1;</code>
-     */
     BUFF(1, 1),
-    /**
-     * <code>HEAL = 2;</code>
-     */
     HEAL(2, 2),
     ;
-
-    /**
-     * <code>ATTACK = 0;</code>
-     */
+    
     public static final int ATTACK_VALUE = 0;
-    /**
-     * <code>BUFF = 1;</code>
-     */
     public static final int BUFF_VALUE = 1;
-    /**
-     * <code>HEAL = 2;</code>
-     */
     public static final int HEAL_VALUE = 2;
-
-
+    
+    
     public final int getNumber() { return value; }
-
+    
     public static SpellFunctionType valueOf(int value) {
       switch (value) {
         case 0: return ATTACK;
@@ -51,7 +30,7 @@ public final class SpellFunctionEnum {
         default: return null;
       }
     }
-
+    
     public static com.google.protobuf.Internal.EnumLiteMap<SpellFunctionType>
         internalGetValueMap() {
       return internalValueMap;
@@ -63,7 +42,7 @@ public final class SpellFunctionEnum {
               return SpellFunctionType.valueOf(number);
             }
           };
-
+    
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
       return getDescriptor().getValues().get(index);
@@ -76,9 +55,11 @@ public final class SpellFunctionEnum {
         getDescriptor() {
       return com.lvl6.aoc2.proto.SpellFunctionEnum.getDescriptor().getEnumTypes().get(0);
     }
-
-    private static final SpellFunctionType[] VALUES = values();
-
+    
+    private static final SpellFunctionType[] VALUES = {
+      ATTACK, BUFF, HEAL, 
+    };
+    
     public static SpellFunctionType valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
@@ -87,19 +68,19 @@ public final class SpellFunctionEnum {
       }
       return VALUES[desc.getIndex()];
     }
-
+    
     private final int index;
     private final int value;
-
+    
     private SpellFunctionType(int index, int value) {
       this.index = index;
       this.value = value;
     }
-
+    
     // @@protoc_insertion_point(enum_scope:com.lvl6.aoc2.proto.SpellFunctionType)
   }
-
-
+  
+  
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -125,6 +106,6 @@ public final class SpellFunctionEnum {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
   }
-
+  
   // @@protoc_insertion_point(outer_class_scope)
 }

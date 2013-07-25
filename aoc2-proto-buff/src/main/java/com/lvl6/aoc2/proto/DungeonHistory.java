@@ -10,191 +10,78 @@ public final class DungeonHistory {
   }
   public interface DungeonHistoryProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
-
+    
     // optional int32 dungeonID = 1;
-    /**
-     * <code>optional int32 dungeonID = 1;</code>
-     */
     boolean hasDungeonID();
-    /**
-     * <code>optional int32 dungeonID = 1;</code>
-     */
     int getDungeonID();
-
+    
     // optional int32 roomID = 2;
-    /**
-     * <code>optional int32 roomID = 2;</code>
-     */
     boolean hasRoomID();
-    /**
-     * <code>optional int32 roomID = 2;</code>
-     */
     int getRoomID();
-
+    
     // optional int32 timeTaken = 3;
-    /**
-     * <code>optional int32 timeTaken = 3;</code>
-     */
     boolean hasTimeTaken();
-    /**
-     * <code>optional int32 timeTaken = 3;</code>
-     */
     int getTimeTaken();
   }
-  /**
-   * Protobuf type {@code com.lvl6.aoc2.proto.DungeonHistoryProto}
-   */
   public static final class DungeonHistoryProto extends
       com.google.protobuf.GeneratedMessage
       implements DungeonHistoryProtoOrBuilder {
     // Use DungeonHistoryProto.newBuilder() to construct.
-    private DungeonHistoryProto(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private DungeonHistoryProto(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private DungeonHistoryProto(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private DungeonHistoryProto(boolean noInit) {}
+    
     private static final DungeonHistoryProto defaultInstance;
     public static DungeonHistoryProto getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public DungeonHistoryProto getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private DungeonHistoryProto(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              dungeonID_ = input.readInt32();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              roomID_ = input.readInt32();
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              timeTaken_ = input.readInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
+    
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.lvl6.aoc2.proto.DungeonHistory.internal_static_com_lvl6_aoc2_proto_DungeonHistoryProto_descriptor;
     }
-
+    
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.lvl6.aoc2.proto.DungeonHistory.internal_static_com_lvl6_aoc2_proto_DungeonHistoryProto_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto.class, com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto.Builder.class);
+      return com.lvl6.aoc2.proto.DungeonHistory.internal_static_com_lvl6_aoc2_proto_DungeonHistoryProto_fieldAccessorTable;
     }
-
-    public static com.google.protobuf.Parser<DungeonHistoryProto> PARSER =
-        new com.google.protobuf.AbstractParser<DungeonHistoryProto>() {
-      public DungeonHistoryProto parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new DungeonHistoryProto(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<DungeonHistoryProto> getParserForType() {
-      return PARSER;
-    }
-
+    
     private int bitField0_;
     // optional int32 dungeonID = 1;
     public static final int DUNGEONID_FIELD_NUMBER = 1;
     private int dungeonID_;
-    /**
-     * <code>optional int32 dungeonID = 1;</code>
-     */
     public boolean hasDungeonID() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    /**
-     * <code>optional int32 dungeonID = 1;</code>
-     */
     public int getDungeonID() {
       return dungeonID_;
     }
-
+    
     // optional int32 roomID = 2;
     public static final int ROOMID_FIELD_NUMBER = 2;
     private int roomID_;
-    /**
-     * <code>optional int32 roomID = 2;</code>
-     */
     public boolean hasRoomID() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    /**
-     * <code>optional int32 roomID = 2;</code>
-     */
     public int getRoomID() {
       return roomID_;
     }
-
+    
     // optional int32 timeTaken = 3;
     public static final int TIMETAKEN_FIELD_NUMBER = 3;
     private int timeTaken_;
-    /**
-     * <code>optional int32 timeTaken = 3;</code>
-     */
     public boolean hasTimeTaken() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    /**
-     * <code>optional int32 timeTaken = 3;</code>
-     */
     public int getTimeTaken() {
       return timeTaken_;
     }
-
+    
     private void initFields() {
       dungeonID_ = 0;
       roomID_ = 0;
@@ -204,11 +91,11 @@ public final class DungeonHistory {
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
-
+      
       memoizedIsInitialized = 1;
       return true;
     }
-
+    
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -223,12 +110,12 @@ public final class DungeonHistory {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-
+    
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -246,83 +133,94 @@ public final class DungeonHistory {
       memoizedSerializedSize = size;
       return size;
     }
-
+    
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-
+    
     public static com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
-
+    
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-
+    
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code com.lvl6.aoc2.proto.DungeonHistoryProto}
-     */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
        implements com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProtoOrBuilder {
@@ -330,21 +228,18 @@ public final class DungeonHistory {
           getDescriptor() {
         return com.lvl6.aoc2.proto.DungeonHistory.internal_static_com_lvl6_aoc2_proto_DungeonHistoryProto_descriptor;
       }
-
+      
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.lvl6.aoc2.proto.DungeonHistory.internal_static_com_lvl6_aoc2_proto_DungeonHistoryProto_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto.class, com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto.Builder.class);
+        return com.lvl6.aoc2.proto.DungeonHistory.internal_static_com_lvl6_aoc2_proto_DungeonHistoryProto_fieldAccessorTable;
       }
-
+      
       // Construct using com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -355,7 +250,7 @@ public final class DungeonHistory {
       private static Builder create() {
         return new Builder();
       }
-
+      
       public Builder clear() {
         super.clear();
         dungeonID_ = 0;
@@ -366,20 +261,20 @@ public final class DungeonHistory {
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
-
+      
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-
+      
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.lvl6.aoc2.proto.DungeonHistory.internal_static_com_lvl6_aoc2_proto_DungeonHistoryProto_descriptor;
+        return com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto.getDescriptor();
       }
-
+      
       public com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto getDefaultInstanceForType() {
         return com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto.getDefaultInstance();
       }
-
+      
       public com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto build() {
         com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto result = buildPartial();
         if (!result.isInitialized()) {
@@ -387,7 +282,17 @@ public final class DungeonHistory {
         }
         return result;
       }
-
+      
+      private com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
       public com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto buildPartial() {
         com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto result = new com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto(this);
         int from_bitField0_ = bitField0_;
@@ -408,7 +313,7 @@ public final class DungeonHistory {
         onBuilt();
         return result;
       }
-
+      
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto) {
           return mergeFrom((com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto)other);
@@ -417,7 +322,7 @@ public final class DungeonHistory {
           return this;
         }
       }
-
+      
       public Builder mergeFrom(com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto other) {
         if (other == com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto.getDefaultInstance()) return this;
         if (other.hasDungeonID()) {
@@ -432,146 +337,135 @@ public final class DungeonHistory {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
+      
       public final boolean isInitialized() {
         return true;
       }
-
+      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              dungeonID_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              roomID_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              timeTaken_ = input.readInt32();
+              break;
+            }
           }
         }
-        return this;
       }
+      
       private int bitField0_;
-
+      
       // optional int32 dungeonID = 1;
       private int dungeonID_ ;
-      /**
-       * <code>optional int32 dungeonID = 1;</code>
-       */
       public boolean hasDungeonID() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional int32 dungeonID = 1;</code>
-       */
       public int getDungeonID() {
         return dungeonID_;
       }
-      /**
-       * <code>optional int32 dungeonID = 1;</code>
-       */
       public Builder setDungeonID(int value) {
         bitField0_ |= 0x00000001;
         dungeonID_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 dungeonID = 1;</code>
-       */
       public Builder clearDungeonID() {
         bitField0_ = (bitField0_ & ~0x00000001);
         dungeonID_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 roomID = 2;
       private int roomID_ ;
-      /**
-       * <code>optional int32 roomID = 2;</code>
-       */
       public boolean hasRoomID() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional int32 roomID = 2;</code>
-       */
       public int getRoomID() {
         return roomID_;
       }
-      /**
-       * <code>optional int32 roomID = 2;</code>
-       */
       public Builder setRoomID(int value) {
         bitField0_ |= 0x00000002;
         roomID_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 roomID = 2;</code>
-       */
       public Builder clearRoomID() {
         bitField0_ = (bitField0_ & ~0x00000002);
         roomID_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 timeTaken = 3;
       private int timeTaken_ ;
-      /**
-       * <code>optional int32 timeTaken = 3;</code>
-       */
       public boolean hasTimeTaken() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>optional int32 timeTaken = 3;</code>
-       */
       public int getTimeTaken() {
         return timeTaken_;
       }
-      /**
-       * <code>optional int32 timeTaken = 3;</code>
-       */
       public Builder setTimeTaken(int value) {
         bitField0_ |= 0x00000004;
         timeTaken_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 timeTaken = 3;</code>
-       */
       public Builder clearTimeTaken() {
         bitField0_ = (bitField0_ & ~0x00000004);
         timeTaken_ = 0;
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:com.lvl6.aoc2.proto.DungeonHistoryProto)
     }
-
+    
     static {
       defaultInstance = new DungeonHistoryProto(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:com.lvl6.aoc2.proto.DungeonHistoryProto)
   }
-
+  
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_com_lvl6_aoc2_proto_DungeonHistoryProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_com_lvl6_aoc2_proto_DungeonHistoryProto_fieldAccessorTable;
-
+  
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -595,7 +489,9 @@ public final class DungeonHistory {
           internal_static_com_lvl6_aoc2_proto_DungeonHistoryProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_lvl6_aoc2_proto_DungeonHistoryProto_descriptor,
-              new java.lang.String[] { "DungeonID", "RoomID", "TimeTaken", });
+              new java.lang.String[] { "DungeonID", "RoomID", "TimeTaken", },
+              com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto.class,
+              com.lvl6.aoc2.proto.DungeonHistory.DungeonHistoryProto.Builder.class);
           return null;
         }
       };
@@ -604,6 +500,6 @@ public final class DungeonHistory {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
   }
-
+  
   // @@protoc_insertion_point(outer_class_scope)
 }

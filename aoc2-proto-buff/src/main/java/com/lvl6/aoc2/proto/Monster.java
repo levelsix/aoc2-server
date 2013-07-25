@@ -10,432 +10,180 @@ public final class Monster {
   }
   public interface MonsterProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
-
+    
     // optional int32 monsterID = 1;
-    /**
-     * <code>optional int32 monsterID = 1;</code>
-     */
     boolean hasMonsterID();
-    /**
-     * <code>optional int32 monsterID = 1;</code>
-     */
     int getMonsterID();
-
+    
     // optional int32 maxHealth = 2;
-    /**
-     * <code>optional int32 maxHealth = 2;</code>
-     */
     boolean hasMaxHealth();
-    /**
-     * <code>optional int32 maxHealth = 2;</code>
-     */
     int getMaxHealth();
-
+    
     // optional int32 maxMana = 3;
-    /**
-     * <code>optional int32 maxMana = 3;</code>
-     */
     boolean hasMaxMana();
-    /**
-     * <code>optional int32 maxMana = 3;</code>
-     */
     int getMaxMana();
-
+    
     // optional int32 attack = 4;
-    /**
-     * <code>optional int32 attack = 4;</code>
-     */
     boolean hasAttack();
-    /**
-     * <code>optional int32 attack = 4;</code>
-     */
     int getAttack();
-
+    
     // optional int32 defense = 5;
-    /**
-     * <code>optional int32 defense = 5;</code>
-     */
     boolean hasDefense();
-    /**
-     * <code>optional int32 defense = 5;</code>
-     */
     int getDefense();
-
+    
     // required .com.lvl6.aoc2.proto.MonsterType type = 6;
-    /**
-     * <code>required .com.lvl6.aoc2.proto.MonsterType type = 6;</code>
-     */
     boolean hasType();
-    /**
-     * <code>required .com.lvl6.aoc2.proto.MonsterType type = 6;</code>
-     */
     com.lvl6.aoc2.proto.MonsterEnum.MonsterType getType();
-
+    
     // optional .com.lvl6.aoc2.proto.ColorProto color = 7;
-    /**
-     * <code>optional .com.lvl6.aoc2.proto.ColorProto color = 7;</code>
-     */
     boolean hasColor();
-    /**
-     * <code>optional .com.lvl6.aoc2.proto.ColorProto color = 7;</code>
-     */
     com.lvl6.aoc2.proto.Color.ColorProto getColor();
-    /**
-     * <code>optional .com.lvl6.aoc2.proto.ColorProto color = 7;</code>
-     */
     com.lvl6.aoc2.proto.Color.ColorProtoOrBuilder getColorOrBuilder();
-
+    
     // optional float size = 8;
-    /**
-     * <code>optional float size = 8;</code>
-     */
     boolean hasSize();
-    /**
-     * <code>optional float size = 8;</code>
-     */
     float getSize();
-
+    
     // optional int32 experience = 9;
-    /**
-     * <code>optional int32 experience = 9;</code>
-     */
     boolean hasExperience();
-    /**
-     * <code>optional int32 experience = 9;</code>
-     */
     int getExperience();
-
+    
     // optional bool isBoss = 10;
-    /**
-     * <code>optional bool isBoss = 10;</code>
-     */
     boolean hasIsBoss();
-    /**
-     * <code>optional bool isBoss = 10;</code>
-     */
     boolean getIsBoss();
   }
-  /**
-   * Protobuf type {@code com.lvl6.aoc2.proto.MonsterProto}
-   */
   public static final class MonsterProto extends
       com.google.protobuf.GeneratedMessage
       implements MonsterProtoOrBuilder {
     // Use MonsterProto.newBuilder() to construct.
-    private MonsterProto(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private MonsterProto(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private MonsterProto(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private MonsterProto(boolean noInit) {}
+    
     private static final MonsterProto defaultInstance;
     public static MonsterProto getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public MonsterProto getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private MonsterProto(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              monsterID_ = input.readInt32();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              maxHealth_ = input.readInt32();
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              maxMana_ = input.readInt32();
-              break;
-            }
-            case 32: {
-              bitField0_ |= 0x00000008;
-              attack_ = input.readInt32();
-              break;
-            }
-            case 40: {
-              bitField0_ |= 0x00000010;
-              defense_ = input.readInt32();
-              break;
-            }
-            case 48: {
-              int rawValue = input.readEnum();
-              com.lvl6.aoc2.proto.MonsterEnum.MonsterType value = com.lvl6.aoc2.proto.MonsterEnum.MonsterType.valueOf(rawValue);
-              if (value == null) {
-                unknownFields.mergeVarintField(6, rawValue);
-              } else {
-                bitField0_ |= 0x00000020;
-                type_ = value;
-              }
-              break;
-            }
-            case 58: {
-              com.lvl6.aoc2.proto.Color.ColorProto.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000040) == 0x00000040)) {
-                subBuilder = color_.toBuilder();
-              }
-              color_ = input.readMessage(com.lvl6.aoc2.proto.Color.ColorProto.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom(color_);
-                color_ = subBuilder.buildPartial();
-              }
-              bitField0_ |= 0x00000040;
-              break;
-            }
-            case 69: {
-              bitField0_ |= 0x00000080;
-              size_ = input.readFloat();
-              break;
-            }
-            case 72: {
-              bitField0_ |= 0x00000100;
-              experience_ = input.readInt32();
-              break;
-            }
-            case 80: {
-              bitField0_ |= 0x00000200;
-              isBoss_ = input.readBool();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
+    
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
       return com.lvl6.aoc2.proto.Monster.internal_static_com_lvl6_aoc2_proto_MonsterProto_descriptor;
     }
-
+    
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.lvl6.aoc2.proto.Monster.internal_static_com_lvl6_aoc2_proto_MonsterProto_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.lvl6.aoc2.proto.Monster.MonsterProto.class, com.lvl6.aoc2.proto.Monster.MonsterProto.Builder.class);
+      return com.lvl6.aoc2.proto.Monster.internal_static_com_lvl6_aoc2_proto_MonsterProto_fieldAccessorTable;
     }
-
-    public static com.google.protobuf.Parser<MonsterProto> PARSER =
-        new com.google.protobuf.AbstractParser<MonsterProto>() {
-      public MonsterProto parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MonsterProto(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<MonsterProto> getParserForType() {
-      return PARSER;
-    }
-
+    
     private int bitField0_;
     // optional int32 monsterID = 1;
     public static final int MONSTERID_FIELD_NUMBER = 1;
     private int monsterID_;
-    /**
-     * <code>optional int32 monsterID = 1;</code>
-     */
     public boolean hasMonsterID() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    /**
-     * <code>optional int32 monsterID = 1;</code>
-     */
     public int getMonsterID() {
       return monsterID_;
     }
-
+    
     // optional int32 maxHealth = 2;
     public static final int MAXHEALTH_FIELD_NUMBER = 2;
     private int maxHealth_;
-    /**
-     * <code>optional int32 maxHealth = 2;</code>
-     */
     public boolean hasMaxHealth() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    /**
-     * <code>optional int32 maxHealth = 2;</code>
-     */
     public int getMaxHealth() {
       return maxHealth_;
     }
-
+    
     // optional int32 maxMana = 3;
     public static final int MAXMANA_FIELD_NUMBER = 3;
     private int maxMana_;
-    /**
-     * <code>optional int32 maxMana = 3;</code>
-     */
     public boolean hasMaxMana() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    /**
-     * <code>optional int32 maxMana = 3;</code>
-     */
     public int getMaxMana() {
       return maxMana_;
     }
-
+    
     // optional int32 attack = 4;
     public static final int ATTACK_FIELD_NUMBER = 4;
     private int attack_;
-    /**
-     * <code>optional int32 attack = 4;</code>
-     */
     public boolean hasAttack() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
-    /**
-     * <code>optional int32 attack = 4;</code>
-     */
     public int getAttack() {
       return attack_;
     }
-
+    
     // optional int32 defense = 5;
     public static final int DEFENSE_FIELD_NUMBER = 5;
     private int defense_;
-    /**
-     * <code>optional int32 defense = 5;</code>
-     */
     public boolean hasDefense() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
-    /**
-     * <code>optional int32 defense = 5;</code>
-     */
     public int getDefense() {
       return defense_;
     }
-
+    
     // required .com.lvl6.aoc2.proto.MonsterType type = 6;
     public static final int TYPE_FIELD_NUMBER = 6;
     private com.lvl6.aoc2.proto.MonsterEnum.MonsterType type_;
-    /**
-     * <code>required .com.lvl6.aoc2.proto.MonsterType type = 6;</code>
-     */
     public boolean hasType() {
       return ((bitField0_ & 0x00000020) == 0x00000020);
     }
-    /**
-     * <code>required .com.lvl6.aoc2.proto.MonsterType type = 6;</code>
-     */
     public com.lvl6.aoc2.proto.MonsterEnum.MonsterType getType() {
       return type_;
     }
-
+    
     // optional .com.lvl6.aoc2.proto.ColorProto color = 7;
     public static final int COLOR_FIELD_NUMBER = 7;
     private com.lvl6.aoc2.proto.Color.ColorProto color_;
-    /**
-     * <code>optional .com.lvl6.aoc2.proto.ColorProto color = 7;</code>
-     */
     public boolean hasColor() {
       return ((bitField0_ & 0x00000040) == 0x00000040);
     }
-    /**
-     * <code>optional .com.lvl6.aoc2.proto.ColorProto color = 7;</code>
-     */
     public com.lvl6.aoc2.proto.Color.ColorProto getColor() {
       return color_;
     }
-    /**
-     * <code>optional .com.lvl6.aoc2.proto.ColorProto color = 7;</code>
-     */
     public com.lvl6.aoc2.proto.Color.ColorProtoOrBuilder getColorOrBuilder() {
       return color_;
     }
-
+    
     // optional float size = 8;
     public static final int SIZE_FIELD_NUMBER = 8;
     private float size_;
-    /**
-     * <code>optional float size = 8;</code>
-     */
     public boolean hasSize() {
       return ((bitField0_ & 0x00000080) == 0x00000080);
     }
-    /**
-     * <code>optional float size = 8;</code>
-     */
     public float getSize() {
       return size_;
     }
-
+    
     // optional int32 experience = 9;
     public static final int EXPERIENCE_FIELD_NUMBER = 9;
     private int experience_;
-    /**
-     * <code>optional int32 experience = 9;</code>
-     */
     public boolean hasExperience() {
       return ((bitField0_ & 0x00000100) == 0x00000100);
     }
-    /**
-     * <code>optional int32 experience = 9;</code>
-     */
     public int getExperience() {
       return experience_;
     }
-
+    
     // optional bool isBoss = 10;
     public static final int ISBOSS_FIELD_NUMBER = 10;
     private boolean isBoss_;
-    /**
-     * <code>optional bool isBoss = 10;</code>
-     */
     public boolean hasIsBoss() {
       return ((bitField0_ & 0x00000200) == 0x00000200);
     }
-    /**
-     * <code>optional bool isBoss = 10;</code>
-     */
     public boolean getIsBoss() {
       return isBoss_;
     }
-
+    
     private void initFields() {
       monsterID_ = 0;
       maxHealth_ = 0;
@@ -452,7 +200,7 @@ public final class Monster {
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
-
+      
       if (!hasType()) {
         memoizedIsInitialized = 0;
         return false;
@@ -460,7 +208,7 @@ public final class Monster {
       memoizedIsInitialized = 1;
       return true;
     }
-
+    
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
@@ -496,12 +244,12 @@ public final class Monster {
       }
       getUnknownFields().writeTo(output);
     }
-
+    
     private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
-
+    
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
@@ -547,83 +295,94 @@ public final class Monster {
       memoizedSerializedSize = size;
       return size;
     }
-
+    
     private static final long serialVersionUID = 0L;
     @java.lang.Override
     protected java.lang.Object writeReplace()
         throws java.io.ObjectStreamException {
       return super.writeReplace();
     }
-
+    
     public static com.lvl6.aoc2.proto.Monster.MonsterProto parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static com.lvl6.aoc2.proto.Monster.MonsterProto parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.Monster.MonsterProto parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return newBuilder().mergeFrom(data).buildParsed();
     }
     public static com.lvl6.aoc2.proto.Monster.MonsterProto parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.Monster.MonsterProto parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static com.lvl6.aoc2.proto.Monster.MonsterProto parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
     public static com.lvl6.aoc2.proto.Monster.MonsterProto parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static com.lvl6.aoc2.proto.Monster.MonsterProto parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
     }
     public static com.lvl6.aoc2.proto.Monster.MonsterProto parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return newBuilder().mergeFrom(input).buildParsed();
     }
     public static com.lvl6.aoc2.proto.Monster.MonsterProto parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
     }
-
+    
     public static Builder newBuilder() { return Builder.create(); }
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder(com.lvl6.aoc2.proto.Monster.MonsterProto prototype) {
       return newBuilder().mergeFrom(prototype);
     }
     public Builder toBuilder() { return newBuilder(this); }
-
+    
     @java.lang.Override
     protected Builder newBuilderForType(
         com.google.protobuf.GeneratedMessage.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
-    /**
-     * Protobuf type {@code com.lvl6.aoc2.proto.MonsterProto}
-     */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessage.Builder<Builder>
        implements com.lvl6.aoc2.proto.Monster.MonsterProtoOrBuilder {
@@ -631,21 +390,18 @@ public final class Monster {
           getDescriptor() {
         return com.lvl6.aoc2.proto.Monster.internal_static_com_lvl6_aoc2_proto_MonsterProto_descriptor;
       }
-
+      
       protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return com.lvl6.aoc2.proto.Monster.internal_static_com_lvl6_aoc2_proto_MonsterProto_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.lvl6.aoc2.proto.Monster.MonsterProto.class, com.lvl6.aoc2.proto.Monster.MonsterProto.Builder.class);
+        return com.lvl6.aoc2.proto.Monster.internal_static_com_lvl6_aoc2_proto_MonsterProto_fieldAccessorTable;
       }
-
+      
       // Construct using com.lvl6.aoc2.proto.Monster.MonsterProto.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      
+      private Builder(BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -657,7 +413,7 @@ public final class Monster {
       private static Builder create() {
         return new Builder();
       }
-
+      
       public Builder clear() {
         super.clear();
         monsterID_ = 0;
@@ -686,20 +442,20 @@ public final class Monster {
         bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
-
+      
       public Builder clone() {
         return create().mergeFrom(buildPartial());
       }
-
+      
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return com.lvl6.aoc2.proto.Monster.internal_static_com_lvl6_aoc2_proto_MonsterProto_descriptor;
+        return com.lvl6.aoc2.proto.Monster.MonsterProto.getDescriptor();
       }
-
+      
       public com.lvl6.aoc2.proto.Monster.MonsterProto getDefaultInstanceForType() {
         return com.lvl6.aoc2.proto.Monster.MonsterProto.getDefaultInstance();
       }
-
+      
       public com.lvl6.aoc2.proto.Monster.MonsterProto build() {
         com.lvl6.aoc2.proto.Monster.MonsterProto result = buildPartial();
         if (!result.isInitialized()) {
@@ -707,7 +463,17 @@ public final class Monster {
         }
         return result;
       }
-
+      
+      private com.lvl6.aoc2.proto.Monster.MonsterProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.aoc2.proto.Monster.MonsterProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
       public com.lvl6.aoc2.proto.Monster.MonsterProto buildPartial() {
         com.lvl6.aoc2.proto.Monster.MonsterProto result = new com.lvl6.aoc2.proto.Monster.MonsterProto(this);
         int from_bitField0_ = bitField0_;
@@ -760,7 +526,7 @@ public final class Monster {
         onBuilt();
         return result;
       }
-
+      
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.lvl6.aoc2.proto.Monster.MonsterProto) {
           return mergeFrom((com.lvl6.aoc2.proto.Monster.MonsterProto)other);
@@ -769,7 +535,7 @@ public final class Monster {
           return this;
         }
       }
-
+      
       public Builder mergeFrom(com.lvl6.aoc2.proto.Monster.MonsterProto other) {
         if (other == com.lvl6.aoc2.proto.Monster.MonsterProto.getDefaultInstance()) return this;
         if (other.hasMonsterID()) {
@@ -805,7 +571,7 @@ public final class Monster {
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
-
+      
       public final boolean isInitialized() {
         if (!hasType()) {
           
@@ -813,208 +579,209 @@ public final class Monster {
         }
         return true;
       }
-
+      
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
           throws java.io.IOException {
-        com.lvl6.aoc2.proto.Monster.MonsterProto parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.lvl6.aoc2.proto.Monster.MonsterProto) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              monsterID_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              maxHealth_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              maxMana_ = input.readInt32();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              attack_ = input.readInt32();
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              defense_ = input.readInt32();
+              break;
+            }
+            case 48: {
+              int rawValue = input.readEnum();
+              com.lvl6.aoc2.proto.MonsterEnum.MonsterType value = com.lvl6.aoc2.proto.MonsterEnum.MonsterType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(6, rawValue);
+              } else {
+                bitField0_ |= 0x00000020;
+                type_ = value;
+              }
+              break;
+            }
+            case 58: {
+              com.lvl6.aoc2.proto.Color.ColorProto.Builder subBuilder = com.lvl6.aoc2.proto.Color.ColorProto.newBuilder();
+              if (hasColor()) {
+                subBuilder.mergeFrom(getColor());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setColor(subBuilder.buildPartial());
+              break;
+            }
+            case 69: {
+              bitField0_ |= 0x00000080;
+              size_ = input.readFloat();
+              break;
+            }
+            case 72: {
+              bitField0_ |= 0x00000100;
+              experience_ = input.readInt32();
+              break;
+            }
+            case 80: {
+              bitField0_ |= 0x00000200;
+              isBoss_ = input.readBool();
+              break;
+            }
           }
         }
-        return this;
       }
+      
       private int bitField0_;
-
+      
       // optional int32 monsterID = 1;
       private int monsterID_ ;
-      /**
-       * <code>optional int32 monsterID = 1;</code>
-       */
       public boolean hasMonsterID() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional int32 monsterID = 1;</code>
-       */
       public int getMonsterID() {
         return monsterID_;
       }
-      /**
-       * <code>optional int32 monsterID = 1;</code>
-       */
       public Builder setMonsterID(int value) {
         bitField0_ |= 0x00000001;
         monsterID_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 monsterID = 1;</code>
-       */
       public Builder clearMonsterID() {
         bitField0_ = (bitField0_ & ~0x00000001);
         monsterID_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 maxHealth = 2;
       private int maxHealth_ ;
-      /**
-       * <code>optional int32 maxHealth = 2;</code>
-       */
       public boolean hasMaxHealth() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional int32 maxHealth = 2;</code>
-       */
       public int getMaxHealth() {
         return maxHealth_;
       }
-      /**
-       * <code>optional int32 maxHealth = 2;</code>
-       */
       public Builder setMaxHealth(int value) {
         bitField0_ |= 0x00000002;
         maxHealth_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 maxHealth = 2;</code>
-       */
       public Builder clearMaxHealth() {
         bitField0_ = (bitField0_ & ~0x00000002);
         maxHealth_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 maxMana = 3;
       private int maxMana_ ;
-      /**
-       * <code>optional int32 maxMana = 3;</code>
-       */
       public boolean hasMaxMana() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>optional int32 maxMana = 3;</code>
-       */
       public int getMaxMana() {
         return maxMana_;
       }
-      /**
-       * <code>optional int32 maxMana = 3;</code>
-       */
       public Builder setMaxMana(int value) {
         bitField0_ |= 0x00000004;
         maxMana_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 maxMana = 3;</code>
-       */
       public Builder clearMaxMana() {
         bitField0_ = (bitField0_ & ~0x00000004);
         maxMana_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 attack = 4;
       private int attack_ ;
-      /**
-       * <code>optional int32 attack = 4;</code>
-       */
       public boolean hasAttack() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      /**
-       * <code>optional int32 attack = 4;</code>
-       */
       public int getAttack() {
         return attack_;
       }
-      /**
-       * <code>optional int32 attack = 4;</code>
-       */
       public Builder setAttack(int value) {
         bitField0_ |= 0x00000008;
         attack_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 attack = 4;</code>
-       */
       public Builder clearAttack() {
         bitField0_ = (bitField0_ & ~0x00000008);
         attack_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 defense = 5;
       private int defense_ ;
-      /**
-       * <code>optional int32 defense = 5;</code>
-       */
       public boolean hasDefense() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
-      /**
-       * <code>optional int32 defense = 5;</code>
-       */
       public int getDefense() {
         return defense_;
       }
-      /**
-       * <code>optional int32 defense = 5;</code>
-       */
       public Builder setDefense(int value) {
         bitField0_ |= 0x00000010;
         defense_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 defense = 5;</code>
-       */
       public Builder clearDefense() {
         bitField0_ = (bitField0_ & ~0x00000010);
         defense_ = 0;
         onChanged();
         return this;
       }
-
+      
       // required .com.lvl6.aoc2.proto.MonsterType type = 6;
       private com.lvl6.aoc2.proto.MonsterEnum.MonsterType type_ = com.lvl6.aoc2.proto.MonsterEnum.MonsterType.GOBLIN;
-      /**
-       * <code>required .com.lvl6.aoc2.proto.MonsterType type = 6;</code>
-       */
       public boolean hasType() {
         return ((bitField0_ & 0x00000020) == 0x00000020);
       }
-      /**
-       * <code>required .com.lvl6.aoc2.proto.MonsterType type = 6;</code>
-       */
       public com.lvl6.aoc2.proto.MonsterEnum.MonsterType getType() {
         return type_;
       }
-      /**
-       * <code>required .com.lvl6.aoc2.proto.MonsterType type = 6;</code>
-       */
       public Builder setType(com.lvl6.aoc2.proto.MonsterEnum.MonsterType value) {
         if (value == null) {
           throw new NullPointerException();
@@ -1024,29 +791,20 @@ public final class Monster {
         onChanged();
         return this;
       }
-      /**
-       * <code>required .com.lvl6.aoc2.proto.MonsterType type = 6;</code>
-       */
       public Builder clearType() {
         bitField0_ = (bitField0_ & ~0x00000020);
         type_ = com.lvl6.aoc2.proto.MonsterEnum.MonsterType.GOBLIN;
         onChanged();
         return this;
       }
-
+      
       // optional .com.lvl6.aoc2.proto.ColorProto color = 7;
       private com.lvl6.aoc2.proto.Color.ColorProto color_ = com.lvl6.aoc2.proto.Color.ColorProto.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.lvl6.aoc2.proto.Color.ColorProto, com.lvl6.aoc2.proto.Color.ColorProto.Builder, com.lvl6.aoc2.proto.Color.ColorProtoOrBuilder> colorBuilder_;
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.ColorProto color = 7;</code>
-       */
       public boolean hasColor() {
         return ((bitField0_ & 0x00000040) == 0x00000040);
       }
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.ColorProto color = 7;</code>
-       */
       public com.lvl6.aoc2.proto.Color.ColorProto getColor() {
         if (colorBuilder_ == null) {
           return color_;
@@ -1054,9 +812,6 @@ public final class Monster {
           return colorBuilder_.getMessage();
         }
       }
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.ColorProto color = 7;</code>
-       */
       public Builder setColor(com.lvl6.aoc2.proto.Color.ColorProto value) {
         if (colorBuilder_ == null) {
           if (value == null) {
@@ -1070,9 +825,6 @@ public final class Monster {
         bitField0_ |= 0x00000040;
         return this;
       }
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.ColorProto color = 7;</code>
-       */
       public Builder setColor(
           com.lvl6.aoc2.proto.Color.ColorProto.Builder builderForValue) {
         if (colorBuilder_ == null) {
@@ -1084,9 +836,6 @@ public final class Monster {
         bitField0_ |= 0x00000040;
         return this;
       }
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.ColorProto color = 7;</code>
-       */
       public Builder mergeColor(com.lvl6.aoc2.proto.Color.ColorProto value) {
         if (colorBuilder_ == null) {
           if (((bitField0_ & 0x00000040) == 0x00000040) &&
@@ -1103,9 +852,6 @@ public final class Monster {
         bitField0_ |= 0x00000040;
         return this;
       }
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.ColorProto color = 7;</code>
-       */
       public Builder clearColor() {
         if (colorBuilder_ == null) {
           color_ = com.lvl6.aoc2.proto.Color.ColorProto.getDefaultInstance();
@@ -1116,17 +862,11 @@ public final class Monster {
         bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.ColorProto color = 7;</code>
-       */
       public com.lvl6.aoc2.proto.Color.ColorProto.Builder getColorBuilder() {
         bitField0_ |= 0x00000040;
         onChanged();
         return getColorFieldBuilder().getBuilder();
       }
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.ColorProto color = 7;</code>
-       */
       public com.lvl6.aoc2.proto.Color.ColorProtoOrBuilder getColorOrBuilder() {
         if (colorBuilder_ != null) {
           return colorBuilder_.getMessageOrBuilder();
@@ -1134,9 +874,6 @@ public final class Monster {
           return color_;
         }
       }
-      /**
-       * <code>optional .com.lvl6.aoc2.proto.ColorProto color = 7;</code>
-       */
       private com.google.protobuf.SingleFieldBuilder<
           com.lvl6.aoc2.proto.Color.ColorProto, com.lvl6.aoc2.proto.Color.ColorProto.Builder, com.lvl6.aoc2.proto.Color.ColorProtoOrBuilder> 
           getColorFieldBuilder() {
@@ -1150,123 +887,87 @@ public final class Monster {
         }
         return colorBuilder_;
       }
-
+      
       // optional float size = 8;
       private float size_ ;
-      /**
-       * <code>optional float size = 8;</code>
-       */
       public boolean hasSize() {
         return ((bitField0_ & 0x00000080) == 0x00000080);
       }
-      /**
-       * <code>optional float size = 8;</code>
-       */
       public float getSize() {
         return size_;
       }
-      /**
-       * <code>optional float size = 8;</code>
-       */
       public Builder setSize(float value) {
         bitField0_ |= 0x00000080;
         size_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional float size = 8;</code>
-       */
       public Builder clearSize() {
         bitField0_ = (bitField0_ & ~0x00000080);
         size_ = 0F;
         onChanged();
         return this;
       }
-
+      
       // optional int32 experience = 9;
       private int experience_ ;
-      /**
-       * <code>optional int32 experience = 9;</code>
-       */
       public boolean hasExperience() {
         return ((bitField0_ & 0x00000100) == 0x00000100);
       }
-      /**
-       * <code>optional int32 experience = 9;</code>
-       */
       public int getExperience() {
         return experience_;
       }
-      /**
-       * <code>optional int32 experience = 9;</code>
-       */
       public Builder setExperience(int value) {
         bitField0_ |= 0x00000100;
         experience_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 experience = 9;</code>
-       */
       public Builder clearExperience() {
         bitField0_ = (bitField0_ & ~0x00000100);
         experience_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional bool isBoss = 10;
       private boolean isBoss_ ;
-      /**
-       * <code>optional bool isBoss = 10;</code>
-       */
       public boolean hasIsBoss() {
         return ((bitField0_ & 0x00000200) == 0x00000200);
       }
-      /**
-       * <code>optional bool isBoss = 10;</code>
-       */
       public boolean getIsBoss() {
         return isBoss_;
       }
-      /**
-       * <code>optional bool isBoss = 10;</code>
-       */
       public Builder setIsBoss(boolean value) {
         bitField0_ |= 0x00000200;
         isBoss_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional bool isBoss = 10;</code>
-       */
       public Builder clearIsBoss() {
         bitField0_ = (bitField0_ & ~0x00000200);
         isBoss_ = false;
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:com.lvl6.aoc2.proto.MonsterProto)
     }
-
+    
     static {
       defaultInstance = new MonsterProto(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:com.lvl6.aoc2.proto.MonsterProto)
   }
-
+  
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_com_lvl6_aoc2_proto_MonsterProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_com_lvl6_aoc2_proto_MonsterProto_fieldAccessorTable;
-
+  
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -1295,7 +996,9 @@ public final class Monster {
           internal_static_com_lvl6_aoc2_proto_MonsterProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_lvl6_aoc2_proto_MonsterProto_descriptor,
-              new java.lang.String[] { "MonsterID", "MaxHealth", "MaxMana", "Attack", "Defense", "Type", "Color", "Size", "Experience", "IsBoss", });
+              new java.lang.String[] { "MonsterID", "MaxHealth", "MaxMana", "Attack", "Defense", "Type", "Color", "Size", "Experience", "IsBoss", },
+              com.lvl6.aoc2.proto.Monster.MonsterProto.class,
+              com.lvl6.aoc2.proto.Monster.MonsterProto.Builder.class);
           return null;
         }
       };
@@ -1306,6 +1009,6 @@ public final class Monster {
           com.lvl6.aoc2.proto.Color.getDescriptor(),
         }, assigner);
   }
-
+  
   // @@protoc_insertion_point(outer_class_scope)
 }

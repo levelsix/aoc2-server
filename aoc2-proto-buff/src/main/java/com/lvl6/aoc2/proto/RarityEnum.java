@@ -8,65 +8,26 @@ public final class RarityEnum {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
-  /**
-   * Protobuf enum {@code com.lvl6.aoc2.proto.RarityType}
-   */
   public enum RarityType
       implements com.google.protobuf.ProtocolMessageEnum {
-    /**
-     * <code>COMMON = 0;</code>
-     */
     COMMON(0, 0),
-    /**
-     * <code>UNCOMMON = 1;</code>
-     */
     UNCOMMON(1, 1),
-    /**
-     * <code>RARE = 2;</code>
-     */
     RARE(2, 2),
-    /**
-     * <code>SUPER_RARE = 3;</code>
-     */
     SUPER_RARE(3, 3),
-    /**
-     * <code>LEGENDARY = 4;</code>
-     */
     LEGENDARY(4, 4),
-    /**
-     * <code>EPIC = 5;</code>
-     */
     EPIC(5, 5),
     ;
-
-    /**
-     * <code>COMMON = 0;</code>
-     */
+    
     public static final int COMMON_VALUE = 0;
-    /**
-     * <code>UNCOMMON = 1;</code>
-     */
     public static final int UNCOMMON_VALUE = 1;
-    /**
-     * <code>RARE = 2;</code>
-     */
     public static final int RARE_VALUE = 2;
-    /**
-     * <code>SUPER_RARE = 3;</code>
-     */
     public static final int SUPER_RARE_VALUE = 3;
-    /**
-     * <code>LEGENDARY = 4;</code>
-     */
     public static final int LEGENDARY_VALUE = 4;
-    /**
-     * <code>EPIC = 5;</code>
-     */
     public static final int EPIC_VALUE = 5;
-
-
+    
+    
     public final int getNumber() { return value; }
-
+    
     public static RarityType valueOf(int value) {
       switch (value) {
         case 0: return COMMON;
@@ -78,7 +39,7 @@ public final class RarityEnum {
         default: return null;
       }
     }
-
+    
     public static com.google.protobuf.Internal.EnumLiteMap<RarityType>
         internalGetValueMap() {
       return internalValueMap;
@@ -90,7 +51,7 @@ public final class RarityEnum {
               return RarityType.valueOf(number);
             }
           };
-
+    
     public final com.google.protobuf.Descriptors.EnumValueDescriptor
         getValueDescriptor() {
       return getDescriptor().getValues().get(index);
@@ -103,9 +64,11 @@ public final class RarityEnum {
         getDescriptor() {
       return com.lvl6.aoc2.proto.RarityEnum.getDescriptor().getEnumTypes().get(0);
     }
-
-    private static final RarityType[] VALUES = values();
-
+    
+    private static final RarityType[] VALUES = {
+      COMMON, UNCOMMON, RARE, SUPER_RARE, LEGENDARY, EPIC, 
+    };
+    
     public static RarityType valueOf(
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
@@ -114,19 +77,19 @@ public final class RarityEnum {
       }
       return VALUES[desc.getIndex()];
     }
-
+    
     private final int index;
     private final int value;
-
+    
     private RarityType(int index, int value) {
       this.index = index;
       this.value = value;
     }
-
+    
     // @@protoc_insertion_point(enum_scope:com.lvl6.aoc2.proto.RarityType)
   }
-
-
+  
+  
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -153,6 +116,6 @@ public final class RarityEnum {
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
   }
-
+  
   // @@protoc_insertion_point(outer_class_scope)
 }

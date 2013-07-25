@@ -10,160 +10,613 @@ public final class Equipment {
   }
   public interface EquipmentProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
-
+    
     // optional int32 equipID = 1;
-    /**
-     * <code>optional int32 equipID = 1;</code>
-     */
     boolean hasEquipID();
-    /**
-     * <code>optional int32 equipID = 1;</code>
-     */
     int getEquipID();
-
+    
     // optional int32 level = 2;
-    /**
-     * <code>optional int32 level = 2;</code>
-     */
     boolean hasLevel();
-    /**
-     * <code>optional int32 level = 2;</code>
-     */
     int getLevel();
-
+    
     // required .com.lvl6.aoc2.proto.EquipmentType type = 3;
-    /**
-     * <code>required .com.lvl6.aoc2.proto.EquipmentType type = 3;</code>
-     */
     boolean hasType();
-    /**
-     * <code>required .com.lvl6.aoc2.proto.EquipmentType type = 3;</code>
-     */
     com.lvl6.aoc2.proto.EquipmentEnum.EquipmentType getType();
-
+    
     // optional int32 durability = 4;
-    /**
-     * <code>optional int32 durability = 4;</code>
-     */
     boolean hasDurability();
-    /**
-     * <code>optional int32 durability = 4;</code>
-     */
     int getDurability();
-
+    
     // optional int32 attack = 5;
-    /**
-     * <code>optional int32 attack = 5;</code>
-     */
     boolean hasAttack();
-    /**
-     * <code>optional int32 attack = 5;</code>
-     */
     int getAttack();
-
+    
     // optional int32 defense = 6;
-    /**
-     * <code>optional int32 defense = 6;</code>
-     */
     boolean hasDefense();
-    /**
-     * <code>optional int32 defense = 6;</code>
-     */
     int getDefense();
-
+    
     // optional int32 addHealth = 7;
-    /**
-     * <code>optional int32 addHealth = 7;</code>
-     */
     boolean hasAddHealth();
-    /**
-     * <code>optional int32 addHealth = 7;</code>
-     */
     int getAddHealth();
-
+    
     // optional int32 addMana = 8;
-    /**
-     * <code>optional int32 addMana = 8;</code>
-     */
     boolean hasAddMana();
-    /**
-     * <code>optional int32 addMana = 8;</code>
-     */
     int getAddMana();
-
+    
     // optional string name = 9;
-    /**
-     * <code>optional string name = 9;</code>
-     */
     boolean hasName();
-    /**
-     * <code>optional string name = 9;</code>
-     */
-    java.lang.String getName();
-    /**
-     * <code>optional string name = 9;</code>
-     */
-    com.google.protobuf.ByteString
-        getNameBytes();
-
+    String getName();
+    
     // required .com.lvl6.aoc2.proto.RarityType rarity = 10;
-    /**
-     * <code>required .com.lvl6.aoc2.proto.RarityType rarity = 10;</code>
-     */
     boolean hasRarity();
-    /**
-     * <code>required .com.lvl6.aoc2.proto.RarityType rarity = 10;</code>
-     */
     com.lvl6.aoc2.proto.RarityEnum.RarityType getRarity();
   }
-  /**
-   * Protobuf type {@code com.lvl6.aoc2.proto.EquipmentProto}
-   */
   public static final class EquipmentProto extends
       com.google.protobuf.GeneratedMessage
       implements EquipmentProtoOrBuilder {
     // Use EquipmentProto.newBuilder() to construct.
-    private EquipmentProto(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+    private EquipmentProto(Builder builder) {
       super(builder);
-      this.unknownFields = builder.getUnknownFields();
     }
-    private EquipmentProto(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
+    private EquipmentProto(boolean noInit) {}
+    
     private static final EquipmentProto defaultInstance;
     public static EquipmentProto getDefaultInstance() {
       return defaultInstance;
     }
-
+    
     public EquipmentProto getDefaultInstanceForType() {
       return defaultInstance;
     }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lvl6.aoc2.proto.Equipment.internal_static_com_lvl6_aoc2_proto_EquipmentProto_descriptor;
     }
-    private EquipmentProto(
-        com.google.protobuf.CodedInputStream input,
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lvl6.aoc2.proto.Equipment.internal_static_com_lvl6_aoc2_proto_EquipmentProto_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional int32 equipID = 1;
+    public static final int EQUIPID_FIELD_NUMBER = 1;
+    private int equipID_;
+    public boolean hasEquipID() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public int getEquipID() {
+      return equipID_;
+    }
+    
+    // optional int32 level = 2;
+    public static final int LEVEL_FIELD_NUMBER = 2;
+    private int level_;
+    public boolean hasLevel() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public int getLevel() {
+      return level_;
+    }
+    
+    // required .com.lvl6.aoc2.proto.EquipmentType type = 3;
+    public static final int TYPE_FIELD_NUMBER = 3;
+    private com.lvl6.aoc2.proto.EquipmentEnum.EquipmentType type_;
+    public boolean hasType() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public com.lvl6.aoc2.proto.EquipmentEnum.EquipmentType getType() {
+      return type_;
+    }
+    
+    // optional int32 durability = 4;
+    public static final int DURABILITY_FIELD_NUMBER = 4;
+    private int durability_;
+    public boolean hasDurability() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public int getDurability() {
+      return durability_;
+    }
+    
+    // optional int32 attack = 5;
+    public static final int ATTACK_FIELD_NUMBER = 5;
+    private int attack_;
+    public boolean hasAttack() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public int getAttack() {
+      return attack_;
+    }
+    
+    // optional int32 defense = 6;
+    public static final int DEFENSE_FIELD_NUMBER = 6;
+    private int defense_;
+    public boolean hasDefense() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public int getDefense() {
+      return defense_;
+    }
+    
+    // optional int32 addHealth = 7;
+    public static final int ADDHEALTH_FIELD_NUMBER = 7;
+    private int addHealth_;
+    public boolean hasAddHealth() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    public int getAddHealth() {
+      return addHealth_;
+    }
+    
+    // optional int32 addMana = 8;
+    public static final int ADDMANA_FIELD_NUMBER = 8;
+    private int addMana_;
+    public boolean hasAddMana() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    public int getAddMana() {
+      return addMana_;
+    }
+    
+    // optional string name = 9;
+    public static final int NAME_FIELD_NUMBER = 9;
+    private java.lang.Object name_;
+    public boolean hasName() {
+      return ((bitField0_ & 0x00000100) == 0x00000100);
+    }
+    public String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          name_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // required .com.lvl6.aoc2.proto.RarityType rarity = 10;
+    public static final int RARITY_FIELD_NUMBER = 10;
+    private com.lvl6.aoc2.proto.RarityEnum.RarityType rarity_;
+    public boolean hasRarity() {
+      return ((bitField0_ & 0x00000200) == 0x00000200);
+    }
+    public com.lvl6.aoc2.proto.RarityEnum.RarityType getRarity() {
+      return rarity_;
+    }
+    
+    private void initFields() {
+      equipID_ = 0;
+      level_ = 0;
+      type_ = com.lvl6.aoc2.proto.EquipmentEnum.EquipmentType.WEAPON;
+      durability_ = 0;
+      attack_ = 0;
+      defense_ = 0;
+      addHealth_ = 0;
+      addMana_ = 0;
+      name_ = "";
+      rarity_ = com.lvl6.aoc2.proto.RarityEnum.RarityType.COMMON;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      if (!hasType()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasRarity()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt32(1, equipID_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, level_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeEnum(3, type_.getNumber());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeInt32(4, durability_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeInt32(5, attack_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeInt32(6, defense_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeInt32(7, addHealth_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeInt32(8, addMana_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeBytes(9, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        output.writeEnum(10, rarity_.getNumber());
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, equipID_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, level_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(3, type_.getNumber());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, durability_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(5, attack_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(6, defense_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(7, addHealth_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(8, addMana_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(9, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(10, rarity_.getNumber());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseFrom(
+        com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.lvl6.aoc2.proto.Equipment.EquipmentProto prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.lvl6.aoc2.proto.Equipment.EquipmentProtoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lvl6.aoc2.proto.Equipment.internal_static_com_lvl6_aoc2_proto_EquipmentProto_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lvl6.aoc2.proto.Equipment.internal_static_com_lvl6_aoc2_proto_EquipmentProto_fieldAccessorTable;
+      }
+      
+      // Construct using com.lvl6.aoc2.proto.Equipment.EquipmentProto.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        equipID_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        level_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        type_ = com.lvl6.aoc2.proto.EquipmentEnum.EquipmentType.WEAPON;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        durability_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        attack_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        defense_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        addHealth_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        addMana_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000080);
+        name_ = "";
+        bitField0_ = (bitField0_ & ~0x00000100);
+        rarity_ = com.lvl6.aoc2.proto.RarityEnum.RarityType.COMMON;
+        bitField0_ = (bitField0_ & ~0x00000200);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lvl6.aoc2.proto.Equipment.EquipmentProto.getDescriptor();
+      }
+      
+      public com.lvl6.aoc2.proto.Equipment.EquipmentProto getDefaultInstanceForType() {
+        return com.lvl6.aoc2.proto.Equipment.EquipmentProto.getDefaultInstance();
+      }
+      
+      public com.lvl6.aoc2.proto.Equipment.EquipmentProto build() {
+        com.lvl6.aoc2.proto.Equipment.EquipmentProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.lvl6.aoc2.proto.Equipment.EquipmentProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.aoc2.proto.Equipment.EquipmentProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.lvl6.aoc2.proto.Equipment.EquipmentProto buildPartial() {
+        com.lvl6.aoc2.proto.Equipment.EquipmentProto result = new com.lvl6.aoc2.proto.Equipment.EquipmentProto(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.equipID_ = equipID_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.level_ = level_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.type_ = type_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.durability_ = durability_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.attack_ = attack_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.defense_ = defense_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.addHealth_ = addHealth_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.addMana_ = addMana_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
+        result.name_ = name_;
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+          to_bitField0_ |= 0x00000200;
+        }
+        result.rarity_ = rarity_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lvl6.aoc2.proto.Equipment.EquipmentProto) {
+          return mergeFrom((com.lvl6.aoc2.proto.Equipment.EquipmentProto)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.lvl6.aoc2.proto.Equipment.EquipmentProto other) {
+        if (other == com.lvl6.aoc2.proto.Equipment.EquipmentProto.getDefaultInstance()) return this;
+        if (other.hasEquipID()) {
+          setEquipID(other.getEquipID());
+        }
+        if (other.hasLevel()) {
+          setLevel(other.getLevel());
+        }
+        if (other.hasType()) {
+          setType(other.getType());
+        }
+        if (other.hasDurability()) {
+          setDurability(other.getDurability());
+        }
+        if (other.hasAttack()) {
+          setAttack(other.getAttack());
+        }
+        if (other.hasDefense()) {
+          setDefense(other.getDefense());
+        }
+        if (other.hasAddHealth()) {
+          setAddHealth(other.getAddHealth());
+        }
+        if (other.hasAddMana()) {
+          setAddMana(other.getAddMana());
+        }
+        if (other.hasName()) {
+          setName(other.getName());
+        }
+        if (other.hasRarity()) {
+          setRarity(other.getRarity());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        if (!hasType()) {
+          
+          return false;
+        }
+        if (!hasRarity()) {
+          
+          return false;
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
           int tag = input.readTag();
           switch (tag) {
             case 0:
-              done = true;
-              break;
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
             default: {
               if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
-                done = true;
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
               }
               break;
             }
@@ -231,712 +684,60 @@ public final class Equipment {
             }
           }
         }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
       }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return com.lvl6.aoc2.proto.Equipment.internal_static_com_lvl6_aoc2_proto_EquipmentProto_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return com.lvl6.aoc2.proto.Equipment.internal_static_com_lvl6_aoc2_proto_EquipmentProto_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.lvl6.aoc2.proto.Equipment.EquipmentProto.class, com.lvl6.aoc2.proto.Equipment.EquipmentProto.Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<EquipmentProto> PARSER =
-        new com.google.protobuf.AbstractParser<EquipmentProto>() {
-      public EquipmentProto parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new EquipmentProto(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<EquipmentProto> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
-    // optional int32 equipID = 1;
-    public static final int EQUIPID_FIELD_NUMBER = 1;
-    private int equipID_;
-    /**
-     * <code>optional int32 equipID = 1;</code>
-     */
-    public boolean hasEquipID() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>optional int32 equipID = 1;</code>
-     */
-    public int getEquipID() {
-      return equipID_;
-    }
-
-    // optional int32 level = 2;
-    public static final int LEVEL_FIELD_NUMBER = 2;
-    private int level_;
-    /**
-     * <code>optional int32 level = 2;</code>
-     */
-    public boolean hasLevel() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>optional int32 level = 2;</code>
-     */
-    public int getLevel() {
-      return level_;
-    }
-
-    // required .com.lvl6.aoc2.proto.EquipmentType type = 3;
-    public static final int TYPE_FIELD_NUMBER = 3;
-    private com.lvl6.aoc2.proto.EquipmentEnum.EquipmentType type_;
-    /**
-     * <code>required .com.lvl6.aoc2.proto.EquipmentType type = 3;</code>
-     */
-    public boolean hasType() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>required .com.lvl6.aoc2.proto.EquipmentType type = 3;</code>
-     */
-    public com.lvl6.aoc2.proto.EquipmentEnum.EquipmentType getType() {
-      return type_;
-    }
-
-    // optional int32 durability = 4;
-    public static final int DURABILITY_FIELD_NUMBER = 4;
-    private int durability_;
-    /**
-     * <code>optional int32 durability = 4;</code>
-     */
-    public boolean hasDurability() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>optional int32 durability = 4;</code>
-     */
-    public int getDurability() {
-      return durability_;
-    }
-
-    // optional int32 attack = 5;
-    public static final int ATTACK_FIELD_NUMBER = 5;
-    private int attack_;
-    /**
-     * <code>optional int32 attack = 5;</code>
-     */
-    public boolean hasAttack() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
-    }
-    /**
-     * <code>optional int32 attack = 5;</code>
-     */
-    public int getAttack() {
-      return attack_;
-    }
-
-    // optional int32 defense = 6;
-    public static final int DEFENSE_FIELD_NUMBER = 6;
-    private int defense_;
-    /**
-     * <code>optional int32 defense = 6;</code>
-     */
-    public boolean hasDefense() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
-    }
-    /**
-     * <code>optional int32 defense = 6;</code>
-     */
-    public int getDefense() {
-      return defense_;
-    }
-
-    // optional int32 addHealth = 7;
-    public static final int ADDHEALTH_FIELD_NUMBER = 7;
-    private int addHealth_;
-    /**
-     * <code>optional int32 addHealth = 7;</code>
-     */
-    public boolean hasAddHealth() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
-    }
-    /**
-     * <code>optional int32 addHealth = 7;</code>
-     */
-    public int getAddHealth() {
-      return addHealth_;
-    }
-
-    // optional int32 addMana = 8;
-    public static final int ADDMANA_FIELD_NUMBER = 8;
-    private int addMana_;
-    /**
-     * <code>optional int32 addMana = 8;</code>
-     */
-    public boolean hasAddMana() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
-    }
-    /**
-     * <code>optional int32 addMana = 8;</code>
-     */
-    public int getAddMana() {
-      return addMana_;
-    }
-
-    // optional string name = 9;
-    public static final int NAME_FIELD_NUMBER = 9;
-    private java.lang.Object name_;
-    /**
-     * <code>optional string name = 9;</code>
-     */
-    public boolean hasName() {
-      return ((bitField0_ & 0x00000100) == 0x00000100);
-    }
-    /**
-     * <code>optional string name = 9;</code>
-     */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          name_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>optional string name = 9;</code>
-     */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    // required .com.lvl6.aoc2.proto.RarityType rarity = 10;
-    public static final int RARITY_FIELD_NUMBER = 10;
-    private com.lvl6.aoc2.proto.RarityEnum.RarityType rarity_;
-    /**
-     * <code>required .com.lvl6.aoc2.proto.RarityType rarity = 10;</code>
-     */
-    public boolean hasRarity() {
-      return ((bitField0_ & 0x00000200) == 0x00000200);
-    }
-    /**
-     * <code>required .com.lvl6.aoc2.proto.RarityType rarity = 10;</code>
-     */
-    public com.lvl6.aoc2.proto.RarityEnum.RarityType getRarity() {
-      return rarity_;
-    }
-
-    private void initFields() {
-      equipID_ = 0;
-      level_ = 0;
-      type_ = com.lvl6.aoc2.proto.EquipmentEnum.EquipmentType.WEAPON;
-      durability_ = 0;
-      attack_ = 0;
-      defense_ = 0;
-      addHealth_ = 0;
-      addMana_ = 0;
-      name_ = "";
-      rarity_ = com.lvl6.aoc2.proto.RarityEnum.RarityType.COMMON;
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized != -1) return isInitialized == 1;
-
-      if (!hasType()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasRarity()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, equipID_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, level_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeEnum(3, type_.getNumber());
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeInt32(4, durability_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeInt32(5, attack_);
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeInt32(6, defense_);
-      }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeInt32(7, addHealth_);
-      }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeInt32(8, addMana_);
-      }
-      if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeBytes(9, getNameBytes());
-      }
-      if (((bitField0_ & 0x00000200) == 0x00000200)) {
-        output.writeEnum(10, rarity_.getNumber());
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, equipID_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, level_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(3, type_.getNumber());
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(4, durability_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(5, attack_);
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(6, defense_);
-      }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(7, addHealth_);
-      }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(8, addMana_);
-      }
-      if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(9, getNameBytes());
-      }
-      if (((bitField0_ & 0x00000200) == 0x00000200)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(10, rarity_.getNumber());
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static com.lvl6.aoc2.proto.Equipment.EquipmentProto parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.lvl6.aoc2.proto.Equipment.EquipmentProto prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code com.lvl6.aoc2.proto.EquipmentProto}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder>
-       implements com.lvl6.aoc2.proto.Equipment.EquipmentProtoOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return com.lvl6.aoc2.proto.Equipment.internal_static_com_lvl6_aoc2_proto_EquipmentProto_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return com.lvl6.aoc2.proto.Equipment.internal_static_com_lvl6_aoc2_proto_EquipmentProto_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.lvl6.aoc2.proto.Equipment.EquipmentProto.class, com.lvl6.aoc2.proto.Equipment.EquipmentProto.Builder.class);
-      }
-
-      // Construct using com.lvl6.aoc2.proto.Equipment.EquipmentProto.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        equipID_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        level_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        type_ = com.lvl6.aoc2.proto.EquipmentEnum.EquipmentType.WEAPON;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        durability_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        attack_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        defense_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        addHealth_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000040);
-        addMana_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000080);
-        name_ = "";
-        bitField0_ = (bitField0_ & ~0x00000100);
-        rarity_ = com.lvl6.aoc2.proto.RarityEnum.RarityType.COMMON;
-        bitField0_ = (bitField0_ & ~0x00000200);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return com.lvl6.aoc2.proto.Equipment.internal_static_com_lvl6_aoc2_proto_EquipmentProto_descriptor;
-      }
-
-      public com.lvl6.aoc2.proto.Equipment.EquipmentProto getDefaultInstanceForType() {
-        return com.lvl6.aoc2.proto.Equipment.EquipmentProto.getDefaultInstance();
-      }
-
-      public com.lvl6.aoc2.proto.Equipment.EquipmentProto build() {
-        com.lvl6.aoc2.proto.Equipment.EquipmentProto result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.lvl6.aoc2.proto.Equipment.EquipmentProto buildPartial() {
-        com.lvl6.aoc2.proto.Equipment.EquipmentProto result = new com.lvl6.aoc2.proto.Equipment.EquipmentProto(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.equipID_ = equipID_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.level_ = level_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.type_ = type_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.durability_ = durability_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.attack_ = attack_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.defense_ = defense_;
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
-        }
-        result.addHealth_ = addHealth_;
-        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
-          to_bitField0_ |= 0x00000080;
-        }
-        result.addMana_ = addMana_;
-        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
-          to_bitField0_ |= 0x00000100;
-        }
-        result.name_ = name_;
-        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
-          to_bitField0_ |= 0x00000200;
-        }
-        result.rarity_ = rarity_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof com.lvl6.aoc2.proto.Equipment.EquipmentProto) {
-          return mergeFrom((com.lvl6.aoc2.proto.Equipment.EquipmentProto)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(com.lvl6.aoc2.proto.Equipment.EquipmentProto other) {
-        if (other == com.lvl6.aoc2.proto.Equipment.EquipmentProto.getDefaultInstance()) return this;
-        if (other.hasEquipID()) {
-          setEquipID(other.getEquipID());
-        }
-        if (other.hasLevel()) {
-          setLevel(other.getLevel());
-        }
-        if (other.hasType()) {
-          setType(other.getType());
-        }
-        if (other.hasDurability()) {
-          setDurability(other.getDurability());
-        }
-        if (other.hasAttack()) {
-          setAttack(other.getAttack());
-        }
-        if (other.hasDefense()) {
-          setDefense(other.getDefense());
-        }
-        if (other.hasAddHealth()) {
-          setAddHealth(other.getAddHealth());
-        }
-        if (other.hasAddMana()) {
-          setAddMana(other.getAddMana());
-        }
-        if (other.hasName()) {
-          bitField0_ |= 0x00000100;
-          name_ = other.name_;
-          onChanged();
-        }
-        if (other.hasRarity()) {
-          setRarity(other.getRarity());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasType()) {
-          
-          return false;
-        }
-        if (!hasRarity()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.lvl6.aoc2.proto.Equipment.EquipmentProto parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.lvl6.aoc2.proto.Equipment.EquipmentProto) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
+      
       private int bitField0_;
-
+      
       // optional int32 equipID = 1;
       private int equipID_ ;
-      /**
-       * <code>optional int32 equipID = 1;</code>
-       */
       public boolean hasEquipID() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      /**
-       * <code>optional int32 equipID = 1;</code>
-       */
       public int getEquipID() {
         return equipID_;
       }
-      /**
-       * <code>optional int32 equipID = 1;</code>
-       */
       public Builder setEquipID(int value) {
         bitField0_ |= 0x00000001;
         equipID_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 equipID = 1;</code>
-       */
       public Builder clearEquipID() {
         bitField0_ = (bitField0_ & ~0x00000001);
         equipID_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 level = 2;
       private int level_ ;
-      /**
-       * <code>optional int32 level = 2;</code>
-       */
       public boolean hasLevel() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      /**
-       * <code>optional int32 level = 2;</code>
-       */
       public int getLevel() {
         return level_;
       }
-      /**
-       * <code>optional int32 level = 2;</code>
-       */
       public Builder setLevel(int value) {
         bitField0_ |= 0x00000002;
         level_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 level = 2;</code>
-       */
       public Builder clearLevel() {
         bitField0_ = (bitField0_ & ~0x00000002);
         level_ = 0;
         onChanged();
         return this;
       }
-
+      
       // required .com.lvl6.aoc2.proto.EquipmentType type = 3;
       private com.lvl6.aoc2.proto.EquipmentEnum.EquipmentType type_ = com.lvl6.aoc2.proto.EquipmentEnum.EquipmentType.WEAPON;
-      /**
-       * <code>required .com.lvl6.aoc2.proto.EquipmentType type = 3;</code>
-       */
       public boolean hasType() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      /**
-       * <code>required .com.lvl6.aoc2.proto.EquipmentType type = 3;</code>
-       */
       public com.lvl6.aoc2.proto.EquipmentEnum.EquipmentType getType() {
         return type_;
       }
-      /**
-       * <code>required .com.lvl6.aoc2.proto.EquipmentType type = 3;</code>
-       */
       public Builder setType(com.lvl6.aoc2.proto.EquipmentEnum.EquipmentType value) {
         if (value == null) {
           throw new NullPointerException();
@@ -946,224 +747,134 @@ public final class Equipment {
         onChanged();
         return this;
       }
-      /**
-       * <code>required .com.lvl6.aoc2.proto.EquipmentType type = 3;</code>
-       */
       public Builder clearType() {
         bitField0_ = (bitField0_ & ~0x00000004);
         type_ = com.lvl6.aoc2.proto.EquipmentEnum.EquipmentType.WEAPON;
         onChanged();
         return this;
       }
-
+      
       // optional int32 durability = 4;
       private int durability_ ;
-      /**
-       * <code>optional int32 durability = 4;</code>
-       */
       public boolean hasDurability() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      /**
-       * <code>optional int32 durability = 4;</code>
-       */
       public int getDurability() {
         return durability_;
       }
-      /**
-       * <code>optional int32 durability = 4;</code>
-       */
       public Builder setDurability(int value) {
         bitField0_ |= 0x00000008;
         durability_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 durability = 4;</code>
-       */
       public Builder clearDurability() {
         bitField0_ = (bitField0_ & ~0x00000008);
         durability_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 attack = 5;
       private int attack_ ;
-      /**
-       * <code>optional int32 attack = 5;</code>
-       */
       public boolean hasAttack() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
-      /**
-       * <code>optional int32 attack = 5;</code>
-       */
       public int getAttack() {
         return attack_;
       }
-      /**
-       * <code>optional int32 attack = 5;</code>
-       */
       public Builder setAttack(int value) {
         bitField0_ |= 0x00000010;
         attack_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 attack = 5;</code>
-       */
       public Builder clearAttack() {
         bitField0_ = (bitField0_ & ~0x00000010);
         attack_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 defense = 6;
       private int defense_ ;
-      /**
-       * <code>optional int32 defense = 6;</code>
-       */
       public boolean hasDefense() {
         return ((bitField0_ & 0x00000020) == 0x00000020);
       }
-      /**
-       * <code>optional int32 defense = 6;</code>
-       */
       public int getDefense() {
         return defense_;
       }
-      /**
-       * <code>optional int32 defense = 6;</code>
-       */
       public Builder setDefense(int value) {
         bitField0_ |= 0x00000020;
         defense_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 defense = 6;</code>
-       */
       public Builder clearDefense() {
         bitField0_ = (bitField0_ & ~0x00000020);
         defense_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 addHealth = 7;
       private int addHealth_ ;
-      /**
-       * <code>optional int32 addHealth = 7;</code>
-       */
       public boolean hasAddHealth() {
         return ((bitField0_ & 0x00000040) == 0x00000040);
       }
-      /**
-       * <code>optional int32 addHealth = 7;</code>
-       */
       public int getAddHealth() {
         return addHealth_;
       }
-      /**
-       * <code>optional int32 addHealth = 7;</code>
-       */
       public Builder setAddHealth(int value) {
         bitField0_ |= 0x00000040;
         addHealth_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 addHealth = 7;</code>
-       */
       public Builder clearAddHealth() {
         bitField0_ = (bitField0_ & ~0x00000040);
         addHealth_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional int32 addMana = 8;
       private int addMana_ ;
-      /**
-       * <code>optional int32 addMana = 8;</code>
-       */
       public boolean hasAddMana() {
         return ((bitField0_ & 0x00000080) == 0x00000080);
       }
-      /**
-       * <code>optional int32 addMana = 8;</code>
-       */
       public int getAddMana() {
         return addMana_;
       }
-      /**
-       * <code>optional int32 addMana = 8;</code>
-       */
       public Builder setAddMana(int value) {
         bitField0_ |= 0x00000080;
         addMana_ = value;
         onChanged();
         return this;
       }
-      /**
-       * <code>optional int32 addMana = 8;</code>
-       */
       public Builder clearAddMana() {
         bitField0_ = (bitField0_ & ~0x00000080);
         addMana_ = 0;
         onChanged();
         return this;
       }
-
+      
       // optional string name = 9;
       private java.lang.Object name_ = "";
-      /**
-       * <code>optional string name = 9;</code>
-       */
       public boolean hasName() {
         return ((bitField0_ & 0x00000100) == 0x00000100);
       }
-      /**
-       * <code>optional string name = 9;</code>
-       */
-      public java.lang.String getName() {
+      public String getName() {
         java.lang.Object ref = name_;
-        if (!(ref instanceof java.lang.String)) {
-          java.lang.String s = ((com.google.protobuf.ByteString) ref)
-              .toStringUtf8();
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
           name_ = s;
           return s;
         } else {
-          return (java.lang.String) ref;
+          return (String) ref;
         }
       }
-      /**
-       * <code>optional string name = 9;</code>
-       */
-      public com.google.protobuf.ByteString
-          getNameBytes() {
-        java.lang.Object ref = name_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          name_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>optional string name = 9;</code>
-       */
-      public Builder setName(
-          java.lang.String value) {
+      public Builder setName(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1172,46 +883,26 @@ public final class Equipment {
         onChanged();
         return this;
       }
-      /**
-       * <code>optional string name = 9;</code>
-       */
       public Builder clearName() {
         bitField0_ = (bitField0_ & ~0x00000100);
         name_ = getDefaultInstance().getName();
         onChanged();
         return this;
       }
-      /**
-       * <code>optional string name = 9;</code>
-       */
-      public Builder setNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000100;
+      void setName(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000100;
         name_ = value;
         onChanged();
-        return this;
       }
-
+      
       // required .com.lvl6.aoc2.proto.RarityType rarity = 10;
       private com.lvl6.aoc2.proto.RarityEnum.RarityType rarity_ = com.lvl6.aoc2.proto.RarityEnum.RarityType.COMMON;
-      /**
-       * <code>required .com.lvl6.aoc2.proto.RarityType rarity = 10;</code>
-       */
       public boolean hasRarity() {
         return ((bitField0_ & 0x00000200) == 0x00000200);
       }
-      /**
-       * <code>required .com.lvl6.aoc2.proto.RarityType rarity = 10;</code>
-       */
       public com.lvl6.aoc2.proto.RarityEnum.RarityType getRarity() {
         return rarity_;
       }
-      /**
-       * <code>required .com.lvl6.aoc2.proto.RarityType rarity = 10;</code>
-       */
       public Builder setRarity(com.lvl6.aoc2.proto.RarityEnum.RarityType value) {
         if (value == null) {
           throw new NullPointerException();
@@ -1221,33 +912,30 @@ public final class Equipment {
         onChanged();
         return this;
       }
-      /**
-       * <code>required .com.lvl6.aoc2.proto.RarityType rarity = 10;</code>
-       */
       public Builder clearRarity() {
         bitField0_ = (bitField0_ & ~0x00000200);
         rarity_ = com.lvl6.aoc2.proto.RarityEnum.RarityType.COMMON;
         onChanged();
         return this;
       }
-
+      
       // @@protoc_insertion_point(builder_scope:com.lvl6.aoc2.proto.EquipmentProto)
     }
-
+    
     static {
       defaultInstance = new EquipmentProto(true);
       defaultInstance.initFields();
     }
-
+    
     // @@protoc_insertion_point(class_scope:com.lvl6.aoc2.proto.EquipmentProto)
   }
-
+  
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_com_lvl6_aoc2_proto_EquipmentProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_com_lvl6_aoc2_proto_EquipmentProto_fieldAccessorTable;
-
+  
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
     return descriptor;
@@ -1276,7 +964,9 @@ public final class Equipment {
           internal_static_com_lvl6_aoc2_proto_EquipmentProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_lvl6_aoc2_proto_EquipmentProto_descriptor,
-              new java.lang.String[] { "EquipID", "Level", "Type", "Durability", "Attack", "Defense", "AddHealth", "AddMana", "Name", "Rarity", });
+              new java.lang.String[] { "EquipID", "Level", "Type", "Durability", "Attack", "Defense", "AddHealth", "AddMana", "Name", "Rarity", },
+              com.lvl6.aoc2.proto.Equipment.EquipmentProto.class,
+              com.lvl6.aoc2.proto.Equipment.EquipmentProto.Builder.class);
           return null;
         }
       };
@@ -1287,6 +977,6 @@ public final class Equipment {
           com.lvl6.aoc2.proto.EquipmentEnum.getDescriptor(),
         }, assigner);
   }
-
+  
   // @@protoc_insertion_point(outer_class_scope)
 }
