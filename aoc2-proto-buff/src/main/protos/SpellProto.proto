@@ -8,7 +8,7 @@ option java_outer_classname = "Spell";
 
 message SpellProto {
 	optional int32 spellID = 1;
-	required ClassType class = 2;
+	required ClassType classType = 2;
 	optional string name = 3;
 
 	optional FunctionType function = 4;

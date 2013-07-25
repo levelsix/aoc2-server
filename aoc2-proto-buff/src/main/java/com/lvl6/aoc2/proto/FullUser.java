@@ -39,9 +39,9 @@ public final class FullUser {
     boolean hasGems();
     int getGems();
     
-    // required .com.lvl6.aoc2.proto.ClassType class = 8;
-    boolean hasClass();
-    com.lvl6.aoc2.proto.ClassEnum.ClassType getClass();
+    // required .com.lvl6.aoc2.proto.ClassType classType = 8;
+    boolean hasClassType();
+    com.lvl6.aoc2.proto.ClassEnum.ClassType getClassType();
     
     // optional int32 lastHealth = 9;
     boolean hasLastHealth();
@@ -200,14 +200,14 @@ public final class FullUser {
       return gems_;
     }
     
-    // required .com.lvl6.aoc2.proto.ClassType class = 8;
-    public static final int CLASS_FIELD_NUMBER = 8;
-    private com.lvl6.aoc2.proto.ClassEnum.ClassType class_;
-    public boolean hasClass() {
+    // required .com.lvl6.aoc2.proto.ClassType classType = 8;
+    public static final int CLASSTYPE_FIELD_NUMBER = 8;
+    private com.lvl6.aoc2.proto.ClassEnum.ClassType classType_;
+    public boolean hasClassType() {
       return ((bitField0_ & 0x00000080) == 0x00000080);
     }
-    public com.lvl6.aoc2.proto.ClassEnum.ClassType getClass() {
-      return class_;
+    public com.lvl6.aoc2.proto.ClassEnum.ClassType getClassType() {
+      return classType_;
     }
     
     // optional int32 lastHealth = 9;
@@ -308,7 +308,7 @@ public final class FullUser {
       gold_ = 0;
       tonic_ = 0;
       gems_ = 0;
-      class_ = com.lvl6.aoc2.proto.ClassEnum.ClassType.WARRIOR;
+      classType_ = com.lvl6.aoc2.proto.ClassEnum.ClassType.WARRIOR;
       lastHealth_ = 0;
       maxHealth_ = 0;
       lastHealthRegen_ = 0L;
@@ -324,7 +324,7 @@ public final class FullUser {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
       
-      if (!hasClass()) {
+      if (!hasClassType()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -357,7 +357,7 @@ public final class FullUser {
         output.writeInt32(7, gems_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeEnum(8, class_.getNumber());
+        output.writeEnum(8, classType_.getNumber());
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         output.writeInt32(9, lastHealth_);
@@ -425,7 +425,7 @@ public final class FullUser {
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(8, class_.getNumber());
+          .computeEnumSize(8, classType_.getNumber());
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         size += com.google.protobuf.CodedOutputStream
@@ -601,7 +601,7 @@ public final class FullUser {
         bitField0_ = (bitField0_ & ~0x00000020);
         gems_ = 0;
         bitField0_ = (bitField0_ & ~0x00000040);
-        class_ = com.lvl6.aoc2.proto.ClassEnum.ClassType.WARRIOR;
+        classType_ = com.lvl6.aoc2.proto.ClassEnum.ClassType.WARRIOR;
         bitField0_ = (bitField0_ & ~0x00000080);
         lastHealth_ = 0;
         bitField0_ = (bitField0_ & ~0x00000100);
@@ -690,7 +690,7 @@ public final class FullUser {
         if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
           to_bitField0_ |= 0x00000080;
         }
-        result.class_ = class_;
+        result.classType_ = classType_;
         if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
           to_bitField0_ |= 0x00000100;
         }
@@ -764,8 +764,8 @@ public final class FullUser {
         if (other.hasGems()) {
           setGems(other.getGems());
         }
-        if (other.hasClass()) {
-          setClass(other.getClass());
+        if (other.hasClassType()) {
+          setClassType(other.getClassType());
         }
         if (other.hasLastHealth()) {
           setLastHealth(other.getLastHealth());
@@ -799,7 +799,7 @@ public final class FullUser {
       }
       
       public final boolean isInitialized() {
-        if (!hasClass()) {
+        if (!hasClassType()) {
           
           return false;
         }
@@ -871,7 +871,7 @@ public final class FullUser {
                 unknownFields.mergeVarintField(8, rawValue);
               } else {
                 bitField0_ |= 0x00000080;
-                class_ = value;
+                classType_ = value;
               }
               break;
             }
@@ -1088,26 +1088,26 @@ public final class FullUser {
         return this;
       }
       
-      // required .com.lvl6.aoc2.proto.ClassType class = 8;
-      private com.lvl6.aoc2.proto.ClassEnum.ClassType class_ = com.lvl6.aoc2.proto.ClassEnum.ClassType.WARRIOR;
-      public boolean hasClass() {
+      // required .com.lvl6.aoc2.proto.ClassType classType = 8;
+      private com.lvl6.aoc2.proto.ClassEnum.ClassType classType_ = com.lvl6.aoc2.proto.ClassEnum.ClassType.WARRIOR;
+      public boolean hasClassType() {
         return ((bitField0_ & 0x00000080) == 0x00000080);
       }
-      public com.lvl6.aoc2.proto.ClassEnum.ClassType getClass() {
-        return class_;
+      public com.lvl6.aoc2.proto.ClassEnum.ClassType getClassType() {
+        return classType_;
       }
-      public Builder setClass(com.lvl6.aoc2.proto.ClassEnum.ClassType value) {
+      public Builder setClassType(com.lvl6.aoc2.proto.ClassEnum.ClassType value) {
         if (value == null) {
           throw new NullPointerException();
         }
         bitField0_ |= 0x00000080;
-        class_ = value;
+        classType_ = value;
         onChanged();
         return this;
       }
-      public Builder clearClass() {
+      public Builder clearClassType() {
         bitField0_ = (bitField0_ & ~0x00000080);
-        class_ = com.lvl6.aoc2.proto.ClassEnum.ClassType.WARRIOR;
+        classType_ = com.lvl6.aoc2.proto.ClassEnum.ClassType.WARRIOR;
         onChanged();
         return this;
       }
@@ -1327,16 +1327,16 @@ public final class FullUser {
   static {
     java.lang.String[] descriptorData = {
       "\n\023FullUserProto.proto\022\023com.lvl6.aoc2.pro" +
-      "to\032\017ClassType.proto\"\333\002\n\rFullUserProto\022\016\n" +
+      "to\032\017ClassType.proto\"\337\002\n\rFullUserProto\022\016\n" +
       "\006userID\030\001 \001(\005\022\r\n\005level\030\002 \001(\005\022\014\n\004name\030\003 \001" +
       "(\t\022\013\n\003exp\030\004 \001(\005\022\014\n\004gold\030\005 \001(\005\022\r\n\005tonic\030\006" +
-      " \001(\005\022\014\n\004gems\030\007 \001(\005\022-\n\005class\030\010 \002(\0162\036.com." +
-      "lvl6.aoc2.proto.ClassType\022\022\n\nlastHealth\030" +
-      "\t \001(\005\022\021\n\tmaxHealth\030\n \001(\005\022\027\n\017lastHealthRe" +
-      "gen\030\013 \001(\003\022\020\n\010lastMana\030\014 \001(\005\022\017\n\007maxMana\030\r" +
-      " \001(\005\022\030\n\020lastManaRecovery\030\016 \001(\003\022\024\n\014gameCe" +
-      "nterID\030\017 \001(\005\022\023\n\013dateCreated\030\020 \001(\003\022\016\n\006cla",
-      "nID\030\021 \001(\005B\nB\010FullUser"
+      " \001(\005\022\014\n\004gems\030\007 \001(\005\0221\n\tclassType\030\010 \002(\0162\036." +
+      "com.lvl6.aoc2.proto.ClassType\022\022\n\nlastHea" +
+      "lth\030\t \001(\005\022\021\n\tmaxHealth\030\n \001(\005\022\027\n\017lastHeal" +
+      "thRegen\030\013 \001(\003\022\020\n\010lastMana\030\014 \001(\005\022\017\n\007maxMa" +
+      "na\030\r \001(\005\022\030\n\020lastManaRecovery\030\016 \001(\003\022\024\n\014ga" +
+      "meCenterID\030\017 \001(\005\022\023\n\013dateCreated\030\020 \001(\003\022\016\n",
+      "\006clanID\030\021 \001(\005B\nB\010FullUser"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1348,7 +1348,7 @@ public final class FullUser {
           internal_static_com_lvl6_aoc2_proto_FullUserProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_lvl6_aoc2_proto_FullUserProto_descriptor,
-              new java.lang.String[] { "UserID", "Level", "Name", "Exp", "Gold", "Tonic", "Gems", "Class", "LastHealth", "MaxHealth", "LastHealthRegen", "LastMana", "MaxMana", "LastManaRecovery", "GameCenterID", "DateCreated", "ClanID", },
+              new java.lang.String[] { "UserID", "Level", "Name", "Exp", "Gold", "Tonic", "Gems", "ClassType", "LastHealth", "MaxHealth", "LastHealthRegen", "LastMana", "MaxMana", "LastManaRecovery", "GameCenterID", "DateCreated", "ClanID", },
               com.lvl6.aoc2.proto.FullUser.FullUserProto.class,
               com.lvl6.aoc2.proto.FullUser.FullUserProto.Builder.class);
           return null;
