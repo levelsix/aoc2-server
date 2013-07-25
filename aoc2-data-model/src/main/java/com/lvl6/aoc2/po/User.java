@@ -218,6 +218,124 @@ public class User extends BasePersistentObject{
 //	protected String email = "";
 	
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + clanId;
+		result = prime * result + classType;
+		result = prime * result + experience;
+		result = prime * result
+				+ ((gameCenterId == null) ? 0 : gameCenterId.hashCode());
+		result = prime * result + gems;
+		result = prime * result + gold;
+		result = prime * result + hp;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result
+				+ ((lastLogin == null) ? 0 : lastLogin.hashCode());
+		result = prime
+				* result
+				+ ((lastTimeHpRegened == null) ? 0 : lastTimeHpRegened
+						.hashCode());
+		result = prime
+				* result
+				+ ((lastTimeManaRegened == null) ? 0 : lastTimeManaRegened
+						.hashCode());
+		result = prime * result + level;
+		result = prime * result + mana;
+		result = prime * result + maxHp;
+		result = prime * result + maxMana;
+		result = prime * result
+				+ ((signupDate == null) ? 0 : signupDate.hashCode());
+		result = prime * result + tonic;
+		result = prime * result
+				+ ((userName == null) ? 0 : userName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (clanId != other.clanId)
+			return false;
+		if (classType != other.classType)
+			return false;
+		if (experience != other.experience)
+			return false;
+		if (gameCenterId == null) {
+			if (other.gameCenterId != null)
+				return false;
+		} else if (!gameCenterId.equals(other.gameCenterId))
+			return false;
+		if (gems != other.gems)
+			return false;
+		if (gold != other.gold)
+			return false;
+		if (hp != other.hp)
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (lastLogin == null) {
+			if (other.lastLogin != null)
+				return false;
+		} else if (!lastLogin.equals(other.lastLogin))
+			return false;
+		if (lastTimeHpRegened == null) {
+			if (other.lastTimeHpRegened != null)
+				return false;
+		} else if (!lastTimeHpRegened.equals(other.lastTimeHpRegened))
+			return false;
+		if (lastTimeManaRegened == null) {
+			if (other.lastTimeManaRegened != null)
+				return false;
+		} else if (!lastTimeManaRegened.equals(other.lastTimeManaRegened))
+			return false;
+		if (level != other.level)
+			return false;
+		if (mana != other.mana)
+			return false;
+		if (maxHp != other.maxHp)
+			return false;
+		if (maxMana != other.maxMana)
+			return false;
+		if (signupDate == null) {
+			if (other.signupDate != null)
+				return false;
+		} else if (!signupDate.equals(other.signupDate))
+			return false;
+		if (tonic != other.tonic)
+			return false;
+		if (userName == null) {
+			if (other.userName != null)
+				return false;
+		} else if (!userName.equals(other.userName))
+			return false;
+		return true;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", userName=" + userName + ", level=" + level
+				+ ", experience=" + experience + ", gold=" + gold + ", tonic="
+				+ tonic + ", gems=" + gems + ", classType=" + classType
+				+ ", maxHp=" + maxHp + ", hp=" + hp + ", lastTimeHpRegened="
+				+ lastTimeHpRegened + ", maxMana=" + maxMana + ", mana=" + mana
+				+ ", lastTimeManaRegened=" + lastTimeManaRegened
+				+ ", gameCenterId=" + gameCenterId + ", signupDate="
+				+ signupDate + ", clanId=" + clanId + ", lastLogin="
+				+ lastLogin + "]";
+	}
+
 	
 	@Override
 	public String getTableCreateStatement() {
@@ -245,7 +363,7 @@ public class User extends BasePersistentObject{
 				" with compact storage;";
 	}
 	
-	
+
 	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
