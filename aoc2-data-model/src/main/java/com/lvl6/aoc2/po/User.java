@@ -88,11 +88,16 @@ public class User extends BasePersistentObject{
 	@Column(name="defense_points")
 	protected int defensePoints = 5;
 	
+	@Column(name="last_recovery")
+	protected Date lastRecovery = new Date();
 	
 	
-	
-	
-	
+	public Date getLastRecovery() {
+		return lastRecovery;
+	}
+	public void setLastRecovery(Date lastRecovery) {
+		this.lastRecovery = lastRecovery;
+	}
 	public UUID getId() {
 		return id;
 	}
@@ -244,7 +249,41 @@ public class User extends BasePersistentObject{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + attackPoints;
+		result = prime * result + clanId;
+		result = prime * result + classType;
+		result = prime * result + defensePoints;
+		result = prime * result + diamonds;
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + experience;
+		result = prime * result
+				+ ((gameCenterId == null) ? 0 : gameCenterId.hashCode());
+		result = prime * result + gold;
+		result = prime * result + hp;
+		result = prime
+				* result
+				+ ((hpRegenStartTime == null) ? 0 : hpRegenStartTime.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result
+				+ ((lastLogin == null) ? 0 : lastLogin.hashCode());
+		result = prime * result
+				+ ((lastRecovery == null) ? 0 : lastRecovery.hashCode());
+		result = prime * result + level;
+		result = prime * result + lowerBodyUserEquipId;
+		result = prime * result + mana;
+		result = prime
+				* result
+				+ ((manaRegenStartTime == null) ? 0 : manaRegenStartTime
+						.hashCode());
+		result = prime * result + maxHp;
+		result = prime * result + maxMana;
+		result = prime * result
+				+ ((signupDate == null) ? 0 : signupDate.hashCode());
+		result = prime * result + tonic;
+		result = prime * result + upperBodyUserEquipId;
+		result = prime * result
+				+ ((userName == null) ? 0 : userName.hashCode());
+		result = prime * result + weaponUserEquipId;
 		return result;
 	}
 	@Override
@@ -256,10 +295,82 @@ public class User extends BasePersistentObject{
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
+		if (attackPoints != other.attackPoints)
+			return false;
+		if (clanId != other.clanId)
+			return false;
+		if (classType != other.classType)
+			return false;
+		if (defensePoints != other.defensePoints)
+			return false;
+		if (diamonds != other.diamonds)
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (experience != other.experience)
+			return false;
+		if (gameCenterId == null) {
+			if (other.gameCenterId != null)
+				return false;
+		} else if (!gameCenterId.equals(other.gameCenterId))
+			return false;
+		if (gold != other.gold)
+			return false;
+		if (hp != other.hp)
+			return false;
+		if (hpRegenStartTime == null) {
+			if (other.hpRegenStartTime != null)
+				return false;
+		} else if (!hpRegenStartTime.equals(other.hpRegenStartTime))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (lastLogin == null) {
+			if (other.lastLogin != null)
+				return false;
+		} else if (!lastLogin.equals(other.lastLogin))
+			return false;
+		if (lastRecovery == null) {
+			if (other.lastRecovery != null)
+				return false;
+		} else if (!lastRecovery.equals(other.lastRecovery))
+			return false;
+		if (level != other.level)
+			return false;
+		if (lowerBodyUserEquipId != other.lowerBodyUserEquipId)
+			return false;
+		if (mana != other.mana)
+			return false;
+		if (manaRegenStartTime == null) {
+			if (other.manaRegenStartTime != null)
+				return false;
+		} else if (!manaRegenStartTime.equals(other.manaRegenStartTime))
+			return false;
+		if (maxHp != other.maxHp)
+			return false;
+		if (maxMana != other.maxMana)
+			return false;
+		if (signupDate == null) {
+			if (other.signupDate != null)
+				return false;
+		} else if (!signupDate.equals(other.signupDate))
+			return false;
+		if (tonic != other.tonic)
+			return false;
+		if (upperBodyUserEquipId != other.upperBodyUserEquipId)
+			return false;
+		if (userName == null) {
+			if (other.userName != null)
+				return false;
+		} else if (!userName.equals(other.userName))
+			return false;
+		if (weaponUserEquipId != other.weaponUserEquipId)
 			return false;
 		return true;
 	}
@@ -279,10 +390,9 @@ public class User extends BasePersistentObject{
 				+ weaponUserEquipId + ", lowerBodyUserEquipId="
 				+ lowerBodyUserEquipId + ", upperBodyUserEquipId="
 				+ upperBodyUserEquipId + ", attackPoints=" + attackPoints
-				+ ", defensePoints=" + defensePoints + "]";
+				+ ", defensePoints=" + defensePoints + ", lastRecovery="
+				+ lastRecovery + "]";
 	}
-	
-	
 	@Override
 	public String getTableCreateStatement() {
 		return "create table user (" +
@@ -310,6 +420,7 @@ public class User extends BasePersistentObject{
 				" upper_body_user_equip_id int," +
 				" attack_points int," +
 				" defense_points int," +
+				" last_recovery timestamp," +
 				" primary key (id))" +
 				" with compact storage;";
 	}
