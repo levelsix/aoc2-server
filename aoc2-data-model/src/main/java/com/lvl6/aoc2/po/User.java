@@ -69,6 +69,9 @@ public class User extends BasePersistentObject{
 	
 	@Column(name="last_login")
 	protected Date lastLogin = new Date();
+	
+	
+	
 
 	public UUID getId() {
 		return id;
@@ -350,10 +353,10 @@ public class User extends BasePersistentObject{
 				" class_type int," +
 				" max_hp int," +
 				" hp int," +
-				" last_time_hp_regened int," +
+				" last_time_hp_regened timestamp," +
 				" max_mana int," +
 				" mana int," +
-				" last_time_mana_regened int," +
+				" last_time_mana_regened timestamp," +
 				" game_center_id varchar," +
 				" signup_date timestamp," +
 				" clan_id int," +
@@ -375,7 +378,7 @@ public class User extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_email_index on user (email);");
+		//indexes.add("create index user_email_index on user (email);");
 		indexes.add("create index user_user_name_index on user (user_name);");
 		indexes.add("create index user_last_login_index on user (last_login);");
 		indexes.add("create index user_game_center_id_index on user (game_center_id);");

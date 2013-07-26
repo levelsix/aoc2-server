@@ -19,8 +19,8 @@ public class Structure extends BasePersistentObject{
 	@Column(name="structure_name")
 	protected String structureName = "";
 	
-	@Column(name="level")
-	protected int level = 0;
+	@Column(name="lvl")
+	protected int lvl = 0;
 	
 	@Column(name="build_cost")
 	protected int buildCost = 0;
@@ -28,14 +28,14 @@ public class Structure extends BasePersistentObject{
 	@Column(name="build_cost_resource_type")
 	protected int buildCostResourceType = 1;
 	
-	@Column(name="build_time_constant")
-	protected int buildTimeConstant = 0;
+	@Column(name="build_time_seconds")
+	protected int buildTimeSeconds = 0;
 	
 	@Column(name="build_speedup_base_cost")
-	protected int buildSpeedupBaseCostConstant = 0;
+	protected int buildSpeedupBaseCost = 0;
 	
-	@Column(name="user_level_requirement")
-	protected int userLevelRequirement = 0;
+	@Column(name="user_lvl_required")
+	protected int userLvlRequired = 0;
 
 	@Column(name="size")
 	protected int size = 0;
@@ -53,7 +53,7 @@ public class Structure extends BasePersistentObject{
 	@Column(name="functionality_capacity")
 	protected int functionalityCapacity = 0;
 	
-	@Column(name="funcationality_speedup_base_cost")
+	@Column(name="functionality_speedup_base_cost")
 	protected int functionalitySpeedupBaseCost = 1;
 	
 	@Column(name="image_name")
@@ -81,13 +81,13 @@ public class Structure extends BasePersistentObject{
 	}
 
 
-	public int getLevel() {
-		return level;
+	public int getLvl() {
+		return lvl;
 	}
 
 
-	public void setLevel(int level) {
-		this.level = level;
+	public void setLvl(int lvl) {
+		this.lvl = lvl;
 	}
 
 
@@ -111,33 +111,33 @@ public class Structure extends BasePersistentObject{
 	}
 
 
-	public int getBuildTimeConstant() {
-		return buildTimeConstant;
+	public int getBuildTimeSeconds() {
+		return buildTimeSeconds;
 	}
 
 
-	public void setBuildTimeConstant(int buildTimeConstant) {
-		this.buildTimeConstant = buildTimeConstant;
+	public void setBuildTimeSeconds(int buildTimeSeconds) {
+		this.buildTimeSeconds = buildTimeSeconds;
 	}
 
 
-	public int getBuildSpeedupBaseCostConstant() {
-		return buildSpeedupBaseCostConstant;
+	public int getBuildSpeedupBaseCost() {
+		return buildSpeedupBaseCost;
 	}
 
 
-	public void setBuildSpeedupBaseCostConstant(int buildSpeedupBaseCostConstant) {
-		this.buildSpeedupBaseCostConstant = buildSpeedupBaseCostConstant;
+	public void setBuildSpeedupBaseCost(int buildSpeedupBaseCost) {
+		this.buildSpeedupBaseCost= buildSpeedupBaseCost;
 	}
 
 
-	public int getUserLevelRequirement() {
-		return userLevelRequirement;
+	public int getUserLvlRequired() {
+		return userLvlRequired;
 	}
 
 
-	public void setUserLevelRequirement(int userLevelRequirement) {
-		this.userLevelRequirement = userLevelRequirement;
+	public void setUserLvlRequired(int userLvlRequired) {
+		this.userLvlRequired = userLvlRequired;
 	}
 
 
@@ -219,8 +219,8 @@ public class Structure extends BasePersistentObject{
 		int result = 1;
 		result = prime * result + buildCost;
 		result = prime * result + buildCostResourceType;
-		result = prime * result + buildSpeedupBaseCostConstant;
-		result = prime * result + buildTimeConstant;
+		result = prime * result + buildSpeedupBaseCost;
+		result = prime * result + buildTimeSeconds;
 		result = prime * result + functionalityCapacity;
 		result = prime * result + functionalityResourceType;
 		result = prime * result + functionalitySpeedupBaseCost;
@@ -229,27 +229,25 @@ public class Structure extends BasePersistentObject{
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((imageName == null) ? 0 : imageName.hashCode());
-		result = prime * result + level;
+		result = prime * result + lvl;
 		result = prime * result + size;
 		result = prime * result
 				+ ((structureName == null) ? 0 : structureName.hashCode());
-		result = prime * result + userLevelRequirement;
+		result = prime * result + userLvlRequired;
 		return result;
 	}
 
-	
 	
 
 	@Override
 	public String toString() {
 		return "Structure [id=" + id + ", structureName=" + structureName
-				+ ", level=" + level + ", buildCost=" + buildCost
+				+ ", lvl=" + lvl + ", buildCost=" + buildCost
 				+ ", buildCostResourceType=" + buildCostResourceType
-				+ ", buildTimeConstant=" + buildTimeConstant
-				+ ", buildSpeedupBaseCostConstant="
-				+ buildSpeedupBaseCostConstant + ", userLevelRequirement="
-				+ userLevelRequirement + ", size=" + size
-				+ ", functionalityType=" + functionalityType
+				+ ", buildTimeSeconds=" + buildTimeSeconds
+				+ ", buildSpeedupBaseCost=" + buildSpeedupBaseCost
+				+ ", userLvlRequired=" + userLvlRequired + ", size="
+				+ size + ", functionalityType=" + functionalityType
 				+ ", functionalityResourceType=" + functionalityResourceType
 				+ ", functionalityValue=" + functionalityValue
 				+ ", functionalityCapacity=" + functionalityCapacity
@@ -272,9 +270,9 @@ public class Structure extends BasePersistentObject{
 			return false;
 		if (buildCostResourceType != other.buildCostResourceType)
 			return false;
-		if (buildSpeedupBaseCostConstant != other.buildSpeedupBaseCostConstant)
+		if (buildSpeedupBaseCost!= other.buildSpeedupBaseCost)
 			return false;
-		if (buildTimeConstant != other.buildTimeConstant)
+		if (buildTimeSeconds!= other.buildTimeSeconds)
 			return false;
 		if (functionalityCapacity != other.functionalityCapacity)
 			return false;
@@ -296,7 +294,7 @@ public class Structure extends BasePersistentObject{
 				return false;
 		} else if (!imageName.equals(other.imageName))
 			return false;
-		if (level != other.level)
+		if (lvl != other.lvl)
 			return false;
 		if (size != other.size)
 			return false;
@@ -305,7 +303,7 @@ public class Structure extends BasePersistentObject{
 				return false;
 		} else if (!structureName.equals(other.structureName))
 			return false;
-		if (userLevelRequirement != other.userLevelRequirement)
+		if (userLvlRequired != other.userLvlRequired)
 			return false;
 		return true;
 	}
@@ -316,16 +314,18 @@ public class Structure extends BasePersistentObject{
 		return "create table structure (" +
 				" id uuid," +
 				" structure_name varchar," +
-				" level int," +
+				" lvl int," +
 				" build_cost int," +
-				" build_time_constant int," +
+				" build_cost_resource_type int," +
+				" build_time_seconds int," +
 				" build_speedup_base_cost int," +
-				" townhall_level int," +
+				" user_lvl_required int," +
 				" size int," +
 				" functionality_type int," +
+				" functionality_resurce_type int," +
 				" functionality_value int," +
-				" functionality_capacity," +
-				" functionality_speedup_base int," +
+				" functionality_capacity int," +
+				" functionality_speedup_base_cost int," +
 				" image_name varchar, " +
 				" primary key (id))" +
 				" with compact storage;";
@@ -343,8 +343,8 @@ public class Structure extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index income_index on structure (income);");
-		indexes.add("create index functionality_type on structure (functionality_type);");
+		indexes.add("create index structure_income_index on structure (income);");
+		indexes.add("create index structure_functionality_type_index on structure (functionality_type);");
 		return indexes;
 	}
 	
