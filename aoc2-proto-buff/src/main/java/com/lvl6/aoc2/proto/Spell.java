@@ -15,9 +15,9 @@ public final class Spell {
     boolean hasSpellID();
     int getSpellID();
     
-    // required .com.lvl6.aoc2.proto.ClassType class = 2;
-    boolean hasClass();
-    com.lvl6.aoc2.proto.ClassEnum.ClassType getClass();
+    // required .com.lvl6.aoc2.proto.ClassType classType = 2;
+    boolean hasClassType();
+    com.lvl6.aoc2.proto.ClassEnum.ClassType getClassType();
     
     // optional string name = 3;
     boolean hasName();
@@ -200,14 +200,14 @@ public final class Spell {
       return spellID_;
     }
     
-    // required .com.lvl6.aoc2.proto.ClassType class = 2;
-    public static final int CLASS_FIELD_NUMBER = 2;
-    private com.lvl6.aoc2.proto.ClassEnum.ClassType class_;
-    public boolean hasClass() {
+    // required .com.lvl6.aoc2.proto.ClassType classType = 2;
+    public static final int CLASSTYPE_FIELD_NUMBER = 2;
+    private com.lvl6.aoc2.proto.ClassEnum.ClassType classType_;
+    public boolean hasClassType() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public com.lvl6.aoc2.proto.ClassEnum.ClassType getClass() {
-      return class_;
+    public com.lvl6.aoc2.proto.ClassEnum.ClassType getClassType() {
+      return classType_;
     }
     
     // optional string name = 3;
@@ -394,7 +394,7 @@ public final class Spell {
     
     private void initFields() {
       spellID_ = 0;
-      class_ = com.lvl6.aoc2.proto.ClassEnum.ClassType.WARRIOR;
+      classType_ = com.lvl6.aoc2.proto.ClassEnum.ClassType.WARRIOR;
       name_ = "";
       function_ = com.lvl6.aoc2.proto.Spell.SpellProto.FunctionType.ATTACK;
       strength_ = 0;
@@ -417,7 +417,7 @@ public final class Spell {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
       
-      if (!hasClass()) {
+      if (!hasClassType()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -436,7 +436,7 @@ public final class Spell {
         output.writeInt32(1, spellID_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeEnum(2, class_.getNumber());
+        output.writeEnum(2, classType_.getNumber());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeBytes(3, getNameBytes());
@@ -501,7 +501,7 @@ public final class Spell {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, class_.getNumber());
+          .computeEnumSize(2, classType_.getNumber());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -693,7 +693,7 @@ public final class Spell {
         super.clear();
         spellID_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        class_ = com.lvl6.aoc2.proto.ClassEnum.ClassType.WARRIOR;
+        classType_ = com.lvl6.aoc2.proto.ClassEnum.ClassType.WARRIOR;
         bitField0_ = (bitField0_ & ~0x00000002);
         name_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -772,7 +772,7 @@ public final class Spell {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.class_ = class_;
+        result.classType_ = classType_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
@@ -856,8 +856,8 @@ public final class Spell {
         if (other.hasSpellID()) {
           setSpellID(other.getSpellID());
         }
-        if (other.hasClass()) {
-          setClass(other.getClass());
+        if (other.hasClassType()) {
+          setClassType(other.getClassType());
         }
         if (other.hasName()) {
           setName(other.getName());
@@ -912,7 +912,7 @@ public final class Spell {
       }
       
       public final boolean isInitialized() {
-        if (!hasClass()) {
+        if (!hasClassType()) {
           
           return false;
         }
@@ -958,7 +958,7 @@ public final class Spell {
                 unknownFields.mergeVarintField(2, rawValue);
               } else {
                 bitField0_ |= 0x00000002;
-                class_ = value;
+                classType_ = value;
               }
               break;
             }
@@ -1081,26 +1081,26 @@ public final class Spell {
         return this;
       }
       
-      // required .com.lvl6.aoc2.proto.ClassType class = 2;
-      private com.lvl6.aoc2.proto.ClassEnum.ClassType class_ = com.lvl6.aoc2.proto.ClassEnum.ClassType.WARRIOR;
-      public boolean hasClass() {
+      // required .com.lvl6.aoc2.proto.ClassType classType = 2;
+      private com.lvl6.aoc2.proto.ClassEnum.ClassType classType_ = com.lvl6.aoc2.proto.ClassEnum.ClassType.WARRIOR;
+      public boolean hasClassType() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public com.lvl6.aoc2.proto.ClassEnum.ClassType getClass() {
-        return class_;
+      public com.lvl6.aoc2.proto.ClassEnum.ClassType getClassType() {
+        return classType_;
       }
-      public Builder setClass(com.lvl6.aoc2.proto.ClassEnum.ClassType value) {
+      public Builder setClassType(com.lvl6.aoc2.proto.ClassEnum.ClassType value) {
         if (value == null) {
           throw new NullPointerException();
         }
         bitField0_ |= 0x00000002;
-        class_ = value;
+        classType_ = value;
         onChanged();
         return this;
       }
-      public Builder clearClass() {
+      public Builder clearClassType() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        class_ = com.lvl6.aoc2.proto.ClassEnum.ClassType.WARRIOR;
+        classType_ = com.lvl6.aoc2.proto.ClassEnum.ClassType.WARRIOR;
         onChanged();
         return this;
       }
@@ -1488,21 +1488,21 @@ public final class Spell {
   static {
     java.lang.String[] descriptorData = {
       "\n\020SpellProto.proto\022\023com.lvl6.aoc2.proto\032" +
-      "\017ClassType.proto\032\022ResourceType.proto\"\232\004\n" +
-      "\nSpellProto\022\017\n\007spellID\030\001 \001(\005\022-\n\005class\030\002 " +
-      "\002(\0162\036.com.lvl6.aoc2.proto.ClassType\022\014\n\004n" +
-      "ame\030\003 \001(\t\022>\n\010function\030\004 \001(\0162,.com.lvl6.a" +
-      "oc2.proto.SpellProto.FunctionType\022\020\n\010str" +
-      "ength\030\005 \001(\005\022\020\n\010manaCost\030\006 \001(\005\022\020\n\010duratio" +
-      "n\030\007 \001(\005\022\r\n\005speed\030\010 \001(\005\022\021\n\ttargetted\030\t \001(" +
-      "\010\022\014\n\004size\030\n \001(\002\022\020\n\010castTime\030\013 \001(\002\022\020\n\010coo" +
-      "lDown\030\014 \001(\002\022\r\n\005range\030\r \001(\002\022\020\n\010levelReq\030\016",
-      " \001(\005\022\020\n\010spellLvl\030\017 \001(\005\022\024\n\014researchCost\030\020" +
-      " \001(\005\022\024\n\014researchTime\030\021 \001(\005\022;\n\020researchRe" +
-      "source\030\022 \002(\0162!.com.lvl6.aoc2.proto.Resou" +
-      "rceType\"X\n\014FunctionType\022\n\n\006ATTACK\020\000\022\r\n\tF" +
-      "LAT_BUFF\020\001\022\016\n\nSCALE_BUFF\020\002\022\r\n\tHEAL_SELF\020" +
-      "\003\022\016\n\nHEAL_OTHER\020\004B\007B\005Spell"
+      "\017ClassType.proto\032\022ResourceType.proto\"\236\004\n" +
+      "\nSpellProto\022\017\n\007spellID\030\001 \001(\005\0221\n\tclassTyp" +
+      "e\030\002 \002(\0162\036.com.lvl6.aoc2.proto.ClassType\022" +
+      "\014\n\004name\030\003 \001(\t\022>\n\010function\030\004 \001(\0162,.com.lv" +
+      "l6.aoc2.proto.SpellProto.FunctionType\022\020\n" +
+      "\010strength\030\005 \001(\005\022\020\n\010manaCost\030\006 \001(\005\022\020\n\010dur" +
+      "ation\030\007 \001(\005\022\r\n\005speed\030\010 \001(\005\022\021\n\ttargetted\030" +
+      "\t \001(\010\022\014\n\004size\030\n \001(\002\022\020\n\010castTime\030\013 \001(\002\022\020\n" +
+      "\010coolDown\030\014 \001(\002\022\r\n\005range\030\r \001(\002\022\020\n\010levelR",
+      "eq\030\016 \001(\005\022\020\n\010spellLvl\030\017 \001(\005\022\024\n\014researchCo" +
+      "st\030\020 \001(\005\022\024\n\014researchTime\030\021 \001(\005\022;\n\020resear" +
+      "chResource\030\022 \002(\0162!.com.lvl6.aoc2.proto.R" +
+      "esourceType\"X\n\014FunctionType\022\n\n\006ATTACK\020\000\022" +
+      "\r\n\tFLAT_BUFF\020\001\022\016\n\nSCALE_BUFF\020\002\022\r\n\tHEAL_S" +
+      "ELF\020\003\022\016\n\nHEAL_OTHER\020\004B\007B\005Spell"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1514,7 +1514,7 @@ public final class Spell {
           internal_static_com_lvl6_aoc2_proto_SpellProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_com_lvl6_aoc2_proto_SpellProto_descriptor,
-              new java.lang.String[] { "SpellID", "Class", "Name", "Function", "Strength", "ManaCost", "Duration", "Speed", "Targetted", "Size", "CastTime", "CoolDown", "Range", "LevelReq", "SpellLvl", "ResearchCost", "ResearchTime", "ResearchResource", },
+              new java.lang.String[] { "SpellID", "ClassType", "Name", "Function", "Strength", "ManaCost", "Duration", "Speed", "Targetted", "Size", "CastTime", "CoolDown", "Range", "LevelReq", "SpellLvl", "ResearchCost", "ResearchTime", "ResearchResource", },
               com.lvl6.aoc2.proto.Spell.SpellProto.class,
               com.lvl6.aoc2.proto.Spell.SpellProto.Builder.class);
           return null;
