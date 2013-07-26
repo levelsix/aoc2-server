@@ -163,7 +163,7 @@ public class Boss extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user (" +
+		return "create table boss (" +
 				" id int," +
 				" boss_name varchar," +
 				" health int," +

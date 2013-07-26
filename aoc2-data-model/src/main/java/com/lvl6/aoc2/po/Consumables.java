@@ -15,7 +15,7 @@ import javax.persistence.Id;
 public class Consumables extends BasePersistentObject{
 
 	@Id
-	protected int id = 0;
+	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="consumable_name")
 	protected String consumableName = "";
@@ -39,10 +39,10 @@ public class Consumables extends BasePersistentObject{
 	protected int speedupBase = 0;
 	
 	
-	public int getId() {
+	public UUID getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 	public String getConsumableName() {
@@ -87,7 +87,7 @@ public class Consumables extends BasePersistentObject{
 	public void setSpeedupBase(int speedupBase) {
 		this.speedupBase = speedupBase;
 	}
-
+	
 	
 	@Override
 	public int hashCode() {
@@ -99,7 +99,7 @@ public class Consumables extends BasePersistentObject{
 		result = prime * result + createTimeBase;
 		result = prime * result + functionalityConstant;
 		result = prime * result + functionalityType;
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + limit;
 		result = prime * result + speedupBase;
 		return result;
@@ -126,7 +126,10 @@ public class Consumables extends BasePersistentObject{
 			return false;
 		if (functionalityType != other.functionalityType)
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (limit != other.limit)
 			return false;
@@ -138,7 +141,7 @@ public class Consumables extends BasePersistentObject{
 	
 	@Override
 	public String toString() {
-		return "Consumable [id=" + id + ", consumableName=" + consumableName
+		return "Consumables [id=" + id + ", consumableName=" + consumableName
 				+ ", functionalityType=" + functionalityType
 				+ ", functionalityConstant=" + functionalityConstant
 				+ ", cost=" + cost + ", limit=" + limit + ", createTimeBase="
@@ -148,8 +151,8 @@ public class Consumables extends BasePersistentObject{
 	
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user (" +
-				" id int," +
+		return "create table consumable (" +
+				" uuid int," +
 				" consumable_name varchar," +
 				" functionality_type int," +
 				" functionality_constant int," +
@@ -173,9 +176,8 @@ public class Consumables extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_email_index on user (email);");
-		indexes.add("create index user_user_name_index on user (user_name);");
-		indexes.add("create index user_last_login_index on user (last_login);");
+		indexes.add("create index functionality_type_index on consumables (functionality_type);");
+		indexes.add("create index consumable_name_index on user (consumable_name);");
 		return indexes;
 	}
 	

@@ -15,7 +15,7 @@ import javax.persistence.Id;
 public class Spells extends BasePersistentObject{
 
 	@Id
-	protected int id = 0;
+	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="spell_name")
 	protected String spellName = "";
@@ -74,10 +74,10 @@ public class Spells extends BasePersistentObject{
 	@Column(name="research_resource")
 	protected int researchResource = 0;
 	
-	public int getId() {
+	public UUID getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 	public String getSpellName() {
@@ -194,6 +194,8 @@ public class Spells extends BasePersistentObject{
 	public void setResearchResource(int researchResource) {
 		this.researchResource = researchResource;
 	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -206,7 +208,7 @@ public class Spells extends BasePersistentObject{
 		result = prime * result + elementalType;
 		result = prime * result + functionConstant;
 		result = prime * result + functionType;
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + levelRequirement;
 		result = prime * result + manaCost;
 		result = prime * result + range;
@@ -246,7 +248,10 @@ public class Spells extends BasePersistentObject{
 			return false;
 		if (functionType != other.functionType)
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (levelRequirement != other.levelRequirement)
 			return false;
@@ -295,8 +300,8 @@ public class Spells extends BasePersistentObject{
 	
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user (" +
-				" id int," +
+		return "create table spell (" +
+				" id uuid," +
 				" spell_name varchar," +
 				" class_type int," +
 				" function_type int," +
