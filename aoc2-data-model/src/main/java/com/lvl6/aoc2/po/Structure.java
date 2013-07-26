@@ -1,6 +1,5 @@
 package com.lvl6.aoc2.po;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -15,7 +14,7 @@ import javax.persistence.Id;
 public class Structure extends BasePersistentObject{
 
 	@Id
-	protected int id = 0;
+	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="structure_name")
 	protected String structureName = "";
@@ -26,14 +25,17 @@ public class Structure extends BasePersistentObject{
 	@Column(name="build_cost")
 	protected int buildCost = 0;
 	
+	@Column(name="build_cost_resource_type")
+	protected int buildCostResourceType = 1;
+	
 	@Column(name="build_time_constant")
 	protected int buildTimeConstant = 0;
 	
-	@Column(name="build_speedup_constant")
-	protected int buildSpeedupConstant = 0;
+	@Column(name="build_speedup_base_cost")
+	protected int buildSpeedupBaseCostConstant = 0;
 	
-	@Column(name="townhall_level")
-	protected int townhallLevel = 0;
+	@Column(name="user_level_requirement")
+	protected int userLevelRequirement = 0;
 
 	@Column(name="size")
 	protected int size = 0;
@@ -41,118 +43,222 @@ public class Structure extends BasePersistentObject{
 	@Column(name="functionality_type")
 	protected int functionalityType = 0;
 	
+	@Column(name="functionality_resource_type")
+	protected int functionalityResourceType = 0;
+	
+	//base cost for researching spell, income, storage, dependent on building)
 	@Column(name="functionality_value")
 	protected int functionalityValue = 0;
 	
 	@Column(name="functionality_capacity")
 	protected int functionalityCapacity = 0;
 	
-	@Column(name="functionality_speedup_base")
-	protected int functionalitySpeedupBase = 0;
+	@Column(name="funcationality_speedup_base_cost")
+	protected int functionalitySpeedupBaseCost = 1;
 	
 	@Column(name="image_name")
 	protected String imageName = "";
 	
 	
-	public int getId() {
+
+	public UUID getId() {
 		return id;
 	}
-	public void setId(int id) {
+
+
+	public void setId(UUID id) {
 		this.id = id;
 	}
+
+
 	public String getStructureName() {
 		return structureName;
 	}
+
+
 	public void setStructureName(String structureName) {
 		this.structureName = structureName;
 	}
+
+
 	public int getLevel() {
 		return level;
 	}
+
+
 	public void setLevel(int level) {
 		this.level = level;
 	}
+
+
 	public int getBuildCost() {
 		return buildCost;
 	}
+
+
 	public void setBuildCost(int buildCost) {
 		this.buildCost = buildCost;
 	}
+
+
+	public int getBuildCostResourceType() {
+		return buildCostResourceType;
+	}
+
+
+	public void setBuildCostResourceType(int buildCostResourceType) {
+		this.buildCostResourceType = buildCostResourceType;
+	}
+
+
 	public int getBuildTimeConstant() {
 		return buildTimeConstant;
 	}
+
+
 	public void setBuildTimeConstant(int buildTimeConstant) {
 		this.buildTimeConstant = buildTimeConstant;
 	}
-	public int getBuildSpeedupConstant() {
-		return buildSpeedupConstant;
+
+
+	public int getBuildSpeedupBaseCostConstant() {
+		return buildSpeedupBaseCostConstant;
 	}
-	public void setBuildSpeedupConstant(int buildSpeedupConstant) {
-		this.buildSpeedupConstant = buildSpeedupConstant;
+
+
+	public void setBuildSpeedupBaseCostConstant(int buildSpeedupBaseCostConstant) {
+		this.buildSpeedupBaseCostConstant = buildSpeedupBaseCostConstant;
 	}
-	public int getTownhallLevel() {
-		return townhallLevel;
+
+
+	public int getUserLevelRequirement() {
+		return userLevelRequirement;
 	}
-	public void setTownhallLevel(int townhallLevel) {
-		this.townhallLevel = townhallLevel;
+
+
+	public void setUserLevelRequirement(int userLevelRequirement) {
+		this.userLevelRequirement = userLevelRequirement;
 	}
+
+
 	public int getSize() {
 		return size;
 	}
+
+
 	public void setSize(int size) {
 		this.size = size;
 	}
+
+
 	public int getFunctionalityType() {
 		return functionalityType;
 	}
+
+
 	public void setFunctionalityType(int functionalityType) {
 		this.functionalityType = functionalityType;
 	}
+
+
+	public int getFunctionalityResourceType() {
+		return functionalityResourceType;
+	}
+
+
+	public void setFunctionalityResourceType(int functionalityResourceType) {
+		this.functionalityResourceType = functionalityResourceType;
+	}
+
+
 	public int getFunctionalityValue() {
 		return functionalityValue;
 	}
+
+
 	public void setFunctionalityValue(int functionalityValue) {
 		this.functionalityValue = functionalityValue;
 	}
+
+
 	public int getFunctionalityCapacity() {
 		return functionalityCapacity;
 	}
+
+
 	public void setFunctionalityCapacity(int functionalityCapacity) {
 		this.functionalityCapacity = functionalityCapacity;
 	}
-	public int getFunctionalitySpeedupBase() {
-		return functionalitySpeedupBase;
+
+
+	public int getFunctionalitySpeedupBaseCost() {
+		return functionalitySpeedupBaseCost;
 	}
-	public void setFunctionalitySpeedupBase(int functionalitySpeedupBase) {
-		this.functionalitySpeedupBase = functionalitySpeedupBase;
+
+
+	public void setFunctionalitySpeedupBaseCost(int functionalitySpeedupBaseCost) {
+		this.functionalitySpeedupBaseCost = functionalitySpeedupBaseCost;
 	}
+
+
 	public String getImageName() {
 		return imageName;
 	}
+
+
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
 	}
+
+
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + buildCost;
-		result = prime * result + buildSpeedupConstant;
+		result = prime * result + buildCostResourceType;
+		result = prime * result + buildSpeedupBaseCostConstant;
 		result = prime * result + buildTimeConstant;
 		result = prime * result + functionalityCapacity;
-		result = prime * result + functionalitySpeedupBase;
+		result = prime * result + functionalityResourceType;
+		result = prime * result + functionalitySpeedupBaseCost;
 		result = prime * result + functionalityType;
 		result = prime * result + functionalityValue;
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((imageName == null) ? 0 : imageName.hashCode());
 		result = prime * result + level;
 		result = prime * result + size;
 		result = prime * result
 				+ ((structureName == null) ? 0 : structureName.hashCode());
-		result = prime * result + townhallLevel;
+		result = prime * result + userLevelRequirement;
 		return result;
 	}
+
+	
+	
+
+	@Override
+	public String toString() {
+		return "Structure [id=" + id + ", structureName=" + structureName
+				+ ", level=" + level + ", buildCost=" + buildCost
+				+ ", buildCostResourceType=" + buildCostResourceType
+				+ ", buildTimeConstant=" + buildTimeConstant
+				+ ", buildSpeedupBaseCostConstant="
+				+ buildSpeedupBaseCostConstant + ", userLevelRequirement="
+				+ userLevelRequirement + ", size=" + size
+				+ ", functionalityType=" + functionalityType
+				+ ", functionalityResourceType=" + functionalityResourceType
+				+ ", functionalityValue=" + functionalityValue
+				+ ", functionalityCapacity=" + functionalityCapacity
+				+ ", functionalitySpeedupBaseCost="
+				+ functionalitySpeedupBaseCost + ", imageName=" + imageName
+				+ "]";
+	}
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -164,19 +270,26 @@ public class Structure extends BasePersistentObject{
 		Structure other = (Structure) obj;
 		if (buildCost != other.buildCost)
 			return false;
-		if (buildSpeedupConstant != other.buildSpeedupConstant)
+		if (buildCostResourceType != other.buildCostResourceType)
+			return false;
+		if (buildSpeedupBaseCostConstant != other.buildSpeedupBaseCostConstant)
 			return false;
 		if (buildTimeConstant != other.buildTimeConstant)
 			return false;
 		if (functionalityCapacity != other.functionalityCapacity)
 			return false;
-		if (functionalitySpeedupBase != other.functionalitySpeedupBase)
+		if (functionalityResourceType != other.functionalityResourceType)
+			return false;
+		if (functionalitySpeedupBaseCost != other.functionalitySpeedupBaseCost)
 			return false;
 		if (functionalityType != other.functionalityType)
 			return false;
 		if (functionalityValue != other.functionalityValue)
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (imageName == null) {
 			if (other.imageName != null)
@@ -192,53 +305,21 @@ public class Structure extends BasePersistentObject{
 				return false;
 		} else if (!structureName.equals(other.structureName))
 			return false;
-		if (townhallLevel != other.townhallLevel)
+		if (userLevelRequirement != other.userLevelRequirement)
 			return false;
 		return true;
 	}
-	
-	
-	@Override
-	public String toString() {
-		return "Structure [id=" + id + ", structureName=" + structureName
-				+ ", level=" + level + ", buildCost=" + buildCost
-				+ ", buildTimeConstant=" + buildTimeConstant
-				+ ", buildSpeedupConstant=" + buildSpeedupConstant
-				+ ", townhallLevel=" + townhallLevel + ", size=" + size
-				+ ", functionalityType=" + functionalityType
-				+ ", functionalityValue=" + functionalityValue
-				+ ", functionalityCapacity=" + functionalityCapacity
-				+ ", functionalitySpeedupBase=" + functionalitySpeedupBase
-				+ ", imageName=" + imageName + ", getId()=" + getId()
-				+ ", getStructureName()=" + getStructureName()
-				+ ", getLevel()=" + getLevel() + ", getBuildCost()="
-				+ getBuildCost() + ", getBuildTimeConstant()="
-				+ getBuildTimeConstant() + ", getBuildSpeedupConstant()="
-				+ getBuildSpeedupConstant() + ", getTownhallLevel()="
-				+ getTownhallLevel() + ", getSize()=" + getSize()
-				+ ", getFunctionalityType()=" + getFunctionalityType()
-				+ ", getFunctionalityValue()=" + getFunctionalityValue()
-				+ ", getFunctionalityCapacity()=" + getFunctionalityCapacity()
-				+ ", getFunctionalitySpeedupBase()="
-				+ getFunctionalitySpeedupBase() + ", getImageName()="
-				+ getImageName() + ", hashCode()=" + hashCode()
-				+ ", getTableCreateStatement()=" + getTableCreateStatement()
-				+ ", getTableUpdateStatements()=" + getTableUpdateStatements()
-				+ ", getIndexCreateStatements()=" + getIndexCreateStatements()
-				+ ", getClass()=" + getClass() + ", toString()="
-				+ super.toString() + "]";
-	}
-	
-	
+
+
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user (" +
-				" id int," +
+		return "create table structure (" +
+				" id uuid," +
 				" structure_name varchar," +
 				" level int," +
 				" build_cost int," +
 				" build_time_constant int," +
-				" build_speedup_constant int," +
+				" build_speedup_base_cost int," +
 				" townhall_level int," +
 				" size int," +
 				" functionality_type int," +
@@ -262,14 +343,9 @@ public class Structure extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index income_index on resourceStructure(income);");
+		indexes.add("create index income_index on structure (income);");
+		indexes.add("create index functionality_type on structure (functionality_type);");
 		return indexes;
 	}
-	
-
-	
-	
-	
-	
 	
 }
