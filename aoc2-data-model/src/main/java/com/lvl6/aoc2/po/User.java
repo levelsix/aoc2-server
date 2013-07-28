@@ -17,8 +17,8 @@ public class User extends BasePersistentObject{
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
-	@Column(name="user_name")
-	protected String userName = "";
+	@Column(name="name")
+	protected String name = "";
 	
 	@Column(name="level")
 	protected int level = 0;
@@ -81,12 +81,12 @@ public class User extends BasePersistentObject{
 		this.id = id;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getName() {
+		return name;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getLevel() {
@@ -252,7 +252,7 @@ public class User extends BasePersistentObject{
 				+ ((signupDate == null) ? 0 : signupDate.hashCode());
 		result = prime * result + tonic;
 		result = prime * result
-				+ ((userName == null) ? 0 : userName.hashCode());
+				+ ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
 
@@ -317,10 +317,10 @@ public class User extends BasePersistentObject{
 			return false;
 		if (tonic != other.tonic)
 			return false;
-		if (userName == null) {
-			if (other.userName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!userName.equals(other.userName))
+		} else if (!name.equals(other.name))
 			return false;
 		return true;
 	}
@@ -328,7 +328,7 @@ public class User extends BasePersistentObject{
 	
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", level=" + level
+		return "User [id=" + id + ", name=" + name + ", level=" + level
 				+ ", experience=" + experience + ", gold=" + gold + ", tonic="
 				+ tonic + ", gems=" + gems + ", classType=" + classType
 				+ ", maxHp=" + maxHp + ", hp=" + hp + ", lastTimeHpRegened="
@@ -344,7 +344,7 @@ public class User extends BasePersistentObject{
 	public String getTableCreateStatement() {
 		return "create table user (" +
 				" id uuid," +
-				" user_name varchar," +
+				" name varchar," +
 				" level int," +
 				" experience int," +
 				" gold int," +
@@ -379,7 +379,7 @@ public class User extends BasePersistentObject{
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		//indexes.add("create index user_email_index on user (email);");
-		indexes.add("create index user_user_name_index on user (user_name);");
+		indexes.add("create index user_name_index on user (name);");
 		indexes.add("create index user_last_login_index on user (last_login);");
 		indexes.add("create index user_game_center_id_index on user (game_center_id);");
 		return indexes;

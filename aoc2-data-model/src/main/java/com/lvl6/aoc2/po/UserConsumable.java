@@ -11,7 +11,7 @@ import javax.persistence.Id;
 
 
 @Entity
-public class UserSpell extends BasePersistentObject{
+public class UserConsumable extends BasePersistentObject{
 
 	@Id
 	protected UUID id = UUID.randomUUID();
@@ -19,11 +19,12 @@ public class UserSpell extends BasePersistentObject{
 	@Column(name="user_id")
 	protected UUID userId = null;
 	
-	@Column(name="spell_id")
-	protected UUID spellId = UUID.randomUUID();
+	@Column(name="consumable_id")
+	protected UUID consumable_id = null;
 	
-	@Column(name="spell_lvl")
-	protected UUID spellLvl = UUID.randomUUID();
+	@Column(name="quantity")
+	protected int quantity = 0;
+
 	
 
 
@@ -47,34 +48,35 @@ public class UserSpell extends BasePersistentObject{
 	}
 
 
-	public UUID getSpellId() {
-		return spellId;
+	public UUID getConsumable_id() {
+		return consumable_id;
 	}
 
 
-	public void setSpellId(UUID spellId) {
-		this.spellId = spellId;
+	public void setConsumable_id(UUID consumable_id) {
+		this.consumable_id = consumable_id;
 	}
 
 
-	public UUID getSpellLvl() {
-		return spellLvl;
+	public int getQuantity() {
+		return quantity;
 	}
 
 
-	public void setSpellLvl(UUID spellLvl) {
-		this.spellLvl = spellLvl;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
+	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((spellId == null) ? 0 : spellId.hashCode());
 		result = prime * result
-				+ ((spellLvl == null) ? 0 : spellLvl.hashCode());
+				+ ((consumable_id == null) ? 0 : consumable_id.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + quantity;
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
@@ -88,21 +90,18 @@ public class UserSpell extends BasePersistentObject{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UserSpell other = (UserSpell) obj;
+		UserConsumable other = (UserConsumable) obj;
+		if (consumable_id == null) {
+			if (other.consumable_id != null)
+				return false;
+		} else if (!consumable_id.equals(other.consumable_id))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (spellId == null) {
-			if (other.spellId != null)
-				return false;
-		} else if (!spellId.equals(other.spellId))
-			return false;
-		if (spellLvl == null) {
-			if (other.spellLvl != null)
-				return false;
-		} else if (!spellLvl.equals(other.spellLvl))
+		if (quantity != other.quantity)
 			return false;
 		if (userId == null) {
 			if (other.userId != null)
@@ -115,18 +114,19 @@ public class UserSpell extends BasePersistentObject{
 
 	@Override
 	public String toString() {
-		return "UserSpell [id=" + id + ", userId=" + userId + ", spellId="
-				+ spellId + ", spellLvl=" + spellLvl + "]";
+		return "UserConsumable [id=" + id + ", userId=" + userId
+				+ ", consumable_id=" + consumable_id + ", quantity=" + quantity
+				+ "]";
 	}
 
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_spell (" +
+		return "create table user_consumable (" +
 				" id uuid," +
 				" user_id uuid," +
-				" spell_id uuid," +
-				" spell_lvl int," +
+				" consumable_id uuid," +
+				" quantity int," +
 				" primary key(id))" +
 				" with compact storage;";
 	}
@@ -143,8 +143,8 @@ public class UserSpell extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_spell_user_id_index on user_spell (user_id);");
-		indexes.add("create index user_spell_spell_id_index on user_spell (spell_id);");
+		indexes.add("create index user_consumable_user_id_index on user_consumable (user_id);");
+		indexes.add("create index user_consumable_consumable_id_index on user_consumable (consumable_id);");
 		return indexes;
 	}
 	

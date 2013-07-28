@@ -1,6 +1,5 @@
 package com.lvl6.aoc2.po;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -445,11 +444,6 @@ public class Spell extends BasePersistentObject{
 		indexes.add("create index spell_class_type_index on spell (class_type);");
 		return indexes;
 	}
-	
-
-	
-	
-	
 	
 	
 }

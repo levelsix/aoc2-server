@@ -1,6 +1,5 @@
 package com.lvl6.aoc2.po;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -12,10 +11,16 @@ import javax.persistence.Id;
 
 
 @Entity
-public class UserEquipment extends BasePersistentObject{
+public class UserEquip extends BasePersistentObject{
 
 	@Id
 	protected UUID id = UUID.randomUUID();
+	
+	@Column(name="user_id")
+	protected UUID userId = null;
+	
+	@Column(name="equip_id")
+	protected UUID equipId = null;
 	
 	@Column(name="durability")
 	protected double durability = 0.0;
@@ -24,6 +29,8 @@ public class UserEquipment extends BasePersistentObject{
 	protected boolean equipped = false;
 	
 
+
+
 	public UUID getId() {
 		return id;
 	}
@@ -31,6 +38,26 @@ public class UserEquipment extends BasePersistentObject{
 
 	public void setId(UUID id) {
 		this.id = id;
+	}
+
+
+	public UUID getUserId() {
+		return userId;
+	}
+
+
+	public void setUserId(UUID userId) {
+		this.userId = userId;
+	}
+
+
+	public UUID getEquipId() {
+		return equipId;
+	}
+
+
+	public void setEquipId(UUID equipId) {
+		this.equipId = equipId;
 	}
 
 
@@ -61,8 +88,10 @@ public class UserEquipment extends BasePersistentObject{
 		long temp;
 		temp = Double.doubleToLongBits(durability);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((equipId == null) ? 0 : equipId.hashCode());
 		result = prime * result + (equipped ? 1231 : 1237);
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
 
@@ -75,9 +104,14 @@ public class UserEquipment extends BasePersistentObject{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UserEquipment other = (UserEquipment) obj;
+		UserEquip other = (UserEquip) obj;
 		if (Double.doubleToLongBits(durability) != Double
 				.doubleToLongBits(other.durability))
+			return false;
+		if (equipId == null) {
+			if (other.equipId != null)
+				return false;
+		} else if (!equipId.equals(other.equipId))
 			return false;
 		if (equipped != other.equipped)
 			return false;
@@ -86,21 +120,30 @@ public class UserEquipment extends BasePersistentObject{
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
+			return false;
 		return true;
 	}
 
 
+
+
 	@Override
 	public String toString() {
-		return "UserEquipment [id=" + id + ", durability=" + durability
-				+ ", equipped=" + equipped + "]";
+		return "UserEquip [id=" + id + ", userId=" + userId + ", equipId="
+				+ equipId + ", durability=" + durability + ", equipped="
+				+ equipped + "]";
 	}
 
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table userEquip (" +
+		return "create table user_equip (" +
 				" id uuid," +
+				" user_id uuid," +
 				" equip_id uuid," +
 				" durability double," +
 				" equipped boolean," +
@@ -120,12 +163,9 @@ public class UserEquipment extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index equipped_index on userEquip (equipped);");
+		indexes.add("create index user_equip_equipped_index on user_equip (equipped);");
 		return indexes;
 	}
-	
-	
-	
 	
 	
 }

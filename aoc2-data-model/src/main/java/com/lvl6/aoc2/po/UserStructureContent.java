@@ -24,7 +24,7 @@ public class UserStructureContent extends BasePersistentObject{
 	protected int contentType = 0;
 	
 	@Column(name="content_id")
-	protected int contentId = 0;
+	protected UUID contentId = null;
 
 	@Column(name="queue_time")
 	protected Date queueTime = new Date();
@@ -33,6 +33,8 @@ public class UserStructureContent extends BasePersistentObject{
 	protected Date startTime = new Date();
 
 	
+
+
 	public UUID getId() {
 		return id;
 	}
@@ -63,12 +65,12 @@ public class UserStructureContent extends BasePersistentObject{
 	}
 
 
-	public int getContentId() {
+	public UUID getContentId() {
 		return contentId;
 	}
 
 
-	public void setContentId(int contentId) {
+	public void setContentId(UUID contentId) {
 		this.contentId = contentId;
 	}
 
@@ -97,7 +99,8 @@ public class UserStructureContent extends BasePersistentObject{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + contentId;
+		result = prime * result
+				+ ((contentId == null) ? 0 : contentId.hashCode());
 		result = prime * result + contentType;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
@@ -119,7 +122,10 @@ public class UserStructureContent extends BasePersistentObject{
 		if (getClass() != obj.getClass())
 			return false;
 		UserStructureContent other = (UserStructureContent) obj;
-		if (contentId != other.contentId)
+		if (contentId == null) {
+			if (other.contentId != null)
+				return false;
+		} else if (!contentId.equals(other.contentId))
 			return false;
 		if (contentType != other.contentType)
 			return false;
@@ -158,11 +164,11 @@ public class UserStructureContent extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table userStructureContent (" +
+		return "create table user_structure_content (" +
 				" id uuid," +
 				" user_structure_id uuid," +
 				" content_type int," +
-				" content_id int," +
+				" content_id uuid," +
 				" queue_time timestamp," +
 				" start_time timestamp," +
 				" primary key(id))" +
@@ -181,7 +187,8 @@ public class UserStructureContent extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index content_type_index on userStructureContent (content_type);");
+		indexes.add("create index user_structure_content_content_type_index on user_structure_content (content_type);");
+		indexes.add("create index user_structure_content_user_structure_id_index on user_structure_content (user_structure_id);");
 		return indexes;
 	}
 	

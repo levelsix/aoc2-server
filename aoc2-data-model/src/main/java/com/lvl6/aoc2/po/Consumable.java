@@ -38,8 +38,8 @@ public class Consumable extends BasePersistentObject{
 	@Column(name="create_time_seconds")
 	protected int createTimeSeconds = 0;
 
-	@Column(name="base_speedup_cost_seconds")
-	protected int baseSpeedupCostSeconds = 0;
+	@Column(name="base_speedup_cost")
+	protected int baseSpeedupCost = 0;
 	
 	
 	
@@ -123,13 +123,13 @@ public class Consumable extends BasePersistentObject{
 	}
 
 
-	public int getBaseSpeedupCostSeconds() {
-		return baseSpeedupCostSeconds;
+	public int getBaseSpeedupCost() {
+		return baseSpeedupCost;
 	}
 
 
-	public void setBaseSpeedupCostSeconds(int baseSpeedupCostSeconds) {
-		this.baseSpeedupCostSeconds = baseSpeedupCostSeconds;
+	public void setBaseSpeedupCost(int baseSpeedupCost) {
+		this.baseSpeedupCost = baseSpeedupCost;
 	}
 
 
@@ -137,7 +137,7 @@ public class Consumable extends BasePersistentObject{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + baseSpeedupCostSeconds;
+		result = prime * result + baseSpeedupCost;
 		result = prime * result + cost;
 		result = prime * result + costResourceType;
 		result = prime * result + createTimeSeconds;
@@ -161,7 +161,7 @@ public class Consumable extends BasePersistentObject{
 		if (getClass() != obj.getClass())
 			return false;
 		Consumable other = (Consumable) obj;
-		if (baseSpeedupCostSeconds != other.baseSpeedupCostSeconds)
+		if (baseSpeedupCost != other.baseSpeedupCost)
 			return false;
 		if (cost != other.cost)
 			return false;
@@ -197,8 +197,8 @@ public class Consumable extends BasePersistentObject{
 				+ ", functionalityConstant=" + functionalityConstant
 				+ ", cost=" + cost + ", costResourceType=" + costResourceType
 				+ ", limit=" + limit + ", createTimeSeconds="
-				+ createTimeSeconds + ", baseSpeedupCostSeconds="
-				+ baseSpeedupCostSeconds + "]";
+				+ createTimeSeconds + ", baseSpeedupCost="
+				+ baseSpeedupCost + "]";
 	}
 
 
@@ -213,7 +213,7 @@ public class Consumable extends BasePersistentObject{
 				" cost_resource_type int," +
 				" limit int," +
 				" create_time_seconds int," +
-				" base_speedup_cost_seconds int," +
+				" base_speedup_cost int," +
 				" primary key (id))" +
 				" with compact storage;";
 	}

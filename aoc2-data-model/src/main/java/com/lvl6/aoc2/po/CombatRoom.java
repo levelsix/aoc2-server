@@ -17,15 +17,15 @@ public class CombatRoom extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	//room type = dungeon, specifies to which dungeon this room belongs
-	@Column(name="room_type")
-	protected int roomType = 1;
+	@Column(name="type")
+	protected int type = 1;
 	
 	//if this room comes first, second, ... in this dungeon
 	@Column(name="order")
 	protected int order = 1;
 	
-	@Column(name="level_requirement")
-	protected int levelRequirement = 0;
+	@Column(name="lvl_required")
+	protected int lvlRequired = 0;
 	
 	@Column(name="name")
 	protected String name = "Inferno";
@@ -43,6 +43,7 @@ public class CombatRoom extends BasePersistentObject{
 	protected int timeMillisThree = 240000;
 
 
+
 	public UUID getId() {
 		return id;
 	}
@@ -53,13 +54,13 @@ public class CombatRoom extends BasePersistentObject{
 	}
 
 
-	public int getRoomType() {
-		return roomType;
+	public int getType() {
+		return type;
 	}
 
 
-	public void setRoomType(int roomType) {
-		this.roomType = roomType;
+	public void setType(int type) {
+		this.type = type;
 	}
 
 
@@ -73,13 +74,13 @@ public class CombatRoom extends BasePersistentObject{
 	}
 
 
-	public int getLevelRequirement() {
-		return levelRequirement;
+	public int getLvlRequired() {
+		return lvlRequired;
 	}
 
 
-	public void setLevelRequirement(int levelRequirement) {
-		this.levelRequirement = levelRequirement;
+	public void setLvlRequired(int lvlRequired) {
+		this.lvlRequired = lvlRequired;
 	}
 
 
@@ -128,13 +129,13 @@ public class CombatRoom extends BasePersistentObject{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + levelRequirement;
+		result = prime * result + lvlRequired;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + order;
-		result = prime * result + roomType;
 		result = prime * result + timeMillisOne;
 		result = prime * result + timeMillisThree;
 		result = prime * result + timeMillisTwo;
+		result = prime * result + type;
 		return result;
 	}
 
@@ -153,7 +154,7 @@ public class CombatRoom extends BasePersistentObject{
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (levelRequirement != other.levelRequirement)
+		if (lvlRequired != other.lvlRequired)
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -162,13 +163,13 @@ public class CombatRoom extends BasePersistentObject{
 			return false;
 		if (order != other.order)
 			return false;
-		if (roomType != other.roomType)
-			return false;
 		if (timeMillisOne != other.timeMillisOne)
 			return false;
 		if (timeMillisThree != other.timeMillisThree)
 			return false;
 		if (timeMillisTwo != other.timeMillisTwo)
+			return false;
+		if (type != other.type)
 			return false;
 		return true;
 	}
@@ -176,11 +177,10 @@ public class CombatRoom extends BasePersistentObject{
 
 	@Override
 	public String toString() {
-		return "CombatRoom [id=" + id + ", roomType=" + roomType + ", order="
-				+ order + ", levelRequirement=" + levelRequirement + ", name="
-				+ name + ", timeMillisOne=" + timeMillisOne
-				+ ", timeMillisTwo=" + timeMillisTwo + ", timeMillisThree="
-				+ timeMillisThree + "]";
+		return "CombatRoom [id=" + id + ", type=" + type + ", order=" + order
+				+ ", lvlRequired=" + lvlRequired + ", name=" + name
+				+ ", timeMillisOne=" + timeMillisOne + ", timeMillisTwo="
+				+ timeMillisTwo + ", timeMillisThree=" + timeMillisThree + "]";
 	}
 
 
@@ -188,13 +188,13 @@ public class CombatRoom extends BasePersistentObject{
 	public String getTableCreateStatement() {
 		return "create table combat_room (" +
 				" id uuid," +
-				" room_type int," +
-				" order int int," +
-				" level_requirement int," +
+				" type int," +
+				" order int," +
+				" lvl_required int," +
 				" name varchar," +
 				" time_milllis_one int," +
-				" time_millis_two," +
-				" time_millis_three" +
+				" time_millis_two int," +
+				" time_millis_three int," +
 				" num_rooms int," +
 				" primary key (id))" +
 				" with compact storage;";
@@ -212,7 +212,7 @@ public class CombatRoom extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index combat_room_room_type_index on combat_room (room_type);");
+		indexes.add("create index combat_room_type_index on combat_room (type);");
 		
 		return indexes;
 	}

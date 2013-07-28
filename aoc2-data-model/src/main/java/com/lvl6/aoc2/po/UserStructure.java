@@ -42,7 +42,9 @@ public class UserStructure extends BasePersistentObject{
 	protected Date startUpgradeTime = new Date();
 
 	@Column(name="is_upgrading")
-	protected int isUpgrading = 0;
+	protected boolean isUpgrading = false;
+
+
 
 
 	public UUID getId() {
@@ -135,12 +137,12 @@ public class UserStructure extends BasePersistentObject{
 	}
 
 
-	public int getIsUpgrading() {
+	public boolean isUpgrading() {
 		return isUpgrading;
 	}
 
 
-	public void setIsUpgrading(int isUpgrading) {
+	public void setUpgrading(boolean isUpgrading) {
 		this.isUpgrading = isUpgrading;
 	}
 
@@ -150,7 +152,7 @@ public class UserStructure extends BasePersistentObject{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + isUpgrading;
+		result = prime * result + (isUpgrading ? 1231 : 1237);
 		result = prime * result
 				+ ((lastCollectTime == null) ? 0 : lastCollectTime.hashCode());
 		result = prime * result
@@ -237,7 +239,7 @@ public class UserStructure extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table userStructure (" +
+		return "create table user_structure (" +
 				" id uuid," +
 				" user_id uuid," +
 				" structure_id uuid," +
@@ -247,7 +249,7 @@ public class UserStructure extends BasePersistentObject{
 				" purchase_time timestamp," +
 				" last_upgrade_time timestamp," +
 				" start_upgrade_time timestamp," +
-				" is_upgrading int," +
+				" is_upgrading boolean," +
 				" primary key(id))" +
 				" with compact storage;";
 	}
@@ -264,10 +266,10 @@ public class UserStructure extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index is_upgrading_index on userStructure (is_upgrading);");
-		indexes.add("create index last_collect_time_index on userStructure (last_collect_time);");
-		indexes.add("create index user_id_index on userStructure (user_id);");
-		indexes.add("create index structure_id_index on userStructure (structure_id);");
+		indexes.add("create index user_structure_is_upgrading_index on user_structure (is_upgrading);");
+		indexes.add("create index user_structure_last_collect_time_index on user_structure (last_collect_time);");
+		indexes.add("create index user_structure_user_id_index on user_structure (user_id);");
+		indexes.add("create index user_structure_structure_id_index on user_structure (structure_id);");
 		return indexes;
 	}
 	

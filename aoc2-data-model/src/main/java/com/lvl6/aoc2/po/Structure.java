@@ -16,8 +16,8 @@ public class Structure extends BasePersistentObject{
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
-	@Column(name="structure_name")
-	protected String structureName = "";
+	@Column(name="name")
+	protected String name = "";
 	
 	@Column(name="lvl")
 	protected int lvl = 0;
@@ -61,6 +61,7 @@ public class Structure extends BasePersistentObject{
 	
 	
 
+
 	public UUID getId() {
 		return id;
 	}
@@ -71,13 +72,13 @@ public class Structure extends BasePersistentObject{
 	}
 
 
-	public String getStructureName() {
-		return structureName;
+	public String getName() {
+		return name;
 	}
 
 
-	public void setStructureName(String structureName) {
-		this.structureName = structureName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
@@ -127,7 +128,7 @@ public class Structure extends BasePersistentObject{
 
 
 	public void setBuildSpeedupBaseCost(int buildSpeedupBaseCost) {
-		this.buildSpeedupBaseCost= buildSpeedupBaseCost;
+		this.buildSpeedupBaseCost = buildSpeedupBaseCost;
 	}
 
 
@@ -211,8 +212,6 @@ public class Structure extends BasePersistentObject{
 	}
 
 
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -230,30 +229,10 @@ public class Structure extends BasePersistentObject{
 		result = prime * result
 				+ ((imageName == null) ? 0 : imageName.hashCode());
 		result = prime * result + lvl;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + size;
-		result = prime * result
-				+ ((structureName == null) ? 0 : structureName.hashCode());
 		result = prime * result + userLvlRequired;
 		return result;
-	}
-
-	
-
-	@Override
-	public String toString() {
-		return "Structure [id=" + id + ", structureName=" + structureName
-				+ ", lvl=" + lvl + ", buildCost=" + buildCost
-				+ ", buildCostResourceType=" + buildCostResourceType
-				+ ", buildTimeSeconds=" + buildTimeSeconds
-				+ ", buildSpeedupBaseCost=" + buildSpeedupBaseCost
-				+ ", userLvlRequired=" + userLvlRequired + ", size="
-				+ size + ", functionalityType=" + functionalityType
-				+ ", functionalityResourceType=" + functionalityResourceType
-				+ ", functionalityValue=" + functionalityValue
-				+ ", functionalityCapacity=" + functionalityCapacity
-				+ ", functionalitySpeedupBaseCost="
-				+ functionalitySpeedupBaseCost + ", imageName=" + imageName
-				+ "]";
 	}
 
 
@@ -270,9 +249,9 @@ public class Structure extends BasePersistentObject{
 			return false;
 		if (buildCostResourceType != other.buildCostResourceType)
 			return false;
-		if (buildSpeedupBaseCost!= other.buildSpeedupBaseCost)
+		if (buildSpeedupBaseCost != other.buildSpeedupBaseCost)
 			return false;
-		if (buildTimeSeconds!= other.buildTimeSeconds)
+		if (buildTimeSeconds != other.buildTimeSeconds)
 			return false;
 		if (functionalityCapacity != other.functionalityCapacity)
 			return false;
@@ -296,12 +275,12 @@ public class Structure extends BasePersistentObject{
 			return false;
 		if (lvl != other.lvl)
 			return false;
-		if (size != other.size)
-			return false;
-		if (structureName == null) {
-			if (other.structureName != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!structureName.equals(other.structureName))
+		} else if (!name.equals(other.name))
+			return false;
+		if (size != other.size)
 			return false;
 		if (userLvlRequired != other.userLvlRequired)
 			return false;
@@ -310,10 +289,27 @@ public class Structure extends BasePersistentObject{
 
 
 	@Override
+	public String toString() {
+		return "Structure [id=" + id + ", name=" + name + ", lvl=" + lvl
+				+ ", buildCost=" + buildCost + ", buildCostResourceType="
+				+ buildCostResourceType + ", buildTimeSeconds="
+				+ buildTimeSeconds + ", buildSpeedupBaseCost="
+				+ buildSpeedupBaseCost + ", userLvlRequired=" + userLvlRequired
+				+ ", size=" + size + ", functionalityType=" + functionalityType
+				+ ", functionalityResourceType=" + functionalityResourceType
+				+ ", functionalityValue=" + functionalityValue
+				+ ", functionalityCapacity=" + functionalityCapacity
+				+ ", functionalitySpeedupBaseCost="
+				+ functionalitySpeedupBaseCost + ", imageName=" + imageName
+				+ "]";
+	}
+
+
+	@Override
 	public String getTableCreateStatement() {
 		return "create table structure (" +
 				" id uuid," +
-				" structure_name varchar," +
+				" name varchar," +
 				" lvl int," +
 				" build_cost int," +
 				" build_cost_resource_type int," +

@@ -1,6 +1,5 @@
 package com.lvl6.aoc2.po;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -20,16 +19,18 @@ public class RoomReward extends BasePersistentObject{
 	@Column(name="chest_id")
 	protected UUID chestId = UUID.randomUUID();
 	
-	@Column(name="chest_drop_percentage")
-	protected double chestDropPercentage = 0.0;
+	@Column(name="chest_drop_rate")
+	protected double chestDropRate = 0.0;
 	
 	@Column(name="equip_id")
 	protected UUID equipId = UUID.randomUUID();
 
-	@Column(name="equip_drop_percentage")
-	protected double equipDropPercentage = 0.0;
+	@Column(name="equip_drop_rate")
+	protected double equipDropRate = 0.0;
 
 	
+
+
 	public UUID getId() {
 		return id;
 	}
@@ -50,13 +51,13 @@ public class RoomReward extends BasePersistentObject{
 	}
 
 
-	public double getChestDropPercentage() {
-		return chestDropPercentage;
+	public double getChestDropRate() {
+		return chestDropRate;
 	}
 
 
-	public void setChestDropPercentage(double chestDropPercentage) {
-		this.chestDropPercentage = chestDropPercentage;
+	public void setChestDropRate(double chestDropRate) {
+		this.chestDropRate = chestDropRate;
 	}
 
 
@@ -70,13 +71,13 @@ public class RoomReward extends BasePersistentObject{
 	}
 
 
-	public double getEquipDropPercentage() {
-		return equipDropPercentage;
+	public double getEquipDropRate() {
+		return equipDropRate;
 	}
 
 
-	public void setEquipDropPercentage(double equipDropPercentage) {
-		this.equipDropPercentage = equipDropPercentage;
+	public void setEquipDropRate(double equipDropRate) {
+		this.equipDropRate = equipDropRate;
 	}
 
 
@@ -85,10 +86,10 @@ public class RoomReward extends BasePersistentObject{
 		final int prime = 31;
 		int result = 1;
 		long temp;
-		temp = Double.doubleToLongBits(chestDropPercentage);
+		temp = Double.doubleToLongBits(chestDropRate);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((chestId == null) ? 0 : chestId.hashCode());
-		temp = Double.doubleToLongBits(equipDropPercentage);
+		temp = Double.doubleToLongBits(equipDropRate);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((equipId == null) ? 0 : equipId.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -105,16 +106,16 @@ public class RoomReward extends BasePersistentObject{
 		if (getClass() != obj.getClass())
 			return false;
 		RoomReward other = (RoomReward) obj;
-		if (Double.doubleToLongBits(chestDropPercentage) != Double
-				.doubleToLongBits(other.chestDropPercentage))
+		if (Double.doubleToLongBits(chestDropRate) != Double
+				.doubleToLongBits(other.chestDropRate))
 			return false;
 		if (chestId == null) {
 			if (other.chestId != null)
 				return false;
 		} else if (!chestId.equals(other.chestId))
 			return false;
-		if (Double.doubleToLongBits(equipDropPercentage) != Double
-				.doubleToLongBits(other.equipDropPercentage))
+		if (Double.doubleToLongBits(equipDropRate) != Double
+				.doubleToLongBits(other.equipDropRate))
 			return false;
 		if (equipId == null) {
 			if (other.equipId != null)
@@ -133,20 +134,19 @@ public class RoomReward extends BasePersistentObject{
 	@Override
 	public String toString() {
 		return "RoomReward [id=" + id + ", chestId=" + chestId
-				+ ", chestDropPercentage=" + chestDropPercentage + ", equipId="
-				+ equipId + ", equipDropPercentage=" + equipDropPercentage
-				+ "]";
+				+ ", chestDropRate=" + chestDropRate + ", equipId=" + equipId
+				+ ", equipDropRate=" + equipDropRate + "]";
 	}
 
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table roomReward (" +
+		return "create table room_reward (" +
 				" id uuid," +
 				" chest_id int," +
-				" chest_drop_percentage double," +
+				" chest_drop_rate double," +
 				" equip_id int," +
-				" equip_drop_percentage double," +
+				" equip_drop_rate double," +
 				" primary key(id))" +
 				" with compact storage;";
 	}
@@ -163,13 +163,10 @@ public class RoomReward extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index chest_id_index on roomReward (chest_id);");
-		indexes.add("create index equip_id_index on roomReward (equip_id);");
+		indexes.add("create index room_reward_chest_id_index on room_reward (chest_id);");
+		indexes.add("create index room_reward_equip_id_index on room_reward (equip_id);");
 		return indexes;
 	}
-	
-	
-	
 	
 	
 }

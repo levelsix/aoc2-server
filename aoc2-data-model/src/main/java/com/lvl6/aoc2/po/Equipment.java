@@ -1,6 +1,5 @@
 package com.lvl6.aoc2.po;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -17,14 +16,14 @@ public class Equipment extends BasePersistentObject{
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
-	@Column(name="equip_name")
-	protected String equipName = "";
+	@Column(name="name")
+	protected String name = "";
 	
 	@Column(name="level")
 	protected int level = 0;
 	
-	@Column(name="equip_type")
-	protected int equipType = 0;
+	@Column(name="type")
+	protected int type = 0;
 	
 	@Column(name="durability")
 	protected int durability = 0;
@@ -44,13 +43,15 @@ public class Equipment extends BasePersistentObject{
 	@Column(name="rarity")
 	protected int rarity = 0;
 
-	@Column(name="level_requirement")
-	protected int levelRequirement = 0;
+	@Column(name="class_required")
+	protected int classRequired = 0;
+	
+	@Column(name="lvl_required")
+	protected int lvlRequired = 0;
+	
+	
 
-	@Column(name="class_requirement")
-	protected int classRequirement = 0;
-	
-	
+
 	public UUID getId() {
 		return id;
 	}
@@ -61,13 +62,13 @@ public class Equipment extends BasePersistentObject{
 	}
 
 
-	public String getEquipName() {
-		return equipName;
+	public String getName() {
+		return name;
 	}
 
 
-	public void setEquipName(String equipName) {
-		this.equipName = equipName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
@@ -81,13 +82,13 @@ public class Equipment extends BasePersistentObject{
 	}
 
 
-	public int getEquipType() {
-		return equipType;
+	public int getType() {
+		return type;
 	}
 
 
-	public void setEquipType(int equipType) {
-		this.equipType = equipType;
+	public void setType(int type) {
+		this.type = type;
 	}
 
 
@@ -151,23 +152,23 @@ public class Equipment extends BasePersistentObject{
 	}
 
 
-	public int getLevelRequirement() {
-		return levelRequirement;
+	public int getClassRequired() {
+		return classRequired;
 	}
 
 
-	public void setLevelRequirement(int levelRequirement) {
-		this.levelRequirement = levelRequirement;
+	public void setClassRequired(int classRequired) {
+		this.classRequired = classRequired;
 	}
 
 
-	public int getClassRequirement() {
-		return classRequirement;
+	public int getLvlRequired() {
+		return lvlRequired;
 	}
 
 
-	public void setClassRequirement(int classRequirement) {
-		this.classRequirement = classRequirement;
+	public void setLvlRequired(int lvlRequired) {
+		this.lvlRequired = lvlRequired;
 	}
 
 
@@ -178,16 +179,15 @@ public class Equipment extends BasePersistentObject{
 		result = prime * result + additionalHp;
 		result = prime * result + additionalMana;
 		result = prime * result + attack;
-		result = prime * result + classRequirement;
+		result = prime * result + classRequired;
 		result = prime * result + defense;
 		result = prime * result + durability;
-		result = prime * result
-				+ ((equipName == null) ? 0 : equipName.hashCode());
-		result = prime * result + equipType;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + level;
-		result = prime * result + levelRequirement;
+		result = prime * result + lvlRequired;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + rarity;
+		result = prime * result + type;
 		return result;
 	}
 
@@ -207,18 +207,11 @@ public class Equipment extends BasePersistentObject{
 			return false;
 		if (attack != other.attack)
 			return false;
-		if (classRequirement != other.classRequirement)
+		if (classRequired != other.classRequired)
 			return false;
 		if (defense != other.defense)
 			return false;
 		if (durability != other.durability)
-			return false;
-		if (equipName == null) {
-			if (other.equipName != null)
-				return false;
-		} else if (!equipName.equals(other.equipName))
-			return false;
-		if (equipType != other.equipType)
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -227,9 +220,16 @@ public class Equipment extends BasePersistentObject{
 			return false;
 		if (level != other.level)
 			return false;
-		if (levelRequirement != other.levelRequirement)
+		if (lvlRequired != other.lvlRequired)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
 			return false;
 		if (rarity != other.rarity)
+			return false;
+		if (type != other.type)
 			return false;
 		return true;
 	}
@@ -237,13 +237,12 @@ public class Equipment extends BasePersistentObject{
 
 	@Override
 	public String toString() {
-		return "Equipment [id=" + id + ", equipName=" + equipName + ", level="
-				+ level + ", equipType=" + equipType + ", durability="
-				+ durability + ", attack=" + attack + ", defense=" + defense
-				+ ", additionalHp=" + additionalHp + ", additionalMana="
-				+ additionalMana + ", rarity=" + rarity + ", levelRequirement="
-				+ levelRequirement + ", classRequirement=" + classRequirement
-				+ "]";
+		return "Equipment [id=" + id + ", name=" + name + ", level=" + level
+				+ ", type=" + type + ", durability=" + durability + ", attack="
+				+ attack + ", defense=" + defense + ", additionalHp="
+				+ additionalHp + ", additionalMana=" + additionalMana
+				+ ", rarity=" + rarity + ", classRequired=" + classRequired
+				+ ", lvlRequired=" + lvlRequired + "]";
 	}
 
 
@@ -251,17 +250,17 @@ public class Equipment extends BasePersistentObject{
 	public String getTableCreateStatement() {
 		return "create table user (" +
 				" id uuid," +
-				" equip_name varchar," +
+				" name varchar," +
 				" level int," +
-				" equip_type int," +
+				" type int," +
 				" durability int," +
 				" attack int," +
 				" defense int," +
 				" additional_hp int," +
 				" additional_mana int," +
 				" rarity int," +
-				" level_requirement int," +
-				" class_requirement int," +
+				" class_required int," +
+				" lvl_required int," +
 				" primary key(id))" +
 				" with compact storage;";
 	}
@@ -278,15 +277,11 @@ public class Equipment extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index rarity_index on equipment (rarity);");
-		indexes.add("create index class_requirement_index on equipment (class_requirement);");
+		indexes.add("create index equipment_type_index on equipment (type);");
+		indexes.add("create index equipment_rarity_index on equipment (rarity);");
+		indexes.add("create index equipment_class_required_index on equipment (class_required);");
+		indexes.add("create index equipment_lvl_required_index on equipment (lvl_required);");
 		return indexes;
 	}
-	
-
-	
-	
-	
-	
 	
 }
