@@ -36,6 +36,7 @@ target/
 *.DS_Store
 *.swp
 *.out
+*.cache
 #*.p12
 
 ## 
