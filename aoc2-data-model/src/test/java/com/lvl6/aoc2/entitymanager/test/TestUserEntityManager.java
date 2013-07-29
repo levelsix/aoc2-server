@@ -55,7 +55,7 @@ public class TestUserEntityManager {
 	public void testCreatingUser() throws ConnectionException{
 		User user = new User();
 		//user.setEmail("anyone@anyserver.com");
-		user.setUserName("someUser");
+		user.setName("someUser");
 		log.info("Saving user: {}", user);
 		um.get().put(user);
 		ColumnList<String> cl = cassandra.getKeyspace().prepareQuery(um.getColumnFamily()).getKey(user.getId()).execute().getResult();
@@ -65,7 +65,7 @@ public class TestUserEntityManager {
 		}
 		User user2 = um.get().get(user.getId());
 		assertNotNull(user2);
-		assertTrue("Usernames equal", user.getUserName().equals(user2.getUserName()));
+		assertTrue("Usernames equal", user.getName().equals(user2.getName()));
 		//assertTrue("Emails equal", user.getEmail().equals(user2.getEmail()));
 	}
 }
