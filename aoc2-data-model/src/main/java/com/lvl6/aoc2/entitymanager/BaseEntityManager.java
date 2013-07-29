@@ -30,6 +30,7 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 	protected Class<Ky> key;
 
     public BaseEntityManager(Class<Clas> type, Class<Ky> key) { 
+    	super();
     	this.type = type; 
     	this.key = key;
     }
@@ -37,9 +38,6 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 	
 	protected EntityManager<Clas, Ky> em;
 	
-	public BaseEntityManager() {
-		super();
-	}
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -55,7 +53,7 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 
 	protected void createColumnFamily() throws ConnectionException {
 		try {
-		columnFamily = new ColumnFamily<Ky, String>(type.getSimpleName().toLowerCase(), getSerializer(), StringSerializer.get());
+			columnFamily = new ColumnFamily<Ky, String>(type.getSimpleName().toLowerCase(), getSerializer(), StringSerializer.get());
 		//cassandra.getKeyspace().createColumnFamily(columnFamily, getIndexes());
 		}catch(Exception e) {
 			log.info("Column family {} already exists", columnFamily.getName());
