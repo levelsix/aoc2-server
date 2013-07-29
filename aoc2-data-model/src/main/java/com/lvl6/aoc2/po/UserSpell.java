@@ -1,5 +1,6 @@
 package com.lvl6.aoc2.po;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -25,6 +26,8 @@ public class UserSpell extends BasePersistentObject{
 	@Column(name="spell_lvl")
 	protected UUID spellLvl = UUID.randomUUID();
 	
+	@Column(name="time_acquired")
+	protected Date timeAcquired = new Date();
 
 
 	public UUID getId() {
@@ -67,6 +70,16 @@ public class UserSpell extends BasePersistentObject{
 	}
 
 
+	public Date getTimeAcquired() {
+		return timeAcquired;
+	}
+
+
+	public void setTimeAcquired(Date timeAcquired) {
+		this.timeAcquired = timeAcquired;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -75,6 +88,8 @@ public class UserSpell extends BasePersistentObject{
 		result = prime * result + ((spellId == null) ? 0 : spellId.hashCode());
 		result = prime * result
 				+ ((spellLvl == null) ? 0 : spellLvl.hashCode());
+		result = prime * result
+				+ ((timeAcquired == null) ? 0 : timeAcquired.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
 	}
@@ -104,6 +119,11 @@ public class UserSpell extends BasePersistentObject{
 				return false;
 		} else if (!spellLvl.equals(other.spellLvl))
 			return false;
+		if (timeAcquired == null) {
+			if (other.timeAcquired != null)
+				return false;
+		} else if (!timeAcquired.equals(other.timeAcquired))
+			return false;
 		if (userId == null) {
 			if (other.userId != null)
 				return false;
@@ -116,7 +136,8 @@ public class UserSpell extends BasePersistentObject{
 	@Override
 	public String toString() {
 		return "UserSpell [id=" + id + ", userId=" + userId + ", spellId="
-				+ spellId + ", spellLvl=" + spellLvl + "]";
+				+ spellId + ", spellLvl=" + spellLvl + ", timeAcquired="
+				+ timeAcquired + "]";
 	}
 
 
@@ -127,6 +148,7 @@ public class UserSpell extends BasePersistentObject{
 				" user_id uuid," +
 				" spell_id uuid," +
 				" spell_lvl int," +
+				" time_acquired timestamp," +
 				" primary key(id))" +
 				" with compact storage;";
 	}
