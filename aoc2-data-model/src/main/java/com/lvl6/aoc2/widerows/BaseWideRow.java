@@ -70,6 +70,7 @@ abstract public class BaseWideRow<Ky, Col, Val> implements InitializingBean {
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		createColumnFamily();
+		createTable();
 	}
 	
 	
