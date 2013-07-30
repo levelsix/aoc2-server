@@ -2,8 +2,9 @@
 import "ClassType.proto";
 import "ResourceType.proto";
 
-package com.lvl6.aoc2.proto;
+package proto;
 
+option java_package = "com.lvl6.aoc2.noneventprotos";
 option java_outer_classname = "Spell";
 
 message SpellProto {
