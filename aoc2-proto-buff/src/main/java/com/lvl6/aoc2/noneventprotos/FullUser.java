@@ -1312,11 +1312,673 @@ public final class FullUser {
     // @@protoc_insertion_point(class_scope:proto.FullUserProto)
   }
   
+  public interface MinimumUserProtoOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional string userID = 1;
+    boolean hasUserID();
+    String getUserID();
+    
+    // optional string gameCenterId = 2;
+    boolean hasGameCenterId();
+    String getGameCenterId();
+    
+    // optional string udid = 3;
+    boolean hasUdid();
+    String getUdid();
+    
+    // optional string name = 4;
+    boolean hasName();
+    String getName();
+  }
+  public static final class MinimumUserProto extends
+      com.google.protobuf.GeneratedMessage
+      implements MinimumUserProtoOrBuilder {
+    // Use MinimumUserProto.newBuilder() to construct.
+    private MinimumUserProto(Builder builder) {
+      super(builder);
+    }
+    private MinimumUserProto(boolean noInit) {}
+    
+    private static final MinimumUserProto defaultInstance;
+    public static MinimumUserProto getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public MinimumUserProto getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.lvl6.aoc2.noneventprotos.FullUser.internal_static_proto_MinimumUserProto_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.lvl6.aoc2.noneventprotos.FullUser.internal_static_proto_MinimumUserProto_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // optional string userID = 1;
+    public static final int USERID_FIELD_NUMBER = 1;
+    private java.lang.Object userID_;
+    public boolean hasUserID() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getUserID() {
+      java.lang.Object ref = userID_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          userID_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getUserIDBytes() {
+      java.lang.Object ref = userID_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        userID_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string gameCenterId = 2;
+    public static final int GAMECENTERID_FIELD_NUMBER = 2;
+    private java.lang.Object gameCenterId_;
+    public boolean hasGameCenterId() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public String getGameCenterId() {
+      java.lang.Object ref = gameCenterId_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          gameCenterId_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getGameCenterIdBytes() {
+      java.lang.Object ref = gameCenterId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        gameCenterId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string udid = 3;
+    public static final int UDID_FIELD_NUMBER = 3;
+    private java.lang.Object udid_;
+    public boolean hasUdid() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public String getUdid() {
+      java.lang.Object ref = udid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          udid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getUdidBytes() {
+      java.lang.Object ref = udid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        udid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional string name = 4;
+    public static final int NAME_FIELD_NUMBER = 4;
+    private java.lang.Object name_;
+    public boolean hasName() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          name_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    private void initFields() {
+      userID_ = "";
+      gameCenterId_ = "";
+      udid_ = "";
+      name_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getUserIDBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getGameCenterIdBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getUdidBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, getNameBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getUserIDBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getGameCenterIdBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getUdidBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getNameBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.lvl6.aoc2.noneventprotos.FullUser.internal_static_proto_MinimumUserProto_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.lvl6.aoc2.noneventprotos.FullUser.internal_static_proto_MinimumUserProto_fieldAccessorTable;
+      }
+      
+      // Construct using com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        userID_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        gameCenterId_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        udid_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        name_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDescriptor();
+      }
+      
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getDefaultInstanceForType() {
+        return com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+      }
+      
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto build() {
+        com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto buildPartial() {
+        com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto result = new com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.userID_ = userID_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.gameCenterId_ = gameCenterId_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.udid_ = udid_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.name_ = name_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto) {
+          return mergeFrom((com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto other) {
+        if (other == com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance()) return this;
+        if (other.hasUserID()) {
+          setUserID(other.getUserID());
+        }
+        if (other.hasGameCenterId()) {
+          setGameCenterId(other.getGameCenterId());
+        }
+        if (other.hasUdid()) {
+          setUdid(other.getUdid());
+        }
+        if (other.hasName()) {
+          setName(other.getName());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              userID_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              gameCenterId_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              udid_ = input.readBytes();
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000008;
+              name_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // optional string userID = 1;
+      private java.lang.Object userID_ = "";
+      public boolean hasUserID() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getUserID() {
+        java.lang.Object ref = userID_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          userID_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setUserID(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        userID_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearUserID() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        userID_ = getDefaultInstance().getUserID();
+        onChanged();
+        return this;
+      }
+      void setUserID(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        userID_ = value;
+        onChanged();
+      }
+      
+      // optional string gameCenterId = 2;
+      private java.lang.Object gameCenterId_ = "";
+      public boolean hasGameCenterId() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public String getGameCenterId() {
+        java.lang.Object ref = gameCenterId_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          gameCenterId_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setGameCenterId(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        gameCenterId_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearGameCenterId() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        gameCenterId_ = getDefaultInstance().getGameCenterId();
+        onChanged();
+        return this;
+      }
+      void setGameCenterId(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        gameCenterId_ = value;
+        onChanged();
+      }
+      
+      // optional string udid = 3;
+      private java.lang.Object udid_ = "";
+      public boolean hasUdid() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public String getUdid() {
+        java.lang.Object ref = udid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          udid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setUdid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        udid_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearUdid() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        udid_ = getDefaultInstance().getUdid();
+        onChanged();
+        return this;
+      }
+      void setUdid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000004;
+        udid_ = value;
+        onChanged();
+      }
+      
+      // optional string name = 4;
+      private java.lang.Object name_ = "";
+      public boolean hasName() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setName(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearName() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      void setName(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000008;
+        name_ = value;
+        onChanged();
+      }
+      
+      // @@protoc_insertion_point(builder_scope:proto.MinimumUserProto)
+    }
+    
+    static {
+      defaultInstance = new MinimumUserProto(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:proto.MinimumUserProto)
+  }
+  
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_proto_FullUserProto_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_proto_FullUserProto_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_proto_MinimumUserProto_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_proto_MinimumUserProto_fieldAccessorTable;
   
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1335,8 +1997,10 @@ public final class FullUser {
       "\022\027\n\017lastHealthRegen\030\013 \001(\003\022\020\n\010lastMana\030\014 " +
       "\001(\005\022\017\n\007maxMana\030\r \001(\005\022\030\n\020lastManaRecovery" +
       "\030\016 \001(\003\022\024\n\014gameCenterID\030\017 \001(\005\022\023\n\013dateCrea" +
-      "ted\030\020 \001(\003\022\016\n\006clanID\030\021 \001(\005B(\n\034com.lvl6.ao",
-      "c2.noneventprotosB\010FullUser"
+      "ted\030\020 \001(\003\022\016\n\006clanID\030\021 \001(\005\"T\n\020MinimumUser",
+      "Proto\022\016\n\006userID\030\001 \001(\t\022\024\n\014gameCenterId\030\002 " +
+      "\001(\t\022\014\n\004udid\030\003 \001(\t\022\014\n\004name\030\004 \001(\tB(\n\034com.l" +
+      "vl6.aoc2.noneventprotosB\010FullUser"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1351,6 +2015,14 @@ public final class FullUser {
               new java.lang.String[] { "UserID", "Level", "Name", "Exp", "Gold", "Tonic", "Gems", "ClassType", "LastHealth", "MaxHealth", "LastHealthRegen", "LastMana", "MaxMana", "LastManaRecovery", "GameCenterID", "DateCreated", "ClanID", },
               com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.class,
               com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.Builder.class);
+          internal_static_proto_MinimumUserProto_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+          internal_static_proto_MinimumUserProto_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_proto_MinimumUserProto_descriptor,
+              new java.lang.String[] { "UserID", "GameCenterId", "Udid", "Name", },
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.class,
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder.class);
           return null;
         }
       };

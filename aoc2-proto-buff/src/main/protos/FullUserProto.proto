@@ -25,3 +25,10 @@ message FullUserProto {
 	optional int64 dateCreated = 16;
 	optional int32 clanID = 17;
 }
+
+message MinimumUserProto {
+	optional string userID = 1;
+	optional string gameCenterId = 2;
+	optional string udid = 3;
+	optional string name = 4;
+}

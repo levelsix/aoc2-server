@@ -1,17 +1,19 @@
 
+import "FullUserProto.proto";
+
 package proto;
 
 option java_package = "com.lvl6.aoc2.eventprotos";
 option java_outer_classname = "RefillHpOrManaWithConsumableEventProto";
 
 message RefillHpOrManaWithConsumableRequestProto {
-	//optional user object = 1;
+	optional MinimumUserProto mup = 1;
 	optional string userConsumableId = 2;
 	optional int64 startTime = 3; //time user refilled
 }
 
 message RefillHpOrManaWithConsumableResponseProto {
-	//optional user object = 1;
+	optional MinimumUserProto mup = 1;
 	optional RefillHpOrManaWithConsumableStatus status = 2;
 	
 	

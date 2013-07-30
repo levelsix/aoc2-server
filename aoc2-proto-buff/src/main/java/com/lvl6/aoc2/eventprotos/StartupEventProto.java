@@ -10,6 +10,11 @@ public final class StartupEventProto {
   }
   public interface StartupRequestProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional .proto.MinimumUserProto mup = 1;
+    boolean hasMup();
+    com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup();
+    com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder();
   }
   public static final class StartupRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -108,7 +113,22 @@ public final class StartupEventProto {
       // @@protoc_insertion_point(enum_scope:proto.StartupRequestProto.LoginType)
     }
     
+    private int bitField0_;
+    // optional .proto.MinimumUserProto mup = 1;
+    public static final int MUP_FIELD_NUMBER = 1;
+    private com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto mup_;
+    public boolean hasMup() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup() {
+      return mup_;
+    }
+    public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder() {
+      return mup_;
+    }
+    
     private void initFields() {
+      mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -122,6 +142,9 @@ public final class StartupEventProto {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeMessage(1, mup_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -131,6 +154,10 @@ public final class StartupEventProto {
       if (size != -1) return size;
     
       size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, mup_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
@@ -247,6 +274,7 @@ public final class StartupEventProto {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getMupFieldBuilder();
         }
       }
       private static Builder create() {
@@ -255,6 +283,12 @@ public final class StartupEventProto {
       
       public Builder clear() {
         super.clear();
+        if (mupBuilder_ == null) {
+          mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+        } else {
+          mupBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
       
@@ -291,6 +325,17 @@ public final class StartupEventProto {
       
       public com.lvl6.aoc2.eventprotos.StartupEventProto.StartupRequestProto buildPartial() {
         com.lvl6.aoc2.eventprotos.StartupEventProto.StartupRequestProto result = new com.lvl6.aoc2.eventprotos.StartupEventProto.StartupRequestProto(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        if (mupBuilder_ == null) {
+          result.mup_ = mup_;
+        } else {
+          result.mup_ = mupBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
       }
@@ -306,6 +351,9 @@ public final class StartupEventProto {
       
       public Builder mergeFrom(com.lvl6.aoc2.eventprotos.StartupEventProto.StartupRequestProto other) {
         if (other == com.lvl6.aoc2.eventprotos.StartupEventProto.StartupRequestProto.getDefaultInstance()) return this;
+        if (other.hasMup()) {
+          mergeMup(other.getMup());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -337,10 +385,110 @@ public final class StartupEventProto {
               }
               break;
             }
+            case 10: {
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder subBuilder = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.newBuilder();
+              if (hasMup()) {
+                subBuilder.mergeFrom(getMup());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setMup(subBuilder.buildPartial());
+              break;
+            }
           }
         }
       }
       
+      private int bitField0_;
+      
+      // optional .proto.MinimumUserProto mup = 1;
+      private com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder> mupBuilder_;
+      public boolean hasMup() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup() {
+        if (mupBuilder_ == null) {
+          return mup_;
+        } else {
+          return mupBuilder_.getMessage();
+        }
+      }
+      public Builder setMup(com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto value) {
+        if (mupBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          mup_ = value;
+          onChanged();
+        } else {
+          mupBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder setMup(
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder builderForValue) {
+        if (mupBuilder_ == null) {
+          mup_ = builderForValue.build();
+          onChanged();
+        } else {
+          mupBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder mergeMup(com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto value) {
+        if (mupBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              mup_ != com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance()) {
+            mup_ =
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.newBuilder(mup_).mergeFrom(value).buildPartial();
+          } else {
+            mup_ = value;
+          }
+          onChanged();
+        } else {
+          mupBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder clearMup() {
+        if (mupBuilder_ == null) {
+          mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+          onChanged();
+        } else {
+          mupBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder getMupBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getMupFieldBuilder().getBuilder();
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder() {
+        if (mupBuilder_ != null) {
+          return mupBuilder_.getMessageOrBuilder();
+        } else {
+          return mup_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder> 
+          getMupFieldBuilder() {
+        if (mupBuilder_ == null) {
+          mupBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder>(
+                  mup_,
+                  getParentForChildren(),
+                  isClean());
+          mup_ = null;
+        }
+        return mupBuilder_;
+      }
       
       // @@protoc_insertion_point(builder_scope:proto.StartupRequestProto)
     }
@@ -355,6 +503,11 @@ public final class StartupEventProto {
   
   public interface StartupResponseProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional .proto.MinimumUserProto mup = 1;
+    boolean hasMup();
+    com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup();
+    com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder();
     
     // optional int64 currentServerTime = 2;
     boolean hasCurrentServerTime();
@@ -462,11 +615,24 @@ public final class StartupEventProto {
     }
     
     private int bitField0_;
+    // optional .proto.MinimumUserProto mup = 1;
+    public static final int MUP_FIELD_NUMBER = 1;
+    private com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto mup_;
+    public boolean hasMup() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup() {
+      return mup_;
+    }
+    public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder() {
+      return mup_;
+    }
+    
     // optional int64 currentServerTime = 2;
     public static final int CURRENTSERVERTIME_FIELD_NUMBER = 2;
     private long currentServerTime_;
     public boolean hasCurrentServerTime() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public long getCurrentServerTime() {
       return currentServerTime_;
@@ -476,13 +642,14 @@ public final class StartupEventProto {
     public static final int STATUS_FIELD_NUMBER = 3;
     private com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus status_;
     public boolean hasStatus() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus getStatus() {
       return status_;
     }
     
     private void initFields() {
+      mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
       currentServerTime_ = 0L;
       status_ = com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus.SUCCESS;
     }
@@ -499,9 +666,12 @@ public final class StartupEventProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt64(2, currentServerTime_);
+        output.writeMessage(1, mup_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt64(2, currentServerTime_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeEnum(3, status_.getNumber());
       }
       getUnknownFields().writeTo(output);
@@ -515,9 +685,13 @@ public final class StartupEventProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(2, currentServerTime_);
+          .computeMessageSize(1, mup_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(2, currentServerTime_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, status_.getNumber());
       }
@@ -637,6 +811,7 @@ public final class StartupEventProto {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getMupFieldBuilder();
         }
       }
       private static Builder create() {
@@ -645,10 +820,16 @@ public final class StartupEventProto {
       
       public Builder clear() {
         super.clear();
-        currentServerTime_ = 0L;
+        if (mupBuilder_ == null) {
+          mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+        } else {
+          mupBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000001);
-        status_ = com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus.SUCCESS;
+        currentServerTime_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000002);
+        status_ = com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus.SUCCESS;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -690,9 +871,17 @@ public final class StartupEventProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.currentServerTime_ = currentServerTime_;
+        if (mupBuilder_ == null) {
+          result.mup_ = mup_;
+        } else {
+          result.mup_ = mupBuilder_.build();
+        }
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
+        }
+        result.currentServerTime_ = currentServerTime_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
         }
         result.status_ = status_;
         result.bitField0_ = to_bitField0_;
@@ -711,6 +900,9 @@ public final class StartupEventProto {
       
       public Builder mergeFrom(com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto other) {
         if (other == com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.getDefaultInstance()) return this;
+        if (other.hasMup()) {
+          mergeMup(other.getMup());
+        }
         if (other.hasCurrentServerTime()) {
           setCurrentServerTime(other.getCurrentServerTime());
         }
@@ -748,8 +940,17 @@ public final class StartupEventProto {
               }
               break;
             }
+            case 10: {
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder subBuilder = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.newBuilder();
+              if (hasMup()) {
+                subBuilder.mergeFrom(getMup());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setMup(subBuilder.buildPartial());
+              break;
+            }
             case 16: {
-              bitField0_ |= 0x00000001;
+              bitField0_ |= 0x00000002;
               currentServerTime_ = input.readInt64();
               break;
             }
@@ -759,7 +960,7 @@ public final class StartupEventProto {
               if (value == null) {
                 unknownFields.mergeVarintField(3, rawValue);
               } else {
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000004;
                 status_ = value;
               }
               break;
@@ -770,22 +971,112 @@ public final class StartupEventProto {
       
       private int bitField0_;
       
+      // optional .proto.MinimumUserProto mup = 1;
+      private com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder> mupBuilder_;
+      public boolean hasMup() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup() {
+        if (mupBuilder_ == null) {
+          return mup_;
+        } else {
+          return mupBuilder_.getMessage();
+        }
+      }
+      public Builder setMup(com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto value) {
+        if (mupBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          mup_ = value;
+          onChanged();
+        } else {
+          mupBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder setMup(
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder builderForValue) {
+        if (mupBuilder_ == null) {
+          mup_ = builderForValue.build();
+          onChanged();
+        } else {
+          mupBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder mergeMup(com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto value) {
+        if (mupBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              mup_ != com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance()) {
+            mup_ =
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.newBuilder(mup_).mergeFrom(value).buildPartial();
+          } else {
+            mup_ = value;
+          }
+          onChanged();
+        } else {
+          mupBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder clearMup() {
+        if (mupBuilder_ == null) {
+          mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+          onChanged();
+        } else {
+          mupBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder getMupBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getMupFieldBuilder().getBuilder();
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder() {
+        if (mupBuilder_ != null) {
+          return mupBuilder_.getMessageOrBuilder();
+        } else {
+          return mup_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder> 
+          getMupFieldBuilder() {
+        if (mupBuilder_ == null) {
+          mupBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder>(
+                  mup_,
+                  getParentForChildren(),
+                  isClean());
+          mup_ = null;
+        }
+        return mupBuilder_;
+      }
+      
       // optional int64 currentServerTime = 2;
       private long currentServerTime_ ;
       public boolean hasCurrentServerTime() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public long getCurrentServerTime() {
         return currentServerTime_;
       }
       public Builder setCurrentServerTime(long value) {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         currentServerTime_ = value;
         onChanged();
         return this;
       }
       public Builder clearCurrentServerTime() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         currentServerTime_ = 0L;
         onChanged();
         return this;
@@ -794,7 +1085,7 @@ public final class StartupEventProto {
       // optional .proto.StartupResponseProto.StartupStatus status = 3;
       private com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus status_ = com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus.SUCCESS;
       public boolean hasStatus() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus getStatus() {
         return status_;
@@ -803,13 +1094,13 @@ public final class StartupEventProto {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         status_ = value;
         onChanged();
         return this;
       }
       public Builder clearStatus() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         status_ = com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus.SUCCESS;
         onChanged();
         return this;
@@ -845,14 +1136,16 @@ public final class StartupEventProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\022StartupEvent.proto\022\005proto\"@\n\023StartupRe" +
-      "questProto\")\n\tLoginType\022\022\n\016GAME_CENTER_I" +
-      "D\020\000\022\010\n\004UDID\020\001\"\232\001\n\024StartupResponseProto\022\031" +
-      "\n\021currentServerTime\030\002 \001(\003\0229\n\006status\030\003 \001(" +
-      "\0162).proto.StartupResponseProto.StartupSt" +
-      "atus\",\n\rStartupStatus\022\013\n\007SUCCESS\020\000\022\016\n\nFA" +
-      "IL_OTHER\020\004B.\n\031com.lvl6.aoc2.eventprotosB" +
-      "\021StartupEventProto"
+      "\n\022StartupEvent.proto\022\005proto\032\023FullUserPro" +
+      "to.proto\"f\n\023StartupRequestProto\022$\n\003mup\030\001" +
+      " \001(\0132\027.proto.MinimumUserProto\")\n\tLoginTy" +
+      "pe\022\022\n\016GAME_CENTER_ID\020\000\022\010\n\004UDID\020\001\"\300\001\n\024Sta" +
+      "rtupResponseProto\022$\n\003mup\030\001 \001(\0132\027.proto.M" +
+      "inimumUserProto\022\031\n\021currentServerTime\030\002 \001" +
+      "(\003\0229\n\006status\030\003 \001(\0162).proto.StartupRespon" +
+      "seProto.StartupStatus\",\n\rStartupStatus\022\013" +
+      "\n\007SUCCESS\020\000\022\016\n\nFAIL_OTHER\020\004B.\n\031com.lvl6." +
+      "aoc2.eventprotosB\021StartupEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -864,7 +1157,7 @@ public final class StartupEventProto {
           internal_static_proto_StartupRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StartupRequestProto_descriptor,
-              new java.lang.String[] { },
+              new java.lang.String[] { "Mup", },
               com.lvl6.aoc2.eventprotos.StartupEventProto.StartupRequestProto.class,
               com.lvl6.aoc2.eventprotos.StartupEventProto.StartupRequestProto.Builder.class);
           internal_static_proto_StartupResponseProto_descriptor =
@@ -872,7 +1165,7 @@ public final class StartupEventProto {
           internal_static_proto_StartupResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StartupResponseProto_descriptor,
-              new java.lang.String[] { "CurrentServerTime", "Status", },
+              new java.lang.String[] { "Mup", "CurrentServerTime", "Status", },
               com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.class,
               com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.Builder.class);
           return null;
@@ -881,6 +1174,7 @@ public final class StartupEventProto {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.lvl6.aoc2.noneventprotos.FullUser.getDescriptor(),
         }, assigner);
   }
   

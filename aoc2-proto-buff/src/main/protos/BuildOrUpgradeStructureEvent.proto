@@ -1,4 +1,6 @@
 
+import "FullUserProto.proto";
+
 package proto;
 
 option java_package = "com.lvl6.aoc2.eventprotos";
@@ -7,12 +9,12 @@ option java_outer_classname = "BuildOrUpgradeStructureEventProto";
 //user can build more buildings later on
 
 message BuildOrUpgradeStructureRequestProto {
-	//optional user object = 1;
+	optional MinimumUserProto mup = 1;
 	optional string structureId = 2;
 }
 
 message BuildOrUpgradeStructureResponseProto {
-	//optional user object = 1;
+	optional MinimumUserProto mup = 1;
 	optional BuildOrUpgradeStructureStatus status = 2;
 	
 	

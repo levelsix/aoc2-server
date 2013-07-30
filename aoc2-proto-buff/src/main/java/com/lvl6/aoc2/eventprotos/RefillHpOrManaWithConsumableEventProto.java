@@ -11,6 +11,11 @@ public final class RefillHpOrManaWithConsumableEventProto {
   public interface RefillHpOrManaWithConsumableRequestProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
+    // optional .proto.MinimumUserProto mup = 1;
+    boolean hasMup();
+    com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup();
+    com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder();
+    
     // optional string userConsumableId = 2;
     boolean hasUserConsumableId();
     String getUserConsumableId();
@@ -48,11 +53,24 @@ public final class RefillHpOrManaWithConsumableEventProto {
     }
     
     private int bitField0_;
+    // optional .proto.MinimumUserProto mup = 1;
+    public static final int MUP_FIELD_NUMBER = 1;
+    private com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto mup_;
+    public boolean hasMup() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup() {
+      return mup_;
+    }
+    public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder() {
+      return mup_;
+    }
+    
     // optional string userConsumableId = 2;
     public static final int USERCONSUMABLEID_FIELD_NUMBER = 2;
     private java.lang.Object userConsumableId_;
     public boolean hasUserConsumableId() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public String getUserConsumableId() {
       java.lang.Object ref = userConsumableId_;
@@ -84,13 +102,14 @@ public final class RefillHpOrManaWithConsumableEventProto {
     public static final int STARTTIME_FIELD_NUMBER = 3;
     private long startTime_;
     public boolean hasStartTime() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public long getStartTime() {
       return startTime_;
     }
     
     private void initFields() {
+      mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
       userConsumableId_ = "";
       startTime_ = 0L;
     }
@@ -107,9 +126,12 @@ public final class RefillHpOrManaWithConsumableEventProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(2, getUserConsumableIdBytes());
+        output.writeMessage(1, mup_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getUserConsumableIdBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeInt64(3, startTime_);
       }
       getUnknownFields().writeTo(output);
@@ -123,9 +145,13 @@ public final class RefillHpOrManaWithConsumableEventProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getUserConsumableIdBytes());
+          .computeMessageSize(1, mup_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getUserConsumableIdBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(3, startTime_);
       }
@@ -245,6 +271,7 @@ public final class RefillHpOrManaWithConsumableEventProto {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getMupFieldBuilder();
         }
       }
       private static Builder create() {
@@ -253,10 +280,16 @@ public final class RefillHpOrManaWithConsumableEventProto {
       
       public Builder clear() {
         super.clear();
-        userConsumableId_ = "";
+        if (mupBuilder_ == null) {
+          mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+        } else {
+          mupBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000001);
-        startTime_ = 0L;
+        userConsumableId_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
+        startTime_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -298,9 +331,17 @@ public final class RefillHpOrManaWithConsumableEventProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.userConsumableId_ = userConsumableId_;
+        if (mupBuilder_ == null) {
+          result.mup_ = mup_;
+        } else {
+          result.mup_ = mupBuilder_.build();
+        }
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
+        }
+        result.userConsumableId_ = userConsumableId_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
         }
         result.startTime_ = startTime_;
         result.bitField0_ = to_bitField0_;
@@ -319,6 +360,9 @@ public final class RefillHpOrManaWithConsumableEventProto {
       
       public Builder mergeFrom(com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableRequestProto other) {
         if (other == com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableRequestProto.getDefaultInstance()) return this;
+        if (other.hasMup()) {
+          mergeMup(other.getMup());
+        }
         if (other.hasUserConsumableId()) {
           setUserConsumableId(other.getUserConsumableId());
         }
@@ -356,13 +400,22 @@ public final class RefillHpOrManaWithConsumableEventProto {
               }
               break;
             }
+            case 10: {
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder subBuilder = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.newBuilder();
+              if (hasMup()) {
+                subBuilder.mergeFrom(getMup());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setMup(subBuilder.buildPartial());
+              break;
+            }
             case 18: {
-              bitField0_ |= 0x00000001;
+              bitField0_ |= 0x00000002;
               userConsumableId_ = input.readBytes();
               break;
             }
             case 24: {
-              bitField0_ |= 0x00000002;
+              bitField0_ |= 0x00000004;
               startTime_ = input.readInt64();
               break;
             }
@@ -372,10 +425,100 @@ public final class RefillHpOrManaWithConsumableEventProto {
       
       private int bitField0_;
       
+      // optional .proto.MinimumUserProto mup = 1;
+      private com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder> mupBuilder_;
+      public boolean hasMup() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup() {
+        if (mupBuilder_ == null) {
+          return mup_;
+        } else {
+          return mupBuilder_.getMessage();
+        }
+      }
+      public Builder setMup(com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto value) {
+        if (mupBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          mup_ = value;
+          onChanged();
+        } else {
+          mupBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder setMup(
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder builderForValue) {
+        if (mupBuilder_ == null) {
+          mup_ = builderForValue.build();
+          onChanged();
+        } else {
+          mupBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder mergeMup(com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto value) {
+        if (mupBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              mup_ != com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance()) {
+            mup_ =
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.newBuilder(mup_).mergeFrom(value).buildPartial();
+          } else {
+            mup_ = value;
+          }
+          onChanged();
+        } else {
+          mupBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder clearMup() {
+        if (mupBuilder_ == null) {
+          mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+          onChanged();
+        } else {
+          mupBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder getMupBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getMupFieldBuilder().getBuilder();
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder() {
+        if (mupBuilder_ != null) {
+          return mupBuilder_.getMessageOrBuilder();
+        } else {
+          return mup_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder> 
+          getMupFieldBuilder() {
+        if (mupBuilder_ == null) {
+          mupBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder>(
+                  mup_,
+                  getParentForChildren(),
+                  isClean());
+          mup_ = null;
+        }
+        return mupBuilder_;
+      }
+      
       // optional string userConsumableId = 2;
       private java.lang.Object userConsumableId_ = "";
       public boolean hasUserConsumableId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public String getUserConsumableId() {
         java.lang.Object ref = userConsumableId_;
@@ -391,19 +534,19 @@ public final class RefillHpOrManaWithConsumableEventProto {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  bitField0_ |= 0x00000002;
         userConsumableId_ = value;
         onChanged();
         return this;
       }
       public Builder clearUserConsumableId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         userConsumableId_ = getDefaultInstance().getUserConsumableId();
         onChanged();
         return this;
       }
       void setUserConsumableId(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         userConsumableId_ = value;
         onChanged();
       }
@@ -411,19 +554,19 @@ public final class RefillHpOrManaWithConsumableEventProto {
       // optional int64 startTime = 3;
       private long startTime_ ;
       public boolean hasStartTime() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public long getStartTime() {
         return startTime_;
       }
       public Builder setStartTime(long value) {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         startTime_ = value;
         onChanged();
         return this;
       }
       public Builder clearStartTime() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         startTime_ = 0L;
         onChanged();
         return this;
@@ -442,6 +585,11 @@ public final class RefillHpOrManaWithConsumableEventProto {
   
   public interface RefillHpOrManaWithConsumableResponseProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional .proto.MinimumUserProto mup = 1;
+    boolean hasMup();
+    com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup();
+    com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder();
     
     // optional .proto.RefillHpOrManaWithConsumableResponseProto.RefillHpOrManaWithConsumableStatus status = 2;
     boolean hasStatus();
@@ -557,17 +705,31 @@ public final class RefillHpOrManaWithConsumableEventProto {
     }
     
     private int bitField0_;
+    // optional .proto.MinimumUserProto mup = 1;
+    public static final int MUP_FIELD_NUMBER = 1;
+    private com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto mup_;
+    public boolean hasMup() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup() {
+      return mup_;
+    }
+    public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder() {
+      return mup_;
+    }
+    
     // optional .proto.RefillHpOrManaWithConsumableResponseProto.RefillHpOrManaWithConsumableStatus status = 2;
     public static final int STATUS_FIELD_NUMBER = 2;
     private com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.RefillHpOrManaWithConsumableStatus status_;
     public boolean hasStatus() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.RefillHpOrManaWithConsumableStatus getStatus() {
       return status_;
     }
     
     private void initFields() {
+      mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
       status_ = com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.RefillHpOrManaWithConsumableStatus.SUCCESS;
     }
     private byte memoizedIsInitialized = -1;
@@ -583,6 +745,9 @@ public final class RefillHpOrManaWithConsumableEventProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeMessage(1, mup_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeEnum(2, status_.getNumber());
       }
       getUnknownFields().writeTo(output);
@@ -595,6 +760,10 @@ public final class RefillHpOrManaWithConsumableEventProto {
     
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, mup_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, status_.getNumber());
       }
@@ -714,6 +883,7 @@ public final class RefillHpOrManaWithConsumableEventProto {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getMupFieldBuilder();
         }
       }
       private static Builder create() {
@@ -722,8 +892,14 @@ public final class RefillHpOrManaWithConsumableEventProto {
       
       public Builder clear() {
         super.clear();
-        status_ = com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.RefillHpOrManaWithConsumableStatus.SUCCESS;
+        if (mupBuilder_ == null) {
+          mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+        } else {
+          mupBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000001);
+        status_ = com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.RefillHpOrManaWithConsumableStatus.SUCCESS;
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
       
@@ -765,6 +941,14 @@ public final class RefillHpOrManaWithConsumableEventProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
+        if (mupBuilder_ == null) {
+          result.mup_ = mup_;
+        } else {
+          result.mup_ = mupBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
         result.status_ = status_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -782,6 +966,9 @@ public final class RefillHpOrManaWithConsumableEventProto {
       
       public Builder mergeFrom(com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto other) {
         if (other == com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.getDefaultInstance()) return this;
+        if (other.hasMup()) {
+          mergeMup(other.getMup());
+        }
         if (other.hasStatus()) {
           setStatus(other.getStatus());
         }
@@ -816,13 +1003,22 @@ public final class RefillHpOrManaWithConsumableEventProto {
               }
               break;
             }
+            case 10: {
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder subBuilder = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.newBuilder();
+              if (hasMup()) {
+                subBuilder.mergeFrom(getMup());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setMup(subBuilder.buildPartial());
+              break;
+            }
             case 16: {
               int rawValue = input.readEnum();
               com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.RefillHpOrManaWithConsumableStatus value = com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.RefillHpOrManaWithConsumableStatus.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(2, rawValue);
               } else {
-                bitField0_ |= 0x00000001;
+                bitField0_ |= 0x00000002;
                 status_ = value;
               }
               break;
@@ -833,10 +1029,100 @@ public final class RefillHpOrManaWithConsumableEventProto {
       
       private int bitField0_;
       
+      // optional .proto.MinimumUserProto mup = 1;
+      private com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder> mupBuilder_;
+      public boolean hasMup() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup() {
+        if (mupBuilder_ == null) {
+          return mup_;
+        } else {
+          return mupBuilder_.getMessage();
+        }
+      }
+      public Builder setMup(com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto value) {
+        if (mupBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          mup_ = value;
+          onChanged();
+        } else {
+          mupBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder setMup(
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder builderForValue) {
+        if (mupBuilder_ == null) {
+          mup_ = builderForValue.build();
+          onChanged();
+        } else {
+          mupBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder mergeMup(com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto value) {
+        if (mupBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              mup_ != com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance()) {
+            mup_ =
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.newBuilder(mup_).mergeFrom(value).buildPartial();
+          } else {
+            mup_ = value;
+          }
+          onChanged();
+        } else {
+          mupBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder clearMup() {
+        if (mupBuilder_ == null) {
+          mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+          onChanged();
+        } else {
+          mupBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder getMupBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getMupFieldBuilder().getBuilder();
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder() {
+        if (mupBuilder_ != null) {
+          return mupBuilder_.getMessageOrBuilder();
+        } else {
+          return mup_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder> 
+          getMupFieldBuilder() {
+        if (mupBuilder_ == null) {
+          mupBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder>(
+                  mup_,
+                  getParentForChildren(),
+                  isClean());
+          mup_ = null;
+        }
+        return mupBuilder_;
+      }
+      
       // optional .proto.RefillHpOrManaWithConsumableResponseProto.RefillHpOrManaWithConsumableStatus status = 2;
       private com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.RefillHpOrManaWithConsumableStatus status_ = com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.RefillHpOrManaWithConsumableStatus.SUCCESS;
       public boolean hasStatus() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.RefillHpOrManaWithConsumableStatus getStatus() {
         return status_;
@@ -845,13 +1131,13 @@ public final class RefillHpOrManaWithConsumableEventProto {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         status_ = value;
         onChanged();
         return this;
       }
       public Builder clearStatus() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         status_ = com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.RefillHpOrManaWithConsumableStatus.SUCCESS;
         onChanged();
         return this;
@@ -888,19 +1174,21 @@ public final class RefillHpOrManaWithConsumableEventProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\'RefillHpOrManaWithConsumableEvent.prot" +
-      "o\022\005proto\"W\n(RefillHpOrManaWithConsumable" +
-      "RequestProto\022\030\n\020userConsumableId\030\002 \001(\t\022\021" +
-      "\n\tstartTime\030\003 \001(\003\"\305\002\n)RefillHpOrManaWith" +
-      "ConsumableResponseProto\022c\n\006status\030\002 \001(\0162" +
-      "S.proto.RefillHpOrManaWithConsumableResp" +
-      "onseProto.RefillHpOrManaWithConsumableSt" +
-      "atus\"\262\001\n\"RefillHpOrManaWithConsumableSta" +
-      "tus\022\013\n\007SUCCESS\020\000\022\032\n\026FAIL_ALREADY_AT_MAX_" +
-      "HP\020\001\022\034\n\030FAIL_ALREADY_AT_MAX_MANA\020\002\022\026\n\022FA",
-      "IL_NO_POT_EXISTS\020\003\022\035\n\031FAIL_UNSYNCHRONIZE" +
-      "D_TIMES\020\004\022\016\n\nFAIL_OTHER\020\005BC\n\031com.lvl6.ao" +
-      "c2.eventprotosB&RefillHpOrManaWithConsum" +
-      "ableEventProto"
+      "o\022\005proto\032\023FullUserProto.proto\"}\n(RefillH" +
+      "pOrManaWithConsumableRequestProto\022$\n\003mup" +
+      "\030\001 \001(\0132\027.proto.MinimumUserProto\022\030\n\020userC" +
+      "onsumableId\030\002 \001(\t\022\021\n\tstartTime\030\003 \001(\003\"\353\002\n" +
+      ")RefillHpOrManaWithConsumableResponsePro" +
+      "to\022$\n\003mup\030\001 \001(\0132\027.proto.MinimumUserProto" +
+      "\022c\n\006status\030\002 \001(\0162S.proto.RefillHpOrManaW" +
+      "ithConsumableResponseProto.RefillHpOrMan" +
+      "aWithConsumableStatus\"\262\001\n\"RefillHpOrMana",
+      "WithConsumableStatus\022\013\n\007SUCCESS\020\000\022\032\n\026FAI" +
+      "L_ALREADY_AT_MAX_HP\020\001\022\034\n\030FAIL_ALREADY_AT" +
+      "_MAX_MANA\020\002\022\026\n\022FAIL_NO_POT_EXISTS\020\003\022\035\n\031F" +
+      "AIL_UNSYNCHRONIZED_TIMES\020\004\022\016\n\nFAIL_OTHER" +
+      "\020\005BC\n\031com.lvl6.aoc2.eventprotosB&RefillH" +
+      "pOrManaWithConsumableEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -912,7 +1200,7 @@ public final class RefillHpOrManaWithConsumableEventProto {
           internal_static_proto_RefillHpOrManaWithConsumableRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_RefillHpOrManaWithConsumableRequestProto_descriptor,
-              new java.lang.String[] { "UserConsumableId", "StartTime", },
+              new java.lang.String[] { "Mup", "UserConsumableId", "StartTime", },
               com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableRequestProto.class,
               com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableRequestProto.Builder.class);
           internal_static_proto_RefillHpOrManaWithConsumableResponseProto_descriptor =
@@ -920,7 +1208,7 @@ public final class RefillHpOrManaWithConsumableEventProto {
           internal_static_proto_RefillHpOrManaWithConsumableResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_RefillHpOrManaWithConsumableResponseProto_descriptor,
-              new java.lang.String[] { "Status", },
+              new java.lang.String[] { "Mup", "Status", },
               com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.class,
               com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.Builder.class);
           return null;
@@ -929,6 +1217,7 @@ public final class RefillHpOrManaWithConsumableEventProto {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.lvl6.aoc2.noneventprotos.FullUser.getDescriptor(),
         }, assigner);
   }
   

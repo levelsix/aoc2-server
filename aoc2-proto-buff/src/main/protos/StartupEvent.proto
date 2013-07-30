@@ -1,3 +1,6 @@
+
+import "FullUserProto.proto";
+
 package proto;
 
 option java_package = "com.lvl6.aoc2.eventprotos";
@@ -6,7 +9,7 @@ option java_outer_classname = "StartupEventProto";
 //user can queue up multiple consumables
 
 message StartupRequestProto {
-	//optional user object = 1; //would contain the value corresponding to LoginType
+	optional MinimumUserProto mup = 1; //would contain the value corresponding to LoginType
 	
 	//extensible for the future: facebook/email required
 	enum LoginType {
@@ -16,8 +19,7 @@ message StartupRequestProto {
 }
 
 message StartupResponseProto {
-	//optional user object = 1;
-	
+	optional MinimumUserProto mup = 1;
 	optional int64 currentServerTime = 2; //"approximate server time, + seconds most likely"
 	optional StartupStatus status = 3;
 	
