@@ -3,183 +3,267 @@ package com.lvl6.aoc2.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.aoc2.controller.EventController;
-import com.lvl6.aoc2.controller.utils.TimeUtils;
-import com.lvl6.aoc2.events.RequestEvent;
-import com.lvl6.aoc2.po.User;
+import com.lvl6.aoc2.entitymanager.UserConsumableEntityManager;
+import com.lvl6.aoc2.entitymanager.UserEntityManager;
+import com.lvl6.aoc2.entitymanager.staticdata.ConsumableRetrieveUtils;
 import com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableRequestProto;
 import com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto;
-import com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProtoOrBuilder;
+import com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.Builder;
 import com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableResponseProto.RefillHpOrManaWithConsumableStatus;
+import com.lvl6.aoc2.events.RequestEvent;
 import com.lvl6.aoc2.events.request.RefillHpOrManaWithConsumableRequestEvent;
 import com.lvl6.aoc2.events.response.RefillHpOrManaWithConsumableResponseEvent;
-import com.lvl6.aoc2.noneventprotos.PicturesEventProtocolProto.PicturesEventProtocolRequest;
-import com.lvl6.aoc2.noneventprotos.UserProto.BasicUserProto;
-import com.lvl6.aoc2.po.Currency;
-import com.lvl6.aoc2.properties.PicturesPoConstants;
-import com.lvl6.aoc2.services.currency.CurrencyService;
+import com.lvl6.aoc2.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
+import com.lvl6.aoc2.noneventprotos.Consumable.ConsumableType;
+import com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto;
+import com.lvl6.aoc2.po.Consumable;
+import com.lvl6.aoc2.po.User;
+import com.lvl6.aoc2.po.UserConsumable;
 
 
 @Component
 public class RefillHpOrManaWithConsumableController extends EventController {
 
-    private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
-    @Autowired
-    protected LoginService loginService;
+	@Autowired
+	protected ConsumableRetrieveUtils consumableRetrieveUtils; 
 
-    @Autowired
-    protected TimeUtils timeUtils;
+	@Autowired
+	protected UserConsumableEntityManager userConsumableEntityManager;
 
-    @Autowired
-    protected CurrencyService currencyService; 
+	@Autowired
+	protected UserEntityManager userEntityManager;
 
-    @Override
-    public RequestEvent createRequestEvent() {
-	return new RefillHpOrManaWithConsumableRequestEvent();
-    }
+	@Override
+	public RequestEvent createRequestEvent() {
+		return new RefillHpOrManaWithConsumableRequestEvent();
+	}
 
-    @Override
-    public int getEventType() {
-	return PicturesEventProtocolRequest.C_REFILL_TOKENS_BY_WAITING_EVENT_VALUE;
-    }
+	@Override
+	public int getEventType() {
+		return AocTwoEventProtocolRequest.C_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT_VALUE;
+	}
 
-    @Override
-    protected void processRequestEvent(RequestEvent event) throws Exception {
-	//stuff client sent
-	RefillHpOrManaWithConsumableRequestProto reqProto = 
-		((RefillHpOrManaWithConsumableRequestEvent) event).getRefillHpOrManaWithConsumableRequestProto();
-	BasicUserProto sender = reqProto.getSender();
-	String userId = sender.getUserId();
-	long clientTime = reqProto.getCurTime();
-	Date clientDate = new Date(clientTime);
+	@Override
+	protected void processRequestEvent(RequestEvent event) throws Exception {
+		//stuff client sent
+		RefillHpOrManaWithConsumableRequestProto reqProto = 
+				((RefillHpOrManaWithConsumableRequestEvent) event).getRefillHpOrManaWithConsumableRequestProto();
 
-	//response to send back to client
-	Builder responseBuilder = RefillHpOrManaWithConsumableResponseProto.newBuilder();
-	responseBuilder.setStatus(RefillHpOrManaWithConsumableStatus.FAIL_OTHER);
-	RefillHpOrManaWithConsumableResponseEvent resEvent =
-		new RefillHpOrManaWithConsumableResponseEvent(userId);
-	resEvent.setTag(event.getTag());
+		//get the values client sent
+		MinimumUserProto sender = reqProto.getMup();
 
-	try {
-	    User inDb = getLoginService().getUserById(userId);
-	    List<Currency> monies = new ArrayList<Currency>();
-	    //validate request
-	    boolean validRequest = isValidRequest(responseBuilder, sender, inDb,
-		    clientDate, monies);
+		//uuid's are not strings, need to convert from string to uuid, vice versa
+		String userIdString = sender.getUserID();
+		UUID userId = UUID.fromString(userIdString);
+		Date clientDate = new Date();
+		String userConsumableIdString = reqProto.getUserConsumableId();
+		UUID userConsumableId = UUID.fromString(userConsumableIdString);
 
-	    boolean successful = false;
-	    if (validRequest) {
-		successful = writeChangesToDb(monies, clientDate);
-	    }
-
-	    if (successful) {
-		responseBuilder.setStatus(RefillHpOrManaWithConsumableStatus.SUCCESS);
-	    }
-
-	    //write to client
-	    resEvent.setRefillHpOrManaWithConsumableResponseProto(responseBuilder.build());
-	    log.info("Writing event: " + resEvent);
-	    getEventWriter().handleEvent(resEvent);
-
-	} catch (Exception e) {
-	    log.error("exception in RefillHpOrManaWithConsumableController processRequestEvent", e);
-
-	    try {
-		//try to tell client that something failed
+		//response to send back to client
+		Builder responseBuilder = RefillHpOrManaWithConsumableResponseProto.newBuilder();
 		responseBuilder.setStatus(RefillHpOrManaWithConsumableStatus.FAIL_OTHER);
-		resEvent.setRefillHpOrManaWithConsumableResponseProto(responseBuilder.build());
-		getEventWriter().handleEvent(resEvent);
+		RefillHpOrManaWithConsumableResponseEvent resEvent =
+				new RefillHpOrManaWithConsumableResponseEvent(userIdString);
+		resEvent.setTag(event.getTag());
 
-	    } catch (Exception e2) {
-		log.error("exception in RefillHpOrManaWithConsumableController processRequestEvent", e2);
-	    }
-	}
-    }
+		try {
+			//get whatever we need from the database
+			User inDb = getUserEntityManager().get().get(userId);
+			UserConsumable uc = getUserConsumableEntityManager().get().get(userConsumableId);
+			List<Consumable> cList = new ArrayList<Consumable>();
 
-    private boolean isValidRequest(Builder responseBuilder, BasicUserProto sender,
-	    User inDb, Date clientDate, List<Currency> monies) {
-	if (null == inDb) {
-	    log.error("unexpected error: no user exists. sender=" + sender);
-	    return false;
-	}
-	if (!getTimeUtils().isSynchronizedWithServerTime(clientDate)) {
-	    log.error("user error: client time diverges from server time. clientTime="
-		    + clientDate + ", approximateServerTime=" + new Date());
-	    responseBuilder.setStatus(RefillHpOrManaWithConsumableStatus.FAIL_CLIENT_TOO_APART_FROM_SERVER_TIME);
-	    return false;
-	}
+			//validate request
+			boolean validRequest = isValidRequest(responseBuilder, sender, inDb,
+					uc, cList, clientDate);
 
-	//check if user is already at max tokens
-	String userId = inDb.getId();
-	Currency c = getCurrencyService().getCurrencyForUser(userId); 
-	int maxTokens = PicturesPoConstants.CURRENCY__DEFAULT_MAX_TOKENS;
-	int currentTokens = c.getTokens();
-	if (currentTokens == maxTokens) {
-	    log.error("unexpected error: client already has max tokens. currency=" +
-		    c + ";   maxTokens=" + maxTokens);
-	    responseBuilder.setStatus(RefillHpOrManaWithConsumableStatus.FAIL_ALREADY_MAX);
-	    return false;
-	}
+			boolean successful = false;
+			if (validRequest) {
+				Consumable c = cList.get(0);
+				successful = writeChangesToDb(inDb, uc, c, clientDate);
+			}
 
-	//check if user can regenerate a token
-	//current time > last refill time + time_to_regenerate
-	Date lastRefillTime = new Date(c.getLastTokenRefillTime().getTime());
-	if (!getCurrencyService().canRegenerateToken(lastRefillTime, clientDate)) {
-	    log.error("user error: tokens not ready for refill yet. clientTime=" +
-		    clientDate + ";      lastRefillTime=" + lastRefillTime +
-		    ";      numMinutesForTokenRefill=" +
-		    PicturesPoConstants.CURRENCY__MINUTES_FOR_TOKEN_REGENERATION);
-	    responseBuilder.setStatus(RefillHpOrManaWithConsumableStatus.FAIL_NOT_READY_YET);
-	    return false;
+			if (successful) {
+				responseBuilder.setStatus(RefillHpOrManaWithConsumableStatus.SUCCESS);
+			}
+
+			//write to client
+			resEvent.setRefillHpOrManaWithConsumableResponseProto(responseBuilder.build());
+			log.info("Writing event: " + resEvent);
+			getEventWriter().handleEvent(resEvent);
+
+		} catch (Exception e) {
+			log.error("exception in RefillHpOrManaWithConsumableController processRequestEvent", e);
+
+			try {
+				//try to tell client that something failed
+				responseBuilder.setStatus(RefillHpOrManaWithConsumableStatus.FAIL_OTHER);
+				resEvent.setRefillHpOrManaWithConsumableResponseProto(responseBuilder.build());
+				getEventWriter().handleEvent(resEvent);
+
+			} catch (Exception e2) {
+				log.error("exception in RefillHpOrManaWithConsumableController processRequestEvent", e2);
+			}
+		}
 	}
 
-	monies.add(c);
-	return true;
-    }
+	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
+			User inDb, UserConsumable uc, List<Consumable> cList, Date clientDate) {
+		if (null == inDb || null == uc) {
+			log.error("unexpected error: no user exists. sender=" + sender +
+					"\t inDb=" + inDb + "\t uc=" + uc);
+			return false;
+		}
 
-    private boolean writeChangesToDb(List<Currency> monies, Date clientDate) {
-	try {
-	    Currency money = monies.get(0);
-	    int newTokenAmount =
-		    getCurrencyService().numTokensRegenerated(money, clientDate);
-	    getCurrencyService().updateTokensForUser(money, newTokenAmount, clientDate);
-	    return true;
+		UUID consumableId = uc.getConsumableId();
+		Consumable c = getConsumableRetrieveUtils().getConsumableForId(consumableId);
 
-	} catch (Exception e) {
-	    log.error("unexpected error: problem with saving to db.", e);
+		if (null == c) {
+			log.error("unexpected error: no consumable with id exists. id=" + consumableId);
+			responseBuilder.setStatus(RefillHpOrManaWithConsumableStatus.FAIL_NO_POT_EXISTS);
+			return false;
+		}
+
+		//check if user is already at max hp and consumable is hp
+		int cType = c.getFunctionalityType();
+		if (ConsumableType.HEALTH_VALUE == cType &&
+				inDb.getMaxHp() == inDb.getHp()) {
+			log.error("client error: can't use pot, user is already at max " +
+					"hp. user=" + inDb);
+			responseBuilder.setStatus(RefillHpOrManaWithConsumableStatus.FAIL_ALREADY_AT_MAX_HP);
+			return false;
+		}
+
+		//check if user is already at max mana and consumable is mana
+		if (ConsumableType.MANA_VALUE == cType &&
+				inDb.getMaxMana() == inDb.getMana()) {
+			log.error("client error: can't use pot, user is already at max " +
+					"mana. user=" + inDb);
+			responseBuilder.setStatus(RefillHpOrManaWithConsumableStatus.FAIL_ALREADY_AT_MAX_MANA);
+			return false;
+		}
+
+		//make sure user has enough of the pots
+		if (uc.getQuantity() == 0) {
+			log.error("client error: user does not have enough pots. user pot=" + uc +
+					"\t consumable=" + c + "\t user=" + inDb);
+			responseBuilder.setStatus(RefillHpOrManaWithConsumableStatus.FAIL_NOT_ENOUGH_POTS);
+			return false;
+		}
+
+		if (uc.getQuantity() < 0) {
+			log.error("unexpected error: somehow user has negative quantity " +
+					"of pots. consumable=" + c + " \t user pot=" + uc +
+					"\t user=" + inDb);
+			responseBuilder.setStatus(RefillHpOrManaWithConsumableStatus.FAIL_OTHER);
+			return false;
+		}
+
+		//cutting down on retrieving consumable again
+		cList.add(c);
+		return true;
 	}
-	return false;
-    }
 
-    public LoginService getLoginService() {
-	return loginService;
-    }
+	private boolean writeChangesToDb(User inDb, UserConsumable uc,
+			Consumable c, Date clientDate) {
+		try {
+			//Figure out how much to regen
+			int cType = c.getFunctionalityType();
+			if (ConsumableType.HEALTH_VALUE == cType) {
+				updateUserHealth(inDb, c);
 
-    public void setLoginService(LoginService loginService) {
-	this.loginService = loginService;
-    }
+			} else if (ConsumableType.MANA_VALUE == cType) {
+				updateUserMana(inDb, c);
 
-    public TimeUtils getTimeUtils() {
-	return timeUtils;
-    }
+			} //more cases for consumables here
 
-    public void setTimeUtils(TimeUtils timeUtils) {
-	this.timeUtils = timeUtils;
-    }
+			//update user
+			getUserEntityManager().get().put(inDb);
 
-    public CurrencyService getCurrencyService() {
-	return currencyService;
-    }
+			//and update his consumable quantity
+			int newQuantity = uc.getQuantity() - 1;
+			uc.setQuantity(newQuantity);
+			getUserConsumableEntityManager().get().put(uc);
 
-    public void setCurrencyService(CurrencyService currencyService) {
-	this.currencyService = currencyService;
-    }
+			return true;
+
+		} catch (Exception e) {
+			log.error("unexpected error: problem with saving to db.", e);
+		}
+		return false;
+	}
+
+	private void updateUserHealth(User inDb, Consumable c) {
+		int maxHp = inDb.getMaxHp();
+		int newHp = inDb.getHp();
+
+		double amount = c.getFunctionalityConstant();
+		if (amount < 1.0d) {
+			//acts as a percent refill based on max hp
+			newHp += (int) (amount * maxHp);
+
+		} else {
+			//flat refill
+			newHp += (int) amount;
+		}
+
+		newHp = Math.min(newHp, maxHp);
+
+		inDb.setHp(newHp);
+	}
+
+	private void updateUserMana(User inDb, Consumable c) {
+		int maxMana = inDb.getMaxMana();
+		int newMana = inDb.getMana();
+
+		double amount = c.getFunctionalityConstant();
+		if (amount < 1.0d) {
+			//percent refill
+			newMana += (int) (amount * maxMana);
+
+		} else {
+			newMana += (int) amount;
+		}
+
+		newMana = Math.min(newMana, maxMana);
+		inDb.setMana(newMana);
+	}
+
+
+
+	public ConsumableRetrieveUtils getConsumableRetrieveUtils() {
+		return consumableRetrieveUtils;
+	}
+
+	public void setConsumableRetrieveUtils(
+			ConsumableRetrieveUtils consumableRetrieveUtils) {
+		this.consumableRetrieveUtils = consumableRetrieveUtils;
+	}
+
+	public UserConsumableEntityManager getUserConsumableEntityManager() {
+		return userConsumableEntityManager;
+	}
+
+	public void setUserConsumableEntityManager(
+			UserConsumableEntityManager userConsumableEntityManager) {
+		this.userConsumableEntityManager = userConsumableEntityManager;
+	}
+
+	public UserEntityManager getUserEntityManager() {
+		return userEntityManager;
+	}
+
+	public void setUserEntityManager(UserEntityManager userEntityManager) {
+		this.userEntityManager = userEntityManager;
+	}
+
 
 }

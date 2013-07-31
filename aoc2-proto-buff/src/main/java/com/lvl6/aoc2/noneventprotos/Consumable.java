@@ -8,6 +8,75 @@ public final class Consumable {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
+  public enum ConsumableType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    HEALTH(0, 0),
+    MANA(1, 1),
+    ;
+    
+    public static final int HEALTH_VALUE = 0;
+    public static final int MANA_VALUE = 1;
+    
+    
+    public final int getNumber() { return value; }
+    
+    public static ConsumableType valueOf(int value) {
+      switch (value) {
+        case 0: return HEALTH;
+        case 1: return MANA;
+        default: return null;
+      }
+    }
+    
+    public static com.google.protobuf.Internal.EnumLiteMap<ConsumableType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<ConsumableType>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<ConsumableType>() {
+            public ConsumableType findValueByNumber(int number) {
+              return ConsumableType.valueOf(number);
+            }
+          };
+    
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.lvl6.aoc2.noneventprotos.Consumable.getDescriptor().getEnumTypes().get(0);
+    }
+    
+    private static final ConsumableType[] VALUES = {
+      HEALTH, MANA, 
+    };
+    
+    public static ConsumableType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+    
+    private final int index;
+    private final int value;
+    
+    private ConsumableType(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+    
+    // @@protoc_insertion_point(enum_scope:proto.ConsumableType)
+  }
+  
   public interface ConsumableProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
@@ -782,7 +851,8 @@ public final class Consumable {
       "\014\n\004cost\030\020 \001(\005\022\r\n\005limit\030\021 \001(\005\022\024\n\014timeToCr" +
       "eate\030\022 \001(\005\022-\n\020resourceToCreate\030\023 \002(\0162\023.p" +
       "roto.ResourceType\022\034\n\024baseSpeedUpBuildCos" +
-      "t\030\024 \001(\005B*\n\034com.lvl6.aoc2.noneventprotosB" +
+      "t\030\024 \001(\005*&\n\016ConsumableType\022\n\n\006HEALTH\020\000\022\010\n" +
+      "\004MANA\020\001B*\n\034com.lvl6.aoc2.noneventprotosB" +
       "\nConsumable"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =

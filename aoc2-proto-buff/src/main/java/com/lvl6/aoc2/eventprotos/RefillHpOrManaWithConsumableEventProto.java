@@ -19,10 +19,6 @@ public final class RefillHpOrManaWithConsumableEventProto {
     // optional string userConsumableId = 2;
     boolean hasUserConsumableId();
     String getUserConsumableId();
-    
-    // optional int64 startTime = 3;
-    boolean hasStartTime();
-    long getStartTime();
   }
   public static final class RefillHpOrManaWithConsumableRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -98,20 +94,9 @@ public final class RefillHpOrManaWithConsumableEventProto {
       }
     }
     
-    // optional int64 startTime = 3;
-    public static final int STARTTIME_FIELD_NUMBER = 3;
-    private long startTime_;
-    public boolean hasStartTime() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    public long getStartTime() {
-      return startTime_;
-    }
-    
     private void initFields() {
       mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
       userConsumableId_ = "";
-      startTime_ = 0L;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -131,9 +116,6 @@ public final class RefillHpOrManaWithConsumableEventProto {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getUserConsumableIdBytes());
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt64(3, startTime_);
-      }
       getUnknownFields().writeTo(output);
     }
     
@@ -150,10 +132,6 @@ public final class RefillHpOrManaWithConsumableEventProto {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, getUserConsumableIdBytes());
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(3, startTime_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -288,8 +266,6 @@ public final class RefillHpOrManaWithConsumableEventProto {
         bitField0_ = (bitField0_ & ~0x00000001);
         userConsumableId_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        startTime_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -340,10 +316,6 @@ public final class RefillHpOrManaWithConsumableEventProto {
           to_bitField0_ |= 0x00000002;
         }
         result.userConsumableId_ = userConsumableId_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.startTime_ = startTime_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -365,9 +337,6 @@ public final class RefillHpOrManaWithConsumableEventProto {
         }
         if (other.hasUserConsumableId()) {
           setUserConsumableId(other.getUserConsumableId());
-        }
-        if (other.hasStartTime()) {
-          setStartTime(other.getStartTime());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -412,11 +381,6 @@ public final class RefillHpOrManaWithConsumableEventProto {
             case 18: {
               bitField0_ |= 0x00000002;
               userConsumableId_ = input.readBytes();
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              startTime_ = input.readInt64();
               break;
             }
           }
@@ -551,27 +515,6 @@ public final class RefillHpOrManaWithConsumableEventProto {
         onChanged();
       }
       
-      // optional int64 startTime = 3;
-      private long startTime_ ;
-      public boolean hasStartTime() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      public long getStartTime() {
-        return startTime_;
-      }
-      public Builder setStartTime(long value) {
-        bitField0_ |= 0x00000004;
-        startTime_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearStartTime() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        startTime_ = 0L;
-        onChanged();
-        return this;
-      }
-      
       // @@protoc_insertion_point(builder_scope:proto.RefillHpOrManaWithConsumableRequestProto)
     }
     
@@ -629,7 +572,7 @@ public final class RefillHpOrManaWithConsumableEventProto {
       FAIL_ALREADY_AT_MAX_HP(1, 1),
       FAIL_ALREADY_AT_MAX_MANA(2, 2),
       FAIL_NO_POT_EXISTS(3, 3),
-      FAIL_UNSYNCHRONIZED_TIMES(4, 4),
+      FAIL_NOT_ENOUGH_POTS(4, 4),
       FAIL_OTHER(5, 5),
       ;
       
@@ -637,7 +580,7 @@ public final class RefillHpOrManaWithConsumableEventProto {
       public static final int FAIL_ALREADY_AT_MAX_HP_VALUE = 1;
       public static final int FAIL_ALREADY_AT_MAX_MANA_VALUE = 2;
       public static final int FAIL_NO_POT_EXISTS_VALUE = 3;
-      public static final int FAIL_UNSYNCHRONIZED_TIMES_VALUE = 4;
+      public static final int FAIL_NOT_ENOUGH_POTS_VALUE = 4;
       public static final int FAIL_OTHER_VALUE = 5;
       
       
@@ -649,7 +592,7 @@ public final class RefillHpOrManaWithConsumableEventProto {
           case 1: return FAIL_ALREADY_AT_MAX_HP;
           case 2: return FAIL_ALREADY_AT_MAX_MANA;
           case 3: return FAIL_NO_POT_EXISTS;
-          case 4: return FAIL_UNSYNCHRONIZED_TIMES;
+          case 4: return FAIL_NOT_ENOUGH_POTS;
           case 5: return FAIL_OTHER;
           default: return null;
         }
@@ -681,7 +624,7 @@ public final class RefillHpOrManaWithConsumableEventProto {
       }
       
       private static final RefillHpOrManaWithConsumableStatus[] VALUES = {
-        SUCCESS, FAIL_ALREADY_AT_MAX_HP, FAIL_ALREADY_AT_MAX_MANA, FAIL_NO_POT_EXISTS, FAIL_UNSYNCHRONIZED_TIMES, FAIL_OTHER, 
+        SUCCESS, FAIL_ALREADY_AT_MAX_HP, FAIL_ALREADY_AT_MAX_MANA, FAIL_NO_POT_EXISTS, FAIL_NOT_ENOUGH_POTS, FAIL_OTHER, 
       };
       
       public static RefillHpOrManaWithConsumableStatus valueOf(
@@ -1174,21 +1117,21 @@ public final class RefillHpOrManaWithConsumableEventProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\'RefillHpOrManaWithConsumableEvent.prot" +
-      "o\022\005proto\032\023FullUserProto.proto\"}\n(RefillH" +
+      "o\022\005proto\032\023FullUserProto.proto\"j\n(RefillH" +
       "pOrManaWithConsumableRequestProto\022$\n\003mup" +
       "\030\001 \001(\0132\027.proto.MinimumUserProto\022\030\n\020userC" +
-      "onsumableId\030\002 \001(\t\022\021\n\tstartTime\030\003 \001(\003\"\353\002\n" +
-      ")RefillHpOrManaWithConsumableResponsePro" +
-      "to\022$\n\003mup\030\001 \001(\0132\027.proto.MinimumUserProto" +
-      "\022c\n\006status\030\002 \001(\0162S.proto.RefillHpOrManaW" +
-      "ithConsumableResponseProto.RefillHpOrMan" +
-      "aWithConsumableStatus\"\262\001\n\"RefillHpOrMana",
-      "WithConsumableStatus\022\013\n\007SUCCESS\020\000\022\032\n\026FAI" +
-      "L_ALREADY_AT_MAX_HP\020\001\022\034\n\030FAIL_ALREADY_AT" +
-      "_MAX_MANA\020\002\022\026\n\022FAIL_NO_POT_EXISTS\020\003\022\035\n\031F" +
-      "AIL_UNSYNCHRONIZED_TIMES\020\004\022\016\n\nFAIL_OTHER" +
-      "\020\005BC\n\031com.lvl6.aoc2.eventprotosB&RefillH" +
-      "pOrManaWithConsumableEventProto"
+      "onsumableId\030\002 \001(\t\"\346\002\n)RefillHpOrManaWith" +
+      "ConsumableResponseProto\022$\n\003mup\030\001 \001(\0132\027.p" +
+      "roto.MinimumUserProto\022c\n\006status\030\002 \001(\0162S." +
+      "proto.RefillHpOrManaWithConsumableRespon" +
+      "seProto.RefillHpOrManaWithConsumableStat" +
+      "us\"\255\001\n\"RefillHpOrManaWithConsumableStatu",
+      "s\022\013\n\007SUCCESS\020\000\022\032\n\026FAIL_ALREADY_AT_MAX_HP" +
+      "\020\001\022\034\n\030FAIL_ALREADY_AT_MAX_MANA\020\002\022\026\n\022FAIL" +
+      "_NO_POT_EXISTS\020\003\022\030\n\024FAIL_NOT_ENOUGH_POTS" +
+      "\020\004\022\016\n\nFAIL_OTHER\020\005BC\n\031com.lvl6.aoc2.even" +
+      "tprotosB&RefillHpOrManaWithConsumableEve" +
+      "ntProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1200,7 +1143,7 @@ public final class RefillHpOrManaWithConsumableEventProto {
           internal_static_proto_RefillHpOrManaWithConsumableRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_RefillHpOrManaWithConsumableRequestProto_descriptor,
-              new java.lang.String[] { "Mup", "UserConsumableId", "StartTime", },
+              new java.lang.String[] { "Mup", "UserConsumableId", },
               com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableRequestProto.class,
               com.lvl6.aoc2.eventprotos.RefillHpOrManaWithConsumableEventProto.RefillHpOrManaWithConsumableRequestProto.Builder.class);
           internal_static_proto_RefillHpOrManaWithConsumableResponseProto_descriptor =

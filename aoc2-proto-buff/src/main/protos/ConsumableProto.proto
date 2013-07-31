@@ -18,3 +18,9 @@ message ConsumableProto {
 	required ResourceType resourceToCreate = 19;
 	optional int32 baseSpeedUpBuildCost = 20;
 }
+
+enum ConsumableType {
+	HEALTH = 0;
+	MANA = 1;
+	
+}

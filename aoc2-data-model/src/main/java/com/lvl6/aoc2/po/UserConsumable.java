@@ -20,7 +20,7 @@ public class UserConsumable extends BasePersistentObject{
 	protected UUID userId = null;
 	
 	@Column(name="consumable_id")
-	protected UUID consumable_id = null;
+	protected UUID consumableId = null;
 	
 	@Column(name="quantity")
 	protected int quantity = 0;
@@ -48,13 +48,13 @@ public class UserConsumable extends BasePersistentObject{
 	}
 
 
-	public UUID getConsumable_id() {
-		return consumable_id;
+	public UUID getConsumableId() {
+		return consumableId;
 	}
 
 
-	public void setConsumable_id(UUID consumable_id) {
-		this.consumable_id = consumable_id;
+	public void setConsumable_id(UUID consumableId) {
+		this.consumableId = consumableId;
 	}
 
 
@@ -74,7 +74,7 @@ public class UserConsumable extends BasePersistentObject{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((consumable_id == null) ? 0 : consumable_id.hashCode());
+				+ ((consumableId == null) ? 0 : consumableId.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + quantity;
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
@@ -91,10 +91,10 @@ public class UserConsumable extends BasePersistentObject{
 		if (getClass() != obj.getClass())
 			return false;
 		UserConsumable other = (UserConsumable) obj;
-		if (consumable_id == null) {
-			if (other.consumable_id != null)
+		if (consumableId == null) {
+			if (other.consumableId != null)
 				return false;
-		} else if (!consumable_id.equals(other.consumable_id))
+		} else if (!consumableId.equals(other.consumableId))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -115,7 +115,7 @@ public class UserConsumable extends BasePersistentObject{
 	@Override
 	public String toString() {
 		return "UserConsumable [id=" + id + ", userId=" + userId
-				+ ", consumable_id=" + consumable_id + ", quantity=" + quantity
+				+ ", consumableId=" + consumableId + ", quantity=" + quantity
 				+ "]";
 	}
 
