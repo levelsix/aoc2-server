@@ -26,15 +26,13 @@ public class UserStructureContent extends BasePersistentObject{
 	@Column(name="content_id")
 	protected UUID contentId = null;
 
-	@Column(name="queue_time")
-	protected Date queueTime = new Date();
+	@Column(name="is_queue")
+	protected boolean queueTime = true;
 
 	@Column(name="start_time")
 	protected Date startTime = new Date();
 
 	
-
-
 	public UUID getId() {
 		return id;
 	}
@@ -75,12 +73,12 @@ public class UserStructureContent extends BasePersistentObject{
 	}
 
 
-	public Date getQueueTime() {
+	public boolean isQueueTime() {
 		return queueTime;
 	}
 
 
-	public void setQueueTime(Date queueTime) {
+	public void setQueueTime(boolean queueTime) {
 		this.queueTime = queueTime;
 	}
 
@@ -103,8 +101,7 @@ public class UserStructureContent extends BasePersistentObject{
 				+ ((contentId == null) ? 0 : contentId.hashCode());
 		result = prime * result + contentType;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((queueTime == null) ? 0 : queueTime.hashCode());
+		result = prime * result + (queueTime ? 1231 : 1237);
 		result = prime * result
 				+ ((startTime == null) ? 0 : startTime.hashCode());
 		result = prime * result
@@ -134,10 +131,7 @@ public class UserStructureContent extends BasePersistentObject{
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (queueTime == null) {
-			if (other.queueTime != null)
-				return false;
-		} else if (!queueTime.equals(other.queueTime))
+		if (queueTime != other.queueTime)
 			return false;
 		if (startTime == null) {
 			if (other.startTime != null)
@@ -151,7 +145,7 @@ public class UserStructureContent extends BasePersistentObject{
 			return false;
 		return true;
 	}
-
+ 
 
 	@Override
 	public String toString() {
@@ -169,7 +163,7 @@ public class UserStructureContent extends BasePersistentObject{
 				" user_structure_id uuid," +
 				" content_type int," +
 				" content_id uuid," +
-				" queue_time timestamp," +
+				" is_queue boolean," +
 				" start_time timestamp," +
 				" primary key(id))" +
 				" with compact storage;";
