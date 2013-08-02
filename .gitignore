@@ -18,6 +18,11 @@ scripts/referral_code_checks/referral_code_logs
 .classpath
 .settings/
 .cache/
+.cache
+**.cache/
+**.cache
+
+
 
 
 target/

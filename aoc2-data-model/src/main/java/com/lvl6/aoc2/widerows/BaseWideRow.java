@@ -74,6 +74,15 @@ abstract public class BaseWideRow<Ky, Col, Val> implements InitializingBean {
 	}
 	
 	
+	public WideRowValue<Ky, Col, Val> getSingleColumn(Ky rowKey, Col column) throws ConnectionException{
+		WideRowValue<Ky, Col, Val> wrv = new WideRowValue<Ky, Col, Val>().setKey(rowKey).setColumn(column);
+		Column<Col> result = cassandra.getKeyspace().prepareQuery(getColumnFamily())
+			    .getKey(rowKey)
+			    .getColumn(column)
+			    .execute().getResult();
+		wrv.setValue(result.getValue(getValueSerializer()));
+		return wrv;
+	}
 	
 	
 	public Collection<WideRowValue<Ky, Col, Val>> getEntireRow(Ky key) throws ConnectionException{
