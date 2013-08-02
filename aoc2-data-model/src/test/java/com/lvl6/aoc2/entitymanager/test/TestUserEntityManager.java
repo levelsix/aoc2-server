@@ -67,5 +67,14 @@ public class TestUserEntityManager {
 		assertNotNull(user2);
 		assertTrue("Usernames equal", user.getName().equals(user2.getName()));
 		//assertTrue("Emails equal", user.getEmail().equals(user2.getEmail()));
+		
+		
+		//checking to see if this is how to update an object
+		//update name
+		user.setName("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		um.get().put(user);
+		
+		user2 = um.get().get(user2.getId());
+		assertTrue("Usernames equal", user.getName().equals(user2.getName()));
 	}
 }

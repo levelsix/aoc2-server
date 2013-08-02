@@ -19,8 +19,12 @@ public class UserEquip extends BasePersistentObject{
 	@Column(name="user_id")
 	protected UUID userId = null;
 	
+	//the 'equip_id' column in equipment table, not the 'id' column
 	@Column(name="equip_id")
 	protected UUID equipId = null;
+	
+	@Column(name="equip_level")
+	protected int equipLevel = 0;
 	
 	@Column(name="durability")
 	protected double durability = 0.0;
@@ -61,6 +65,16 @@ public class UserEquip extends BasePersistentObject{
 	}
 
 
+	public int getEquipLevel() {
+		return equipLevel;
+	}
+
+
+	public void setEquipLevel(int equipLevel) {
+		this.equipLevel = equipLevel;
+	}
+
+
 	public double getDurability() {
 		return durability;
 	}
@@ -89,6 +103,7 @@ public class UserEquip extends BasePersistentObject{
 		temp = Double.doubleToLongBits(durability);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + ((equipId == null) ? 0 : equipId.hashCode());
+		result = prime * result + equipLevel;
 		result = prime * result + (equipped ? 1231 : 1237);
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
@@ -113,6 +128,8 @@ public class UserEquip extends BasePersistentObject{
 				return false;
 		} else if (!equipId.equals(other.equipId))
 			return false;
+		if (equipLevel != other.equipLevel)
+			return false;
 		if (equipped != other.equipped)
 			return false;
 		if (id == null) {
@@ -129,13 +146,11 @@ public class UserEquip extends BasePersistentObject{
 	}
 
 
-
-
 	@Override
 	public String toString() {
 		return "UserEquip [id=" + id + ", userId=" + userId + ", equipId="
-				+ equipId + ", durability=" + durability + ", equipped="
-				+ equipped + "]";
+				+ equipId + ", equipLevel=" + equipLevel + ", durability="
+				+ durability + ", equipped=" + equipped + "]";
 	}
 
 
@@ -145,6 +160,7 @@ public class UserEquip extends BasePersistentObject{
 				" id uuid," +
 				" user_id uuid," +
 				" equip_id uuid," +
+				" equip_level int," +
 				" durability double," +
 				" equipped boolean," +
 				" primary key(id))" +
@@ -163,6 +179,9 @@ public class UserEquip extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
+		indexes.add("create index user_equip_user_id_index on user_equip (user_id);");
+		indexes.add("create index user_equip_equip_id_index on user_equip (equip_id);");
+		indexes.add("create index user_equip_equip_level_index on user_equip (equip_level);");
 		indexes.add("create index user_equip_equipped_index on user_equip (equipped);");
 		return indexes;
 	}

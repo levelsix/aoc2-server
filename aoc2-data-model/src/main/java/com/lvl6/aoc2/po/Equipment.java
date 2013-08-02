@@ -16,6 +16,9 @@ public class Equipment extends BasePersistentObject{
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
+	@Column(name="equip_id")
+	protected UUID equipId = UUID.randomUUID();
+	
 	@Column(name="name")
 	protected String name = "";
 	
@@ -59,6 +62,16 @@ public class Equipment extends BasePersistentObject{
 
 	public void setId(UUID id) {
 		this.id = id;
+	}
+
+
+	public UUID getEquipId() {
+		return equipId;
+	}
+
+
+	public void setEquipId(UUID equipId) {
+		this.equipId = equipId;
 	}
 
 
@@ -172,6 +185,8 @@ public class Equipment extends BasePersistentObject{
 	}
 
 
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -182,6 +197,7 @@ public class Equipment extends BasePersistentObject{
 		result = prime * result + classRequired;
 		result = prime * result + defense;
 		result = prime * result + durability;
+		result = prime * result + ((equipId == null) ? 0 : equipId.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + level;
 		result = prime * result + lvlRequired;
@@ -213,6 +229,11 @@ public class Equipment extends BasePersistentObject{
 			return false;
 		if (durability != other.durability)
 			return false;
+		if (equipId == null) {
+			if (other.equipId != null)
+				return false;
+		} else if (!equipId.equals(other.equipId))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -237,19 +258,21 @@ public class Equipment extends BasePersistentObject{
 
 	@Override
 	public String toString() {
-		return "Equipment [id=" + id + ", name=" + name + ", level=" + level
-				+ ", type=" + type + ", durability=" + durability + ", attack="
-				+ attack + ", defense=" + defense + ", additionalHp="
-				+ additionalHp + ", additionalMana=" + additionalMana
-				+ ", rarity=" + rarity + ", classRequired=" + classRequired
-				+ ", lvlRequired=" + lvlRequired + "]";
+		return "Equipment [id=" + id + ", equipId=" + equipId + ", name="
+				+ name + ", level=" + level + ", type=" + type
+				+ ", durability=" + durability + ", attack=" + attack
+				+ ", defense=" + defense + ", additionalHp=" + additionalHp
+				+ ", additionalMana=" + additionalMana + ", rarity=" + rarity
+				+ ", classRequired=" + classRequired + ", lvlRequired="
+				+ lvlRequired + "]";
 	}
 
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user (" +
+		return "create table equipment (" +
 				" id uuid," +
+				" equip_id uuid," +
 				" name varchar," +
 				" level int," +
 				" type int," +
@@ -281,6 +304,7 @@ public class Equipment extends BasePersistentObject{
 		indexes.add("create index equipment_rarity_index on equipment (rarity);");
 		indexes.add("create index equipment_class_required_index on equipment (class_required);");
 		indexes.add("create index equipment_lvl_required_index on equipment (lvl_required);");
+		indexes.add("create index equipment_equip_id_index on equipment (equip_id);");
 		return indexes;
 	}
 	

@@ -11,17 +11,44 @@ public final class RepairEquipEventProto {
   public interface RepairEquipRequestProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional int32 userEquipId = 2;
-    boolean hasUserEquipId();
-    int getUserEquipId();
+    // optional .proto.MinimumUserProto mup = 1;
+    boolean hasMup();
+    com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup();
+    com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder();
     
-    // optional bool inQueue = 3;
-    boolean hasInQueue();
-    boolean getInQueue();
+    // repeated .proto.UserEquipRepairProto uerpDelete = 2;
+    java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> 
+        getUerpDeleteList();
+    com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto getUerpDelete(int index);
+    int getUerpDeleteCount();
+    java.util.List<? extends com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder> 
+        getUerpDeleteOrBuilderList();
+    com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder getUerpDeleteOrBuilder(
+        int index);
     
-    // optional int64 startTime = 4;
-    boolean hasStartTime();
-    long getStartTime();
+    // repeated .proto.UserEquipRepairProto uerpUpdate = 3;
+    java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> 
+        getUerpUpdateList();
+    com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto getUerpUpdate(int index);
+    int getUerpUpdateCount();
+    java.util.List<? extends com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder> 
+        getUerpUpdateOrBuilderList();
+    com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder getUerpUpdateOrBuilder(
+        int index);
+    
+    // repeated .proto.UserEquipRepairProto uerpNew = 4;
+    java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> 
+        getUerpNewList();
+    com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto getUerpNew(int index);
+    int getUerpNewCount();
+    java.util.List<? extends com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder> 
+        getUerpNewOrBuilderList();
+    com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder getUerpNewOrBuilder(
+        int index);
+    
+    // optional int64 clientTimeMillis = 5;
+    boolean hasClientTimeMillis();
+    long getClientTimeMillis();
   }
   public static final class RepairEquipRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -52,40 +79,98 @@ public final class RepairEquipEventProto {
     }
     
     private int bitField0_;
-    // optional int32 userEquipId = 2;
-    public static final int USEREQUIPID_FIELD_NUMBER = 2;
-    private int userEquipId_;
-    public boolean hasUserEquipId() {
+    // optional .proto.MinimumUserProto mup = 1;
+    public static final int MUP_FIELD_NUMBER = 1;
+    private com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto mup_;
+    public boolean hasMup() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public int getUserEquipId() {
-      return userEquipId_;
+    public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup() {
+      return mup_;
+    }
+    public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder() {
+      return mup_;
     }
     
-    // optional bool inQueue = 3;
-    public static final int INQUEUE_FIELD_NUMBER = 3;
-    private boolean inQueue_;
-    public boolean hasInQueue() {
+    // repeated .proto.UserEquipRepairProto uerpDelete = 2;
+    public static final int UERPDELETE_FIELD_NUMBER = 2;
+    private java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> uerpDelete_;
+    public java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> getUerpDeleteList() {
+      return uerpDelete_;
+    }
+    public java.util.List<? extends com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder> 
+        getUerpDeleteOrBuilderList() {
+      return uerpDelete_;
+    }
+    public int getUerpDeleteCount() {
+      return uerpDelete_.size();
+    }
+    public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto getUerpDelete(int index) {
+      return uerpDelete_.get(index);
+    }
+    public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder getUerpDeleteOrBuilder(
+        int index) {
+      return uerpDelete_.get(index);
+    }
+    
+    // repeated .proto.UserEquipRepairProto uerpUpdate = 3;
+    public static final int UERPUPDATE_FIELD_NUMBER = 3;
+    private java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> uerpUpdate_;
+    public java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> getUerpUpdateList() {
+      return uerpUpdate_;
+    }
+    public java.util.List<? extends com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder> 
+        getUerpUpdateOrBuilderList() {
+      return uerpUpdate_;
+    }
+    public int getUerpUpdateCount() {
+      return uerpUpdate_.size();
+    }
+    public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto getUerpUpdate(int index) {
+      return uerpUpdate_.get(index);
+    }
+    public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder getUerpUpdateOrBuilder(
+        int index) {
+      return uerpUpdate_.get(index);
+    }
+    
+    // repeated .proto.UserEquipRepairProto uerpNew = 4;
+    public static final int UERPNEW_FIELD_NUMBER = 4;
+    private java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> uerpNew_;
+    public java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> getUerpNewList() {
+      return uerpNew_;
+    }
+    public java.util.List<? extends com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder> 
+        getUerpNewOrBuilderList() {
+      return uerpNew_;
+    }
+    public int getUerpNewCount() {
+      return uerpNew_.size();
+    }
+    public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto getUerpNew(int index) {
+      return uerpNew_.get(index);
+    }
+    public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder getUerpNewOrBuilder(
+        int index) {
+      return uerpNew_.get(index);
+    }
+    
+    // optional int64 clientTimeMillis = 5;
+    public static final int CLIENTTIMEMILLIS_FIELD_NUMBER = 5;
+    private long clientTimeMillis_;
+    public boolean hasClientTimeMillis() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public boolean getInQueue() {
-      return inQueue_;
-    }
-    
-    // optional int64 startTime = 4;
-    public static final int STARTTIME_FIELD_NUMBER = 4;
-    private long startTime_;
-    public boolean hasStartTime() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    public long getStartTime() {
-      return startTime_;
+    public long getClientTimeMillis() {
+      return clientTimeMillis_;
     }
     
     private void initFields() {
-      userEquipId_ = 0;
-      inQueue_ = false;
-      startTime_ = 0L;
+      mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+      uerpDelete_ = java.util.Collections.emptyList();
+      uerpUpdate_ = java.util.Collections.emptyList();
+      uerpNew_ = java.util.Collections.emptyList();
+      clientTimeMillis_ = 0L;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -100,13 +185,19 @@ public final class RepairEquipEventProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(2, userEquipId_);
+        output.writeMessage(1, mup_);
+      }
+      for (int i = 0; i < uerpDelete_.size(); i++) {
+        output.writeMessage(2, uerpDelete_.get(i));
+      }
+      for (int i = 0; i < uerpUpdate_.size(); i++) {
+        output.writeMessage(3, uerpUpdate_.get(i));
+      }
+      for (int i = 0; i < uerpNew_.size(); i++) {
+        output.writeMessage(4, uerpNew_.get(i));
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBool(3, inQueue_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeInt64(4, startTime_);
+        output.writeInt64(5, clientTimeMillis_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -119,15 +210,23 @@ public final class RepairEquipEventProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, userEquipId_);
+          .computeMessageSize(1, mup_);
+      }
+      for (int i = 0; i < uerpDelete_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, uerpDelete_.get(i));
+      }
+      for (int i = 0; i < uerpUpdate_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, uerpUpdate_.get(i));
+      }
+      for (int i = 0; i < uerpNew_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, uerpNew_.get(i));
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(3, inQueue_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(4, startTime_);
+          .computeInt64Size(5, clientTimeMillis_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -245,6 +344,10 @@ public final class RepairEquipEventProto {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getMupFieldBuilder();
+          getUerpDeleteFieldBuilder();
+          getUerpUpdateFieldBuilder();
+          getUerpNewFieldBuilder();
         }
       }
       private static Builder create() {
@@ -253,12 +356,32 @@ public final class RepairEquipEventProto {
       
       public Builder clear() {
         super.clear();
-        userEquipId_ = 0;
+        if (mupBuilder_ == null) {
+          mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+        } else {
+          mupBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000001);
-        inQueue_ = false;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        startTime_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000004);
+        if (uerpDeleteBuilder_ == null) {
+          uerpDelete_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          uerpDeleteBuilder_.clear();
+        }
+        if (uerpUpdateBuilder_ == null) {
+          uerpUpdate_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+        } else {
+          uerpUpdateBuilder_.clear();
+        }
+        if (uerpNewBuilder_ == null) {
+          uerpNew_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+        } else {
+          uerpNewBuilder_.clear();
+        }
+        clientTimeMillis_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
       
@@ -300,15 +423,42 @@ public final class RepairEquipEventProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.userEquipId_ = userEquipId_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+        if (mupBuilder_ == null) {
+          result.mup_ = mup_;
+        } else {
+          result.mup_ = mupBuilder_.build();
+        }
+        if (uerpDeleteBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            uerpDelete_ = java.util.Collections.unmodifiableList(uerpDelete_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.uerpDelete_ = uerpDelete_;
+        } else {
+          result.uerpDelete_ = uerpDeleteBuilder_.build();
+        }
+        if (uerpUpdateBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004)) {
+            uerpUpdate_ = java.util.Collections.unmodifiableList(uerpUpdate_);
+            bitField0_ = (bitField0_ & ~0x00000004);
+          }
+          result.uerpUpdate_ = uerpUpdate_;
+        } else {
+          result.uerpUpdate_ = uerpUpdateBuilder_.build();
+        }
+        if (uerpNewBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008)) {
+            uerpNew_ = java.util.Collections.unmodifiableList(uerpNew_);
+            bitField0_ = (bitField0_ & ~0x00000008);
+          }
+          result.uerpNew_ = uerpNew_;
+        } else {
+          result.uerpNew_ = uerpNewBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.inQueue_ = inQueue_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.startTime_ = startTime_;
+        result.clientTimeMillis_ = clientTimeMillis_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -325,14 +475,89 @@ public final class RepairEquipEventProto {
       
       public Builder mergeFrom(com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipRequestProto other) {
         if (other == com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipRequestProto.getDefaultInstance()) return this;
-        if (other.hasUserEquipId()) {
-          setUserEquipId(other.getUserEquipId());
+        if (other.hasMup()) {
+          mergeMup(other.getMup());
         }
-        if (other.hasInQueue()) {
-          setInQueue(other.getInQueue());
+        if (uerpDeleteBuilder_ == null) {
+          if (!other.uerpDelete_.isEmpty()) {
+            if (uerpDelete_.isEmpty()) {
+              uerpDelete_ = other.uerpDelete_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureUerpDeleteIsMutable();
+              uerpDelete_.addAll(other.uerpDelete_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.uerpDelete_.isEmpty()) {
+            if (uerpDeleteBuilder_.isEmpty()) {
+              uerpDeleteBuilder_.dispose();
+              uerpDeleteBuilder_ = null;
+              uerpDelete_ = other.uerpDelete_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              uerpDeleteBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getUerpDeleteFieldBuilder() : null;
+            } else {
+              uerpDeleteBuilder_.addAllMessages(other.uerpDelete_);
+            }
+          }
         }
-        if (other.hasStartTime()) {
-          setStartTime(other.getStartTime());
+        if (uerpUpdateBuilder_ == null) {
+          if (!other.uerpUpdate_.isEmpty()) {
+            if (uerpUpdate_.isEmpty()) {
+              uerpUpdate_ = other.uerpUpdate_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+            } else {
+              ensureUerpUpdateIsMutable();
+              uerpUpdate_.addAll(other.uerpUpdate_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.uerpUpdate_.isEmpty()) {
+            if (uerpUpdateBuilder_.isEmpty()) {
+              uerpUpdateBuilder_.dispose();
+              uerpUpdateBuilder_ = null;
+              uerpUpdate_ = other.uerpUpdate_;
+              bitField0_ = (bitField0_ & ~0x00000004);
+              uerpUpdateBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getUerpUpdateFieldBuilder() : null;
+            } else {
+              uerpUpdateBuilder_.addAllMessages(other.uerpUpdate_);
+            }
+          }
+        }
+        if (uerpNewBuilder_ == null) {
+          if (!other.uerpNew_.isEmpty()) {
+            if (uerpNew_.isEmpty()) {
+              uerpNew_ = other.uerpNew_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+            } else {
+              ensureUerpNewIsMutable();
+              uerpNew_.addAll(other.uerpNew_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.uerpNew_.isEmpty()) {
+            if (uerpNewBuilder_.isEmpty()) {
+              uerpNewBuilder_.dispose();
+              uerpNewBuilder_ = null;
+              uerpNew_ = other.uerpNew_;
+              bitField0_ = (bitField0_ & ~0x00000008);
+              uerpNewBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getUerpNewFieldBuilder() : null;
+            } else {
+              uerpNewBuilder_.addAllMessages(other.uerpNew_);
+            }
+          }
+        }
+        if (other.hasClientTimeMillis()) {
+          setClientTimeMillis(other.getClientTimeMillis());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -365,19 +590,36 @@ public final class RepairEquipEventProto {
               }
               break;
             }
-            case 16: {
-              bitField0_ |= 0x00000001;
-              userEquipId_ = input.readInt32();
+            case 10: {
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder subBuilder = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.newBuilder();
+              if (hasMup()) {
+                subBuilder.mergeFrom(getMup());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setMup(subBuilder.buildPartial());
               break;
             }
-            case 24: {
-              bitField0_ |= 0x00000002;
-              inQueue_ = input.readBool();
+            case 18: {
+              com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder subBuilder = com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addUerpDelete(subBuilder.buildPartial());
               break;
             }
-            case 32: {
-              bitField0_ |= 0x00000004;
-              startTime_ = input.readInt64();
+            case 26: {
+              com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder subBuilder = com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addUerpUpdate(subBuilder.buildPartial());
+              break;
+            }
+            case 34: {
+              com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder subBuilder = com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addUerpNew(subBuilder.buildPartial());
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              clientTimeMillis_ = input.readInt64();
               break;
             }
           }
@@ -386,65 +628,671 @@ public final class RepairEquipEventProto {
       
       private int bitField0_;
       
-      // optional int32 userEquipId = 2;
-      private int userEquipId_ ;
-      public boolean hasUserEquipId() {
+      // optional .proto.MinimumUserProto mup = 1;
+      private com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder> mupBuilder_;
+      public boolean hasMup() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public int getUserEquipId() {
-        return userEquipId_;
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup() {
+        if (mupBuilder_ == null) {
+          return mup_;
+        } else {
+          return mupBuilder_.getMessage();
+        }
       }
-      public Builder setUserEquipId(int value) {
+      public Builder setMup(com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto value) {
+        if (mupBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          mup_ = value;
+          onChanged();
+        } else {
+          mupBuilder_.setMessage(value);
+        }
         bitField0_ |= 0x00000001;
-        userEquipId_ = value;
-        onChanged();
         return this;
       }
-      public Builder clearUserEquipId() {
+      public Builder setMup(
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder builderForValue) {
+        if (mupBuilder_ == null) {
+          mup_ = builderForValue.build();
+          onChanged();
+        } else {
+          mupBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder mergeMup(com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto value) {
+        if (mupBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              mup_ != com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance()) {
+            mup_ =
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.newBuilder(mup_).mergeFrom(value).buildPartial();
+          } else {
+            mup_ = value;
+          }
+          onChanged();
+        } else {
+          mupBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder clearMup() {
+        if (mupBuilder_ == null) {
+          mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+          onChanged();
+        } else {
+          mupBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000001);
-        userEquipId_ = 0;
-        onChanged();
         return this;
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder getMupBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getMupFieldBuilder().getBuilder();
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder() {
+        if (mupBuilder_ != null) {
+          return mupBuilder_.getMessageOrBuilder();
+        } else {
+          return mup_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder> 
+          getMupFieldBuilder() {
+        if (mupBuilder_ == null) {
+          mupBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder>(
+                  mup_,
+                  getParentForChildren(),
+                  isClean());
+          mup_ = null;
+        }
+        return mupBuilder_;
       }
       
-      // optional bool inQueue = 3;
-      private boolean inQueue_ ;
-      public boolean hasInQueue() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      public boolean getInQueue() {
-        return inQueue_;
-      }
-      public Builder setInQueue(boolean value) {
-        bitField0_ |= 0x00000002;
-        inQueue_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearInQueue() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        inQueue_ = false;
-        onChanged();
-        return this;
+      // repeated .proto.UserEquipRepairProto uerpDelete = 2;
+      private java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> uerpDelete_ =
+        java.util.Collections.emptyList();
+      private void ensureUerpDeleteIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          uerpDelete_ = new java.util.ArrayList<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto>(uerpDelete_);
+          bitField0_ |= 0x00000002;
+         }
       }
       
-      // optional int64 startTime = 4;
-      private long startTime_ ;
-      public boolean hasStartTime() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder> uerpDeleteBuilder_;
+      
+      public java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> getUerpDeleteList() {
+        if (uerpDeleteBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(uerpDelete_);
+        } else {
+          return uerpDeleteBuilder_.getMessageList();
+        }
       }
-      public long getStartTime() {
-        return startTime_;
+      public int getUerpDeleteCount() {
+        if (uerpDeleteBuilder_ == null) {
+          return uerpDelete_.size();
+        } else {
+          return uerpDeleteBuilder_.getCount();
+        }
       }
-      public Builder setStartTime(long value) {
-        bitField0_ |= 0x00000004;
-        startTime_ = value;
+      public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto getUerpDelete(int index) {
+        if (uerpDeleteBuilder_ == null) {
+          return uerpDelete_.get(index);
+        } else {
+          return uerpDeleteBuilder_.getMessage(index);
+        }
+      }
+      public Builder setUerpDelete(
+          int index, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto value) {
+        if (uerpDeleteBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUerpDeleteIsMutable();
+          uerpDelete_.set(index, value);
+          onChanged();
+        } else {
+          uerpDeleteBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setUerpDelete(
+          int index, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder builderForValue) {
+        if (uerpDeleteBuilder_ == null) {
+          ensureUerpDeleteIsMutable();
+          uerpDelete_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          uerpDeleteBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addUerpDelete(com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto value) {
+        if (uerpDeleteBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUerpDeleteIsMutable();
+          uerpDelete_.add(value);
+          onChanged();
+        } else {
+          uerpDeleteBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addUerpDelete(
+          int index, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto value) {
+        if (uerpDeleteBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUerpDeleteIsMutable();
+          uerpDelete_.add(index, value);
+          onChanged();
+        } else {
+          uerpDeleteBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addUerpDelete(
+          com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder builderForValue) {
+        if (uerpDeleteBuilder_ == null) {
+          ensureUerpDeleteIsMutable();
+          uerpDelete_.add(builderForValue.build());
+          onChanged();
+        } else {
+          uerpDeleteBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addUerpDelete(
+          int index, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder builderForValue) {
+        if (uerpDeleteBuilder_ == null) {
+          ensureUerpDeleteIsMutable();
+          uerpDelete_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          uerpDeleteBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllUerpDelete(
+          java.lang.Iterable<? extends com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> values) {
+        if (uerpDeleteBuilder_ == null) {
+          ensureUerpDeleteIsMutable();
+          super.addAll(values, uerpDelete_);
+          onChanged();
+        } else {
+          uerpDeleteBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearUerpDelete() {
+        if (uerpDeleteBuilder_ == null) {
+          uerpDelete_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          uerpDeleteBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeUerpDelete(int index) {
+        if (uerpDeleteBuilder_ == null) {
+          ensureUerpDeleteIsMutable();
+          uerpDelete_.remove(index);
+          onChanged();
+        } else {
+          uerpDeleteBuilder_.remove(index);
+        }
+        return this;
+      }
+      public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder getUerpDeleteBuilder(
+          int index) {
+        return getUerpDeleteFieldBuilder().getBuilder(index);
+      }
+      public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder getUerpDeleteOrBuilder(
+          int index) {
+        if (uerpDeleteBuilder_ == null) {
+          return uerpDelete_.get(index);  } else {
+          return uerpDeleteBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder> 
+           getUerpDeleteOrBuilderList() {
+        if (uerpDeleteBuilder_ != null) {
+          return uerpDeleteBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(uerpDelete_);
+        }
+      }
+      public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder addUerpDeleteBuilder() {
+        return getUerpDeleteFieldBuilder().addBuilder(
+            com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.getDefaultInstance());
+      }
+      public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder addUerpDeleteBuilder(
+          int index) {
+        return getUerpDeleteFieldBuilder().addBuilder(
+            index, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.getDefaultInstance());
+      }
+      public java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder> 
+           getUerpDeleteBuilderList() {
+        return getUerpDeleteFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder> 
+          getUerpDeleteFieldBuilder() {
+        if (uerpDeleteBuilder_ == null) {
+          uerpDeleteBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder>(
+                  uerpDelete_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          uerpDelete_ = null;
+        }
+        return uerpDeleteBuilder_;
+      }
+      
+      // repeated .proto.UserEquipRepairProto uerpUpdate = 3;
+      private java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> uerpUpdate_ =
+        java.util.Collections.emptyList();
+      private void ensureUerpUpdateIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          uerpUpdate_ = new java.util.ArrayList<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto>(uerpUpdate_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder> uerpUpdateBuilder_;
+      
+      public java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> getUerpUpdateList() {
+        if (uerpUpdateBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(uerpUpdate_);
+        } else {
+          return uerpUpdateBuilder_.getMessageList();
+        }
+      }
+      public int getUerpUpdateCount() {
+        if (uerpUpdateBuilder_ == null) {
+          return uerpUpdate_.size();
+        } else {
+          return uerpUpdateBuilder_.getCount();
+        }
+      }
+      public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto getUerpUpdate(int index) {
+        if (uerpUpdateBuilder_ == null) {
+          return uerpUpdate_.get(index);
+        } else {
+          return uerpUpdateBuilder_.getMessage(index);
+        }
+      }
+      public Builder setUerpUpdate(
+          int index, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto value) {
+        if (uerpUpdateBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUerpUpdateIsMutable();
+          uerpUpdate_.set(index, value);
+          onChanged();
+        } else {
+          uerpUpdateBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setUerpUpdate(
+          int index, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder builderForValue) {
+        if (uerpUpdateBuilder_ == null) {
+          ensureUerpUpdateIsMutable();
+          uerpUpdate_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          uerpUpdateBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addUerpUpdate(com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto value) {
+        if (uerpUpdateBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUerpUpdateIsMutable();
+          uerpUpdate_.add(value);
+          onChanged();
+        } else {
+          uerpUpdateBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addUerpUpdate(
+          int index, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto value) {
+        if (uerpUpdateBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUerpUpdateIsMutable();
+          uerpUpdate_.add(index, value);
+          onChanged();
+        } else {
+          uerpUpdateBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addUerpUpdate(
+          com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder builderForValue) {
+        if (uerpUpdateBuilder_ == null) {
+          ensureUerpUpdateIsMutable();
+          uerpUpdate_.add(builderForValue.build());
+          onChanged();
+        } else {
+          uerpUpdateBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addUerpUpdate(
+          int index, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder builderForValue) {
+        if (uerpUpdateBuilder_ == null) {
+          ensureUerpUpdateIsMutable();
+          uerpUpdate_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          uerpUpdateBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllUerpUpdate(
+          java.lang.Iterable<? extends com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> values) {
+        if (uerpUpdateBuilder_ == null) {
+          ensureUerpUpdateIsMutable();
+          super.addAll(values, uerpUpdate_);
+          onChanged();
+        } else {
+          uerpUpdateBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearUerpUpdate() {
+        if (uerpUpdateBuilder_ == null) {
+          uerpUpdate_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000004);
+          onChanged();
+        } else {
+          uerpUpdateBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeUerpUpdate(int index) {
+        if (uerpUpdateBuilder_ == null) {
+          ensureUerpUpdateIsMutable();
+          uerpUpdate_.remove(index);
+          onChanged();
+        } else {
+          uerpUpdateBuilder_.remove(index);
+        }
+        return this;
+      }
+      public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder getUerpUpdateBuilder(
+          int index) {
+        return getUerpUpdateFieldBuilder().getBuilder(index);
+      }
+      public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder getUerpUpdateOrBuilder(
+          int index) {
+        if (uerpUpdateBuilder_ == null) {
+          return uerpUpdate_.get(index);  } else {
+          return uerpUpdateBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder> 
+           getUerpUpdateOrBuilderList() {
+        if (uerpUpdateBuilder_ != null) {
+          return uerpUpdateBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(uerpUpdate_);
+        }
+      }
+      public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder addUerpUpdateBuilder() {
+        return getUerpUpdateFieldBuilder().addBuilder(
+            com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.getDefaultInstance());
+      }
+      public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder addUerpUpdateBuilder(
+          int index) {
+        return getUerpUpdateFieldBuilder().addBuilder(
+            index, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.getDefaultInstance());
+      }
+      public java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder> 
+           getUerpUpdateBuilderList() {
+        return getUerpUpdateFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder> 
+          getUerpUpdateFieldBuilder() {
+        if (uerpUpdateBuilder_ == null) {
+          uerpUpdateBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder>(
+                  uerpUpdate_,
+                  ((bitField0_ & 0x00000004) == 0x00000004),
+                  getParentForChildren(),
+                  isClean());
+          uerpUpdate_ = null;
+        }
+        return uerpUpdateBuilder_;
+      }
+      
+      // repeated .proto.UserEquipRepairProto uerpNew = 4;
+      private java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> uerpNew_ =
+        java.util.Collections.emptyList();
+      private void ensureUerpNewIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          uerpNew_ = new java.util.ArrayList<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto>(uerpNew_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder> uerpNewBuilder_;
+      
+      public java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> getUerpNewList() {
+        if (uerpNewBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(uerpNew_);
+        } else {
+          return uerpNewBuilder_.getMessageList();
+        }
+      }
+      public int getUerpNewCount() {
+        if (uerpNewBuilder_ == null) {
+          return uerpNew_.size();
+        } else {
+          return uerpNewBuilder_.getCount();
+        }
+      }
+      public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto getUerpNew(int index) {
+        if (uerpNewBuilder_ == null) {
+          return uerpNew_.get(index);
+        } else {
+          return uerpNewBuilder_.getMessage(index);
+        }
+      }
+      public Builder setUerpNew(
+          int index, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto value) {
+        if (uerpNewBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUerpNewIsMutable();
+          uerpNew_.set(index, value);
+          onChanged();
+        } else {
+          uerpNewBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setUerpNew(
+          int index, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder builderForValue) {
+        if (uerpNewBuilder_ == null) {
+          ensureUerpNewIsMutable();
+          uerpNew_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          uerpNewBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addUerpNew(com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto value) {
+        if (uerpNewBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUerpNewIsMutable();
+          uerpNew_.add(value);
+          onChanged();
+        } else {
+          uerpNewBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addUerpNew(
+          int index, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto value) {
+        if (uerpNewBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureUerpNewIsMutable();
+          uerpNew_.add(index, value);
+          onChanged();
+        } else {
+          uerpNewBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addUerpNew(
+          com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder builderForValue) {
+        if (uerpNewBuilder_ == null) {
+          ensureUerpNewIsMutable();
+          uerpNew_.add(builderForValue.build());
+          onChanged();
+        } else {
+          uerpNewBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addUerpNew(
+          int index, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder builderForValue) {
+        if (uerpNewBuilder_ == null) {
+          ensureUerpNewIsMutable();
+          uerpNew_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          uerpNewBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllUerpNew(
+          java.lang.Iterable<? extends com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto> values) {
+        if (uerpNewBuilder_ == null) {
+          ensureUerpNewIsMutable();
+          super.addAll(values, uerpNew_);
+          onChanged();
+        } else {
+          uerpNewBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearUerpNew() {
+        if (uerpNewBuilder_ == null) {
+          uerpNew_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000008);
+          onChanged();
+        } else {
+          uerpNewBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeUerpNew(int index) {
+        if (uerpNewBuilder_ == null) {
+          ensureUerpNewIsMutable();
+          uerpNew_.remove(index);
+          onChanged();
+        } else {
+          uerpNewBuilder_.remove(index);
+        }
+        return this;
+      }
+      public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder getUerpNewBuilder(
+          int index) {
+        return getUerpNewFieldBuilder().getBuilder(index);
+      }
+      public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder getUerpNewOrBuilder(
+          int index) {
+        if (uerpNewBuilder_ == null) {
+          return uerpNew_.get(index);  } else {
+          return uerpNewBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder> 
+           getUerpNewOrBuilderList() {
+        if (uerpNewBuilder_ != null) {
+          return uerpNewBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(uerpNew_);
+        }
+      }
+      public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder addUerpNewBuilder() {
+        return getUerpNewFieldBuilder().addBuilder(
+            com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.getDefaultInstance());
+      }
+      public com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder addUerpNewBuilder(
+          int index) {
+        return getUerpNewFieldBuilder().addBuilder(
+            index, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.getDefaultInstance());
+      }
+      public java.util.List<com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder> 
+           getUerpNewBuilderList() {
+        return getUerpNewFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder> 
+          getUerpNewFieldBuilder() {
+        if (uerpNewBuilder_ == null) {
+          uerpNewBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder, com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder>(
+                  uerpNew_,
+                  ((bitField0_ & 0x00000008) == 0x00000008),
+                  getParentForChildren(),
+                  isClean());
+          uerpNew_ = null;
+        }
+        return uerpNewBuilder_;
+      }
+      
+      // optional int64 clientTimeMillis = 5;
+      private long clientTimeMillis_ ;
+      public boolean hasClientTimeMillis() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public long getClientTimeMillis() {
+        return clientTimeMillis_;
+      }
+      public Builder setClientTimeMillis(long value) {
+        bitField0_ |= 0x00000010;
+        clientTimeMillis_ = value;
         onChanged();
         return this;
       }
-      public Builder clearStartTime() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        startTime_ = 0L;
+      public Builder clearClientTimeMillis() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        clientTimeMillis_ = 0L;
         onChanged();
         return this;
       }
@@ -462,6 +1310,11 @@ public final class RepairEquipEventProto {
   
   public interface RepairEquipResponseProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
+    
+    // optional .proto.MinimumUserProto mup = 1;
+    boolean hasMup();
+    com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup();
+    com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder();
     
     // optional .proto.RepairEquipResponseProto.RepairEquipStatus status = 2;
     boolean hasStatus();
@@ -498,19 +1351,13 @@ public final class RepairEquipEventProto {
     public enum RepairEquipStatus
         implements com.google.protobuf.ProtocolMessageEnum {
       SUCCESS(0, 0),
-      FAIL_NOT_DAMAGED(1, 1),
-      FAIL_NOT_ENOUGH_RESOURCES(2, 2),
-      FAIL_UNSYNCHRONIZED_TIMES(3, 3),
-      FAIL_MAXED_QUEUE_LIMIT(4, 4),
+      FAIL_UNSYNCHRONIZED_TIMES(1, 1),
+      FAIL_OTHER(2, 2),
       ;
       
-      public static final RepairEquipStatus FAIL_OTHER = FAIL_MAXED_QUEUE_LIMIT;
       public static final int SUCCESS_VALUE = 0;
-      public static final int FAIL_NOT_DAMAGED_VALUE = 1;
-      public static final int FAIL_NOT_ENOUGH_RESOURCES_VALUE = 2;
-      public static final int FAIL_UNSYNCHRONIZED_TIMES_VALUE = 3;
-      public static final int FAIL_MAXED_QUEUE_LIMIT_VALUE = 4;
-      public static final int FAIL_OTHER_VALUE = 4;
+      public static final int FAIL_UNSYNCHRONIZED_TIMES_VALUE = 1;
+      public static final int FAIL_OTHER_VALUE = 2;
       
       
       public final int getNumber() { return value; }
@@ -518,10 +1365,8 @@ public final class RepairEquipEventProto {
       public static RepairEquipStatus valueOf(int value) {
         switch (value) {
           case 0: return SUCCESS;
-          case 1: return FAIL_NOT_DAMAGED;
-          case 2: return FAIL_NOT_ENOUGH_RESOURCES;
-          case 3: return FAIL_UNSYNCHRONIZED_TIMES;
-          case 4: return FAIL_MAXED_QUEUE_LIMIT;
+          case 1: return FAIL_UNSYNCHRONIZED_TIMES;
+          case 2: return FAIL_OTHER;
           default: return null;
         }
       }
@@ -552,7 +1397,7 @@ public final class RepairEquipEventProto {
       }
       
       private static final RepairEquipStatus[] VALUES = {
-        SUCCESS, FAIL_NOT_DAMAGED, FAIL_NOT_ENOUGH_RESOURCES, FAIL_UNSYNCHRONIZED_TIMES, FAIL_MAXED_QUEUE_LIMIT, FAIL_OTHER, 
+        SUCCESS, FAIL_UNSYNCHRONIZED_TIMES, FAIL_OTHER, 
       };
       
       public static RepairEquipStatus valueOf(
@@ -576,17 +1421,31 @@ public final class RepairEquipEventProto {
     }
     
     private int bitField0_;
+    // optional .proto.MinimumUserProto mup = 1;
+    public static final int MUP_FIELD_NUMBER = 1;
+    private com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto mup_;
+    public boolean hasMup() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup() {
+      return mup_;
+    }
+    public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder() {
+      return mup_;
+    }
+    
     // optional .proto.RepairEquipResponseProto.RepairEquipStatus status = 2;
     public static final int STATUS_FIELD_NUMBER = 2;
     private com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipResponseProto.RepairEquipStatus status_;
     public boolean hasStatus() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipResponseProto.RepairEquipStatus getStatus() {
       return status_;
     }
     
     private void initFields() {
+      mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
       status_ = com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipResponseProto.RepairEquipStatus.SUCCESS;
     }
     private byte memoizedIsInitialized = -1;
@@ -602,6 +1461,9 @@ public final class RepairEquipEventProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeMessage(1, mup_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeEnum(2, status_.getNumber());
       }
       getUnknownFields().writeTo(output);
@@ -614,6 +1476,10 @@ public final class RepairEquipEventProto {
     
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, mup_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, status_.getNumber());
       }
@@ -733,6 +1599,7 @@ public final class RepairEquipEventProto {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getMupFieldBuilder();
         }
       }
       private static Builder create() {
@@ -741,8 +1608,14 @@ public final class RepairEquipEventProto {
       
       public Builder clear() {
         super.clear();
-        status_ = com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipResponseProto.RepairEquipStatus.SUCCESS;
+        if (mupBuilder_ == null) {
+          mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+        } else {
+          mupBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000001);
+        status_ = com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipResponseProto.RepairEquipStatus.SUCCESS;
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
       
@@ -784,6 +1657,14 @@ public final class RepairEquipEventProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
+        if (mupBuilder_ == null) {
+          result.mup_ = mup_;
+        } else {
+          result.mup_ = mupBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
         result.status_ = status_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -801,6 +1682,9 @@ public final class RepairEquipEventProto {
       
       public Builder mergeFrom(com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipResponseProto other) {
         if (other == com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipResponseProto.getDefaultInstance()) return this;
+        if (other.hasMup()) {
+          mergeMup(other.getMup());
+        }
         if (other.hasStatus()) {
           setStatus(other.getStatus());
         }
@@ -835,13 +1719,22 @@ public final class RepairEquipEventProto {
               }
               break;
             }
+            case 10: {
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder subBuilder = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.newBuilder();
+              if (hasMup()) {
+                subBuilder.mergeFrom(getMup());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setMup(subBuilder.buildPartial());
+              break;
+            }
             case 16: {
               int rawValue = input.readEnum();
               com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipResponseProto.RepairEquipStatus value = com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipResponseProto.RepairEquipStatus.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(2, rawValue);
               } else {
-                bitField0_ |= 0x00000001;
+                bitField0_ |= 0x00000002;
                 status_ = value;
               }
               break;
@@ -852,10 +1745,100 @@ public final class RepairEquipEventProto {
       
       private int bitField0_;
       
+      // optional .proto.MinimumUserProto mup = 1;
+      private com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder> mupBuilder_;
+      public boolean hasMup() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup() {
+        if (mupBuilder_ == null) {
+          return mup_;
+        } else {
+          return mupBuilder_.getMessage();
+        }
+      }
+      public Builder setMup(com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto value) {
+        if (mupBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          mup_ = value;
+          onChanged();
+        } else {
+          mupBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder setMup(
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder builderForValue) {
+        if (mupBuilder_ == null) {
+          mup_ = builderForValue.build();
+          onChanged();
+        } else {
+          mupBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder mergeMup(com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto value) {
+        if (mupBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              mup_ != com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance()) {
+            mup_ =
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.newBuilder(mup_).mergeFrom(value).buildPartial();
+          } else {
+            mup_ = value;
+          }
+          onChanged();
+        } else {
+          mupBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      public Builder clearMup() {
+        if (mupBuilder_ == null) {
+          mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+          onChanged();
+        } else {
+          mupBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder getMupBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getMupFieldBuilder().getBuilder();
+      }
+      public com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder() {
+        if (mupBuilder_ != null) {
+          return mupBuilder_.getMessageOrBuilder();
+        } else {
+          return mup_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder> 
+          getMupFieldBuilder() {
+        if (mupBuilder_ == null) {
+          mupBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder>(
+                  mup_,
+                  getParentForChildren(),
+                  isClean());
+          mup_ = null;
+        }
+        return mupBuilder_;
+      }
+      
       // optional .proto.RepairEquipResponseProto.RepairEquipStatus status = 2;
       private com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipResponseProto.RepairEquipStatus status_ = com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipResponseProto.RepairEquipStatus.SUCCESS;
       public boolean hasStatus() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipResponseProto.RepairEquipStatus getStatus() {
         return status_;
@@ -864,13 +1847,13 @@ public final class RepairEquipEventProto {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         status_ = value;
         onChanged();
         return this;
       }
       public Builder clearStatus() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         status_ = com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipResponseProto.RepairEquipStatus.SUCCESS;
         onChanged();
         return this;
@@ -906,17 +1889,21 @@ public final class RepairEquipEventProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\026RepairEquipEvent.proto\022\005proto\"R\n\027Repai" +
-      "rEquipRequestProto\022\023\n\013userEquipId\030\002 \001(\005\022" +
-      "\017\n\007inQueue\030\003 \001(\010\022\021\n\tstartTime\030\004 \001(\003\"\200\002\n\030" +
-      "RepairEquipResponseProto\022A\n\006status\030\002 \001(\016" +
-      "21.proto.RepairEquipResponseProto.Repair" +
-      "EquipStatus\"\240\001\n\021RepairEquipStatus\022\013\n\007SUC" +
-      "CESS\020\000\022\024\n\020FAIL_NOT_DAMAGED\020\001\022\035\n\031FAIL_NOT" +
-      "_ENOUGH_RESOURCES\020\002\022\035\n\031FAIL_UNSYNCHRONIZ" +
-      "ED_TIMES\020\003\022\032\n\026FAIL_MAXED_QUEUE_LIMIT\020\004\022\016" +
-      "\n\nFAIL_OTHER\020\004B2\n\031com.lvl6.aoc2.eventpro",
-      "tosB\025RepairEquipEventProto"
+      "\n\026RepairEquipEvent.proto\022\005proto\032\023FullUse" +
+      "rProto.proto\032\032UserEquipRepairProto.proto" +
+      "\"\351\001\n\027RepairEquipRequestProto\022$\n\003mup\030\001 \001(" +
+      "\0132\027.proto.MinimumUserProto\022/\n\nuerpDelete" +
+      "\030\002 \003(\0132\033.proto.UserEquipRepairProto\022/\n\nu" +
+      "erpUpdate\030\003 \003(\0132\033.proto.UserEquipRepairP" +
+      "roto\022,\n\007uerpNew\030\004 \003(\0132\033.proto.UserEquipR" +
+      "epairProto\022\030\n\020clientTimeMillis\030\005 \001(\003\"\324\001\n" +
+      "\030RepairEquipResponseProto\022$\n\003mup\030\001 \001(\0132\027" +
+      ".proto.MinimumUserProto\022A\n\006status\030\002 \001(\0162",
+      "1.proto.RepairEquipResponseProto.RepairE" +
+      "quipStatus\"O\n\021RepairEquipStatus\022\013\n\007SUCCE" +
+      "SS\020\000\022\035\n\031FAIL_UNSYNCHRONIZED_TIMES\020\001\022\016\n\nF" +
+      "AIL_OTHER\020\002B2\n\031com.lvl6.aoc2.eventprotos" +
+      "B\025RepairEquipEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -928,7 +1915,7 @@ public final class RepairEquipEventProto {
           internal_static_proto_RepairEquipRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_RepairEquipRequestProto_descriptor,
-              new java.lang.String[] { "UserEquipId", "InQueue", "StartTime", },
+              new java.lang.String[] { "Mup", "UerpDelete", "UerpUpdate", "UerpNew", "ClientTimeMillis", },
               com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipRequestProto.class,
               com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipRequestProto.Builder.class);
           internal_static_proto_RepairEquipResponseProto_descriptor =
@@ -936,7 +1923,7 @@ public final class RepairEquipEventProto {
           internal_static_proto_RepairEquipResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_RepairEquipResponseProto_descriptor,
-              new java.lang.String[] { "Status", },
+              new java.lang.String[] { "Mup", "Status", },
               com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipResponseProto.class,
               com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipResponseProto.Builder.class);
           return null;
@@ -945,6 +1932,8 @@ public final class RepairEquipEventProto {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          com.lvl6.aoc2.noneventprotos.FullUser.getDescriptor(),
+          com.lvl6.aoc2.noneventprotos.UserEquipRepair.getDescriptor(),
         }, assigner);
   }
   

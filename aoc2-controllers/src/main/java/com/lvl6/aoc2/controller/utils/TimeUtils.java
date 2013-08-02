@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TimeUtils {
   
-  public static int NUM_MINUTES_LEEWAY_FOR_CLIENT_TIME = 10;
+  public static int NUM_MINUTES_LEEWAY_FOR_CLIENT_TIME = 5;
   
   public boolean isSynchronizedWithServerTime(Date maybeNow) {
     if (null == maybeNow) {
