@@ -26,7 +26,6 @@ import com.lvl6.aoc2.events.RequestEvent;
 import com.lvl6.aoc2.events.request.RepairEquipRequestEvent;
 import com.lvl6.aoc2.events.response.RepairEquipResponseEvent;
 import com.lvl6.aoc2.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
-import com.lvl6.aoc2.noneventprotos.EquipmentEnum.EquipmentType;
 import com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto;
 import com.lvl6.aoc2.po.UserEquipRepair;
@@ -74,7 +73,6 @@ public class RepairEquipController extends EventController {
 
 		//uuid's are not strings, need to convert from string to uuid, vice versa
 		String userIdString = sender.getUserID();
-		UUID userId = UUID.fromString(userIdString);
 		
 		
 		//response to send back to client
@@ -95,8 +93,8 @@ public class RepairEquipController extends EventController {
 
 			boolean successful = false;
 			if (validRequest) {
-//				successful = writeChangesToDb(uerpDelete, uerpUpdate,
-//						uerpNew, inDbMap, clientDate);
+				successful = writeChangesToDb(uerpDelete, uerpUpdate,
+						uerpNew, inDbMap);
 			}
 
 			if (successful) {
@@ -208,8 +206,9 @@ public class RepairEquipController extends EventController {
 		try {
 			deleteExisting(uerpDelete, inDbMap);
 			
-			
 			updateExisting(uerpUpdate, inDbMap);
+			
+			addNew(uerpNew);
 			return true;
 
 		} catch (Exception e) {
@@ -231,34 +230,56 @@ public class RepairEquipController extends EventController {
 	}
 	
 	//UPDATE THE ONES THAT CLIENT WANTS UPDATED
-	private void updateExisting(List<UserEquipRepairProto> uerp, 
+	private void updateExisting(List<UserEquipRepairProto> uerpList, 
 			Map<UUID, UserEquipRepair> inDbMap) throws Exception {
 		List<UserEquipRepair> updated = new ArrayList<UserEquipRepair>();
 		
-		Set<UUID> uerpIds = getUerIds(uerp); 
-		for (UUID id : uerpIds) {
+		//go though inDb objects and replace its values with the
+		//proto values (only expectedStartMillis should change)
+		for (UserEquipRepairProto uer : uerpList) {
+			long millis = uer.getExpectedStartMillis();
+			Date newDate = new Date(millis);
 			
+			String idString = uer.getId();
+			UUID id = UUID.fromString(idString);
+			
+			UserEquipRepair inDb = inDbMap.get(id);
+			inDb.setExpectedStart(newDate);
+			
+			updated.add(inDb);
 		}
 		
+		getUserEquipmentRepairEntityManager().get().put(updated);
 	}
 	
-	//for each proto object get the corresponding object from the db
-	private List<UserEquipRepair> getUserEquipRepairs(
-			List<UserEquipRepairProto> uerp,
-			Map<UUID, UserEquipRepair> inDbMap) throws Exception {
-		List<UserEquipRepair> returnVal = new ArrayList<UserEquipRepair>();
+	private void addNew(List<UserEquipRepairProto> uerpList) {
+		List<UserEquipRepair> newStuff = new ArrayList<UserEquipRepair>();
 		
-		Set<UUID> ids = getUerIds(uerp);
-		for(UUID id : ids) {
-			UserEquipRepair uer = inDbMap.get(id);
-			returnVal.add(uer);
+		for(UserEquipRepairProto uerp : uerpList) {
+			UserEquipRepair uer = new UserEquipRepair();
+			UUID userId = UUID.fromString(uerp.getUserID());
+			uer.setUserId(userId);
+			
+			UUID equipId = UUID.fromString(uerp.getEquipID());
+			uer.setEquipId(equipId);
+			
+			uer.setEquipLevel(uerp.getEquipLevel());
+			uer.setDurability(uerp.getDurability());
+			Date expectedStart = new Date(uerp.getExpectedStartMillis());
+			uer.setExpectedStart(expectedStart);
+			Date enteredQueue = new Date(uerp.getQueuedTimeMillis());
+			uer.setEnteredQueue(enteredQueue);
+			
+			newStuff.add(uer);
 		}
 		
-		return returnVal;
+		getUserEquipmentRepairEntityManager().get().put(newStuff);
 	}
-
 	
 
+	
+	
+	
 	public EquipmentRetrieveUtils getEquipmentRetrieveUtils() {
 		return equipmentRetrieveUtils;
 	}
