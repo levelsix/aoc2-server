@@ -1,5 +1,6 @@
 package com.lvl6.aoc2.po;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -11,7 +12,7 @@ import javax.persistence.Id;
 
 
 @Entity
-public class UserEquip extends BasePersistentObject{
+public class UserEquipRepair extends BasePersistentObject{
 
 	@Id
 	protected UUID id = UUID.randomUUID();
@@ -19,7 +20,6 @@ public class UserEquip extends BasePersistentObject{
 	@Column(name="user_id")
 	protected UUID userId = null;
 	
-	//the 'equip_id' column in equipment table, not the 'id' column
 	@Column(name="equip_id")
 	protected UUID equipId = null;
 	
@@ -27,11 +27,14 @@ public class UserEquip extends BasePersistentObject{
 	protected int equipLevel = 0;
 	
 	@Column(name="durability")
-	protected double durability = 0.0;
+	protected int durability = 0;
 	
-	@Column(name="equipped")
-	protected boolean equipped = false;
+	@Column(name="expected_start")
+	protected Date expectedStart = null;
 	
+	@Column(name="entered_queue")
+	protected Date enteredQueue = null;
+
 
 
 
@@ -75,23 +78,33 @@ public class UserEquip extends BasePersistentObject{
 	}
 
 
-	public double getDurability() {
+	public int getDurability() {
 		return durability;
 	}
 
 
-	public void setDurability(double durability) {
+	public void setDurability(int durability) {
 		this.durability = durability;
 	}
 
 
-	public boolean isEquipped() {
-		return equipped;
+	public Date getExpectedStart() {
+		return expectedStart;
 	}
 
 
-	public void setEquipped(boolean equipped) {
-		this.equipped = equipped;
+	public void setExpectedStart(Date expectedStart) {
+		this.expectedStart = expectedStart;
+	}
+
+
+	public Date getEnteredQueue() {
+		return enteredQueue;
+	}
+
+
+	public void setEnteredQueue(Date enteredQueue) {
+		this.enteredQueue = enteredQueue;
 	}
 
 
@@ -99,12 +112,13 @@ public class UserEquip extends BasePersistentObject{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(durability);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + durability;
+		result = prime * result
+				+ ((enteredQueue == null) ? 0 : enteredQueue.hashCode());
 		result = prime * result + ((equipId == null) ? 0 : equipId.hashCode());
 		result = prime * result + equipLevel;
-		result = prime * result + (equipped ? 1231 : 1237);
+		result = prime * result
+				+ ((expectedStart == null) ? 0 : expectedStart.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
 		return result;
@@ -119,9 +133,13 @@ public class UserEquip extends BasePersistentObject{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		UserEquip other = (UserEquip) obj;
-		if (Double.doubleToLongBits(durability) != Double
-				.doubleToLongBits(other.durability))
+		UserEquipRepair other = (UserEquipRepair) obj;
+		if (durability != other.durability)
+			return false;
+		if (enteredQueue == null) {
+			if (other.enteredQueue != null)
+				return false;
+		} else if (!enteredQueue.equals(other.enteredQueue))
 			return false;
 		if (equipId == null) {
 			if (other.equipId != null)
@@ -130,7 +148,10 @@ public class UserEquip extends BasePersistentObject{
 			return false;
 		if (equipLevel != other.equipLevel)
 			return false;
-		if (equipped != other.equipped)
+		if (expectedStart == null) {
+			if (other.expectedStart != null)
+				return false;
+		} else if (!expectedStart.equals(other.expectedStart))
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -148,21 +169,23 @@ public class UserEquip extends BasePersistentObject{
 
 	@Override
 	public String toString() {
-		return "UserEquip [id=" + id + ", userId=" + userId + ", equipId="
-				+ equipId + ", equipLevel=" + equipLevel + ", durability="
-				+ durability + ", equipped=" + equipped + "]";
+		return "UserEquipRepair [id=" + id + ", userId=" + userId
+				+ ", equipId=" + equipId + ", equipLevel=" + equipLevel
+				+ ", durability=" + durability + ", expectedStart="
+				+ expectedStart + ", enteredQueue=" + enteredQueue + "]";
 	}
 
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_equip (" +
+		return "create table user_equip_repair (" +
 				" id uuid," +
 				" user_id uuid," +
 				" equip_id uuid," +
 				" equip_level int," +
-				" durability double," +
-				" equipped boolean," +
+				" durability int," +
+				" expected_start timestamp" +
+				" entered_queue timestamp," +
 				" primary key(id))" +
 				" with compact storage;";
 	}
@@ -179,10 +202,11 @@ public class UserEquip extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_equip_user_id_index on user_equip (user_id);");
-		indexes.add("create index user_equip_equip_id_index on user_equip (equip_id);");
-		indexes.add("create index user_equip_equip_level_index on user_equip (equip_level);");
-		indexes.add("create index user_equip_equipped_index on user_equip (equipped);");
+		indexes.add("create index user_equip_repair_user_id_index on user_equip_repair (user_id);");
+		indexes.add("create index user_equip_repair_equip_id_index on user_equip_repair (equip_id);");
+		indexes.add("create index user_equip_repair_equip_level_index on user_equip_repair (equip_level);");
+		indexes.add("create index user_equip_repair_expected_start_index on user_equip_repair (expected_start);");
+		indexes.add("create index user_equip_repair_entered_queue_index on user_equip_repair (entered_queue);");
 		return indexes;
 	}
 	

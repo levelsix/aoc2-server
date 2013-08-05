@@ -11,6 +11,10 @@ public final class Structure {
   public interface StructureProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
+    // optional string id = 16;
+    boolean hasId();
+    String getId();
+    
     // optional int32 structureID = 1;
     boolean hasStructureID();
     int getStructureID();
@@ -185,11 +189,43 @@ public final class Structure {
     }
     
     private int bitField0_;
+    // optional string id = 16;
+    public static final int ID_FIELD_NUMBER = 16;
+    private java.lang.Object id_;
+    public boolean hasId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          id_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getIdBytes() {
+      java.lang.Object ref = id_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
     // optional int32 structureID = 1;
     public static final int STRUCTUREID_FIELD_NUMBER = 1;
     private int structureID_;
     public boolean hasStructureID() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public int getStructureID() {
       return structureID_;
@@ -199,7 +235,7 @@ public final class Structure {
     public static final int FUNCTION_FIELD_NUMBER = 2;
     private com.lvl6.aoc2.noneventprotos.Structure.StructureProto.StructureFunction function_;
     public boolean hasFunction() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public com.lvl6.aoc2.noneventprotos.Structure.StructureProto.StructureFunction getFunction() {
       return function_;
@@ -209,7 +245,7 @@ public final class Structure {
     public static final int BUILDCOST_FIELD_NUMBER = 3;
     private int buildCost_;
     public boolean hasBuildCost() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public int getBuildCost() {
       return buildCost_;
@@ -219,7 +255,7 @@ public final class Structure {
     public static final int BUILDTIME_FIELD_NUMBER = 4;
     private int buildTime_;
     public boolean hasBuildTime() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     public int getBuildTime() {
       return buildTime_;
@@ -229,7 +265,7 @@ public final class Structure {
     public static final int BUILDRESOURCE_FIELD_NUMBER = 5;
     private com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType buildResource_;
     public boolean hasBuildResource() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     public com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType getBuildResource() {
       return buildResource_;
@@ -239,7 +275,7 @@ public final class Structure {
     public static final int UPGRADETOWNHALLLEVEL_FIELD_NUMBER = 6;
     private int upgradeTownHallLevel_;
     public boolean hasUpgradeTownHallLevel() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     public int getUpgradeTownHallLevel() {
       return upgradeTownHallLevel_;
@@ -249,7 +285,7 @@ public final class Structure {
     public static final int SIZE_FIELD_NUMBER = 7;
     private com.lvl6.aoc2.noneventprotos.Coordiante.CoordinateProto size_;
     public boolean hasSize() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return ((bitField0_ & 0x00000080) == 0x00000080);
     }
     public com.lvl6.aoc2.noneventprotos.Coordiante.CoordinateProto getSize() {
       return size_;
@@ -262,7 +298,7 @@ public final class Structure {
     public static final int BUILDSPEEDUPBASECOST_FIELD_NUMBER = 8;
     private int buildSpeedUpBaseCost_;
     public boolean hasBuildSpeedUpBaseCost() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
+      return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     public int getBuildSpeedUpBaseCost() {
       return buildSpeedUpBaseCost_;
@@ -272,7 +308,7 @@ public final class Structure {
     public static final int FUNCTIONVALUE_FIELD_NUMBER = 9;
     private int functionValue_;
     public boolean hasFunctionValue() {
-      return ((bitField0_ & 0x00000100) == 0x00000100);
+      return ((bitField0_ & 0x00000200) == 0x00000200);
     }
     public int getFunctionValue() {
       return functionValue_;
@@ -282,7 +318,7 @@ public final class Structure {
     public static final int FUNCTIONRESOURCE_FIELD_NUMBER = 10;
     private com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType functionResource_;
     public boolean hasFunctionResource() {
-      return ((bitField0_ & 0x00000200) == 0x00000200);
+      return ((bitField0_ & 0x00000400) == 0x00000400);
     }
     public com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType getFunctionResource() {
       return functionResource_;
@@ -292,7 +328,7 @@ public final class Structure {
     public static final int SPEEDUPFUNCTIONBASECOST_FIELD_NUMBER = 11;
     private int speedUpFunctionBaseCost_;
     public boolean hasSpeedUpFunctionBaseCost() {
-      return ((bitField0_ & 0x00000400) == 0x00000400);
+      return ((bitField0_ & 0x00000800) == 0x00000800);
     }
     public int getSpeedUpFunctionBaseCost() {
       return speedUpFunctionBaseCost_;
@@ -302,7 +338,7 @@ public final class Structure {
     public static final int CAPACITY_FIELD_NUMBER = 12;
     private int capacity_;
     public boolean hasCapacity() {
-      return ((bitField0_ & 0x00000800) == 0x00000800);
+      return ((bitField0_ & 0x00001000) == 0x00001000);
     }
     public int getCapacity() {
       return capacity_;
@@ -312,7 +348,7 @@ public final class Structure {
     public static final int LEVEL_FIELD_NUMBER = 13;
     private int level_;
     public boolean hasLevel() {
-      return ((bitField0_ & 0x00001000) == 0x00001000);
+      return ((bitField0_ & 0x00002000) == 0x00002000);
     }
     public int getLevel() {
       return level_;
@@ -322,7 +358,7 @@ public final class Structure {
     public static final int NAME_FIELD_NUMBER = 14;
     private java.lang.Object name_;
     public boolean hasName() {
-      return ((bitField0_ & 0x00002000) == 0x00002000);
+      return ((bitField0_ & 0x00004000) == 0x00004000);
     }
     public String getName() {
       java.lang.Object ref = name_;
@@ -354,7 +390,7 @@ public final class Structure {
     public static final int IMAGENAME_FIELD_NUMBER = 15;
     private java.lang.Object imageName_;
     public boolean hasImageName() {
-      return ((bitField0_ & 0x00004000) == 0x00004000);
+      return ((bitField0_ & 0x00008000) == 0x00008000);
     }
     public String getImageName() {
       java.lang.Object ref = imageName_;
@@ -383,6 +419,7 @@ public final class Structure {
     }
     
     private void initFields() {
+      id_ = "";
       structureID_ = 0;
       function_ = com.lvl6.aoc2.noneventprotos.Structure.StructureProto.StructureFunction.TOWN_HALL;
       buildCost_ = 0;
@@ -419,50 +456,53 @@ public final class Structure {
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeInt32(1, structureID_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeEnum(2, function_.getNumber());
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeInt32(3, buildCost_);
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeInt32(4, buildTime_);
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
         output.writeEnum(5, buildResource_.getNumber());
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
         output.writeInt32(6, upgradeTownHallLevel_);
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
         output.writeMessage(7, size_);
       }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
         output.writeInt32(8, buildSpeedUpBaseCost_);
       }
-      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
         output.writeInt32(9, functionValue_);
       }
-      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
         output.writeEnum(10, functionResource_.getNumber());
       }
-      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+      if (((bitField0_ & 0x00000800) == 0x00000800)) {
         output.writeInt32(11, speedUpFunctionBaseCost_);
       }
-      if (((bitField0_ & 0x00000800) == 0x00000800)) {
+      if (((bitField0_ & 0x00001000) == 0x00001000)) {
         output.writeInt32(12, capacity_);
       }
-      if (((bitField0_ & 0x00001000) == 0x00001000)) {
+      if (((bitField0_ & 0x00002000) == 0x00002000)) {
         output.writeInt32(13, level_);
       }
-      if (((bitField0_ & 0x00002000) == 0x00002000)) {
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
         output.writeBytes(14, getNameBytes());
       }
-      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
         output.writeBytes(15, getImageNameBytes());
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(16, getIdBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -473,65 +513,69 @@ public final class Structure {
       if (size != -1) return size;
     
       size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, structureID_);
       }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, function_.getNumber());
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(3, buildCost_);
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(4, buildTime_);
       }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(5, buildResource_.getNumber());
       }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(6, upgradeTownHallLevel_);
       }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, size_);
       }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(8, buildSpeedUpBaseCost_);
       }
-      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(9, functionValue_);
       }
-      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(10, functionResource_.getNumber());
       }
-      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+      if (((bitField0_ & 0x00000800) == 0x00000800)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(11, speedUpFunctionBaseCost_);
       }
-      if (((bitField0_ & 0x00000800) == 0x00000800)) {
+      if (((bitField0_ & 0x00001000) == 0x00001000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(12, capacity_);
       }
-      if (((bitField0_ & 0x00001000) == 0x00001000)) {
+      if (((bitField0_ & 0x00002000) == 0x00002000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(13, level_);
       }
-      if (((bitField0_ & 0x00002000) == 0x00002000)) {
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(14, getNameBytes());
       }
-      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+      if (((bitField0_ & 0x00008000) == 0x00008000)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(15, getImageNameBytes());
+      }
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(16, getIdBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -658,40 +702,42 @@ public final class Structure {
       
       public Builder clear() {
         super.clear();
-        structureID_ = 0;
+        id_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        function_ = com.lvl6.aoc2.noneventprotos.Structure.StructureProto.StructureFunction.TOWN_HALL;
+        structureID_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        buildCost_ = 0;
+        function_ = com.lvl6.aoc2.noneventprotos.Structure.StructureProto.StructureFunction.TOWN_HALL;
         bitField0_ = (bitField0_ & ~0x00000004);
-        buildTime_ = 0;
+        buildCost_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
-        buildResource_ = com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType.GOLD;
+        buildTime_ = 0;
         bitField0_ = (bitField0_ & ~0x00000010);
-        upgradeTownHallLevel_ = 0;
+        buildResource_ = com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType.GOLD;
         bitField0_ = (bitField0_ & ~0x00000020);
+        upgradeTownHallLevel_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000040);
         if (sizeBuilder_ == null) {
           size_ = com.lvl6.aoc2.noneventprotos.Coordiante.CoordinateProto.getDefaultInstance();
         } else {
           sizeBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000040);
-        buildSpeedUpBaseCost_ = 0;
         bitField0_ = (bitField0_ & ~0x00000080);
-        functionValue_ = 0;
+        buildSpeedUpBaseCost_ = 0;
         bitField0_ = (bitField0_ & ~0x00000100);
-        functionResource_ = com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType.GOLD;
+        functionValue_ = 0;
         bitField0_ = (bitField0_ & ~0x00000200);
-        speedUpFunctionBaseCost_ = 0;
+        functionResource_ = com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType.GOLD;
         bitField0_ = (bitField0_ & ~0x00000400);
-        capacity_ = 0;
+        speedUpFunctionBaseCost_ = 0;
         bitField0_ = (bitField0_ & ~0x00000800);
-        level_ = 0;
+        capacity_ = 0;
         bitField0_ = (bitField0_ & ~0x00001000);
-        name_ = "";
+        level_ = 0;
         bitField0_ = (bitField0_ & ~0x00002000);
-        imageName_ = "";
+        name_ = "";
         bitField0_ = (bitField0_ & ~0x00004000);
+        imageName_ = "";
+        bitField0_ = (bitField0_ & ~0x00008000);
         return this;
       }
       
@@ -733,65 +779,69 @@ public final class Structure {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.structureID_ = structureID_;
+        result.id_ = id_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.function_ = function_;
+        result.structureID_ = structureID_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.buildCost_ = buildCost_;
+        result.function_ = function_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.buildTime_ = buildTime_;
+        result.buildCost_ = buildCost_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.buildResource_ = buildResource_;
+        result.buildTime_ = buildTime_;
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
         }
-        result.upgradeTownHallLevel_ = upgradeTownHallLevel_;
+        result.buildResource_ = buildResource_;
         if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
           to_bitField0_ |= 0x00000040;
+        }
+        result.upgradeTownHallLevel_ = upgradeTownHallLevel_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
         }
         if (sizeBuilder_ == null) {
           result.size_ = size_;
         } else {
           result.size_ = sizeBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
-          to_bitField0_ |= 0x00000080;
-        }
-        result.buildSpeedUpBaseCost_ = buildSpeedUpBaseCost_;
         if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
           to_bitField0_ |= 0x00000100;
         }
-        result.functionValue_ = functionValue_;
+        result.buildSpeedUpBaseCost_ = buildSpeedUpBaseCost_;
         if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
           to_bitField0_ |= 0x00000200;
         }
-        result.functionResource_ = functionResource_;
+        result.functionValue_ = functionValue_;
         if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
           to_bitField0_ |= 0x00000400;
         }
-        result.speedUpFunctionBaseCost_ = speedUpFunctionBaseCost_;
+        result.functionResource_ = functionResource_;
         if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
           to_bitField0_ |= 0x00000800;
         }
-        result.capacity_ = capacity_;
+        result.speedUpFunctionBaseCost_ = speedUpFunctionBaseCost_;
         if (((from_bitField0_ & 0x00001000) == 0x00001000)) {
           to_bitField0_ |= 0x00001000;
         }
-        result.level_ = level_;
+        result.capacity_ = capacity_;
         if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
           to_bitField0_ |= 0x00002000;
         }
-        result.name_ = name_;
+        result.level_ = level_;
         if (((from_bitField0_ & 0x00004000) == 0x00004000)) {
           to_bitField0_ |= 0x00004000;
+        }
+        result.name_ = name_;
+        if (((from_bitField0_ & 0x00008000) == 0x00008000)) {
+          to_bitField0_ |= 0x00008000;
         }
         result.imageName_ = imageName_;
         result.bitField0_ = to_bitField0_;
@@ -810,6 +860,9 @@ public final class Structure {
       
       public Builder mergeFrom(com.lvl6.aoc2.noneventprotos.Structure.StructureProto other) {
         if (other == com.lvl6.aoc2.noneventprotos.Structure.StructureProto.getDefaultInstance()) return this;
+        if (other.hasId()) {
+          setId(other.getId());
+        }
         if (other.hasStructureID()) {
           setStructureID(other.getStructureID());
         }
@@ -895,7 +948,7 @@ public final class Structure {
               break;
             }
             case 8: {
-              bitField0_ |= 0x00000001;
+              bitField0_ |= 0x00000002;
               structureID_ = input.readInt32();
               break;
             }
@@ -905,18 +958,18 @@ public final class Structure {
               if (value == null) {
                 unknownFields.mergeVarintField(2, rawValue);
               } else {
-                bitField0_ |= 0x00000002;
+                bitField0_ |= 0x00000004;
                 function_ = value;
               }
               break;
             }
             case 24: {
-              bitField0_ |= 0x00000004;
+              bitField0_ |= 0x00000008;
               buildCost_ = input.readInt32();
               break;
             }
             case 32: {
-              bitField0_ |= 0x00000008;
+              bitField0_ |= 0x00000010;
               buildTime_ = input.readInt32();
               break;
             }
@@ -926,13 +979,13 @@ public final class Structure {
               if (value == null) {
                 unknownFields.mergeVarintField(5, rawValue);
               } else {
-                bitField0_ |= 0x00000010;
+                bitField0_ |= 0x00000020;
                 buildResource_ = value;
               }
               break;
             }
             case 48: {
-              bitField0_ |= 0x00000020;
+              bitField0_ |= 0x00000040;
               upgradeTownHallLevel_ = input.readInt32();
               break;
             }
@@ -946,12 +999,12 @@ public final class Structure {
               break;
             }
             case 64: {
-              bitField0_ |= 0x00000080;
+              bitField0_ |= 0x00000100;
               buildSpeedUpBaseCost_ = input.readInt32();
               break;
             }
             case 72: {
-              bitField0_ |= 0x00000100;
+              bitField0_ |= 0x00000200;
               functionValue_ = input.readInt32();
               break;
             }
@@ -961,34 +1014,39 @@ public final class Structure {
               if (value == null) {
                 unknownFields.mergeVarintField(10, rawValue);
               } else {
-                bitField0_ |= 0x00000200;
+                bitField0_ |= 0x00000400;
                 functionResource_ = value;
               }
               break;
             }
             case 88: {
-              bitField0_ |= 0x00000400;
+              bitField0_ |= 0x00000800;
               speedUpFunctionBaseCost_ = input.readInt32();
               break;
             }
             case 96: {
-              bitField0_ |= 0x00000800;
+              bitField0_ |= 0x00001000;
               capacity_ = input.readInt32();
               break;
             }
             case 104: {
-              bitField0_ |= 0x00001000;
+              bitField0_ |= 0x00002000;
               level_ = input.readInt32();
               break;
             }
             case 114: {
-              bitField0_ |= 0x00002000;
+              bitField0_ |= 0x00004000;
               name_ = input.readBytes();
               break;
             }
             case 122: {
-              bitField0_ |= 0x00004000;
+              bitField0_ |= 0x00008000;
               imageName_ = input.readBytes();
+              break;
+            }
+            case 130: {
+              bitField0_ |= 0x00000001;
+              id_ = input.readBytes();
               break;
             }
           }
@@ -997,22 +1055,58 @@ public final class Structure {
       
       private int bitField0_;
       
+      // optional string id = 16;
+      private java.lang.Object id_ = "";
+      public boolean hasId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          id_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setId(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        id_ = getDefaultInstance().getId();
+        onChanged();
+        return this;
+      }
+      void setId(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        id_ = value;
+        onChanged();
+      }
+      
       // optional int32 structureID = 1;
       private int structureID_ ;
       public boolean hasStructureID() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public int getStructureID() {
         return structureID_;
       }
       public Builder setStructureID(int value) {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         structureID_ = value;
         onChanged();
         return this;
       }
       public Builder clearStructureID() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         structureID_ = 0;
         onChanged();
         return this;
@@ -1021,7 +1115,7 @@ public final class Structure {
       // optional .proto.StructureProto.StructureFunction function = 2;
       private com.lvl6.aoc2.noneventprotos.Structure.StructureProto.StructureFunction function_ = com.lvl6.aoc2.noneventprotos.Structure.StructureProto.StructureFunction.TOWN_HALL;
       public boolean hasFunction() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public com.lvl6.aoc2.noneventprotos.Structure.StructureProto.StructureFunction getFunction() {
         return function_;
@@ -1030,13 +1124,13 @@ public final class Structure {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         function_ = value;
         onChanged();
         return this;
       }
       public Builder clearFunction() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         function_ = com.lvl6.aoc2.noneventprotos.Structure.StructureProto.StructureFunction.TOWN_HALL;
         onChanged();
         return this;
@@ -1045,19 +1139,19 @@ public final class Structure {
       // optional int32 buildCost = 3;
       private int buildCost_ ;
       public boolean hasBuildCost() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       public int getBuildCost() {
         return buildCost_;
       }
       public Builder setBuildCost(int value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         buildCost_ = value;
         onChanged();
         return this;
       }
       public Builder clearBuildCost() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         buildCost_ = 0;
         onChanged();
         return this;
@@ -1066,19 +1160,19 @@ public final class Structure {
       // optional int32 buildTime = 4;
       private int buildTime_ ;
       public boolean hasBuildTime() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       public int getBuildTime() {
         return buildTime_;
       }
       public Builder setBuildTime(int value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         buildTime_ = value;
         onChanged();
         return this;
       }
       public Builder clearBuildTime() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         buildTime_ = 0;
         onChanged();
         return this;
@@ -1087,7 +1181,7 @@ public final class Structure {
       // required .proto.ResourceType buildResource = 5;
       private com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType buildResource_ = com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType.GOLD;
       public boolean hasBuildResource() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       public com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType getBuildResource() {
         return buildResource_;
@@ -1096,13 +1190,13 @@ public final class Structure {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         buildResource_ = value;
         onChanged();
         return this;
       }
       public Builder clearBuildResource() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         buildResource_ = com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType.GOLD;
         onChanged();
         return this;
@@ -1111,19 +1205,19 @@ public final class Structure {
       // optional int32 upgradeTownHallLevel = 6;
       private int upgradeTownHallLevel_ ;
       public boolean hasUpgradeTownHallLevel() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       public int getUpgradeTownHallLevel() {
         return upgradeTownHallLevel_;
       }
       public Builder setUpgradeTownHallLevel(int value) {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         upgradeTownHallLevel_ = value;
         onChanged();
         return this;
       }
       public Builder clearUpgradeTownHallLevel() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         upgradeTownHallLevel_ = 0;
         onChanged();
         return this;
@@ -1134,7 +1228,7 @@ public final class Structure {
       private com.google.protobuf.SingleFieldBuilder<
           com.lvl6.aoc2.noneventprotos.Coordiante.CoordinateProto, com.lvl6.aoc2.noneventprotos.Coordiante.CoordinateProto.Builder, com.lvl6.aoc2.noneventprotos.Coordiante.CoordinateProtoOrBuilder> sizeBuilder_;
       public boolean hasSize() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return ((bitField0_ & 0x00000080) == 0x00000080);
       }
       public com.lvl6.aoc2.noneventprotos.Coordiante.CoordinateProto getSize() {
         if (sizeBuilder_ == null) {
@@ -1153,7 +1247,7 @@ public final class Structure {
         } else {
           sizeBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         return this;
       }
       public Builder setSize(
@@ -1164,12 +1258,12 @@ public final class Structure {
         } else {
           sizeBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         return this;
       }
       public Builder mergeSize(com.lvl6.aoc2.noneventprotos.Coordiante.CoordinateProto value) {
         if (sizeBuilder_ == null) {
-          if (((bitField0_ & 0x00000040) == 0x00000040) &&
+          if (((bitField0_ & 0x00000080) == 0x00000080) &&
               size_ != com.lvl6.aoc2.noneventprotos.Coordiante.CoordinateProto.getDefaultInstance()) {
             size_ =
               com.lvl6.aoc2.noneventprotos.Coordiante.CoordinateProto.newBuilder(size_).mergeFrom(value).buildPartial();
@@ -1180,7 +1274,7 @@ public final class Structure {
         } else {
           sizeBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         return this;
       }
       public Builder clearSize() {
@@ -1190,11 +1284,11 @@ public final class Structure {
         } else {
           sizeBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000080);
         return this;
       }
       public com.lvl6.aoc2.noneventprotos.Coordiante.CoordinateProto.Builder getSizeBuilder() {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         onChanged();
         return getSizeFieldBuilder().getBuilder();
       }
@@ -1222,19 +1316,19 @@ public final class Structure {
       // optional int32 buildSpeedUpBaseCost = 8;
       private int buildSpeedUpBaseCost_ ;
       public boolean hasBuildSpeedUpBaseCost() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
+        return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       public int getBuildSpeedUpBaseCost() {
         return buildSpeedUpBaseCost_;
       }
       public Builder setBuildSpeedUpBaseCost(int value) {
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         buildSpeedUpBaseCost_ = value;
         onChanged();
         return this;
       }
       public Builder clearBuildSpeedUpBaseCost() {
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
         buildSpeedUpBaseCost_ = 0;
         onChanged();
         return this;
@@ -1243,19 +1337,19 @@ public final class Structure {
       // optional int32 functionValue = 9;
       private int functionValue_ ;
       public boolean hasFunctionValue() {
-        return ((bitField0_ & 0x00000100) == 0x00000100);
+        return ((bitField0_ & 0x00000200) == 0x00000200);
       }
       public int getFunctionValue() {
         return functionValue_;
       }
       public Builder setFunctionValue(int value) {
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
         functionValue_ = value;
         onChanged();
         return this;
       }
       public Builder clearFunctionValue() {
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000200);
         functionValue_ = 0;
         onChanged();
         return this;
@@ -1264,7 +1358,7 @@ public final class Structure {
       // required .proto.ResourceType functionResource = 10;
       private com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType functionResource_ = com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType.GOLD;
       public boolean hasFunctionResource() {
-        return ((bitField0_ & 0x00000200) == 0x00000200);
+        return ((bitField0_ & 0x00000400) == 0x00000400);
       }
       public com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType getFunctionResource() {
         return functionResource_;
@@ -1273,13 +1367,13 @@ public final class Structure {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00000200;
+        bitField0_ |= 0x00000400;
         functionResource_ = value;
         onChanged();
         return this;
       }
       public Builder clearFunctionResource() {
-        bitField0_ = (bitField0_ & ~0x00000200);
+        bitField0_ = (bitField0_ & ~0x00000400);
         functionResource_ = com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType.GOLD;
         onChanged();
         return this;
@@ -1288,19 +1382,19 @@ public final class Structure {
       // optional int32 speedUpFunctionBaseCost = 11;
       private int speedUpFunctionBaseCost_ ;
       public boolean hasSpeedUpFunctionBaseCost() {
-        return ((bitField0_ & 0x00000400) == 0x00000400);
+        return ((bitField0_ & 0x00000800) == 0x00000800);
       }
       public int getSpeedUpFunctionBaseCost() {
         return speedUpFunctionBaseCost_;
       }
       public Builder setSpeedUpFunctionBaseCost(int value) {
-        bitField0_ |= 0x00000400;
+        bitField0_ |= 0x00000800;
         speedUpFunctionBaseCost_ = value;
         onChanged();
         return this;
       }
       public Builder clearSpeedUpFunctionBaseCost() {
-        bitField0_ = (bitField0_ & ~0x00000400);
+        bitField0_ = (bitField0_ & ~0x00000800);
         speedUpFunctionBaseCost_ = 0;
         onChanged();
         return this;
@@ -1309,19 +1403,19 @@ public final class Structure {
       // optional int32 capacity = 12;
       private int capacity_ ;
       public boolean hasCapacity() {
-        return ((bitField0_ & 0x00000800) == 0x00000800);
+        return ((bitField0_ & 0x00001000) == 0x00001000);
       }
       public int getCapacity() {
         return capacity_;
       }
       public Builder setCapacity(int value) {
-        bitField0_ |= 0x00000800;
+        bitField0_ |= 0x00001000;
         capacity_ = value;
         onChanged();
         return this;
       }
       public Builder clearCapacity() {
-        bitField0_ = (bitField0_ & ~0x00000800);
+        bitField0_ = (bitField0_ & ~0x00001000);
         capacity_ = 0;
         onChanged();
         return this;
@@ -1330,19 +1424,19 @@ public final class Structure {
       // optional int32 level = 13;
       private int level_ ;
       public boolean hasLevel() {
-        return ((bitField0_ & 0x00001000) == 0x00001000);
+        return ((bitField0_ & 0x00002000) == 0x00002000);
       }
       public int getLevel() {
         return level_;
       }
       public Builder setLevel(int value) {
-        bitField0_ |= 0x00001000;
+        bitField0_ |= 0x00002000;
         level_ = value;
         onChanged();
         return this;
       }
       public Builder clearLevel() {
-        bitField0_ = (bitField0_ & ~0x00001000);
+        bitField0_ = (bitField0_ & ~0x00002000);
         level_ = 0;
         onChanged();
         return this;
@@ -1351,7 +1445,7 @@ public final class Structure {
       // optional string name = 14;
       private java.lang.Object name_ = "";
       public boolean hasName() {
-        return ((bitField0_ & 0x00002000) == 0x00002000);
+        return ((bitField0_ & 0x00004000) == 0x00004000);
       }
       public String getName() {
         java.lang.Object ref = name_;
@@ -1367,19 +1461,19 @@ public final class Structure {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00002000;
+  bitField0_ |= 0x00004000;
         name_ = value;
         onChanged();
         return this;
       }
       public Builder clearName() {
-        bitField0_ = (bitField0_ & ~0x00002000);
+        bitField0_ = (bitField0_ & ~0x00004000);
         name_ = getDefaultInstance().getName();
         onChanged();
         return this;
       }
       void setName(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00002000;
+        bitField0_ |= 0x00004000;
         name_ = value;
         onChanged();
       }
@@ -1387,7 +1481,7 @@ public final class Structure {
       // optional string imageName = 15;
       private java.lang.Object imageName_ = "";
       public boolean hasImageName() {
-        return ((bitField0_ & 0x00004000) == 0x00004000);
+        return ((bitField0_ & 0x00008000) == 0x00008000);
       }
       public String getImageName() {
         java.lang.Object ref = imageName_;
@@ -1403,19 +1497,19 @@ public final class Structure {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00004000;
+  bitField0_ |= 0x00008000;
         imageName_ = value;
         onChanged();
         return this;
       }
       public Builder clearImageName() {
-        bitField0_ = (bitField0_ & ~0x00004000);
+        bitField0_ = (bitField0_ & ~0x00008000);
         imageName_ = getDefaultInstance().getImageName();
         onChanged();
         return this;
       }
       void setImageName(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00004000;
+        bitField0_ |= 0x00008000;
         imageName_ = value;
         onChanged();
       }
@@ -1446,22 +1540,23 @@ public final class Structure {
   static {
     java.lang.String[] descriptorData = {
       "\n\021StructProto.proto\022\005proto\032\022ResourceType" +
-      ".proto\032\025CoordinateProto.proto\"\263\004\n\016Struct" +
-      "ureProto\022\023\n\013structureID\030\001 \001(\005\0229\n\010functio" +
-      "n\030\002 \001(\0162\'.proto.StructureProto.Structure" +
-      "Function\022\021\n\tbuildCost\030\003 \001(\005\022\021\n\tbuildTime" +
-      "\030\004 \001(\005\022*\n\rbuildResource\030\005 \002(\0162\023.proto.Re" +
-      "sourceType\022\034\n\024upgradeTownHallLevel\030\006 \001(\005" +
-      "\022$\n\004size\030\007 \001(\0132\026.proto.CoordinateProto\022\034" +
-      "\n\024buildSpeedUpBaseCost\030\010 \001(\005\022\025\n\rfunction" +
-      "Value\030\t \001(\005\022-\n\020functionResource\030\n \002(\0162\023.",
-      "proto.ResourceType\022\037\n\027speedUpFunctionBas" +
-      "eCost\030\013 \001(\005\022\020\n\010capacity\030\014 \001(\005\022\r\n\005level\030\r" +
-      " \001(\005\022\014\n\004name\030\016 \001(\t\022\021\n\timageName\030\017 \001(\t\"t\n" +
-      "\021StructureFunction\022\r\n\tTOWN_HALL\020\000\022\n\n\006INC" +
-      "OME\020\001\022\013\n\007STORAGE\020\002\022\016\n\nBLACKSMITH\020\003\022\013\n\007LI" +
-      "BRARY\020\004\022\n\n\006FUSION\020\005\022\016\n\nDECORATION\020\006B)\n\034c" +
-      "om.lvl6.aoc2.noneventprotosB\tStructure"
+      ".proto\032\025CoordinateProto.proto\"\277\004\n\016Struct" +
+      "ureProto\022\n\n\002id\030\020 \001(\t\022\023\n\013structureID\030\001 \001(" +
+      "\005\0229\n\010function\030\002 \001(\0162\'.proto.StructurePro" +
+      "to.StructureFunction\022\021\n\tbuildCost\030\003 \001(\005\022" +
+      "\021\n\tbuildTime\030\004 \001(\005\022*\n\rbuildResource\030\005 \002(" +
+      "\0162\023.proto.ResourceType\022\034\n\024upgradeTownHal" +
+      "lLevel\030\006 \001(\005\022$\n\004size\030\007 \001(\0132\026.proto.Coord" +
+      "inateProto\022\034\n\024buildSpeedUpBaseCost\030\010 \001(\005" +
+      "\022\025\n\rfunctionValue\030\t \001(\005\022-\n\020functionResou",
+      "rce\030\n \002(\0162\023.proto.ResourceType\022\037\n\027speedU" +
+      "pFunctionBaseCost\030\013 \001(\005\022\020\n\010capacity\030\014 \001(" +
+      "\005\022\r\n\005level\030\r \001(\005\022\014\n\004name\030\016 \001(\t\022\021\n\timageN" +
+      "ame\030\017 \001(\t\"t\n\021StructureFunction\022\r\n\tTOWN_H" +
+      "ALL\020\000\022\n\n\006INCOME\020\001\022\013\n\007STORAGE\020\002\022\016\n\nBLACKS" +
+      "MITH\020\003\022\013\n\007LIBRARY\020\004\022\n\n\006FUSION\020\005\022\016\n\nDECOR" +
+      "ATION\020\006B)\n\034com.lvl6.aoc2.noneventprotosB" +
+      "\tStructure"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1473,7 +1568,7 @@ public final class Structure {
           internal_static_proto_StructureProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StructureProto_descriptor,
-              new java.lang.String[] { "StructureID", "Function", "BuildCost", "BuildTime", "BuildResource", "UpgradeTownHallLevel", "Size", "BuildSpeedUpBaseCost", "FunctionValue", "FunctionResource", "SpeedUpFunctionBaseCost", "Capacity", "Level", "Name", "ImageName", },
+              new java.lang.String[] { "Id", "StructureID", "Function", "BuildCost", "BuildTime", "BuildResource", "UpgradeTownHallLevel", "Size", "BuildSpeedUpBaseCost", "FunctionValue", "FunctionResource", "SpeedUpFunctionBaseCost", "Capacity", "Level", "Name", "ImageName", },
               com.lvl6.aoc2.noneventprotos.Structure.StructureProto.class,
               com.lvl6.aoc2.noneventprotos.Structure.StructureProto.Builder.class);
           return null;

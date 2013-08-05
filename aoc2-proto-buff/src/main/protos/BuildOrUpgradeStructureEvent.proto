@@ -11,6 +11,8 @@ option java_outer_classname = "BuildOrUpgradeStructureEventProto";
 message BuildOrUpgradeStructureRequestProto {
 	optional MinimumUserProto mup = 1;
 	optional string structureId = 2;
+	optional bool isBuild = 3;
+//	optional bool speedup = 4;
 }
 
 message BuildOrUpgradeStructureResponseProto {
@@ -21,8 +23,19 @@ message BuildOrUpgradeStructureResponseProto {
 	enum BuildOrUpgradeStructureStatus {
 		SUCCESS = 0;
 		FAIL_INSUFFICIENT_RESOURCES = 1;
-		FAIL_MAXED_CONSTRUCTION = 2;
-		FAIL_OTHER = 3;
+		FAIL_NOT_AT_REQUIRED_LEVEL = 2;
+		FAIL_MAXED_CONSTRUCTION = 3; //builders busy
+		FAIL_NO_STRUCTURE_EXISTS = 4;
+		FAIL_RESTRICTION_ON_NUMBER_OF_STRUCTURES = 5;
+		FAIL_STRUCTURE_AT_MAX_LEVEL = 6;
+		FAIL_CANT_UPGRADE_WHILE_BUILDING = 7;
+		FAIL_OTHER = 8;
 		
 	} 
+}
+
+enum ResourceCostType {
+	GOLD = 0;
+	TONIC = 1;
+	
 }

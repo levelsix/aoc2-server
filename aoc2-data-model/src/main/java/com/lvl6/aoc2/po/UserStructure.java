@@ -20,8 +20,12 @@ public class UserStructure extends BasePersistentObject{
 	@Column(name="user_id")
 	protected UUID userId = UUID.randomUUID();
 	
+	//refers to type of structure, not random generated uuid row key
 	@Column(name="structure_id")
 	protected UUID structureId = UUID.randomUUID();
+	
+	@Column(name="lvl")
+	protected int lvl = 0;
 	
 	@Column(name="x_coordinate")
 	protected int xCoordinate = 0;
@@ -34,19 +38,17 @@ public class UserStructure extends BasePersistentObject{
 
 	@Column(name="purchase_time")
 	protected Date purchaseTime = new Date();
-	
-	@Column(name="last_upgrade_time")
-	protected Date lastUpgradeTime = new Date();
 
 	@Column(name="start_upgrade_time")
 	protected Date startUpgradeTime = new Date();
 
-	@Column(name="is_upgrading")
-	protected boolean isUpgrading = false;
+	@Column(name="is_constructing")
+	protected boolean isConstructing = false;
 
-
-
-
+	@Column(name="level_of_user_when_upgrading")
+	protected int levelOfUserWhenUpgrading = 0;
+	
+	
 	public UUID getId() {
 		return id;
 	}
@@ -74,6 +76,16 @@ public class UserStructure extends BasePersistentObject{
 
 	public void setStructureId(UUID structureId) {
 		this.structureId = structureId;
+	}
+
+
+	public int getLvl() {
+		return lvl;
+	}
+
+
+	public void setLvl(int lvl) {
+		this.lvl = lvl;
 	}
 
 
@@ -117,16 +129,6 @@ public class UserStructure extends BasePersistentObject{
 	}
 
 
-	public Date getLastUpgradeTime() {
-		return lastUpgradeTime;
-	}
-
-
-	public void setLastUpgradeTime(Date lastUpgradeTime) {
-		this.lastUpgradeTime = lastUpgradeTime;
-	}
-
-
 	public Date getStartUpgradeTime() {
 		return startUpgradeTime;
 	}
@@ -137,13 +139,23 @@ public class UserStructure extends BasePersistentObject{
 	}
 
 
-	public boolean isUpgrading() {
-		return isUpgrading;
+	public boolean isConstructing() {
+		return isConstructing;
 	}
 
 
-	public void setUpgrading(boolean isUpgrading) {
-		this.isUpgrading = isUpgrading;
+	public void setConstructing(boolean isConstructing) {
+		this.isConstructing = isConstructing;
+	}
+
+
+	public int getLevelOfUserWhenUpgrading() {
+		return levelOfUserWhenUpgrading;
+	}
+
+
+	public void setLevelOfUserWhenUpgrading(int levelOfUserWhenUpgrading) {
+		this.levelOfUserWhenUpgrading = levelOfUserWhenUpgrading;
 	}
 
 
@@ -152,11 +164,11 @@ public class UserStructure extends BasePersistentObject{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + (isUpgrading ? 1231 : 1237);
+		result = prime * result + (isConstructing ? 1231 : 1237);
 		result = prime * result
 				+ ((lastCollectTime == null) ? 0 : lastCollectTime.hashCode());
-		result = prime * result
-				+ ((lastUpgradeTime == null) ? 0 : lastUpgradeTime.hashCode());
+		result = prime * result + levelOfUserWhenUpgrading;
+		result = prime * result + lvl;
 		result = prime * result
 				+ ((purchaseTime == null) ? 0 : purchaseTime.hashCode());
 		result = prime
@@ -185,17 +197,16 @@ public class UserStructure extends BasePersistentObject{
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (isUpgrading != other.isUpgrading)
+		if (isConstructing != other.isConstructing)
 			return false;
 		if (lastCollectTime == null) {
 			if (other.lastCollectTime != null)
 				return false;
 		} else if (!lastCollectTime.equals(other.lastCollectTime))
 			return false;
-		if (lastUpgradeTime == null) {
-			if (other.lastUpgradeTime != null)
-				return false;
-		} else if (!lastUpgradeTime.equals(other.lastUpgradeTime))
+		if (levelOfUserWhenUpgrading != other.levelOfUserWhenUpgrading)
+			return false;
+		if (lvl != other.lvl)
 			return false;
 		if (purchaseTime == null) {
 			if (other.purchaseTime != null)
@@ -228,12 +239,13 @@ public class UserStructure extends BasePersistentObject{
 	@Override
 	public String toString() {
 		return "UserStructure [id=" + id + ", userId=" + userId
-				+ ", structureId=" + structureId + ", xCoordinate="
-				+ xCoordinate + ", yCoordinate=" + yCoordinate
-				+ ", lastCollectTime=" + lastCollectTime + ", purchaseTime="
-				+ purchaseTime + ", lastUpgradeTime=" + lastUpgradeTime
-				+ ", startUpgradeTime=" + startUpgradeTime + ", isUpgrading="
-				+ isUpgrading + "]";
+				+ ", structureId=" + structureId + ", lvl=" + lvl
+				+ ", xCoordinate=" + xCoordinate + ", yCoordinate="
+				+ yCoordinate + ", lastCollectTime=" + lastCollectTime
+				+ ", purchaseTime=" + purchaseTime + ", startUpgradeTime="
+				+ startUpgradeTime + ", isConstructing=" + isConstructing
+				+ ", levelOfUserWhenUpgrading=" + levelOfUserWhenUpgrading
+				+ "]";
 	}
 
 
@@ -243,13 +255,14 @@ public class UserStructure extends BasePersistentObject{
 				" id uuid," +
 				" user_id uuid," +
 				" structure_id uuid," +
+				" lvl int," +
 				" x_coordinate int," +
 				" y_coordinate int," +
 				" last_collect_time timestamp," +
 				" purchase_time timestamp," +
-				" last_upgrade_time timestamp," +
 				" start_upgrade_time timestamp," +
-				" is_upgrading boolean," +
+				" is_constructing boolean," +
+				" level_of_user_when_upgrading int," +
 				" primary key(id))" +
 				" with compact storage;";
 	}
