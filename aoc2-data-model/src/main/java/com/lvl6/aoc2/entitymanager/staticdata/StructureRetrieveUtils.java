@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.StructureEntityManager;
-import com.lvl6.aoc2.po.Consumable;
 import com.lvl6.aoc2.po.Structure;
 
 @Component public class StructureRetrieveUtils {
