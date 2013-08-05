@@ -29,7 +29,13 @@ public class UserSpell extends BasePersistentObject{
 	@Column(name="time_acquired")
 	protected Date timeAcquired = new Date();
 
-
+	@Column(name="is_training")
+	protected Boolean isTraining = false;
+	
+	@Column(name="level_of_user_when_upgrading")
+	protected int levelOfUserWhenUpgrading = 0;
+	
+	
 	public UUID getId() {
 		return id;
 	}
@@ -80,11 +86,34 @@ public class UserSpell extends BasePersistentObject{
 	}
 
 
+	public Boolean getIsTraining() {
+		return isTraining;
+	}
+
+
+	public void setIsTraining(Boolean isTraining) {
+		this.isTraining = isTraining;
+	}
+
+
+	public int getLevelOfUserWhenUpgrading() {
+		return levelOfUserWhenUpgrading;
+	}
+
+
+	public void setLevelOfUserWhenUpgrading(int levelOfUserWhenUpgrading) {
+		this.levelOfUserWhenUpgrading = levelOfUserWhenUpgrading;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result
+				+ ((isTraining == null) ? 0 : isTraining.hashCode());
+		result = prime * result + levelOfUserWhenUpgrading;
 		result = prime * result + ((spellId == null) ? 0 : spellId.hashCode());
 		result = prime * result
 				+ ((spellLvl == null) ? 0 : spellLvl.hashCode());
@@ -108,6 +137,13 @@ public class UserSpell extends BasePersistentObject{
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (isTraining == null) {
+			if (other.isTraining != null)
+				return false;
+		} else if (!isTraining.equals(other.isTraining))
+			return false;
+		if (levelOfUserWhenUpgrading != other.levelOfUserWhenUpgrading)
 			return false;
 		if (spellId == null) {
 			if (other.spellId != null)
@@ -137,7 +173,9 @@ public class UserSpell extends BasePersistentObject{
 	public String toString() {
 		return "UserSpell [id=" + id + ", userId=" + userId + ", spellId="
 				+ spellId + ", spellLvl=" + spellLvl + ", timeAcquired="
-				+ timeAcquired + "]";
+				+ timeAcquired + ", isTraining=" + isTraining
+				+ ", levelOfUserWhenUpgrading=" + levelOfUserWhenUpgrading
+				+ "]";
 	}
 
 
@@ -149,6 +187,8 @@ public class UserSpell extends BasePersistentObject{
 				" spell_id uuid," +
 				" spell_lvl int," +
 				" time_acquired timestamp," +
+				" is_training bool," +
+				" level_of_user_when_upgrading int," +
 				" primary key(id))" +
 				" with compact storage;";
 	}

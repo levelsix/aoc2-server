@@ -10,7 +10,7 @@ public final class AocTwoEventProtocolProto {
   }
   public enum AocTwoEventProtocolRequest
       implements com.google.protobuf.ProtocolMessageEnum {
-    C_BUILD_OR_UPGRADE_SPELL_EVENT(0, 0),
+    C_TRAIN_OR_UPGRADE_SPELL_EVENT(0, 0),
     C_BUILD_OR_UPGRADE_STRUCTURE_EVENT(1, 1),
     C_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT(2, 2),
     C_REPAIR_EQUIP_EVENT(3, 3),
@@ -18,7 +18,7 @@ public final class AocTwoEventProtocolProto {
     C_STARTUP_EVENT(5, 5),
     ;
     
-    public static final int C_BUILD_OR_UPGRADE_SPELL_EVENT_VALUE = 0;
+    public static final int C_TRAIN_OR_UPGRADE_SPELL_EVENT_VALUE = 0;
     public static final int C_BUILD_OR_UPGRADE_STRUCTURE_EVENT_VALUE = 1;
     public static final int C_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT_VALUE = 2;
     public static final int C_REPAIR_EQUIP_EVENT_VALUE = 3;
@@ -30,7 +30,7 @@ public final class AocTwoEventProtocolProto {
     
     public static AocTwoEventProtocolRequest valueOf(int value) {
       switch (value) {
-        case 0: return C_BUILD_OR_UPGRADE_SPELL_EVENT;
+        case 0: return C_TRAIN_OR_UPGRADE_SPELL_EVENT;
         case 1: return C_BUILD_OR_UPGRADE_STRUCTURE_EVENT;
         case 2: return C_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT;
         case 3: return C_REPAIR_EQUIP_EVENT;
@@ -66,7 +66,7 @@ public final class AocTwoEventProtocolProto {
     }
     
     private static final AocTwoEventProtocolRequest[] VALUES = {
-      C_BUILD_OR_UPGRADE_SPELL_EVENT, C_BUILD_OR_UPGRADE_STRUCTURE_EVENT, C_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT, C_REPAIR_EQUIP_EVENT, C_SELECT_USER_CLASS_TYPE_EVENT, C_STARTUP_EVENT, 
+      C_TRAIN_OR_UPGRADE_SPELL_EVENT, C_BUILD_OR_UPGRADE_STRUCTURE_EVENT, C_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT, C_REPAIR_EQUIP_EVENT, C_SELECT_USER_CLASS_TYPE_EVENT, C_STARTUP_EVENT, 
     };
     
     public static AocTwoEventProtocolRequest valueOf(
@@ -91,7 +91,7 @@ public final class AocTwoEventProtocolProto {
   
   public enum AocTwoEventProtocolResponse
       implements com.google.protobuf.ProtocolMessageEnum {
-    S_BUILD_OR_UPGRADE_SPELL_EVENT(0, 0),
+    S_TRAIN_OR_UPGRADE_SPELL_EVENT(0, 0),
     S_BUILD_OR_UPGRADE_STRUCTURE_EVENT(1, 1),
     S_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT(2, 2),
     S_REPAIR_EQUIP_EVENT(3, 3),
@@ -99,7 +99,7 @@ public final class AocTwoEventProtocolProto {
     S_STARTUP_EVENT(5, 5),
     ;
     
-    public static final int S_BUILD_OR_UPGRADE_SPELL_EVENT_VALUE = 0;
+    public static final int S_TRAIN_OR_UPGRADE_SPELL_EVENT_VALUE = 0;
     public static final int S_BUILD_OR_UPGRADE_STRUCTURE_EVENT_VALUE = 1;
     public static final int S_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT_VALUE = 2;
     public static final int S_REPAIR_EQUIP_EVENT_VALUE = 3;
@@ -111,7 +111,7 @@ public final class AocTwoEventProtocolProto {
     
     public static AocTwoEventProtocolResponse valueOf(int value) {
       switch (value) {
-        case 0: return S_BUILD_OR_UPGRADE_SPELL_EVENT;
+        case 0: return S_TRAIN_OR_UPGRADE_SPELL_EVENT;
         case 1: return S_BUILD_OR_UPGRADE_STRUCTURE_EVENT;
         case 2: return S_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT;
         case 3: return S_REPAIR_EQUIP_EVENT;
@@ -147,7 +147,7 @@ public final class AocTwoEventProtocolProto {
     }
     
     private static final AocTwoEventProtocolResponse[] VALUES = {
-      S_BUILD_OR_UPGRADE_SPELL_EVENT, S_BUILD_OR_UPGRADE_STRUCTURE_EVENT, S_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT, S_REPAIR_EQUIP_EVENT, S_SELECT_USER_CLASS_TYPE_EVENT, S_STARTUP_EVENT, 
+      S_TRAIN_OR_UPGRADE_SPELL_EVENT, S_BUILD_OR_UPGRADE_STRUCTURE_EVENT, S_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT, S_REPAIR_EQUIP_EVENT, S_SELECT_USER_CLASS_TYPE_EVENT, S_STARTUP_EVENT, 
     };
     
     public static AocTwoEventProtocolResponse valueOf(
@@ -180,13 +180,13 @@ public final class AocTwoEventProtocolProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\031AocTwoEventProtocol.proto\022\005proto*\352\001\n\032A" +
-      "ocTwoEventProtocolRequest\022\"\n\036C_BUILD_OR_" +
+      "ocTwoEventProtocolRequest\022\"\n\036C_TRAIN_OR_" +
       "UPGRADE_SPELL_EVENT\020\000\022&\n\"C_BUILD_OR_UPGR" +
       "ADE_STRUCTURE_EVENT\020\001\022-\n)C_REFILL_HP_OR_" +
       "MANA_WITH_CONSUMABLE_EVENT\020\002\022\030\n\024C_REPAIR" +
       "_EQUIP_EVENT\020\003\022\"\n\036C_SELECT_USER_CLASS_TY" +
       "PE_EVENT\020\004\022\023\n\017C_STARTUP_EVENT\020\005*\353\001\n\033AocT" +
-      "woEventProtocolResponse\022\"\n\036S_BUILD_OR_UP" +
+      "woEventProtocolResponse\022\"\n\036S_TRAIN_OR_UP" +
       "GRADE_SPELL_EVENT\020\000\022&\n\"S_BUILD_OR_UPGRAD" +
       "E_STRUCTURE_EVENT\020\001\022-\n)S_REFILL_HP_OR_MA",
       "NA_WITH_CONSUMABLE_EVENT\020\002\022\030\n\024S_REPAIR_E" +

@@ -16,6 +16,9 @@ public class Structure extends BasePersistentObject{
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
+	@Column(name="structure_id")
+	protected UUID structureId = UUID.randomUUID();
+	
 	@Column(name="name")
 	protected String name = "";
 	
@@ -58,8 +61,6 @@ public class Structure extends BasePersistentObject{
 	
 	@Column(name="image_name")
 	protected String imageName = "";
-	
-	
 
 
 	public UUID getId() {
@@ -69,6 +70,16 @@ public class Structure extends BasePersistentObject{
 
 	public void setId(UUID id) {
 		this.id = id;
+	}
+
+
+	public UUID getStructureId() {
+		return structureId;
+	}
+
+
+	public void setStructureId(UUID structureId) {
+		this.structureId = structureId;
 	}
 
 
@@ -212,6 +223,8 @@ public class Structure extends BasePersistentObject{
 	}
 
 
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -231,6 +244,8 @@ public class Structure extends BasePersistentObject{
 		result = prime * result + lvl;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + size;
+		result = prime * result
+				+ ((structureId == null) ? 0 : structureId.hashCode());
 		result = prime * result + userLvlRequired;
 		return result;
 	}
@@ -282,6 +297,11 @@ public class Structure extends BasePersistentObject{
 			return false;
 		if (size != other.size)
 			return false;
+		if (structureId == null) {
+			if (other.structureId != null)
+				return false;
+		} else if (!structureId.equals(other.structureId))
+			return false;
 		if (userLvlRequired != other.userLvlRequired)
 			return false;
 		return true;
@@ -290,8 +310,9 @@ public class Structure extends BasePersistentObject{
 
 	@Override
 	public String toString() {
-		return "Structure [id=" + id + ", name=" + name + ", lvl=" + lvl
-				+ ", buildCost=" + buildCost + ", buildCostResourceType="
+		return "Structure [id=" + id + ", structureId=" + structureId
+				+ ", name=" + name + ", lvl=" + lvl + ", buildCost="
+				+ buildCost + ", buildCostResourceType="
 				+ buildCostResourceType + ", buildTimeSeconds="
 				+ buildTimeSeconds + ", buildSpeedupBaseCost="
 				+ buildSpeedupBaseCost + ", userLvlRequired=" + userLvlRequired
@@ -309,6 +330,7 @@ public class Structure extends BasePersistentObject{
 	public String getTableCreateStatement() {
 		return "create table structure (" +
 				" id uuid," +
+				" structure_id uuid," +
 				" name varchar," +
 				" lvl int," +
 				" build_cost int," +
@@ -339,6 +361,7 @@ public class Structure extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
+		indexes.add("create index structure_structure_id_index on structure (structure_id);");
 		indexes.add("create index structure_income_index on structure (income);");
 		indexes.add("create index structure_functionality_type_index on structure (functionality_type);");
 		return indexes;

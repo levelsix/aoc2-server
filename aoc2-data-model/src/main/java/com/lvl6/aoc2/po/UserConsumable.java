@@ -24,6 +24,8 @@ public class UserConsumable extends BasePersistentObject{
 	
 	@Column(name="quantity")
 	protected int quantity = 0;
+	
+	@Column()
 
 	
 

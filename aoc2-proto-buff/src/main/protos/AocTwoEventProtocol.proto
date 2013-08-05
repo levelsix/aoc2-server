@@ -4,7 +4,7 @@ option java_package = "com.lvl6.aoc2.noneventprotos";
 option java_outer_classname = "AocTwoEventProtocolProto";
 
 enum AocTwoEventProtocolRequest {
-	C_BUILD_OR_UPGRADE_SPELL_EVENT = 0;
+	C_TRAIN_OR_UPGRADE_SPELL_EVENT = 0;
 	C_BUILD_OR_UPGRADE_STRUCTURE_EVENT = 1;
 	C_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT = 2;
 	C_REPAIR_EQUIP_EVENT = 3;
@@ -14,7 +14,7 @@ enum AocTwoEventProtocolRequest {
 }
 
 enum AocTwoEventProtocolResponse {
-	S_BUILD_OR_UPGRADE_SPELL_EVENT = 0;
+	S_TRAIN_OR_UPGRADE_SPELL_EVENT = 0;
 	S_BUILD_OR_UPGRADE_STRUCTURE_EVENT = 1;
 	S_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT = 2;
 	S_REPAIR_EQUIP_EVENT = 3;
