@@ -10,6 +10,7 @@ enum AocTwoEventProtocolRequest {
 	C_REPAIR_EQUIP_EVENT = 3;
 	C_SELECT_USER_CLASS_TYPE_EVENT = 4;
 	C_STARTUP_EVENT = 5;
+	C_RETURN_HOME_EVENT = 6;
 
 }
 

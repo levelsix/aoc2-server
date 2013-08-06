@@ -254,19 +254,29 @@ public class BuildOrUpgradeStructureController extends EventController {
 			}
 			//update user
 			getUserEntityManager().get().put(inDb);
-			Date rightNow = new Date();
 
 			//and update his user structure rows
 			UUID newId = UUID.randomUUID();
 			if(s.getLvl() == 1) {
-				String cqlquery = "INSERT INTO user_structure (id, user_id, structure_id, lvl, purchase_time, is_constructing, level_of_user_when_upgrading) " +
-						"VALUES ( " + newId + "," + inDb.getId() + "," + s.getId() + "," + 1 + "," + rightNow + "," + true + "," + inDb.getLevel() + ");"; 
-				getUserStructureEntityManager().get().find(cqlquery);
+//				String cqlquery = "INSERT INTO user_structure (id, user_id, structure_id, lvl, purchase_time, is_constructing, level_of_user_when_upgrading) " +
+//						"VALUES ( " + newId + "," + inDb.getId() + "," + s.getId() + "," + 1 + "," + rightNow + "," + true + "," + inDb.getLevel() + ");"; 
+				us.setId(UUID.randomUUID());
+				us.setUserId(inDb.getId());
+				us.setStructureId(s.getStructureId());
+				us.setLvl(1);
+				us.setPurchaseTime(clientDate);
+				us.setConstructing(true);
+				us.setLevelOfUserWhenUpgrading(inDb.getLevel());
+				getUserStructureEntityManager().get().put(us);
 			}
 			else if(s.getLvl() > 1) {
-				String cqlquery = "UPDATE user_structure USING CONSISTENCY QUORUM SET 'lvl' = 'lvl' + 1, " +
-						"'start_upgrade_time' = 'rightNow', 'is_constructing' = 'true', 'level_of_user_when_upgrading' = 'inDb.getLvl()'";
-				getUserStructureEntityManager().get().find(cqlquery);
+//				String cqlquery = "UPDATE user_structure USING CONSISTENCY QUORUM SET 'lvl' = 'lvl' + 1, " +
+//						"'start_upgrade_time' = 'rightNow', 'is_constructing' = 'true', 'level_of_user_when_upgrading' = 'inDb.getLvl()'";
+				us.setLvl(s.getLvl());
+				us.setStartUpgradeTime(clientDate);
+				us.setConstructing(true);
+				us.setLevelOfUserWhenUpgrading(inDb.getLevel());
+				getUserStructureEntityManager().get().put(us);
 			}
 			return true;
 

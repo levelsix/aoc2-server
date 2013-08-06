@@ -108,64 +108,6 @@ public class UserEquipRepair extends BasePersistentObject{
 	}
 
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + durability;
-		result = prime * result
-				+ ((enteredQueue == null) ? 0 : enteredQueue.hashCode());
-		result = prime * result + ((equipId == null) ? 0 : equipId.hashCode());
-		result = prime * result + equipLevel;
-		result = prime * result
-				+ ((expectedStart == null) ? 0 : expectedStart.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		UserEquipRepair other = (UserEquipRepair) obj;
-		if (durability != other.durability)
-			return false;
-		if (enteredQueue == null) {
-			if (other.enteredQueue != null)
-				return false;
-		} else if (!enteredQueue.equals(other.enteredQueue))
-			return false;
-		if (equipId == null) {
-			if (other.equipId != null)
-				return false;
-		} else if (!equipId.equals(other.equipId))
-			return false;
-		if (equipLevel != other.equipLevel)
-			return false;
-		if (expectedStart == null) {
-			if (other.expectedStart != null)
-				return false;
-		} else if (!expectedStart.equals(other.expectedStart))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (userId == null) {
-			if (other.userId != null)
-				return false;
-		} else if (!userId.equals(other.userId))
-			return false;
-		return true;
-	}
-
 
 	@Override
 	public String toString() {

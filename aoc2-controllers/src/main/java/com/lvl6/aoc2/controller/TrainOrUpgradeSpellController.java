@@ -135,7 +135,7 @@ public class TrainOrUpgradeSpellController extends EventController {
 		}
 
 		UUID id = us.getId();
-		UUID spellId = us.getSpellId();
+		UUID spellId = us.getId();
 		Spell s = getSpellRetrieveUtils().getSpellForId(id);
 
 		if (null == s) {
@@ -223,15 +223,26 @@ public class TrainOrUpgradeSpellController extends EventController {
 			UUID newId = UUID.randomUUID();
 			//and update his user spell rows
 			if(s.getLevel() == 1) {
-				String cqlquery = "INSERT INTO user_spell (id, user_id, spell_id, lvl, spell_lvl, time_acquired, " +
-						"is_training, level_of_user_when_upgrading) VALUES (" + newId + "," + inDb.getId() + "," + s.getId() + "," 
-						+ 1 + "," + rightNow + "," + true + "," + inDb.getLevel() + ");"; 
-				getUserSpellEntityManager().get().find(cqlquery);
+//				String cqlquery = "INSERT INTO user_spell (id, user_id, spell_id, lvl, spell_lvl, time_acquired, " +
+//						"is_training, level_of_user_when_upgrading) VALUES (" + newId + "," + inDb.getId() + "," + s.getId() + "," 
+//						+ 1 + "," + rightNow + "," + true + "," + inDb.getLevel() + ");"; 
+				us.setId(newId);
+				us.setUserId(inDb.getId());
+				us.setName(s.getName());
+				us.setSpellLvl(1);
+				us.setTimeAcquired(clientDate);
+				us.setIsTraining(true);
+				us.setLevelOfUserWhenUpgrading(inDb.getLevel());
+				getUserSpellEntityManager().get().put(us);
 			}
 			else if(s.getLevel() > 1) {
-				String cqlquery = "UPDATE user_spell USING CONSISTENCY QUORUM SET 'spell_lvl' = " + s.getLevel() + ", 'time_acquired' = " 
-						+ rightNow + ", 'is_training' = " + true + ", 'level_of_user_when_upgrading' = " + inDb.getLevel() + ";";
-				getUserSpellEntityManager().get().find(cqlquery);
+//				String cqlquery = "UPDATE user_spell USING CONSISTENCY QUORUM SET 'spell_lvl' = " + s.getLevel() + ", 'time_acquired' = " 
+//						+ rightNow + ", 'is_training' = " + true + ", 'level_of_user_when_upgrading' = " + inDb.getLevel() + ";";
+				us.setSpellLvl(s.getLevel());
+				us.setTimeAcquired(clientDate);
+				us.setIsTraining(true);
+				us.setLevelOfUserWhenUpgrading(inDb.getLevel());
+				getUserSpellEntityManager().get().put(us);
 			}
 			return true;
 

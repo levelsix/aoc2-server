@@ -1,5 +1,6 @@
 package com.lvl6.aoc2.po;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -11,7 +12,7 @@ import javax.persistence.Id;
 
 
 @Entity
-public class UserEquip extends BasePersistentObject{
+public class UserDungeonStatusHistory extends BasePersistentObject{
 
 	@Id
 	protected UUID id = UUID.randomUUID();
@@ -20,19 +21,41 @@ public class UserEquip extends BasePersistentObject{
 	protected UUID userId = null;
 	
 	//the 'equip_id' column in equipment table, not the 'id' column
-	@Column(name="equip_id")
-	protected UUID equipId = null;
+	@Column(name="hp")
+	protected int hp = 0;
 	
-	@Column(name="equip_level")
-	protected int equipLevel = 0;
+	@Column(name="mana")
+	protected int mana = 0;
 	
-	@Column(name="durability")
-	protected double durability = 0.0;
+	@Column(name="actions_performed")
+	protected int actionsPerformed = 0;
 	
-	@Column(name="equipped")
-	protected boolean equipped = false;
+	@Column(name="current_time")
+	protected Date currentTime = new Date();
 	
+	@Column(name="status")
+	protected String status = "";
 
+	
+	
+	public Date getCurrentTime() {
+		return currentTime;
+	}
+
+	
+	public void setCurrentTime(Date currentTime) {
+		this.currentTime = currentTime;
+	}
+
+	
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 
 	public UUID getId() {
@@ -55,51 +78,33 @@ public class UserEquip extends BasePersistentObject{
 	}
 
 
-	public UUID getEquipId() {
-		return equipId;
+	public int getHp() {
+		return hp;
 	}
 
 
-	public void setEquipId(UUID equipId) {
-		this.equipId = equipId;
+	public void setHp(int hp) {
+		this.hp = hp;
 	}
 
 
-	public int getEquipLevel() {
-		return equipLevel;
+	public int getMana() {
+		return mana;
 	}
 
 
-	public void setEquipLevel(int equipLevel) {
-		this.equipLevel = equipLevel;
+	public void setMana(int mana) {
+		this.mana = mana;
 	}
 
 
-	public double getDurability() {
-		return durability;
+	public int getActionsPerformed() {
+		return actionsPerformed;
 	}
 
 
-	public void setDurability(double durability) {
-		this.durability = durability;
-	}
-
-
-	public boolean isEquipped() {
-		return equipped;
-	}
-
-
-	public void setEquipped(boolean equipped) {
-		this.equipped = equipped;
-	}
-
-
-	@Override
-	public String toString() {
-		return "UserEquip [id=" + id + ", userId=" + userId + ", equipId="
-				+ equipId + ", equipLevel=" + equipLevel + ", durability="
-				+ durability + ", equipped=" + equipped + "]";
+	public void setActionsPerformed(int actionsPerformed) {
+		this.actionsPerformed = actionsPerformed;
 	}
 
 
@@ -108,10 +113,11 @@ public class UserEquip extends BasePersistentObject{
 		return "create table user_equip (" +
 				" id uuid," +
 				" user_id uuid," +
-				" equip_id uuid," +
-				" equip_level int," +
-				" durability double," +
-				" equipped boolean," +
+				" hp int," +
+				" mana int," +
+				" actionsPerformed int," +
+				" currentTime timestamp," +
+				" status varchar," +
 				" primary key(id))" +
 				" with compact storage;";
 	}
