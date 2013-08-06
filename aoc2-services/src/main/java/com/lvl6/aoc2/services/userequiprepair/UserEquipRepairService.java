@@ -14,9 +14,8 @@ public interface UserEquipRepairService {
 	public abstract Map<UUID, UserEquipRepair> getEquipsBeingRepaired(String userIdString);
 	
 	//returns AocTwoTableConstants.resourceType -> amount
-	public abstract Map<Integer, Integer> calculateRefund(List<UserEquipRepair> refundList);
-	
-	public abstract Map<Integer, Integer> calculateRepairCost(List<UserEquip> ueList);
+	public abstract Map<Integer, Integer> calculateRepairCost(List<UserEquip> ueList,
+			List<UserEquipRepair> uerList, int multiplier);
 	
 	public abstract void deleteUserEquipRepairs(Collection<UUID> ids);
 	

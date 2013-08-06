@@ -37,15 +37,10 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 		return returnVal;
 	}
 	
-	//returns AocTwoTableConstants.resourceType -> amount
+	//multiplier: 1 or -1, ueList or uerList is defined other is null
 	@Override
-	public Map<Integer, Integer> calculateRefund(List<UserEquipRepair> refundList) {
-		//TODO: IMPLEMENT THIS
-		return new HashMap<Integer, Integer>();
-	}
-	
-	@Override
-	public Map<Integer, Integer> calculateRepairCost(List<UserEquip> ueList) {
+	public Map<Integer, Integer> calculateRepairCost(List<UserEquip> ueList,
+			List<UserEquipRepair> uerList, int multiplier) {
 		//TODO: IMPLEMENT THIS
 		return new HashMap<Integer, Integer>();
 	}
@@ -59,6 +54,9 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 	public void saveUserEquipRepairs(Collection<UserEquipRepair> newStuff) {
 		getUserEquipmentRepairEntityManager().get().put(newStuff);
 	}
+	
+	
+	
 	
 	
 	
