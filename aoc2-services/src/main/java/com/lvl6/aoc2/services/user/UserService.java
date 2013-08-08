@@ -7,6 +7,8 @@ import com.lvl6.aoc2.po.User;
 
 public interface UserService {
 	
+	public abstract User retrieveUser(String gameCenterId, String userId);
+	
 	public abstract void updateUserResources(User u, Map<Integer, Integer> resourceTypeToChanges);
 	
 	public abstract void updateUserGold(User u, int goldChange);
