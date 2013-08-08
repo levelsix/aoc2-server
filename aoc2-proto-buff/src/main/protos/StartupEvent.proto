@@ -10,8 +10,9 @@ option java_outer_classname = "StartupEventProto";
 
 message StartupRequestProto {
 	optional MinimumUserProto mup = 1; //would contain the value corresponding to LoginType
+	optional LoginType loginType = 2;
 	
-	//extensible for the future: facebook/email required
+	//extensible for the future: facebook or email required
 	enum LoginType {
 		GAME_CENTER_ID = 0;
 		UDID = 1;
@@ -19,8 +20,8 @@ message StartupRequestProto {
 }
 
 message StartupResponseProto {
-	optional MinimumUserProto mup = 1;
-	optional int64 currentServerTime = 2; //"approximate server time, + seconds most likely"
+	optional FullUserProto mup = 1;
+	optional int64 currentServerTime = 2; //"approximate server time, and some lag"
 	optional StartupStatus status = 3;
 	
 	
