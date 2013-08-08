@@ -27,11 +27,11 @@ import com.lvl6.aoc2.events.response.RepairEquipResponseEvent;
 import com.lvl6.aoc2.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
 import com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto;
-import com.lvl6.aoc2.noneventprotos.UserEquipment.UserEquipmentProto;
 import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserEquip;
 import com.lvl6.aoc2.po.UserEquipRepair;
 import com.lvl6.aoc2.po.properties.AocTwoTableConstants;
+import com.lvl6.aoc2.services.user.UserService;
 import com.lvl6.aoc2.services.userequip.UserEquipService;
 import com.lvl6.aoc2.services.userequiprepair.UserEquipRepairService;
 
@@ -46,15 +46,21 @@ public class RepairEquipController extends EventController {
 
 	@Autowired
 	protected UserEquipRepairService userEquipRepairService;
-	
+
 	@Autowired
 	protected UserEquipService userEquipService;
 
 	@Autowired
 	protected UserEntityManager userEntityManager;
-	
+
 	@Autowired
 	protected TimeUtils timeUtils;
+
+	@Autowired
+	protected UserService userService;
+
+
+
 
 	@Override
 	public RequestEvent createRequestEvent() {
@@ -76,13 +82,13 @@ public class RepairEquipController extends EventController {
 		MinimumUserProto sender = reqProto.getMup();
 		List<UserEquipRepairProto> uerpDelete = reqProto.getUerpDeleteList();
 		List<UserEquipRepairProto> uerpUpdate = reqProto.getUerpUpdateList();
-		List<UserEquipmentProto> uepNew = reqProto.getUepNewList();
+		List<UserEquipRepairProto> uerpNew = reqProto.getUerpNewList();
 		Date clientDate = new Date(reqProto.getClientTimeMillis());
 
 		//uuid's are not strings, need to convert from string to uuid, vice versa
 		String userIdString = sender.getUserID();
 		UUID userId = UUID.fromString(userIdString);
-		
+
 		//response to send back to client
 		Builder responseBuilder = RepairEquipResponseProto.newBuilder();
 		responseBuilder.setStatus(RepairEquipStatus.FAIL_OTHER);
@@ -95,20 +101,20 @@ public class RepairEquipController extends EventController {
 			User existingU = getUserEntityManager().get().get(userId);
 			Map<UUID, UserEquipRepair> repairsInDb = 
 					getUserEquipRepairService().getEquipsBeingRepaired(userIdString);
-					
+
 			//will be populated in isValidRequest
 			Map<UUID, UserEquip> prospectiveRepairs = new HashMap<UUID, UserEquip>(); 
-			
+
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender,
-					existingU, userIdString, uerpDelete, uerpUpdate, uepNew,
+					existingU, userIdString, uerpDelete, uerpUpdate, uerpNew,
 					repairsInDb, prospectiveRepairs, clientDate);
 
 			boolean successful = false;
-//			if (validRequest) {
-//				successful = writeChangesToDb(uerpDelete, uerpUpdate,
-//						uepNew, repairsInDb);
-//			}
+			if (validRequest) {
+				successful = writeChangesToDb(existingU, uerpDelete,
+						uerpUpdate, uerpNew, repairsInDb);
+			}
 
 			if (successful) {
 				responseBuilder.setStatus(RepairEquipStatus.SUCCESS);
@@ -133,18 +139,18 @@ public class RepairEquipController extends EventController {
 			}
 		}
 	}
-	
-	
+
+
 
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User existingU, String userIdString, List<UserEquipRepairProto> uerpDelete,
-			List<UserEquipRepairProto> uerpUpdate, List<UserEquipmentProto> uepNew,
+			List<UserEquipRepairProto> uerpUpdate, List<UserEquipRepairProto> uerpNew,
 			Map<UUID, UserEquipRepair> repairsInDb,  Map<UUID, UserEquip> prospectiveRepairs,
 			Date clientDate) throws Exception {
 		boolean inDbEmpty = (null == repairsInDb || repairsInDb.isEmpty());
 		boolean uerpDeleteNonEmpty = (null != uerpDelete && !uerpDelete.isEmpty());
 		boolean uerpUpdateNonEmpty = null != uerpUpdate && !uerpUpdate.isEmpty(); 
-		
+
 		//mismatch between what's recorded on the server and what client
 		//thinks is recorded
 		if ((uerpDeleteNonEmpty || uerpUpdateNonEmpty) && inDbEmpty) {
@@ -152,9 +158,9 @@ public class RepairEquipController extends EventController {
 					"be-repaired, or client is sending incorrectly.");
 			return false;
 		}
-		
+
 		Set<UUID> inDbKeys = repairsInDb.keySet();
-		
+
 		//check if what client deletes/updates are in the db.
 		Set<UUID> uerDeleteIds = getUerIds(uerpDelete);
 		if (!inDbKeys.containsAll(uerDeleteIds)) {
@@ -170,41 +176,41 @@ public class RepairEquipController extends EventController {
 					"uerUpdateIds=" + uerUpdateIds);
 			return false;
 		}
-		
+
 		//CHECK IF TIMES ARE IN SYNC
 		if (!getTimeUtils().isSynchronizedWithServerTime(clientDate)) {
-		    log.error("user error: client time diverges from server time. clientTime="
-			    + clientDate + ", approximateServerTime=" + new Date());
-		    responseBuilder.setStatus(RepairEquipStatus.FAIL_UNSYNCHRONIZED_TIMES);
-		    return false;
+			log.error("user error: client time diverges from server time. clientTime="
+					+ clientDate + ", approximateServerTime=" + new Date());
+			responseBuilder.setStatus(RepairEquipStatus.FAIL_UNSYNCHRONIZED_TIMES);
+			return false;
 		}
-		
-		
-		Set<UUID> newIds = getUeIds(uepNew);
+
+
+		Set<UUID> newIds = getUerIds(uerpNew);
 		Map<UUID, UserEquip> newEquipsToRepair = 
 				getUserEquipService().getUserEquipsByUserEquipIds(newIds);
-				
+
 		if (!hasEnoughFunds(uerpDelete, newEquipsToRepair, existingU, repairsInDb)) {
 			log.error("unexpected error: user has not enough funds to repair " +
 					"equip. user="+ userIdString + "\t uerpDelete=" + uerpDelete +
-					"\t uepNew=" + uepNew);
+					"\t uerpNew=" + uerpNew);
 			responseBuilder.setStatus(RepairEquipStatus.FAIL_NOT_ENOUGH_RESOURCES);
 			return false;
 		}
-		
+
 		prospectiveRepairs.putAll(newEquipsToRepair);
-		
+
 		return true;
 	}
-	
+
 	//get user equip repair ids (the primary key of the table)
 	private Set<UUID> getUerIds(List<UserEquipRepairProto> aList) throws Exception {
 		Set<UUID> ids = new HashSet<UUID>();
-		
+
 		for (UserEquipRepairProto uerp : aList) {
-			String uerIdString = uerp.getId();
+			String uerIdString = uerp.getUserEquipRepairID();
 			UUID uerId = UUID.fromString(uerIdString);
-			
+
 			if (ids.contains(uerIdString)) {
 				String msg = "client error: duplicate id=" + uerIdString; 
 				log.error(msg);
@@ -214,64 +220,49 @@ public class RepairEquipController extends EventController {
 		}
 		return ids;
 	}
-	
-	private Set<UUID> getUeIds(List<UserEquipmentProto> uepList) throws Exception {
-		Set<UUID> ids = new HashSet<UUID>();
-		for (UserEquipmentProto uep : uepList) {
-			String ueIdString = uep.getUserEquipId();
-			UUID ueId = UUID.fromString(ueIdString);
-			
-			if (ids.contains(ueIdString)) {
-				String msg = "client error: duplicate id=" + ueIdString; 
-				log.error(msg);
-				throw new Exception(msg);
-			}
-			ids.add(ueId);
-		}
-		
-		return ids;
-	}
-	
+
 	private boolean hasEnoughFunds(List<UserEquipRepairProto> uerpDelete,
 			Map<UUID, UserEquip> newEquipsToRepair, User existingU,
 			Map<UUID, UserEquipRepair> repairsInDb) {
-		
+
 		//get the equips that the user cancelled from being repaired
 		Set<UUID> idsDelete = getEquipIds(uerpDelete);
 		List<UserEquipRepair> deleteRepairs = new ArrayList<UserEquipRepair>();
 		for (UUID id : idsDelete) {
 			deleteRepairs.add(repairsInDb.get(id));
 		}
-		
+
 		int goldLeft = existingU.getGold();
 		int tonicLeft = existingU.getTonic();
 		//user might have deleted things from the queue, refund him, before
 		//charging the new equips to repair
-		Map<Integer, Integer> totalRefund = getUserEquipRepairService().calculateRefund(deleteRepairs);
+		Map<Integer, Integer> totalRefund =
+				getUserEquipRepairService().calculateRepairCost(null, deleteRepairs, -1);
 		if (totalRefund.containsKey(AocTwoTableConstants.RESOURCE_TYPE__GOLD)) {
 			goldLeft += totalRefund.get(AocTwoTableConstants.RESOURCE_TYPE__GOLD);
 		}
 		if (totalRefund.containsKey(AocTwoTableConstants.RESOURCE_TYPE__TONIC)) {
 			tonicLeft += totalRefund.get(AocTwoTableConstants.RESOURCE_TYPE__TONIC);
 		}
-		
+
 		//calculate how much to charge for new equips
 		List<UserEquip> newEquips = new ArrayList<UserEquip>(newEquipsToRepair.values());
-		Map<Integer, Integer> totalCost = getUserEquipRepairService().calculateRepairCost(newEquips);
+		Map<Integer, Integer> totalCost =
+				getUserEquipRepairService().calculateRepairCost(newEquips, null, 1);
 		if (totalCost.containsKey(AocTwoTableConstants.RESOURCE_TYPE__GOLD)) {
 			goldLeft -= totalCost.get(AocTwoTableConstants.RESOURCE_TYPE__GOLD);
 		}
 		if (totalCost.containsKey(AocTwoTableConstants.RESOURCE_TYPE__TONIC)) {
 			tonicLeft -= totalCost.get(AocTwoTableConstants.RESOURCE_TYPE__TONIC);
 		}
-		
+
 		if (goldLeft < 0 || tonicLeft < 0) {
 			return false;
 		} else {
 			return false;
 		}
 	}
-	
+
 	private Set<UUID> getEquipIds(List<UserEquipRepairProto> uerpList) {
 		Set<UUID> uniqIds = new HashSet<UUID>();
 		for (UserEquipRepairProto uerp : uerpList) {
@@ -279,22 +270,29 @@ public class RepairEquipController extends EventController {
 			UUID equipId = UUID.fromString(equipIdStr);
 			uniqIds.add(equipId);
 		}
-		
+
 		return uniqIds;
 	}
-	
 
-	private boolean writeChangesToDb(List<UserEquipRepairProto> uerpDelete,
-			List<UserEquipRepairProto> uerpUpdate, List<UserEquipRepairProto> uepNew,
-			Map<UUID, UserEquipRepair> repairsInDb) {
+
+	private boolean writeChangesToDb(User u,
+			List<UserEquipRepairProto> uerpDelete, List<UserEquipRepairProto> uerpUpdate,
+			List<UserEquipRepairProto> uerpNew, Map<UUID, UserEquipRepair> repairsInDb) {
 		try {
-			List<UserEquipRepair> cancelled = new ArrayList<UserEquipRepair>();
-			List<UserEquip> unrepaired = deleteExisting(uerpDelete, repairsInDb,
-					cancelled);
-			
+			//determine the refund
+			List<UserEquip> unrepaired = deleteExisting(uerpDelete, repairsInDb);
+			Map<Integer, Integer> refund = getUserEquipRepairService()
+					.calculateRepairCost(unrepaired, null, -1); 
+
 			updateExisting(uerpUpdate, repairsInDb);
-			
-			addNew(uepNew);
+
+			//determine the costs
+			List<UserEquipRepair> newRepairs = addNew(uerpNew);
+			Map<Integer, Integer> cost = getUserEquipRepairService()
+					.calculateRepairCost(null, newRepairs, 1);
+
+
+			modifyUserResources(u, refund, cost);
 			return true;
 
 		} catch (Exception e) {
@@ -306,81 +304,115 @@ public class RepairEquipController extends EventController {
 	//GET THE EQUIPS-TO-DELETE AND DELETE THEM, PUTTING THEM BACK INTO
 	//USER EQUIP
 	private List<UserEquip> deleteExisting(List<UserEquipRepairProto> uerp,
-			Map<UUID, UserEquipRepair> repairsInDb, List<UserEquipRepair> cancelled)
-					throws Exception {
-		
+			Map<UUID, UserEquipRepair> repairsInDb) throws Exception {
+
 		Set<UUID> idsToBeDeleted = getUerIds(uerp);
 		getUserEquipRepairService().deleteUserEquipRepairs(idsToBeDeleted);
-		
+
 		//equips to add to user equips
 		List<UserEquip> unrepaired = new ArrayList<UserEquip>();
-		
+
 		for(UUID id : idsToBeDeleted) {
 			UserEquipRepair uer = repairsInDb.remove(id);
-			cancelled.add(uer);
-			
+
 			UserEquip ue = new UserEquip();
-			
+
 			ue.setUserId(uer.getUserId());
 			ue.setEquipId(uer.getEquipId());
 			ue.setEquipLevel(uer.getEquipLevel());
 			ue.setDurability(uer.getDurability());
 			ue.setEquipped(false);
-			
+
 			unrepaired.add(ue);
 		}
-		
+
+		//put back into user equips
 		getUserEquipService().saveEquips(unrepaired);
-		
+
 		return unrepaired;
 	}
-	
+
 	//UPDATE THE ONES THAT CLIENT WANTS UPDATED
 	private void updateExisting(List<UserEquipRepairProto> uerpList, 
 			Map<UUID, UserEquipRepair> repairsInDb) throws Exception {
 		List<UserEquipRepair> updated = new ArrayList<UserEquipRepair>();
-		
-		//go though inDb objects and replace its values with the
+
+		//Summary: go though inDb objects and replace its values with the
 		//proto values (only expectedStartMillis should change)
 		for (UserEquipRepairProto uer : uerpList) {
 			long millis = uer.getExpectedStartMillis();
 			Date newDate = new Date(millis);
-			
-			String idString = uer.getId();
+
+			String idString = uer.getUserEquipRepairID();
 			UUID id = UUID.fromString(idString);
-			
+
 			UserEquipRepair inDb = repairsInDb.get(id);
 			inDb.setExpectedStart(newDate);
-			
+
 			updated.add(inDb);
 		}
-		
+
 		getUserEquipRepairService().saveUserEquipRepairs(updated);
 	}
-	
-	private void addNew(List<UserEquipRepairProto> uerpList) {
+
+	private List<UserEquipRepair> addNew(List<UserEquipRepairProto> uerpList) {
 		List<UserEquipRepair> newStuff = new ArrayList<UserEquipRepair>();
-		
+
 		for(UserEquipRepairProto uerp : uerpList) {
 			UserEquipRepair uer = new UserEquipRepair();
 			UUID userId = UUID.fromString(uerp.getUserID());
 			uer.setUserId(userId);
-			
+
 			UUID equipId = UUID.fromString(uerp.getEquipID());
 			uer.setEquipId(equipId);
-			
+
 			uer.setEquipLevel(uerp.getEquipLevel());
 			uer.setDurability(uerp.getDurability());
 			Date expectedStart = new Date(uerp.getExpectedStartMillis());
 			uer.setExpectedStart(expectedStart);
 			Date enteredQueue = new Date(uerp.getQueuedTimeMillis());
 			uer.setEnteredQueue(enteredQueue);
-			
+
 			newStuff.add(uer);
 		}
-		
-		//getUserEquipRepairEntityManager().get().put(newStuff);
+
+		getUserEquipRepairService().saveUserEquipRepairs(newStuff);
+
+		return newStuff;
 	}
+
+	//aggregate refund and cost and then upate user's resources
+	private void modifyUserResources(User u, Map<Integer, Integer> refund,
+			Map<Integer, Integer> cost) {
+		Map<Integer, Integer> total = new HashMap<Integer, Integer>();
+		
+		int gold = AocTwoTableConstants.RESOURCE_TYPE__GOLD;
+		int tonic = AocTwoTableConstants.RESOURCE_TYPE__TONIC;
+
+		int goldChange = 0;
+		int tonicChange = 0;
+		if (refund.containsKey(tonic)) {
+			tonicChange += refund.get(tonic);
+		}
+		if (cost.containsKey(tonic)) {
+			tonicChange += cost.get(tonic);
+		}
+
+		if (refund.containsKey(gold)) {
+			goldChange += refund.get(gold);
+		}
+		if (cost.containsKey(gold)) {
+			goldChange += cost.get(gold);
+		}
+
+		total.put(goldChange, tonicChange);
+		getUserService().updateUserResources(u, total);
+	}
+
+
+
+
+
 
 	public EquipmentRetrieveUtils getEquipmentRetrieveUtils() {
 		return equipmentRetrieveUtils;
@@ -423,5 +455,14 @@ public class RepairEquipController extends EventController {
 	public void setTimeUtils(TimeUtils timeUtils) {
 		this.timeUtils = timeUtils;
 	}
-	
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
 }
+

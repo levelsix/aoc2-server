@@ -5,9 +5,9 @@ option java_package = "com.lvl6.aoc2.noneventprotos";
 option java_outer_classname = "UserEquipment";
 
 message UserEquipmentProto {
-	optional string userEquipId = 1;
-	optional int32 userID = 2;
-	optional int32 equipID = 3;
+	optional string userEquipID = 1;
+	optional string userID = 2;
+	optional string equipID = 3;
 	optional int32 equipLevel = 4;
 	optional int32 currDurability = 5;
 	optional bool equipped = 6;
