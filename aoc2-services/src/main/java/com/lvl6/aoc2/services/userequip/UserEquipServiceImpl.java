@@ -1,58 +1,53 @@
-package com.lvl6.aoc2.services.userEquip;
+package com.lvl6.aoc2.services.userequip;
 
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.UserEquipEntityManager;
+import com.lvl6.aoc2.entitymanager.staticdata.UserEquipRetrieveUtils;
 import com.lvl6.aoc2.po.UserEquip;
 
+@Component
 public class UserEquipServiceImpl implements UserEquipService {
 	
 	@Autowired
-	protected UserEquipEntityManager userEquipEntityManager;
+	protected UserEquipEntityManager UserEquipEntityManager;
+	
+	@Autowired
+	protected UserEquipRetrieveUtils UserEquipRetrieveUtils;
 
-	
-	@Override
-	public Map<UUID, UserEquip> getUserEquipsByUserEquipIds(Collection<UUID> ids) {
-		Map<UUID, UserEquip> returnVal = new HashMap<UUID, UserEquip>();
-		
-		List<UserEquip> ueList = userEquipEntityManager.get().get(ids);
-		for (UserEquip ue : ueList) {
-			UUID id = ue.getId();
-			returnVal.put(id, ue);
+	public List<UserEquip> getEquippedUserEquips(List<UserEquip> ueList, List<UserEquip> equippedEquips) {
+		for(UserEquip ue : ueList) {
+			if(ue.isEquipped() == true)
+				equippedEquips.add(ue);
 		}
-		
-		return returnVal;
-	}
-	
-	@Override
-	public void saveEquips(Collection<UserEquip> newEquips) {
-		getUserEquipEntityManager().get().put(newEquips);
-	}
-	
-	@Override
-	public void getEquippedUserEquips(List<UserEquip> allUserEquips, List<UserEquip> equippedUserEquips) {
-		for(UserEquip ue : allUserEquips) {
-			if(ue.isEquipped())
-				equippedUserEquips.add(ue);
-		}
+		return equippedEquips;
 	}
 	
 	
 	@Override
 	public UserEquipEntityManager getUserEquipEntityManager() {
-		return userEquipEntityManager;
+		return UserEquipEntityManager;
+	}
+	
+	@Override
+	public void setUserEquipEntityManager(
+			UserEquipEntityManager UserEquipEntityManager) {
+		this.UserEquipEntityManager = UserEquipEntityManager;
 	}
 
 	@Override
-	public void setUserEquipEntityManager(
-			UserEquipEntityManager userEquipEntityManager) {
-		this.userEquipEntityManager = userEquipEntityManager;
+	public UserEquipRetrieveUtils getUserEquipRetrieveUtils() {
+		return UserEquipRetrieveUtils;
 	}
+
+	@Override
+	public void setUserEquipRetrieveUtils(
+			UserEquipRetrieveUtils UserEquipRetrieveUtils) {
+		this.UserEquipRetrieveUtils = UserEquipRetrieveUtils;
+	}
+	
 	
 }

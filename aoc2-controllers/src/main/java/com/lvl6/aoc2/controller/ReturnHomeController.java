@@ -32,8 +32,8 @@ import com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserEquip;
 import com.lvl6.aoc2.services.equipment.EquipmentService;
-import com.lvl6.aoc2.services.userEquip.UserEquipService;
-import com.lvl6.aoc2.services.userEquip.UserEquipServiceImpl;
+import com.lvl6.aoc2.services.userequip.UserEquipService;
+import com.lvl6.aoc2.services.userequip.UserEquipServiceImpl;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
 

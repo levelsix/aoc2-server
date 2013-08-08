@@ -37,7 +37,7 @@ import com.lvl6.aoc2.po.UserDungeonStatus;
 import com.lvl6.aoc2.po.UserEquip;
 import com.lvl6.aoc2.po.UserItem;
 import com.lvl6.aoc2.services.equipment.EquipmentService;
-import com.lvl6.aoc2.services.userEquip.UserEquipService;
+import com.lvl6.aoc2.services.userequip.UserEquipService;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
 
