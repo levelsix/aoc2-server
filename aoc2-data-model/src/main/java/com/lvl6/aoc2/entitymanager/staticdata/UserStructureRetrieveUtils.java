@@ -11,7 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.UserStructureEntityManager;
-import com.lvl6.aoc2.po.UserStructure;
+import com.lvl6.aoc2.entitymanager.StructureEntityManager;
+import com.lvl6.aoc2.po.Structure;
 import com.lvl6.aoc2.po.UserStructure;
 
 @Component public class UserStructureRetrieveUtils {
@@ -28,6 +29,9 @@ import com.lvl6.aoc2.po.UserStructure;
 	@Autowired
 	protected UserStructureEntityManager UserStructureEntityManager;
 
+	@Autowired
+	protected StructureEntityManager StructureEntityManager;
+	
 	public  UserStructure getUserStructureForId(UUID id) {
 		log.debug("retrieve UserStructure data for id " + id);
 		if (idsToUserStructures == null) {
@@ -67,6 +71,15 @@ import com.lvl6.aoc2.po.UserStructure;
 		return list;
 	}
 	
+	public Structure getStructureCorrespondingToUserStructure(UserStructure us) {
+		UUID structureId = us.getStructureId();
+		String cqlquery = "select * from Structure where structureId= " + structureId + ";";
+		List<Structure> s = getStructureEntityManager().get().find(cqlquery);
+		return s.get(0);
+	}
+	
+	
+	
 	
 	public  void reload() {
 		setStaticIdsToUserStructures();
@@ -82,4 +95,15 @@ import com.lvl6.aoc2.po.UserStructure;
 			UserStructureEntityManager UserStructureEntityManager) {
 		this.UserStructureEntityManager = UserStructureEntityManager;
 	}
+
+	public StructureEntityManager getStructureEntityManager() {
+		return StructureEntityManager;
+	}
+
+	public void setStructureEntityManager(
+			StructureEntityManager structureEntityManager) {
+		StructureEntityManager = structureEntityManager;
+	}
+	
+	
 }

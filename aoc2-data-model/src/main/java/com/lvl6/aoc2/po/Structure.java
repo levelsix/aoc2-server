@@ -49,7 +49,7 @@ public class Structure extends BasePersistentObject{
 	@Column(name="functionality_resource_type")
 	protected int functionalityResourceType = 0;
 	
-	//base cost for researching spell, income, storage, dependent on building)
+	//base cost for researching spell, income, storage, dependent on building, assume it's in minutes for now
 	@Column(name="functionality_value")
 	protected int functionalityValue = 0;
 	

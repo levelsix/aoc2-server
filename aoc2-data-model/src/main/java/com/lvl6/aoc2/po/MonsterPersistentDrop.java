@@ -11,7 +11,7 @@ import javax.persistence.Id;
 
 
 @Entity
-public class MonsterReward extends BasePersistentObject{
+public class MonsterPersistentDrop extends BasePersistentObject{
 	
 	//explicit values are useless, I just made random values
 
@@ -26,12 +26,6 @@ public class MonsterReward extends BasePersistentObject{
 	
 	@Column(name="equip_drop_rate")
 	protected double equipDropRate = 0.5;
-	
-	@Column(name="item_id") //maybe for quest items
-	protected UUID itemId = null;
-	
-	@Column(name="item_drop_rate")
-	protected double itemDropRate = 0.5;
 	
 	@Column(name="min_gold")
 	protected int minGold = 10;
@@ -56,12 +50,12 @@ public class MonsterReward extends BasePersistentObject{
 	}
 
 
-	public UUID getCreatureId() {
+	public UUID getMonsterId() {
 		return monsterId;
 	}
 
 
-	public void setCreatureId(UUID monsterId) {
+	public void setMonsterId(UUID monsterId) {
 		this.monsterId = monsterId;
 	}
 
@@ -83,26 +77,6 @@ public class MonsterReward extends BasePersistentObject{
 
 	public void setEquipDropRate(double equipDropRate) {
 		this.equipDropRate = equipDropRate;
-	}
-
-
-	public UUID getItemId() {
-		return itemId;
-	}
-
-
-	public void setItemId(UUID itemId) {
-		this.itemId = itemId;
-	}
-
-
-	public double getItemDropRate() {
-		return itemDropRate;
-	}
-
-
-	public void setItemDropRate(double itemDropRate) {
-		this.itemDropRate = itemDropRate;
 	}
 
 
@@ -145,14 +119,12 @@ public class MonsterReward extends BasePersistentObject{
 		this.maxTonic = maxTonic;
 	}
 
-
-
+	
 
 	@Override
 	public String toString() {
-		return "MonsterReward [id=" + id + ", monsterId=" + monsterId
+		return "MonsterPersistentDrop [id=" + id + ", monsterId=" + monsterId
 				+ ", equipId=" + equipId + ", equipDropRate=" + equipDropRate
-				+ ", itemId=" + itemId + ", itemDropRate=" + itemDropRate
 				+ ", minGold=" + minGold + ", maxGold=" + maxGold
 				+ ", minTonic=" + minTonic + ", maxTonic=" + maxTonic + "]";
 	}
@@ -160,13 +132,11 @@ public class MonsterReward extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table monster_reward (" +
+		return "create table monster_persistent_drop (" +
 				" id uuid," +
 				" monster_id uuid," +
 				" equip_id uuid," +
 				" equip_drop_rate double," +
-				" item_id uuid," +
-				" item_drop_rate double," +
 				" min_gold int," +
 				" max_gold int," +
 				" min_tonic int," +

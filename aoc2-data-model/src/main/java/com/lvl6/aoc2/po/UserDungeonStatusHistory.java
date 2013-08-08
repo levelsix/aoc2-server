@@ -33,30 +33,23 @@ public class UserDungeonStatusHistory extends BasePersistentObject{
 	@Column(name="current_time")
 	protected Date currentTime = new Date();
 	
-	@Column(name="status")
-	protected String status = "";
+	@Column(name="dungeon_room_name")
+	protected String dungeonRoomName = "";
 
-	
-	
-	public Date getCurrentTime() {
-		return currentTime;
-	}
-
-	
-	public void setCurrentTime(Date currentTime) {
-		this.currentTime = currentTime;
-	}
-
-	
-	public String getStatus() {
-		return status;
-	}
-
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
+//	@Column(name="monsters_remaining")
+//	protected int monstersRemaining = 0;
+//	
+//	
+//
+//	public int getMonstersRemaining() {
+//		return monstersRemaining;
+//	}
+//
+//
+//	public void setMonstersRemaining(int monstersRemaining) {
+//		this.monstersRemaining = monstersRemaining;
+//	}
+//
 
 	public UUID getId() {
 		return id;
@@ -108,16 +101,47 @@ public class UserDungeonStatusHistory extends BasePersistentObject{
 	}
 
 
+	public Date getCurrentTime() {
+		return currentTime;
+	}
+
+
+	public void setCurrentTime(Date currentTime) {
+		this.currentTime = currentTime;
+	}
+
+
+	public String getDungeonRoomName() {
+		return dungeonRoomName;
+	}
+
+
+	public void setDungeonRoomName(String dungeonRoomName) {
+		this.dungeonRoomName = dungeonRoomName;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "UserDungeonStatusHistory [id=" + id + ", userId=" + userId
+				+ ", hp=" + hp + ", mana=" + mana + ", actionsPerformed="
+				+ actionsPerformed + ", currentTime=" + currentTime
+				+ ", dungeonRoomName=" + dungeonRoomName + "]";
+	}
+
+
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_equip (" +
+		return "create table user_dungeon_status_history (" +
 				" id uuid," +
 				" user_id uuid," +
 				" hp int," +
 				" mana int," +
 				" actionsPerformed int," +
 				" currentTime timestamp," +
-				" status varchar," +
+				" dungeon_room_name varchar," +
+				" monsters_remaining int," +
 				" primary key(id))" +
 				" with compact storage;";
 	}

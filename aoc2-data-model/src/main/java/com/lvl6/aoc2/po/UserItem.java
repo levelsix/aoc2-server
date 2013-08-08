@@ -12,7 +12,7 @@ import javax.persistence.Id;
 
 
 @Entity
-public class UserEquip extends BasePersistentObject{
+public class UserItem extends BasePersistentObject{
 
 	@Id
 	protected UUID id = UUID.randomUUID();
@@ -20,18 +20,8 @@ public class UserEquip extends BasePersistentObject{
 	@Column(name="user_id")
 	protected UUID userId = null;
 	
-	//the 'equip_id' column in equipment table, not the 'id' column
-	@Column(name="equip_id")
-	protected UUID equipId = null;
-	
-	@Column(name="equip_level")
-	protected int equipLevel = 0;
-	
-	@Column(name="durability")
-	protected double durability = 0.0;
-	
-	@Column(name="equipped")
-	protected boolean equipped = false;
+	@Column(name="item_id")
+	protected UUID itemId = null;
 	
 	@Column(name="time_acquired")
 	protected Date timeAcquired = new Date();
@@ -39,9 +29,8 @@ public class UserEquip extends BasePersistentObject{
 	@Column(name="level_of_user_when_acquired")
 	protected int levelOfUserWhenAcquired = 0;
 	
-	@Column(name="dungeon_room_or_chest_acquired_from")
-	protected String dungeonRoomOrChestAcquiredFrom = "";
-
+	@Column(name="dungeon_room_acquired_in")
+	protected String dungeonRoomAcquiredIn = "";
 
 
 	public UUID getId() {
@@ -64,43 +53,13 @@ public class UserEquip extends BasePersistentObject{
 	}
 
 
-	public UUID getEquipId() {
-		return equipId;
+	public UUID getItemId() {
+		return itemId;
 	}
 
 
-	public void setEquipId(UUID equipId) {
-		this.equipId = equipId;
-	}
-
-
-	public int getEquipLevel() {
-		return equipLevel;
-	}
-
-
-	public void setEquipLevel(int equipLevel) {
-		this.equipLevel = equipLevel;
-	}
-
-
-	public double getDurability() {
-		return durability;
-	}
-
-
-	public void setDurability(double durability) {
-		this.durability = durability;
-	}
-
-
-	public boolean isEquipped() {
-		return equipped;
-	}
-
-
-	public void setEquipped(boolean equipped) {
-		this.equipped = equipped;
+	public void setItemId(UUID itemId) {
+		this.itemId = itemId;
 	}
 
 
@@ -124,42 +83,34 @@ public class UserEquip extends BasePersistentObject{
 	}
 
 
-	public String getDungeonRoomOrChestAcquiredFrom() {
-		return dungeonRoomOrChestAcquiredFrom;
+	public String getDungeonRoomAcquiredIn() {
+		return dungeonRoomAcquiredIn;
 	}
 
 
-	public void setDungeonRoomOrChestAcquiredFrom(
-			String dungeonRoomOrChestAcquiredFrom) {
-		this.dungeonRoomOrChestAcquiredFrom = dungeonRoomOrChestAcquiredFrom;
+	public void setDungeonRoomAcquiredIn(String dungeonRoomAcquiredIn) {
+		this.dungeonRoomAcquiredIn = dungeonRoomAcquiredIn;
 	}
-	
-	
 
 
 	@Override
 	public String toString() {
-		return "UserEquip [id=" + id + ", userId=" + userId + ", equipId="
-				+ equipId + ", equipLevel=" + equipLevel + ", durability="
-				+ durability + ", equipped=" + equipped + ", timeAcquired="
-				+ timeAcquired + ", levelOfUserWhenAcquired="
-				+ levelOfUserWhenAcquired + ", dungeonRoomOrChestAcquiredFrom="
-				+ dungeonRoomOrChestAcquiredFrom + "]";
+		return "UserItem [id=" + id + ", userId=" + userId + ", itemId="
+				+ itemId + ", timeAcquired=" + timeAcquired
+				+ ", levelOfUserWhenAcquired=" + levelOfUserWhenAcquired
+				+ ", dungeonRoomAcquiredIn=" + dungeonRoomAcquiredIn + "]";
 	}
 
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_equip (" +
+		return "create table user_item (" +
 				" id uuid," +
 				" user_id uuid," +
-				" equip_id uuid," +
-				" equip_level int," +
-				" durability double," +
-				" equipped boolean," +
+				" item_id uuid," +
 				" time_acquired timestamp," +
 				" level_of_user_when_acquired int," +
-				" dungeon_room_or_chest_acquired_from varchar," +
+				" dungeon_room_acquired_in int," +
 				" primary key(id))" +
 				" with compact storage;";
 	}

@@ -11,14 +11,17 @@ import javax.persistence.Id;
 
 
 @Entity
-public class ChestReward extends BasePersistentObject{
+public class Chest extends BasePersistentObject{
 
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
 	//we'll set this manually
 	@Column(name="chest_id")
-	protected UUID chest_id = null;
+	protected UUID chestId = null;
+	
+	@Column(name="chest_name")
+	protected String chestName = "";
 	
 	@Column(name="chest_drop_rate")
 	protected double chestDropRate = 0.0d;
@@ -29,8 +32,16 @@ public class ChestReward extends BasePersistentObject{
 	@Column(name="equip_weight")
 	protected double equipWeight = 0.0;
 	
-
-
+	@Column(name="chest_type")
+	protected int chestType = 0;
+	
+	@Column(name="gems_required_to_open")
+	protected int gemsRequiredToOpen = 0;
+	
+	@Column(name="keys_required_to_open")
+	protected int keysRequiredToOpen = 0;
+	
+	
 
 	public UUID getId() {
 		return id;
@@ -42,13 +53,13 @@ public class ChestReward extends BasePersistentObject{
 	}
 
 
-	public UUID getChest_id() {
-		return chest_id;
+	public UUID getChestId() {
+		return chestId;
 	}
 
 
-	public void setChest_id(UUID chest_id) {
-		this.chest_id = chest_id;
+	public void setChestId(UUID chestId) {
+		this.chestId = chestId;
 	}
 
 
@@ -80,24 +91,72 @@ public class ChestReward extends BasePersistentObject{
 	public void setEquipWeight(double equipWeight) {
 		this.equipWeight = equipWeight;
 	}
+	
+
+	public int getChestType() {
+		return chestType;
+	}
+
+
+	public void setChestType(int chestType) {
+		this.chestType = chestType;
+	}
+
+
+	public int getGemsRequiredToOpen() {
+		return gemsRequiredToOpen;
+	}
+
+
+	public void setGemsRequiredToOpen(int gemsRequiredToOpen) {
+		this.gemsRequiredToOpen = gemsRequiredToOpen;
+	}
+	
+	public int getKeysRequiredToOpen() {
+		return keysRequiredToOpen;
+	}
+
+
+	public void setKeysRequiredToOpen(int keysRequiredToOpen) {
+		this.keysRequiredToOpen = keysRequiredToOpen;
+	}
+
+
+	public String getChestName() {
+		return chestName;
+	}
+
+
+	public void setChestName(String chestName) {
+		this.chestName = chestName;
+	}
+
+	
+	
 
 
 	@Override
 	public String toString() {
-		return "ChestReward [id=" + id + ", chest_id=" + chest_id
-				+ ", chestDropRate=" + chestDropRate + ", equipId=" + equipId
-				+ ", equipWeight=" + equipWeight + "]";
+		return "Chest [id=" + id + ", chestId=" + chestId + ", chestName="
+				+ chestName + ", chestDropRate=" + chestDropRate + ", equipId="
+				+ equipId + ", equipWeight=" + equipWeight + ", chestType="
+				+ chestType + ", gemsRequiredToOpen=" + gemsRequiredToOpen
+				+ ", keysRequiredToOpen=" + keysRequiredToOpen + "]";
 	}
 
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table chest_reward (" +
+		return "create table chest (" +
 				" id uuid," +
 				" chest_id uuid," +
+				" chest_name varchar," +
 				" chest_drop_rate double," +
 				" equip_id uuid," +
 				" equip_weight double," +
+				" chest_type int," +
+				" gems_required_to_open int," +
+				" keys_required_to_open int," +
 				" primary key(id))" +
 				" with compact storage;";
 	}

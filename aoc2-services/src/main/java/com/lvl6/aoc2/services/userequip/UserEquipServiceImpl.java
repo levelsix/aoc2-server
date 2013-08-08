@@ -1,4 +1,4 @@
-package com.lvl6.aoc2.services.userequip;
+package com.lvl6.aoc2.services.userEquip;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -35,9 +35,13 @@ public class UserEquipServiceImpl implements UserEquipService {
 		getUserEquipEntityManager().get().put(newEquips);
 	}
 	
-	
-	
-
+	@Override
+	public void getEquippedUserEquips(List<UserEquip> allUserEquips, List<UserEquip> equippedUserEquips) {
+		for(UserEquip ue : allUserEquips) {
+			if(ue.isEquipped())
+				equippedUserEquips.add(ue);
+		}
+	}
 	
 	
 	@Override

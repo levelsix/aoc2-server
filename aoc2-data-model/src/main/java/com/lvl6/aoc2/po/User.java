@@ -220,14 +220,10 @@ public class User extends BasePersistentObject{
 //	@Column(name="email")
 //	protected String email = "";
 	
-<<<<<<< HEAD
 
-=======
 	
 	
 	
-	
->>>>>>> c9f0a5040624e8a07be15c0acf1ba25ab01e2516
 	
 	@Override
 	public String toString() {

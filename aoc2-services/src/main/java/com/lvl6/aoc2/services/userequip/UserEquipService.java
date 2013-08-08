@@ -1,6 +1,7 @@
-package com.lvl6.aoc2.services.userequip;
+package com.lvl6.aoc2.services.userEquip;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -13,6 +14,7 @@ public interface UserEquipService {
 	
 	public abstract void saveEquips(Collection<UserEquip> newEquips);
 	
+	public abstract void getEquippedUserEquips(List<UserEquip> allUserEquips, List<UserEquip> equippedUserEquips);
 	
 	public abstract UserEquipEntityManager getUserEquipEntityManager();
 	

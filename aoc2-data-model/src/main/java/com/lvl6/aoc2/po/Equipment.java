@@ -29,7 +29,7 @@ public class Equipment extends BasePersistentObject{
 	protected int type = 0;
 	
 	@Column(name="durability")
-	protected int durability = 0;
+	protected double durability = 0.0;
 
 	@Column(name="attack")
 	protected int attack = 0;
@@ -105,12 +105,12 @@ public class Equipment extends BasePersistentObject{
 	}
 
 
-	public int getDurability() {
+	public double getDurability() {
 		return durability;
 	}
 
 
-	public void setDurability(int durability) {
+	public void setDurability(double durability) {
 		this.durability = durability;
 	}
 
@@ -206,7 +206,7 @@ public class Equipment extends BasePersistentObject{
 				" name varchar," +
 				" level int," +
 				" type int," +
-				" durability int," +
+				" durability double," +
 				" attack int," +
 				" defense int," +
 				" additional_hp int," +

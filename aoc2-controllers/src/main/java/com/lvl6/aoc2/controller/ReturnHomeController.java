@@ -31,6 +31,8 @@ import com.lvl6.aoc2.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocol
 import com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserEquip;
+import com.lvl6.aoc2.services.equipment.EquipmentService;
+import com.lvl6.aoc2.services.userEquip.UserEquipService;
 import com.lvl6.aoc2.services.userEquip.UserEquipServiceImpl;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
@@ -57,7 +59,10 @@ public class ReturnHomeController extends EventController {
 	protected UserEquipRetrieveUtils userEquipRetrieveUtils; 
 
 	@Autowired
-	protected UserEquipServiceImpl userEquipServiceImpl; 
+	protected UserEquipService userEquipService; 
+	
+	@Autowired
+	protected EquipmentService equipmentService;
 	
 	@Override
 	public RequestEvent createRequestEvent() {
@@ -99,7 +104,7 @@ public class ReturnHomeController extends EventController {
 			List<UserEquip> ueList = getUserEquipRetrieveUtils().getAllUserEquipsForUser(userId);
 			List<UserEquip> equippedEquips = new ArrayList<UserEquip>();
 			//List<Structure> sList = new ArrayList<Structure>(); 
-			getUserEquipServiceImpl().getEquippedUserEquips(ueList, equippedEquips);
+			getUserEquipService().getEquippedUserEquips(ueList, equippedEquips);
 			
 			boolean successful = false;
 			successful = writeChangesToDb(inDb, userHp, userMana, actionsPerformed, equippedEquips, clientDate);
@@ -131,34 +136,19 @@ public class ReturnHomeController extends EventController {
 	
 	private boolean writeChangesToDb(User inDb, int userHp, int userMana, int actionsPerformed, List<UserEquip> equippedEquips, Date clientDate) {
 
+			try {
 			//update user
 			inDb.setHp(userHp);
 			inDb.setMana(userMana);
 			getUserEntityManager().get().put(inDb);
-
-			//update his user equip rows
-			UUID newId = UUID.randomUUID();
-			if(s.getLvl() == 1) {
-//				String cqlquery = "INSERT INTO user_structure (id, user_id, structure_id, lvl, purchase_time, is_constructing, level_of_user_when_upgrading) " +
-//						"VALUES ( " + newId + "," + inDb.getId() + "," + s.getId() + "," + 1 + "," + rightNow + "," + true + "," + inDb.getLevel() + ");"; 
-				us.setId(UUID.randomUUID());
-				us.setUserId(inDb.getId());
-				us.setStructureId(s.getStructureId());
-				us.setLvl(1);
-				us.setPurchaseTime(clientDate);
-				us.setConstructing(true);
-				us.setLevelOfUserWhenUpgrading(inDb.getLevel());
-				getUserStructureEntityManager().get().put(us);
+			
+			//update durability
+			double percentDamage = getEquipmentService().DurabilityCostsDueToActionsPerformed(actionsPerformed);
+			for(UserEquip ue : equippedEquips) {
+				ue.setDurability(ue.getDurability()-percentDamage);
+				getUserEquipEntityManager().get().put(ue);
 			}
-			else if(s.getLvl() > 1) {
-//				String cqlquery = "UPDATE user_structure USING CONSISTENCY QUORUM SET 'lvl' = 'lvl' + 1, " +
-//						"'start_upgrade_time' = 'rightNow', 'is_constructing' = 'true', 'level_of_user_when_upgrading' = 'inDb.getLvl()'";
-				us.setLvl(s.getLvl());
-				us.setStartUpgradeTime(clientDate);
-				us.setConstructing(true);
-				us.setLevelOfUserWhenUpgrading(inDb.getLevel());
-				getUserStructureEntityManager().get().put(us);
-			}
+			
 			return true;
 
 		} catch (Exception e) {
@@ -166,18 +156,7 @@ public class ReturnHomeController extends EventController {
 		}
 		return false;
 	}
-		
-
-	private boolean buildIsCompleteBeforeAttemptingUpgrade(Structure s, UserStructure us, Date clientDate) {
-		int buildTime = s.getBuildTimeSeconds()*1000;
-		long purchaseTime = us.getPurchaseTime().getTime();
-		if(buildTime + purchaseTime < clientDate.getTime())
-			return true;
-		else return false;
-	}
 	
-	
-
 
 	public UserEquipEntityManager getUserEquipEntityManager() {
 		return userEquipEntityManager;
@@ -186,6 +165,14 @@ public class ReturnHomeController extends EventController {
 	public void setUserEquipEntityManager(
 			UserEquipEntityManager userEquipEntityManager) {
 		this.userEquipEntityManager = userEquipEntityManager;
+	}
+
+	public UserEntityManager getUserEntityManager() {
+		return userEntityManager;
+	}
+
+	public void setUserEntityManager(UserEntityManager userEntityManager) {
+		this.userEntityManager = userEntityManager;
 	}
 
 	public UserDungeonStatusEntityManager getUserDungeonStatusEntityManager() {
@@ -206,14 +193,6 @@ public class ReturnHomeController extends EventController {
 		this.userDungeonStatusHistoryEntityManager = userDungeonStatusHistoryEntityManager;
 	}
 
-	public UserEntityManager getUserEntityManager() {
-		return userEntityManager;
-	}
-
-	public void setUserEntityManager(UserEntityManager userEntityManager) {
-		this.userEntityManager = userEntityManager;
-	}
-	
 	public UserEquipRetrieveUtils getUserEquipRetrieveUtils() {
 		return userEquipRetrieveUtils;
 	}
@@ -222,14 +201,25 @@ public class ReturnHomeController extends EventController {
 			UserEquipRetrieveUtils userEquipRetrieveUtils) {
 		this.userEquipRetrieveUtils = userEquipRetrieveUtils;
 	}
-	
-	public UserEquipServiceImpl getUserEquipServiceImpl() {
-		return userEquipServiceImpl;
+
+	public UserEquipService getUserEquipService() {
+		return userEquipService;
 	}
 
-	public void setUserEquipServiceImpl(UserEquipServiceImpl userEquipServiceImpl) {
-		this.userEquipServiceImpl = userEquipServiceImpl;
+	public void setUserEquipService(UserEquipService userEquipService) {
+		this.userEquipService = userEquipService;
 	}
+
+	public EquipmentService getEquipmentService() {
+		return equipmentService;
+	}
+
+	public void setEquipmentService(EquipmentService equipmentService) {
+		this.equipmentService = equipmentService;
+	}
+
+		
+
 	
 	
 	
