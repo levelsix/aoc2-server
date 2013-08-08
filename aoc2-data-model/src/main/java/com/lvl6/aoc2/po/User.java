@@ -70,6 +70,9 @@ public class User extends BasePersistentObject{
 	@Column(name="last_login")
 	protected Date lastLogin = new Date();
 	
+	@Column(name="account_initialized")
+	protected boolean accountInitialized = false;
+	
 	
 	
 
@@ -217,14 +220,14 @@ public class User extends BasePersistentObject{
 		this.lastLogin = lastLogin;
 	}
 	
-//	@Column(name="email")
-//	protected String email = "";
+	public boolean isAccountInitialized() {
+		return accountInitialized;
+	}
 	
+	public void setAccountInitialized(boolean accountInitialized) {
+		this.accountInitialized = accountInitialized;
+	}	
 
-	
-	
-	
-	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", level=" + level
@@ -235,11 +238,14 @@ public class User extends BasePersistentObject{
 				+ ", lastTimeManaRegened=" + lastTimeManaRegened
 				+ ", gameCenterId=" + gameCenterId + ", signupDate="
 				+ signupDate + ", clanId=" + clanId + ", lastLogin="
-				+ lastLogin + "]";
+				+ lastLogin + ", accountInitialized=" + accountInitialized
+				+ "]";
 	}
 
 	
-
+	
+//	@Column(name="email")
+//	protected String email = "";
 	
 	
 
@@ -264,6 +270,7 @@ public class User extends BasePersistentObject{
 				" signup_date timestamp," +
 				" clan_id int," +
 				" last_login timestamp," +
+				" account_initialized boolean," +
 				//" email varchar," +
 				" primary key (id))" +
 				" with compact storage;";
