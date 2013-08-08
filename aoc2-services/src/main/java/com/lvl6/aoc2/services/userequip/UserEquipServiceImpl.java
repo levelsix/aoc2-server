@@ -1,4 +1,4 @@
-package com.lvl6.aoc2.services.userEquip;
+package com.lvl6.aoc2.services.userequip;
 
 import java.util.Collection;
 import java.util.HashMap;
