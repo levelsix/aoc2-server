@@ -26,8 +26,8 @@ public class UserStructureContent extends BasePersistentObject{
 	@Column(name="content_id")
 	protected UUID contentId = null;
 
-	@Column(name="is_queue")
-	protected boolean queueTime = true;
+	@Column(name="queue_time")
+	protected Date queueTime = new Date();
 
 	@Column(name="start_time")
 	protected Date startTime = new Date();
@@ -73,12 +73,12 @@ public class UserStructureContent extends BasePersistentObject{
 	}
 
 
-	public boolean isQueueTime() {
+	public Date getQueueTime() {
 		return queueTime;
 	}
 
 
-	public void setQueueTime(boolean queueTime) {
+	public void setQueueTime(Date queueTime) {
 		this.queueTime = queueTime;
 	}
 
@@ -91,7 +91,6 @@ public class UserStructureContent extends BasePersistentObject{
 	public void setStartTime(Date startTime) {
 		this.startTime = startTime;
 	}
-
 
 
 
@@ -111,7 +110,7 @@ public class UserStructureContent extends BasePersistentObject{
 				" user_structure_id uuid," +
 				" content_type int," +
 				" content_id uuid," +
-				" is_queue boolean," +
+				" queue_time timestamp," +
 				" start_time timestamp," +
 				" primary key(id))" +
 				" with compact storage;";
