@@ -45,7 +45,7 @@ abstract public class BasePersistentObject {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		BasePersistentObject other = (BasePersistentObject) obj;
 		if (getId() == null) {
 			if (other.getId() != null)
 				return false;
