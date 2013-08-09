@@ -49,7 +49,7 @@ public class Structure extends BasePersistentObject{
 	@Column(name="functionality_resource_type")
 	protected int functionalityResourceType = 0;
 	
-	//base cost for researching spell, income, storage, dependent on building)
+	//base cost for researching spell, income, storage, dependent on building, assume it's in minutes for now
 	@Column(name="functionality_value")
 	protected int functionalityValue = 0;
 	
@@ -224,88 +224,6 @@ public class Structure extends BasePersistentObject{
 
 
 
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + buildCost;
-		result = prime * result + buildCostResourceType;
-		result = prime * result + buildSpeedupBaseCost;
-		result = prime * result + buildTimeSeconds;
-		result = prime * result + functionalityCapacity;
-		result = prime * result + functionalityResourceType;
-		result = prime * result + functionalitySpeedupBaseCost;
-		result = prime * result + functionalityType;
-		result = prime * result + functionalityValue;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((imageName == null) ? 0 : imageName.hashCode());
-		result = prime * result + lvl;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + size;
-		result = prime * result
-				+ ((structureId == null) ? 0 : structureId.hashCode());
-		result = prime * result + userLvlRequired;
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Structure other = (Structure) obj;
-		if (buildCost != other.buildCost)
-			return false;
-		if (buildCostResourceType != other.buildCostResourceType)
-			return false;
-		if (buildSpeedupBaseCost != other.buildSpeedupBaseCost)
-			return false;
-		if (buildTimeSeconds != other.buildTimeSeconds)
-			return false;
-		if (functionalityCapacity != other.functionalityCapacity)
-			return false;
-		if (functionalityResourceType != other.functionalityResourceType)
-			return false;
-		if (functionalitySpeedupBaseCost != other.functionalitySpeedupBaseCost)
-			return false;
-		if (functionalityType != other.functionalityType)
-			return false;
-		if (functionalityValue != other.functionalityValue)
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (imageName == null) {
-			if (other.imageName != null)
-				return false;
-		} else if (!imageName.equals(other.imageName))
-			return false;
-		if (lvl != other.lvl)
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (size != other.size)
-			return false;
-		if (structureId == null) {
-			if (other.structureId != null)
-				return false;
-		} else if (!structureId.equals(other.structureId))
-			return false;
-		if (userLvlRequired != other.userLvlRequired)
-			return false;
-		return true;
-	}
 
 
 	@Override

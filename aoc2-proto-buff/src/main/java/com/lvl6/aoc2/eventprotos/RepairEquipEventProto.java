@@ -1352,12 +1352,14 @@ public final class RepairEquipEventProto {
         implements com.google.protobuf.ProtocolMessageEnum {
       SUCCESS(0, 0),
       FAIL_UNSYNCHRONIZED_TIMES(1, 1),
-      FAIL_OTHER(2, 2),
+      FAIL_NOT_ENOUGH_RESOURCES(2, 2),
+      FAIL_OTHER(3, 3),
       ;
       
       public static final int SUCCESS_VALUE = 0;
       public static final int FAIL_UNSYNCHRONIZED_TIMES_VALUE = 1;
-      public static final int FAIL_OTHER_VALUE = 2;
+      public static final int FAIL_NOT_ENOUGH_RESOURCES_VALUE = 2;
+      public static final int FAIL_OTHER_VALUE = 3;
       
       
       public final int getNumber() { return value; }
@@ -1366,7 +1368,8 @@ public final class RepairEquipEventProto {
         switch (value) {
           case 0: return SUCCESS;
           case 1: return FAIL_UNSYNCHRONIZED_TIMES;
-          case 2: return FAIL_OTHER;
+          case 2: return FAIL_NOT_ENOUGH_RESOURCES;
+          case 3: return FAIL_OTHER;
           default: return null;
         }
       }
@@ -1397,7 +1400,7 @@ public final class RepairEquipEventProto {
       }
       
       private static final RepairEquipStatus[] VALUES = {
-        SUCCESS, FAIL_UNSYNCHRONIZED_TIMES, FAIL_OTHER, 
+        SUCCESS, FAIL_UNSYNCHRONIZED_TIMES, FAIL_NOT_ENOUGH_RESOURCES, FAIL_OTHER, 
       };
       
       public static RepairEquipStatus valueOf(
@@ -1890,20 +1893,21 @@ public final class RepairEquipEventProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\026RepairEquipEvent.proto\022\005proto\032\023FullUse" +
-      "rProto.proto\032\032UserEquipRepairProto.proto" +
-      "\"\351\001\n\027RepairEquipRequestProto\022$\n\003mup\030\001 \001(" +
-      "\0132\027.proto.MinimumUserProto\022/\n\nuerpDelete" +
-      "\030\002 \003(\0132\033.proto.UserEquipRepairProto\022/\n\nu" +
-      "erpUpdate\030\003 \003(\0132\033.proto.UserEquipRepairP" +
-      "roto\022,\n\007uerpNew\030\004 \003(\0132\033.proto.UserEquipR" +
-      "epairProto\022\030\n\020clientTimeMillis\030\005 \001(\003\"\324\001\n" +
-      "\030RepairEquipResponseProto\022$\n\003mup\030\001 \001(\0132\027" +
-      ".proto.MinimumUserProto\022A\n\006status\030\002 \001(\0162",
-      "1.proto.RepairEquipResponseProto.RepairE" +
-      "quipStatus\"O\n\021RepairEquipStatus\022\013\n\007SUCCE" +
-      "SS\020\000\022\035\n\031FAIL_UNSYNCHRONIZED_TIMES\020\001\022\016\n\nF" +
-      "AIL_OTHER\020\002B2\n\031com.lvl6.aoc2.eventprotos" +
-      "B\025RepairEquipEventProto"
+      "rProto.proto\032\030UserEquipmentProto.proto\032\032" +
+      "UserEquipRepairProto.proto\"\351\001\n\027RepairEqu" +
+      "ipRequestProto\022$\n\003mup\030\001 \001(\0132\027.proto.Mini" +
+      "mumUserProto\022/\n\nuerpDelete\030\002 \003(\0132\033.proto" +
+      ".UserEquipRepairProto\022/\n\nuerpUpdate\030\003 \003(" +
+      "\0132\033.proto.UserEquipRepairProto\022,\n\007uerpNe" +
+      "w\030\004 \003(\0132\033.proto.UserEquipRepairProto\022\030\n\020" +
+      "clientTimeMillis\030\005 \001(\003\"\363\001\n\030RepairEquipRe" +
+      "sponseProto\022$\n\003mup\030\001 \001(\0132\027.proto.Minimum",
+      "UserProto\022A\n\006status\030\002 \001(\01621.proto.Repair" +
+      "EquipResponseProto.RepairEquipStatus\"n\n\021" +
+      "RepairEquipStatus\022\013\n\007SUCCESS\020\000\022\035\n\031FAIL_U" +
+      "NSYNCHRONIZED_TIMES\020\001\022\035\n\031FAIL_NOT_ENOUGH" +
+      "_RESOURCES\020\002\022\016\n\nFAIL_OTHER\020\003B2\n\031com.lvl6" +
+      ".aoc2.eventprotosB\025RepairEquipEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1933,6 +1937,7 @@ public final class RepairEquipEventProto {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.lvl6.aoc2.noneventprotos.FullUser.getDescriptor(),
+          com.lvl6.aoc2.noneventprotos.UserEquipment.getDescriptor(),
           com.lvl6.aoc2.noneventprotos.UserEquipRepair.getDescriptor(),
         }, assigner);
   }

@@ -16,6 +16,8 @@ public final class AocTwoEventProtocolProto {
     C_REPAIR_EQUIP_EVENT(3, 3),
     C_SELECT_USER_CLASS_TYPE_EVENT(4, 4),
     C_STARTUP_EVENT(5, 5),
+    C_RETURN_HOME_EVENT(6, 6),
+    C_COMPLETE_DUNGEON_EVENT(7, 7),
     ;
     
     public static final int C_TRAIN_OR_UPGRADE_SPELL_EVENT_VALUE = 0;
@@ -24,6 +26,8 @@ public final class AocTwoEventProtocolProto {
     public static final int C_REPAIR_EQUIP_EVENT_VALUE = 3;
     public static final int C_SELECT_USER_CLASS_TYPE_EVENT_VALUE = 4;
     public static final int C_STARTUP_EVENT_VALUE = 5;
+    public static final int C_RETURN_HOME_EVENT_VALUE = 6;
+    public static final int C_COMPLETE_DUNGEON_EVENT_VALUE = 7;
     
     
     public final int getNumber() { return value; }
@@ -36,6 +40,8 @@ public final class AocTwoEventProtocolProto {
         case 3: return C_REPAIR_EQUIP_EVENT;
         case 4: return C_SELECT_USER_CLASS_TYPE_EVENT;
         case 5: return C_STARTUP_EVENT;
+        case 6: return C_RETURN_HOME_EVENT;
+        case 7: return C_COMPLETE_DUNGEON_EVENT;
         default: return null;
       }
     }
@@ -66,7 +72,7 @@ public final class AocTwoEventProtocolProto {
     }
     
     private static final AocTwoEventProtocolRequest[] VALUES = {
-      C_TRAIN_OR_UPGRADE_SPELL_EVENT, C_BUILD_OR_UPGRADE_STRUCTURE_EVENT, C_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT, C_REPAIR_EQUIP_EVENT, C_SELECT_USER_CLASS_TYPE_EVENT, C_STARTUP_EVENT, 
+      C_TRAIN_OR_UPGRADE_SPELL_EVENT, C_BUILD_OR_UPGRADE_STRUCTURE_EVENT, C_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT, C_REPAIR_EQUIP_EVENT, C_SELECT_USER_CLASS_TYPE_EVENT, C_STARTUP_EVENT, C_RETURN_HOME_EVENT, C_COMPLETE_DUNGEON_EVENT, 
     };
     
     public static AocTwoEventProtocolRequest valueOf(
@@ -97,6 +103,8 @@ public final class AocTwoEventProtocolProto {
     S_REPAIR_EQUIP_EVENT(3, 3),
     S_SELECT_USER_CLASS_TYPE_EVENT(4, 4),
     S_STARTUP_EVENT(5, 5),
+    S_RETURN_HOME_EVENT(6, 6),
+    S_COMPLETE_DUNGEON_EVENT(7, 7),
     ;
     
     public static final int S_TRAIN_OR_UPGRADE_SPELL_EVENT_VALUE = 0;
@@ -105,6 +113,8 @@ public final class AocTwoEventProtocolProto {
     public static final int S_REPAIR_EQUIP_EVENT_VALUE = 3;
     public static final int S_SELECT_USER_CLASS_TYPE_EVENT_VALUE = 4;
     public static final int S_STARTUP_EVENT_VALUE = 5;
+    public static final int S_RETURN_HOME_EVENT_VALUE = 6;
+    public static final int S_COMPLETE_DUNGEON_EVENT_VALUE = 7;
     
     
     public final int getNumber() { return value; }
@@ -117,6 +127,8 @@ public final class AocTwoEventProtocolProto {
         case 3: return S_REPAIR_EQUIP_EVENT;
         case 4: return S_SELECT_USER_CLASS_TYPE_EVENT;
         case 5: return S_STARTUP_EVENT;
+        case 6: return S_RETURN_HOME_EVENT;
+        case 7: return S_COMPLETE_DUNGEON_EVENT;
         default: return null;
       }
     }
@@ -147,7 +159,7 @@ public final class AocTwoEventProtocolProto {
     }
     
     private static final AocTwoEventProtocolResponse[] VALUES = {
-      S_TRAIN_OR_UPGRADE_SPELL_EVENT, S_BUILD_OR_UPGRADE_STRUCTURE_EVENT, S_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT, S_REPAIR_EQUIP_EVENT, S_SELECT_USER_CLASS_TYPE_EVENT, S_STARTUP_EVENT, 
+      S_TRAIN_OR_UPGRADE_SPELL_EVENT, S_BUILD_OR_UPGRADE_STRUCTURE_EVENT, S_REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT, S_REPAIR_EQUIP_EVENT, S_SELECT_USER_CLASS_TYPE_EVENT, S_STARTUP_EVENT, S_RETURN_HOME_EVENT, S_COMPLETE_DUNGEON_EVENT, 
     };
     
     public static AocTwoEventProtocolResponse valueOf(
@@ -179,21 +191,23 @@ public final class AocTwoEventProtocolProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\031AocTwoEventProtocol.proto\022\005proto*\352\001\n\032A" +
+      "\n\031AocTwoEventProtocol.proto\022\005proto*\241\002\n\032A" +
       "ocTwoEventProtocolRequest\022\"\n\036C_TRAIN_OR_" +
       "UPGRADE_SPELL_EVENT\020\000\022&\n\"C_BUILD_OR_UPGR" +
       "ADE_STRUCTURE_EVENT\020\001\022-\n)C_REFILL_HP_OR_" +
       "MANA_WITH_CONSUMABLE_EVENT\020\002\022\030\n\024C_REPAIR" +
       "_EQUIP_EVENT\020\003\022\"\n\036C_SELECT_USER_CLASS_TY" +
-      "PE_EVENT\020\004\022\023\n\017C_STARTUP_EVENT\020\005*\353\001\n\033AocT" +
-      "woEventProtocolResponse\022\"\n\036S_TRAIN_OR_UP" +
-      "GRADE_SPELL_EVENT\020\000\022&\n\"S_BUILD_OR_UPGRAD" +
-      "E_STRUCTURE_EVENT\020\001\022-\n)S_REFILL_HP_OR_MA",
-      "NA_WITH_CONSUMABLE_EVENT\020\002\022\030\n\024S_REPAIR_E" +
-      "QUIP_EVENT\020\003\022\"\n\036S_SELECT_USER_CLASS_TYPE" +
-      "_EVENT\020\004\022\023\n\017S_STARTUP_EVENT\020\005B8\n\034com.lvl" +
-      "6.aoc2.noneventprotosB\030AocTwoEventProtoc" +
-      "olProto"
+      "PE_EVENT\020\004\022\023\n\017C_STARTUP_EVENT\020\005\022\027\n\023C_RET" +
+      "URN_HOME_EVENT\020\006\022\034\n\030C_COMPLETE_DUNGEON_E" +
+      "VENT\020\007*\242\002\n\033AocTwoEventProtocolResponse\022\"" +
+      "\n\036S_TRAIN_OR_UPGRADE_SPELL_EVENT\020\000\022&\n\"S_",
+      "BUILD_OR_UPGRADE_STRUCTURE_EVENT\020\001\022-\n)S_" +
+      "REFILL_HP_OR_MANA_WITH_CONSUMABLE_EVENT\020" +
+      "\002\022\030\n\024S_REPAIR_EQUIP_EVENT\020\003\022\"\n\036S_SELECT_" +
+      "USER_CLASS_TYPE_EVENT\020\004\022\023\n\017S_STARTUP_EVE" +
+      "NT\020\005\022\027\n\023S_RETURN_HOME_EVENT\020\006\022\034\n\030S_COMPL" +
+      "ETE_DUNGEON_EVENT\020\007B8\n\034com.lvl6.aoc2.non" +
+      "eventprotosB\030AocTwoEventProtocolProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

@@ -5,17 +5,17 @@ import java.util.UUID;
 import org.springframework.stereotype.Component;
 
 import com.google.common.collect.ImmutableMap;
-import com.lvl6.aoc2.po.MonsterReward;
+import com.lvl6.aoc2.po.MonsterNonPersistentDrop;
 
 @Component
-public class MonsterRewardEntityManager extends BaseEntityManager<MonsterReward, UUID>{
+public class MonsterNonPersistentDropEntityManager extends BaseEntityManager<MonsterNonPersistentDrop, UUID>{
 
 	
 	
 	
 	
-	public MonsterRewardEntityManager() {
-		super(MonsterReward.class, UUID.class);
+	public MonsterNonPersistentDropEntityManager() {
+		super(MonsterNonPersistentDrop.class, UUID.class);
 	}
 
 

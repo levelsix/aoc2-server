@@ -81,51 +81,6 @@ public class MonsterAndRoom extends BasePersistentObject{
 	}
 
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((monsterId == null) ? 0 : monsterId.hashCode());
-		result = prime * result + quantity;
-		result = prime * result + ((roomId == null) ? 0 : roomId.hashCode());
-		result = prime * result + wave_num;
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		MonsterAndRoom other = (MonsterAndRoom) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (monsterId == null) {
-			if (other.monsterId != null)
-				return false;
-		} else if (!monsterId.equals(other.monsterId))
-			return false;
-		if (quantity != other.quantity)
-			return false;
-		if (roomId == null) {
-			if (other.roomId != null)
-				return false;
-		} else if (!roomId.equals(other.roomId))
-			return false;
-		if (wave_num != other.wave_num)
-			return false;
-		return true;
-	}
-
 
 	@Override
 	public String toString() {

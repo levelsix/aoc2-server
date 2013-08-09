@@ -20,11 +20,11 @@ public class UserSpell extends BasePersistentObject{
 	@Column(name="user_id")
 	protected UUID userId = null;
 	
-	@Column(name="spell_id")
-	protected UUID spellId = UUID.randomUUID();
+	@Column(name="name")
+	protected String name = "";
 	
 	@Column(name="spell_lvl")
-	protected UUID spellLvl = UUID.randomUUID();
+	protected int spellLvl = 0;
 	
 	@Column(name="time_acquired")
 	protected Date timeAcquired = new Date();
@@ -35,7 +35,9 @@ public class UserSpell extends BasePersistentObject{
 	@Column(name="level_of_user_when_upgrading")
 	protected int levelOfUserWhenUpgrading = 0;
 	
-	
+
+
+
 	public UUID getId() {
 		return id;
 	}
@@ -56,22 +58,22 @@ public class UserSpell extends BasePersistentObject{
 	}
 
 
-	public UUID getSpellId() {
-		return spellId;
+	public String getName() {
+		return name;
 	}
 
 
-	public void setSpellId(UUID spellId) {
-		this.spellId = spellId;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
-	public UUID getSpellLvl() {
+	public int getSpellLvl() {
 		return spellLvl;
 	}
 
 
-	public void setSpellLvl(UUID spellLvl) {
+	public void setSpellLvl(int spellLvl) {
 		this.spellLvl = spellLvl;
 	}
 
@@ -106,76 +108,13 @@ public class UserSpell extends BasePersistentObject{
 	}
 
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((isTraining == null) ? 0 : isTraining.hashCode());
-		result = prime * result + levelOfUserWhenUpgrading;
-		result = prime * result + ((spellId == null) ? 0 : spellId.hashCode());
-		result = prime * result
-				+ ((spellLvl == null) ? 0 : spellLvl.hashCode());
-		result = prime * result
-				+ ((timeAcquired == null) ? 0 : timeAcquired.hashCode());
-		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		UserSpell other = (UserSpell) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (isTraining == null) {
-			if (other.isTraining != null)
-				return false;
-		} else if (!isTraining.equals(other.isTraining))
-			return false;
-		if (levelOfUserWhenUpgrading != other.levelOfUserWhenUpgrading)
-			return false;
-		if (spellId == null) {
-			if (other.spellId != null)
-				return false;
-		} else if (!spellId.equals(other.spellId))
-			return false;
-		if (spellLvl == null) {
-			if (other.spellLvl != null)
-				return false;
-		} else if (!spellLvl.equals(other.spellLvl))
-			return false;
-		if (timeAcquired == null) {
-			if (other.timeAcquired != null)
-				return false;
-		} else if (!timeAcquired.equals(other.timeAcquired))
-			return false;
-		if (userId == null) {
-			if (other.userId != null)
-				return false;
-		} else if (!userId.equals(other.userId))
-			return false;
-		return true;
-	}
-
 
 	@Override
 	public String toString() {
-		return "UserSpell [id=" + id + ", userId=" + userId + ", spellId="
-				+ spellId + ", spellLvl=" + spellLvl + ", timeAcquired="
-				+ timeAcquired + ", isTraining=" + isTraining
-				+ ", levelOfUserWhenUpgrading=" + levelOfUserWhenUpgrading
-				+ "]";
+		return "UserSpell [id=" + id + ", userId=" + userId + ", name=" + name
+				+ ", spellLvl=" + spellLvl + ", timeAcquired=" + timeAcquired
+				+ ", isTraining=" + isTraining + ", levelOfUserWhenUpgrading="
+				+ levelOfUserWhenUpgrading + "]";
 	}
 
 
@@ -184,7 +123,7 @@ public class UserSpell extends BasePersistentObject{
 		return "create table user_spell (" +
 				" id uuid," +
 				" user_id uuid," +
-				" spell_id uuid," +
+				" name varchar," +
 				" spell_lvl int," +
 				" time_acquired timestamp," +
 				" is_training bool," +

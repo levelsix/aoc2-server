@@ -1,5 +1,6 @@
 package com.lvl6.aoc2.po;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -32,6 +33,14 @@ public class UserEquip extends BasePersistentObject{
 	@Column(name="equipped")
 	protected boolean equipped = false;
 	
+	@Column(name="time_acquired")
+	protected Date timeAcquired = new Date();
+	
+	@Column(name="level_of_user_when_acquired")
+	protected int levelOfUserWhenAcquired = 0;
+	
+	@Column(name="dungeon_room_or_chest_acquired_from")
+	protected String dungeonRoomOrChestAcquiredFrom = "";
 
 
 
@@ -95,62 +104,47 @@ public class UserEquip extends BasePersistentObject{
 	}
 
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(durability);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		result = prime * result + ((equipId == null) ? 0 : equipId.hashCode());
-		result = prime * result + equipLevel;
-		result = prime * result + (equipped ? 1231 : 1237);
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
-		return result;
+	public Date getTimeAcquired() {
+		return timeAcquired;
 	}
 
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		UserEquip other = (UserEquip) obj;
-		if (Double.doubleToLongBits(durability) != Double
-				.doubleToLongBits(other.durability))
-			return false;
-		if (equipId == null) {
-			if (other.equipId != null)
-				return false;
-		} else if (!equipId.equals(other.equipId))
-			return false;
-		if (equipLevel != other.equipLevel)
-			return false;
-		if (equipped != other.equipped)
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (userId == null) {
-			if (other.userId != null)
-				return false;
-		} else if (!userId.equals(other.userId))
-			return false;
-		return true;
+	public void setTimeAcquired(Date timeAcquired) {
+		this.timeAcquired = timeAcquired;
 	}
+
+
+	public int getLevelOfUserWhenAcquired() {
+		return levelOfUserWhenAcquired;
+	}
+
+
+	public void setLevelOfUserWhenAcquired(int levelOfUserWhenAcquired) {
+		this.levelOfUserWhenAcquired = levelOfUserWhenAcquired;
+	}
+
+
+	public String getDungeonRoomOrChestAcquiredFrom() {
+		return dungeonRoomOrChestAcquiredFrom;
+	}
+
+
+	public void setDungeonRoomOrChestAcquiredFrom(
+			String dungeonRoomOrChestAcquiredFrom) {
+		this.dungeonRoomOrChestAcquiredFrom = dungeonRoomOrChestAcquiredFrom;
+	}
+	
+	
 
 
 	@Override
 	public String toString() {
 		return "UserEquip [id=" + id + ", userId=" + userId + ", equipId="
 				+ equipId + ", equipLevel=" + equipLevel + ", durability="
-				+ durability + ", equipped=" + equipped + "]";
+				+ durability + ", equipped=" + equipped + ", timeAcquired="
+				+ timeAcquired + ", levelOfUserWhenAcquired="
+				+ levelOfUserWhenAcquired + ", dungeonRoomOrChestAcquiredFrom="
+				+ dungeonRoomOrChestAcquiredFrom + "]";
 	}
 
 
@@ -163,6 +157,9 @@ public class UserEquip extends BasePersistentObject{
 				" equip_level int," +
 				" durability double," +
 				" equipped boolean," +
+				" time_acquired timestamp," +
+				" level_of_user_when_acquired int," +
+				" dungeon_room_or_chest_acquired_from varchar," +
 				" primary key(id))" +
 				" with compact storage;";
 	}

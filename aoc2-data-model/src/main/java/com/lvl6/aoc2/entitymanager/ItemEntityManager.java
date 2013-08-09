@@ -5,17 +5,17 @@ import java.util.UUID;
 import org.springframework.stereotype.Component;
 
 import com.google.common.collect.ImmutableMap;
-import com.lvl6.aoc2.po.ChestReward;
+import com.lvl6.aoc2.po.Item;
 
 @Component
-public class ChestRewardEntityManager extends BaseEntityManager<ChestReward, UUID>{
+public class ItemEntityManager extends BaseEntityManager<Item, UUID>{
 
 	
 	
 	
 	
-	public ChestRewardEntityManager() {
-		super(ChestReward.class, UUID.class);
+	public ItemEntityManager() {
+		super(Item.class, UUID.class);
 	}
 
 

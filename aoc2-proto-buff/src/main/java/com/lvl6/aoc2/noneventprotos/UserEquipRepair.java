@@ -11,9 +11,9 @@ public final class UserEquipRepair {
   public interface UserEquipRepairProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional string id = 1;
-    boolean hasId();
-    String getId();
+    // optional string userEquipRepairID = 1;
+    boolean hasUserEquipRepairID();
+    String getUserEquipRepairID();
     
     // optional string userID = 2;
     boolean hasUserID();
@@ -68,14 +68,14 @@ public final class UserEquipRepair {
     }
     
     private int bitField0_;
-    // optional string id = 1;
-    public static final int ID_FIELD_NUMBER = 1;
-    private java.lang.Object id_;
-    public boolean hasId() {
+    // optional string userEquipRepairID = 1;
+    public static final int USEREQUIPREPAIRID_FIELD_NUMBER = 1;
+    private java.lang.Object userEquipRepairID_;
+    public boolean hasUserEquipRepairID() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getId() {
-      java.lang.Object ref = id_;
+    public String getUserEquipRepairID() {
+      java.lang.Object ref = userEquipRepairID_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -83,17 +83,17 @@ public final class UserEquipRepair {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          id_ = s;
+          userEquipRepairID_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getIdBytes() {
-      java.lang.Object ref = id_;
+    private com.google.protobuf.ByteString getUserEquipRepairIDBytes() {
+      java.lang.Object ref = userEquipRepairID_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        id_ = b;
+        userEquipRepairID_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -205,7 +205,7 @@ public final class UserEquipRepair {
     }
     
     private void initFields() {
-      id_ = "";
+      userEquipRepairID_ = "";
       userID_ = "";
       equipID_ = "";
       equipLevel_ = 0;
@@ -226,7 +226,7 @@ public final class UserEquipRepair {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getIdBytes());
+        output.writeBytes(1, getUserEquipRepairIDBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getUserIDBytes());
@@ -257,7 +257,7 @@ public final class UserEquipRepair {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getIdBytes());
+          .computeBytesSize(1, getUserEquipRepairIDBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -407,7 +407,7 @@ public final class UserEquipRepair {
       
       public Builder clear() {
         super.clear();
-        id_ = "";
+        userEquipRepairID_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         userID_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -462,7 +462,7 @@ public final class UserEquipRepair {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.id_ = id_;
+        result.userEquipRepairID_ = userEquipRepairID_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
@@ -503,8 +503,8 @@ public final class UserEquipRepair {
       
       public Builder mergeFrom(com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto other) {
         if (other == com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.getDefaultInstance()) return this;
-        if (other.hasId()) {
-          setId(other.getId());
+        if (other.hasUserEquipRepairID()) {
+          setUserEquipRepairID(other.getUserEquipRepairID());
         }
         if (other.hasUserID()) {
           setUserID(other.getUserID());
@@ -557,7 +557,7 @@ public final class UserEquipRepair {
             }
             case 10: {
               bitField0_ |= 0x00000001;
-              id_ = input.readBytes();
+              userEquipRepairID_ = input.readBytes();
               break;
             }
             case 18: {
@@ -596,39 +596,39 @@ public final class UserEquipRepair {
       
       private int bitField0_;
       
-      // optional string id = 1;
-      private java.lang.Object id_ = "";
-      public boolean hasId() {
+      // optional string userEquipRepairID = 1;
+      private java.lang.Object userEquipRepairID_ = "";
+      public boolean hasUserEquipRepairID() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getId() {
-        java.lang.Object ref = id_;
+      public String getUserEquipRepairID() {
+        java.lang.Object ref = userEquipRepairID_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          id_ = s;
+          userEquipRepairID_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setId(String value) {
+      public Builder setUserEquipRepairID(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000001;
-        id_ = value;
+        userEquipRepairID_ = value;
         onChanged();
         return this;
       }
-      public Builder clearId() {
+      public Builder clearUserEquipRepairID() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        id_ = getDefaultInstance().getId();
+        userEquipRepairID_ = getDefaultInstance().getUserEquipRepairID();
         onChanged();
         return this;
       }
-      void setId(com.google.protobuf.ByteString value) {
+      void setUserEquipRepairID(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000001;
-        id_ = value;
+        userEquipRepairID_ = value;
         onChanged();
       }
       
@@ -813,13 +813,13 @@ public final class UserEquipRepair {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\032UserEquipRepairProto.proto\022\005proto\"\242\001\n\024" +
-      "UserEquipRepairProto\022\n\n\002id\030\001 \001(\t\022\016\n\006user" +
-      "ID\030\002 \001(\t\022\017\n\007equipID\030\003 \001(\t\022\022\n\nequipLevel\030" +
-      "\004 \001(\005\022\022\n\ndurability\030\005 \001(\005\022\033\n\023expectedSta" +
-      "rtMillis\030\006 \001(\003\022\030\n\020queuedTimeMillis\030\007 \001(\003" +
-      "B/\n\034com.lvl6.aoc2.noneventprotosB\017UserEq" +
-      "uipRepair"
+      "\n\032UserEquipRepairProto.proto\022\005proto\"\261\001\n\024" +
+      "UserEquipRepairProto\022\031\n\021userEquipRepairI" +
+      "D\030\001 \001(\t\022\016\n\006userID\030\002 \001(\t\022\017\n\007equipID\030\003 \001(\t" +
+      "\022\022\n\nequipLevel\030\004 \001(\005\022\022\n\ndurability\030\005 \001(\005" +
+      "\022\033\n\023expectedStartMillis\030\006 \001(\003\022\030\n\020queuedT" +
+      "imeMillis\030\007 \001(\003B/\n\034com.lvl6.aoc2.noneven" +
+      "tprotosB\017UserEquipRepair"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -831,7 +831,7 @@ public final class UserEquipRepair {
           internal_static_proto_UserEquipRepairProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_UserEquipRepairProto_descriptor,
-              new java.lang.String[] { "Id", "UserID", "EquipID", "EquipLevel", "Durability", "ExpectedStartMillis", "QueuedTimeMillis", },
+              new java.lang.String[] { "UserEquipRepairID", "UserID", "EquipID", "EquipLevel", "Durability", "ExpectedStartMillis", "QueuedTimeMillis", },
               com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.class,
               com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder.class);
           return null;
