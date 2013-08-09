@@ -127,8 +127,26 @@ abstract public class BaseWideRow<Ky, Col, Val> implements InitializingBean {
 			scala.collection.Iterator<WideRowValue<Ky, Col, Val>> it = itb.iterator();
 			while(it.hasNext()) {
 				WideRowValue<Ky, Col, Val> value = it.next();
-				clm.putColumn(value.getColumn(), value.getValue(), getValueSerializer(), null);
+				putColumn(clm, value);
 			}
+		}
+		m.execute();
+	}
+	
+	
+	
+
+	protected void putColumn(ColumnListMutation<Col> clm,	WideRowValue<Ky, Col, Val> value) {
+		clm.putColumn(value.getColumn(), value.getValue(), getValueSerializer(), null);
+	}
+	
+	
+	public void saveValuesWithUniqueKeys(Map<Ky, WideRowValue<Ky, Col, Val>> values)throws ConnectionException {
+		MutationBatch m = getKeyspace().prepareMutationBatch();
+		for(Ky kee: values.keySet()) {
+			WideRowValue<Ky, Col, Val> value = values.get(kee);
+			ColumnListMutation<Col> clm = m.withRow(getColumnFamily(), kee);
+			putColumn(clm, value);
 		}
 		m.execute();
 	}
