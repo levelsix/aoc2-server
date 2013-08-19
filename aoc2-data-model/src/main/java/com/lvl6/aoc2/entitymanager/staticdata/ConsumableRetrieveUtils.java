@@ -3,7 +3,6 @@ package com.lvl6.aoc2.entitymanager.staticdata;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,29 +16,29 @@ import com.lvl6.aoc2.po.Consumable;
 
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
-	private  Map<UUID, Consumable> idsToConsumables;
+	private  Map<String, Consumable> namesToConsumables;
 
 	//private  final String TABLE_NAME = DBConstants.CONSUMABLE;
 
 	@Autowired
 	protected ConsumableEntityManager consumableEntityManager;
 
-	public  Consumable getConsumableForId(UUID id) {
-		log.debug("retrieve consumable data for id " + id);
-		if (idsToConsumables == null) {
+	public  Consumable getConsumableForName(String name) {
+		log.debug("retrieve consumable data for id " + name);
+		if (namesToConsumables == null) {
 			setStaticIdsToConsumables();      
 		}
-		return idsToConsumables.get(id);
+		return namesToConsumables.get(name);
 	}
 
-	public  Map<UUID, Consumable> getConsumablesForIds(List<UUID> ids) {
-		log.debug("retrieve consumables data for ids " + ids);
-		if (idsToConsumables == null) {
+	public  Map<String, Consumable> getConsumablesForNames(List<String> names) {
+		log.debug("retrieve consumables data for ids " + names);
+		if (namesToConsumables == null) {
 			setStaticIdsToConsumables();      
 		}
-		Map<UUID, Consumable> toreturn = new HashMap<UUID, Consumable>();
-		for (UUID id : ids) {
-			toreturn.put(id,  idsToConsumables.get(id));
+		Map<String, Consumable> toreturn = new HashMap<String, Consumable>();
+		for (String name : names) {
+			toreturn.put(name,  namesToConsumables.get(name));
 		}
 		return toreturn;
 	}
@@ -49,10 +48,10 @@ import com.lvl6.aoc2.po.Consumable;
 
 		String cqlquery = "select * from consumable;"; 
 		List <Consumable> list = getConsumableEntityManager().get().find(cqlquery);
-		idsToConsumables = new HashMap<UUID, Consumable>();
+		namesToConsumables = new HashMap<String, Consumable>();
 		for(Consumable c : list) {
-			UUID id= c.getId();
-			idsToConsumables.put(id, c);
+			String name= c.getName();
+			namesToConsumables.put(name, c);
 		}
 	}
 

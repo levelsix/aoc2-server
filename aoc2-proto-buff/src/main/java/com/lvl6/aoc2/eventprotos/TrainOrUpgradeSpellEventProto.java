@@ -88,6 +88,10 @@ public final class TrainOrUpgradeSpellEventProto {
     // optional string spellId = 2;
     boolean hasSpellId();
     String getSpellId();
+    
+    // optional bool usingGems = 3;
+    boolean hasUsingGems();
+    boolean getUsingGems();
   }
   public static final class TrainOrUpgradeSpellRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -163,9 +167,20 @@ public final class TrainOrUpgradeSpellEventProto {
       }
     }
     
+    // optional bool usingGems = 3;
+    public static final int USINGGEMS_FIELD_NUMBER = 3;
+    private boolean usingGems_;
+    public boolean hasUsingGems() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public boolean getUsingGems() {
+      return usingGems_;
+    }
+    
     private void initFields() {
       mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
       spellId_ = "";
+      usingGems_ = false;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -185,6 +200,9 @@ public final class TrainOrUpgradeSpellEventProto {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getSpellIdBytes());
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBool(3, usingGems_);
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -201,6 +219,10 @@ public final class TrainOrUpgradeSpellEventProto {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, getSpellIdBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, usingGems_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -335,6 +357,8 @@ public final class TrainOrUpgradeSpellEventProto {
         bitField0_ = (bitField0_ & ~0x00000001);
         spellId_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
+        usingGems_ = false;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -385,6 +409,10 @@ public final class TrainOrUpgradeSpellEventProto {
           to_bitField0_ |= 0x00000002;
         }
         result.spellId_ = spellId_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.usingGems_ = usingGems_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -406,6 +434,9 @@ public final class TrainOrUpgradeSpellEventProto {
         }
         if (other.hasSpellId()) {
           setSpellId(other.getSpellId());
+        }
+        if (other.hasUsingGems()) {
+          setUsingGems(other.getUsingGems());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -450,6 +481,11 @@ public final class TrainOrUpgradeSpellEventProto {
             case 18: {
               bitField0_ |= 0x00000002;
               spellId_ = input.readBytes();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              usingGems_ = input.readBool();
               break;
             }
           }
@@ -584,6 +620,27 @@ public final class TrainOrUpgradeSpellEventProto {
         onChanged();
       }
       
+      // optional bool usingGems = 3;
+      private boolean usingGems_ ;
+      public boolean hasUsingGems() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public boolean getUsingGems() {
+        return usingGems_;
+      }
+      public Builder setUsingGems(boolean value) {
+        bitField0_ |= 0x00000004;
+        usingGems_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearUsingGems() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        usingGems_ = false;
+        onChanged();
+        return this;
+      }
+      
       // @@protoc_insertion_point(builder_scope:proto.TrainOrUpgradeSpellRequestProto)
     }
     
@@ -645,7 +702,8 @@ public final class TrainOrUpgradeSpellEventProto {
       FAIL_CANT_UPGRADE_WHILE_TRAINING(5, 5),
       FAIL_WRONG_CLASS_TYPE(6, 6),
       FAIL_MISSING_PREREQUISITE_SPELL(7, 7),
-      FAIL_OTHER(8, 8),
+      FAIL_NOT_ENOUGH_GEMS(8, 8),
+      FAIL_OTHER(9, 9),
       ;
       
       public static final int SUCCESS_VALUE = 0;
@@ -656,7 +714,8 @@ public final class TrainOrUpgradeSpellEventProto {
       public static final int FAIL_CANT_UPGRADE_WHILE_TRAINING_VALUE = 5;
       public static final int FAIL_WRONG_CLASS_TYPE_VALUE = 6;
       public static final int FAIL_MISSING_PREREQUISITE_SPELL_VALUE = 7;
-      public static final int FAIL_OTHER_VALUE = 8;
+      public static final int FAIL_NOT_ENOUGH_GEMS_VALUE = 8;
+      public static final int FAIL_OTHER_VALUE = 9;
       
       
       public final int getNumber() { return value; }
@@ -671,7 +730,8 @@ public final class TrainOrUpgradeSpellEventProto {
           case 5: return FAIL_CANT_UPGRADE_WHILE_TRAINING;
           case 6: return FAIL_WRONG_CLASS_TYPE;
           case 7: return FAIL_MISSING_PREREQUISITE_SPELL;
-          case 8: return FAIL_OTHER;
+          case 8: return FAIL_NOT_ENOUGH_GEMS;
+          case 9: return FAIL_OTHER;
           default: return null;
         }
       }
@@ -702,7 +762,7 @@ public final class TrainOrUpgradeSpellEventProto {
       }
       
       private static final TrainOrUpgradeSpellStatus[] VALUES = {
-        SUCCESS, FAIL_INSUFFICIENT_RESOURCES, FAIL_NOT_AT_REQUIRED_LEVEL, FAIL_MAXED_TRAINING, FAIL_SPELL_AT_MAX_LEVEL, FAIL_CANT_UPGRADE_WHILE_TRAINING, FAIL_WRONG_CLASS_TYPE, FAIL_MISSING_PREREQUISITE_SPELL, FAIL_OTHER, 
+        SUCCESS, FAIL_INSUFFICIENT_RESOURCES, FAIL_NOT_AT_REQUIRED_LEVEL, FAIL_MAXED_TRAINING, FAIL_SPELL_AT_MAX_LEVEL, FAIL_CANT_UPGRADE_WHILE_TRAINING, FAIL_WRONG_CLASS_TYPE, FAIL_MISSING_PREREQUISITE_SPELL, FAIL_NOT_ENOUGH_GEMS, FAIL_OTHER, 
       };
       
       public static TrainOrUpgradeSpellStatus valueOf(
@@ -1195,23 +1255,24 @@ public final class TrainOrUpgradeSpellEventProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\036TrainOrUpgradeSpellEvent.proto\022\005proto\032" +
-      "\023FullUserProto.proto\"X\n\037TrainOrUpgradeSp" +
+      "\023FullUserProto.proto\"k\n\037TrainOrUpgradeSp" +
       "ellRequestProto\022$\n\003mup\030\001 \001(\0132\027.proto.Min" +
-      "imumUserProto\022\017\n\007spellId\030\002 \001(\t\"\263\003\n Train" +
-      "OrUpgradeSpellResponseProto\022$\n\003mup\030\001 \001(\013" +
-      "2\027.proto.MinimumUserProto\022Q\n\006status\030\002 \001(" +
-      "\0162A.proto.TrainOrUpgradeSpellResponsePro" +
-      "to.TrainOrUpgradeSpellStatus\"\225\002\n\031TrainOr" +
-      "UpgradeSpellStatus\022\013\n\007SUCCESS\020\000\022\037\n\033FAIL_" +
-      "INSUFFICIENT_RESOURCES\020\001\022\036\n\032FAIL_NOT_AT_",
-      "REQUIRED_LEVEL\020\002\022\027\n\023FAIL_MAXED_TRAINING\020" +
-      "\003\022\033\n\027FAIL_SPELL_AT_MAX_LEVEL\020\004\022$\n FAIL_C" +
-      "ANT_UPGRADE_WHILE_TRAINING\020\005\022\031\n\025FAIL_WRO" +
-      "NG_CLASS_TYPE\020\006\022#\n\037FAIL_MISSING_PREREQUI" +
-      "SITE_SPELL\020\007\022\016\n\nFAIL_OTHER\020\010*\'\n\020Resource" +
-      "CostType\022\010\n\004GOLD\020\000\022\t\n\005TONIC\020\001B:\n\031com.lvl" +
-      "6.aoc2.eventprotosB\035TrainOrUpgradeSpellE" +
-      "ventProto"
+      "imumUserProto\022\017\n\007spellId\030\002 \001(\t\022\021\n\tusingG" +
+      "ems\030\003 \001(\010\"\315\003\n TrainOrUpgradeSpellRespons" +
+      "eProto\022$\n\003mup\030\001 \001(\0132\027.proto.MinimumUserP" +
+      "roto\022Q\n\006status\030\002 \001(\0162A.proto.TrainOrUpgr" +
+      "adeSpellResponseProto.TrainOrUpgradeSpel" +
+      "lStatus\"\257\002\n\031TrainOrUpgradeSpellStatus\022\013\n" +
+      "\007SUCCESS\020\000\022\037\n\033FAIL_INSUFFICIENT_RESOURCE",
+      "S\020\001\022\036\n\032FAIL_NOT_AT_REQUIRED_LEVEL\020\002\022\027\n\023F" +
+      "AIL_MAXED_TRAINING\020\003\022\033\n\027FAIL_SPELL_AT_MA" +
+      "X_LEVEL\020\004\022$\n FAIL_CANT_UPGRADE_WHILE_TRA" +
+      "INING\020\005\022\031\n\025FAIL_WRONG_CLASS_TYPE\020\006\022#\n\037FA" +
+      "IL_MISSING_PREREQUISITE_SPELL\020\007\022\030\n\024FAIL_" +
+      "NOT_ENOUGH_GEMS\020\010\022\016\n\nFAIL_OTHER\020\t*\'\n\020Res" +
+      "ourceCostType\022\010\n\004GOLD\020\000\022\t\n\005TONIC\020\001B:\n\031co" +
+      "m.lvl6.aoc2.eventprotosB\035TrainOrUpgradeS" +
+      "pellEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1223,7 +1284,7 @@ public final class TrainOrUpgradeSpellEventProto {
           internal_static_proto_TrainOrUpgradeSpellRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_TrainOrUpgradeSpellRequestProto_descriptor,
-              new java.lang.String[] { "Mup", "SpellId", },
+              new java.lang.String[] { "Mup", "SpellId", "UsingGems", },
               com.lvl6.aoc2.eventprotos.TrainOrUpgradeSpellEventProto.TrainOrUpgradeSpellRequestProto.class,
               com.lvl6.aoc2.eventprotos.TrainOrUpgradeSpellEventProto.TrainOrUpgradeSpellRequestProto.Builder.class);
           internal_static_proto_TrainOrUpgradeSpellResponseProto_descriptor =

@@ -1,11 +1,13 @@
 package com.lvl6.aoc2.services.userequiprepair;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import com.lvl6.aoc2.entitymanager.UserEquipRepairEntityManager;
+import com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto;
 import com.lvl6.aoc2.po.UserEquip;
 import com.lvl6.aoc2.po.UserEquipRepair;
 
@@ -21,11 +23,9 @@ public interface UserEquipRepairService {
 	
 	public abstract void saveUserEquipRepairs(Collection<UserEquipRepair> newStuff);
 	
-	
-	
-	
-	
-	
+	public abstract int calculateSingleUserEquipRepairCost(UserEquip ue);
+
+	public abstract int calculateTotalTimeOfQueuedUserEquips(List<UserEquipRepairProto> queuedEquips, Date currentTime);
 	
 	public abstract UserEquipRepairEntityManager getUserEquipmentRepairEntityManager();
 	

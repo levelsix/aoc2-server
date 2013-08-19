@@ -31,8 +31,13 @@ public interface UserService {
 	
 	public abstract void updateUserTonic(User u, int tonicChange);
 	
+	public abstract int calculateGemCostForMissingResources(User u, int missingResources, int missingResourcesType);
 	
-	public ClassLevelInfoRetrieveUtils getClassLevelInfoRetrieveUtils();
+	public abstract int calculateGemCostForPercentageOfResource(User u, double percentage, int maxStorage);
+	
+	public abstract int calculateGemCostForSpeedUp(int minutes);
+
+	public ClassLevelInfoRetrieveUtils getClassLevelInfoRetrieveUtils();	
 	
 	public void setClassLevelInfoRetrieveUtils(ClassLevelInfoRetrieveUtils classLevelInfoRetrieveUtils);
 	

@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.google.common.collect.Iterables;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.UserStructureEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.StructureRetrieveUtils;
@@ -26,17 +25,17 @@ import com.lvl6.aoc2.events.request.BuildOrUpgradeStructureRequestEvent;
 import com.lvl6.aoc2.events.response.BuildOrUpgradeStructureResponseEvent;
 import com.lvl6.aoc2.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
 import com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.aoc2.po.Consumable;
 import com.lvl6.aoc2.po.Structure;
 import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserStructure;
+import com.lvl6.aoc2.services.user.UserService;
 import com.lvl6.aoc2.widerows.RestrictionOnNumberOfUserStructure;
 import com.lvl6.aoc2.widerows.WideRowValue;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
 
 @Component
-public class BuildOrUpgradeStructureController extends EventController {
+public class BuildOrUpgradeUserStructureController extends EventController {
 
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
@@ -51,6 +50,9 @@ public class BuildOrUpgradeStructureController extends EventController {
 
 	@Autowired
 	protected UserEntityManager userEntityManager;
+	
+	@Autowired
+	protected UserService userService;
 
 	@Autowired
 	protected RestrictionOnNumberOfUserStructure restrictionOnNumberOfUserStructure;
@@ -77,8 +79,10 @@ public class BuildOrUpgradeStructureController extends EventController {
 		//uuid's are not strings, need to convert from string to uuid, vice versa
 		String userIdString = sender.getUserID();
 		UUID userId = UUID.fromString(userIdString);
+		boolean usingGems = reqProto.hasUsingGems();
+		boolean isConstructing = reqProto.getIsBuild();
 		Date clientDate = new Date();
-		String userStructureIdString = reqProto.getStructureId();
+		String userStructureIdString = reqProto.getUserStructureId();
 		UUID userStructureId = UUID.fromString(userStructureIdString);
 
 		//response to send back to client
@@ -96,12 +100,12 @@ public class BuildOrUpgradeStructureController extends EventController {
 
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender, inDb,
-					us, sList, clientDate);
+					us, sList, usingGems, isConstructing, clientDate);
 
 			boolean successful = false;
 			if (validRequest) {
 				Structure s = sList.get(0);
-				successful = writeChangesToDb(inDb, us, s, clientDate);
+				successful = writeChangesToDb(inDb, us, s, usingGems, clientDate);
 			}
 
 			if (successful) {
@@ -129,7 +133,7 @@ public class BuildOrUpgradeStructureController extends EventController {
 	}
 
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, UserStructure us, List<Structure> sList, Date clientDate) throws ConnectionException {
+			User inDb, UserStructure us, List<Structure> sList, boolean usingGems, boolean isConstructing, Date clientDate) throws ConnectionException {
 		if (null == inDb || null == us) {
 			log.error("unexpected error: no user exists. sender=" + sender +
 					"\t inDb=" + inDb + "\t us=" + us);
@@ -161,6 +165,12 @@ public class BuildOrUpgradeStructureController extends EventController {
 			return false;
 		}
 		
+		if(!isConstructing) {
+			log.error("structure not constructing");
+			responseBuilder.setStatus(BuildOrUpgradeStructureStatus.FAIL_OTHER);
+			return false;
+		}
+		
 		if(!buildIsCompleteBeforeAttemptingUpgrade(s, us, clientDate)) {
 			log.error("user trying to upgrade before building is complete");
 			responseBuilder.setStatus(BuildOrUpgradeStructureStatus.FAIL_CANT_UPGRADE_WHILE_BUILDING);
@@ -174,28 +184,48 @@ public class BuildOrUpgradeStructureController extends EventController {
 			return false;
 		}
 		
-		if(s.getBuildCostResourceType() == ResourceCostType.GOLD_VALUE) {
-			if(inDb.getGold() < s.getBuildCost()) {
-				log.error("user doesn't have enough gold to build new building");
-				responseBuilder.setStatus(BuildOrUpgradeStructureStatus.FAIL_INSUFFICIENT_RESOURCES);
+		if(!usingGems) {
+			if(s.getBuildCostResourceType() == ResourceCostType.GOLD_VALUE) {
+				if(inDb.getGold() < s.getBuildCost()) {
+					log.error("user doesn't have enough gold to build new building");
+					responseBuilder.setStatus(BuildOrUpgradeStructureStatus.FAIL_INSUFFICIENT_RESOURCES);
+					return false;
+				}
+			} else if(s.getBuildCostResourceType() == ResourceCostType.TONIC_VALUE) {
+				if(inDb.getTonic() < s.getBuildCost()) {
+					log.error("user doesn't have enough tonic to build new building");
+					responseBuilder.setStatus(BuildOrUpgradeStructureStatus.FAIL_INSUFFICIENT_RESOURCES);
+					return false;
+				}
+			} else {
+				log.error("structure doesn't cost either gold or tonic...strange...Hi Ashwin");
+				responseBuilder.setStatus(BuildOrUpgradeStructureStatus.FAIL_OTHER);
 				return false;
 			}
-		} else if(s.getBuildCostResourceType() == ResourceCostType.TONIC_VALUE) {
-			if(inDb.getTonic() < s.getBuildCost()) {
-				log.error("user doesn't have enough tonic to build new building");
-				responseBuilder.setStatus(BuildOrUpgradeStructureStatus.FAIL_INSUFFICIENT_RESOURCES);
-				return false;
+		}
+		else {
+			if(s.getBuildCostResourceType() == ResourceCostType.GOLD_VALUE) {
+				int missingResources = s.getBuildCost() - inDb.getGold();
+				if(inDb.getGems() < getUserService().calculateGemCostForMissingResources(inDb, missingResources, ResourceCostType.GOLD_VALUE)) {
+					log.error("user doesn't have enough gems to buy remaining resources");
+					responseBuilder.setStatus(BuildOrUpgradeStructureStatus.FAIL_INSUFFICIENT_RESOURCES);
+					return false;
+				}
 			}
-		} else {
-			log.error("structure doesn't cost either gold or tonic...strange...Hi Ashwin");
-			responseBuilder.setStatus(BuildOrUpgradeStructureStatus.FAIL_OTHER);
-			return false;
+			else {
+				int missingResources = s.getBuildCost() - inDb.getTonic();
+				if(inDb.getGems() < getUserService().calculateGemCostForMissingResources(inDb, missingResources, ResourceCostType.TONIC_VALUE)) {
+					log.error("user doesn't have enough gems to buy remaining resources");
+					responseBuilder.setStatus(BuildOrUpgradeStructureStatus.FAIL_INSUFFICIENT_RESOURCES);
+					return false;
+				}
+			}
 		}
 		
 		int count=0;
 		List<UserStructure> userStructs = getUserStructureRetrieveUtils().getAllUserStructuresForUser(inDb.getId());
 		for(UserStructure us2: userStructs) {
-			if(us2.isConstructing())
+			if(us2.isFinishedConstructing())
 				count++;
 		}
 		
@@ -244,40 +274,42 @@ public class BuildOrUpgradeStructureController extends EventController {
 	}
 
 	private boolean writeChangesToDb(User inDb, UserStructure us,
-			Structure s, Date clientDate) {
+			Structure s, boolean usingGems, Date clientDate) {
 		try {
-			if(s.getBuildCostResourceType() == ResourceCostType.GOLD_VALUE) {
-				inDb.setGold(inDb.getGold()-s.getBuildCost());
+			int missingResources = 0;
+			if(!usingGems){
+				if(s.getBuildCostResourceType() == ResourceCostType.GOLD_VALUE) {
+					inDb.setGold(inDb.getGold()-s.getBuildCost());
+				}
+				else {
+					inDb.setTonic(inDb.getTonic()-s.getBuildCost());
+				}
+			}
+			else if(s.getBuildCostResourceType() == ResourceCostType.GOLD_VALUE) {
+				missingResources = s.getBuildCost() - inDb.getGold();
+				inDb.setGems(inDb.getGems()-getUserService().calculateGemCostForMissingResources(inDb, missingResources, ResourceCostType.GOLD_VALUE));
+				inDb.setGold(0);
 			}
 			else {
-				inDb.setTonic(inDb.getTonic()-s.getBuildCost());
+				missingResources = s.getBuildCost() - inDb.getTonic();
+				inDb.setGems(inDb.getGems()-getUserService().calculateGemCostForMissingResources(inDb, missingResources, ResourceCostType.TONIC_VALUE));
+				inDb.setTonic(0);
 			}
+			
 			//update user
 			getUserEntityManager().get().put(inDb);
 
-			//and update his user structure rows
-			UUID newId = UUID.randomUUID();
-			if(s.getLvl() == 1) {
-//				String cqlquery = "INSERT INTO user_structure (id, user_id, structure_id, lvl, purchase_time, is_constructing, level_of_user_when_upgrading) " +
-//						"VALUES ( " + newId + "," + inDb.getId() + "," + s.getId() + "," + 1 + "," + rightNow + "," + true + "," + inDb.getLevel() + ");"; 
-				us.setId(UUID.randomUUID());
-				us.setUserId(inDb.getId());
-				us.setStructureId(s.getStructureId());
-				us.setLvl(1);
-				us.setPurchaseTime(clientDate);
-				us.setConstructing(true);
-				us.setLevelOfUserWhenUpgrading(inDb.getLevel());
-				getUserStructureEntityManager().get().put(us);
-			}
-			else if(s.getLvl() > 1) {
-//				String cqlquery = "UPDATE user_structure USING CONSISTENCY QUORUM SET 'lvl' = 'lvl' + 1, " +
-//						"'start_upgrade_time' = 'rightNow', 'is_constructing' = 'true', 'level_of_user_when_upgrading' = 'inDb.getLvl()'";
-				us.setLvl(s.getLvl());
-				us.setStartUpgradeTime(clientDate);
-				us.setConstructing(true);
-				us.setLevelOfUserWhenUpgrading(inDb.getLevel());
-				getUserStructureEntityManager().get().put(us);
-			}
+			UserStructure us2 = new UserStructure();
+			
+			us2.setId(UUID.randomUUID());
+			us2.setUserId(inDb.getId());
+			us2.setStructureId(s.getStructureId());
+			us2.setLvl(s.getLvl());
+			us2.setPurchaseTime(clientDate);
+			us2.setFinishedConstructing(false);
+			us2.setLevelOfUserWhenUpgrading(inDb.getLevel());
+			getUserStructureEntityManager().get().put(us2);
+			
 			return true;
 
 		} catch (Exception e) {
@@ -339,8 +371,16 @@ public class BuildOrUpgradeStructureController extends EventController {
 			RestrictionOnNumberOfUserStructure restrictionOnNumberOfUserStructure) {
 		this.restrictionOnNumberOfUserStructure = restrictionOnNumberOfUserStructure;
 	}
-	
-	
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+
 	
 	
 	

@@ -1,6 +1,8 @@
 package com.lvl6.aoc2.services.userequiprepair;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +11,8 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lvl6.aoc2.entitymanager.UserEquipRepairEntityManager;
+import com.lvl6.aoc2.entitymanager.staticdata.UserEquipRepairRetrieveUtils;
+import com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto;
 import com.lvl6.aoc2.po.UserEquip;
 import com.lvl6.aoc2.po.UserEquipRepair;
 
@@ -17,6 +21,9 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 	
 	@Autowired
 	protected UserEquipRepairEntityManager userEquipRepairEntityManager;
+	
+	@Autowired
+	protected UserEquipRepairRetrieveUtils userEquipRepairRetrieveUtils;
 	
 	@Override
 	public Map<UUID, UserEquipRepair> getEquipsBeingRepaired(String userIdString) {
@@ -45,6 +52,12 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 		return new HashMap<Integer, Integer>();
 	}
 	
+	public int calculateSingleUserEquipRepairCost(UserEquip ue) {
+		//TODO: implement
+		return 1000000;
+	}
+	
+	
 	@Override
 	public void deleteUserEquipRepairs(Collection<UUID> ids) {
 		getUserEquipmentRepairEntityManager().get().delete(ids);
@@ -55,7 +68,33 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 		getUserEquipmentRepairEntityManager().get().put(newStuff);
 	}
 	
-	
+	//returns in seconds
+	@Override
+	public int calculateTotalTimeOfQueuedUserEquips(List<UserEquipRepairProto> queuedEquips, Date currentTime) {
+		List<UserEquipRepair> queuedEquipsList = new ArrayList<>();
+		for(UserEquipRepairProto queuedEquip : queuedEquips) {
+			UserEquipRepair uer = new UserEquipRepair();
+			uer.setDurability(queuedEquip.getDurability());
+			Date d = new Date(queuedEquip.getExpectedStartMillis());
+			uer.setExpectedStart(d);
+			queuedEquipsList.add(uer);
+		}
+		
+		int secondsRemaining = 0;
+		for(UserEquipRepair uer2 : queuedEquipsList) {
+			double durabilityTimeConstant = getUserEquipRepairRetrieveUtils().getEquipmentCorrespondingToUserEquipRepair(uer2).getDurabilityFixTimeConstant();
+			double amountDamaged = 100.0-uer2.getDurability();
+			int secondsToRepair = (int)(durabilityTimeConstant * amountDamaged);
+			if(uer2.getExpectedStart().getTime() < currentTime.getTime()) {
+				int secondsRemainingOnCurrentEquip = secondsToRepair - (int)((currentTime.getTime() - uer2.getExpectedStart().getTime())/1000);
+				secondsRemaining +=  secondsRemainingOnCurrentEquip;
+			}
+			else secondsRemaining += secondsToRepair;
+		}
+		
+		return secondsRemaining;
+	}
+
 	
 	
 	
@@ -70,5 +109,25 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 			UserEquipRepairEntityManager userEquipRepairEntityManager) {
 		this.userEquipRepairEntityManager = userEquipRepairEntityManager;
 	}
+
+	public UserEquipRepairEntityManager getUserEquipRepairEntityManager() {
+		return userEquipRepairEntityManager;
+	}
+
+	public void setUserEquipRepairEntityManager(
+			UserEquipRepairEntityManager userEquipRepairEntityManager) {
+		this.userEquipRepairEntityManager = userEquipRepairEntityManager;
+	}
+
+	public UserEquipRepairRetrieveUtils getUserEquipRepairRetrieveUtils() {
+		return userEquipRepairRetrieveUtils;
+	}
+
+	public void setUserEquipRepairRetrieveUtils(
+			UserEquipRepairRetrieveUtils userEquipRepairRetrieveUtils) {
+		this.userEquipRepairRetrieveUtils = userEquipRepairRetrieveUtils;
+	}
+	
+	
 	
 }

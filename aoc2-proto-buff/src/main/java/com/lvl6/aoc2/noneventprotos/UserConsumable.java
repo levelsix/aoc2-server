@@ -19,9 +19,9 @@ public final class UserConsumable {
     boolean hasUserID();
     String getUserID();
     
-    // optional string consumeableID = 3;
-    boolean hasConsumeableID();
-    String getConsumeableID();
+    // optional string name = 3;
+    boolean hasName();
+    String getName();
     
     // optional int32 quantity = 4;
     boolean hasQuantity();
@@ -120,14 +120,14 @@ public final class UserConsumable {
       }
     }
     
-    // optional string consumeableID = 3;
-    public static final int CONSUMEABLEID_FIELD_NUMBER = 3;
-    private java.lang.Object consumeableID_;
-    public boolean hasConsumeableID() {
+    // optional string name = 3;
+    public static final int NAME_FIELD_NUMBER = 3;
+    private java.lang.Object name_;
+    public boolean hasName() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public String getConsumeableID() {
-      java.lang.Object ref = consumeableID_;
+    public String getName() {
+      java.lang.Object ref = name_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -135,17 +135,17 @@ public final class UserConsumable {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          consumeableID_ = s;
+          name_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getConsumeableIDBytes() {
-      java.lang.Object ref = consumeableID_;
+    private com.google.protobuf.ByteString getNameBytes() {
+      java.lang.Object ref = name_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        consumeableID_ = b;
+        name_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -165,7 +165,7 @@ public final class UserConsumable {
     private void initFields() {
       id_ = "";
       userID_ = "";
-      consumeableID_ = "";
+      name_ = "";
       quantity_ = 0;
     }
     private byte memoizedIsInitialized = -1;
@@ -187,7 +187,7 @@ public final class UserConsumable {
         output.writeBytes(2, getUserIDBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getConsumeableIDBytes());
+        output.writeBytes(3, getNameBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeInt32(4, quantity_);
@@ -211,7 +211,7 @@ public final class UserConsumable {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getConsumeableIDBytes());
+          .computeBytesSize(3, getNameBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -345,7 +345,7 @@ public final class UserConsumable {
         bitField0_ = (bitField0_ & ~0x00000001);
         userID_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        consumeableID_ = "";
+        name_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
         quantity_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
@@ -398,7 +398,7 @@ public final class UserConsumable {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.consumeableID_ = consumeableID_;
+        result.name_ = name_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
@@ -425,8 +425,8 @@ public final class UserConsumable {
         if (other.hasUserID()) {
           setUserID(other.getUserID());
         }
-        if (other.hasConsumeableID()) {
-          setConsumeableID(other.getConsumeableID());
+        if (other.hasName()) {
+          setName(other.getName());
         }
         if (other.hasQuantity()) {
           setQuantity(other.getQuantity());
@@ -474,7 +474,7 @@ public final class UserConsumable {
             }
             case 26: {
               bitField0_ |= 0x00000004;
-              consumeableID_ = input.readBytes();
+              name_ = input.readBytes();
               break;
             }
             case 32: {
@@ -560,39 +560,39 @@ public final class UserConsumable {
         onChanged();
       }
       
-      // optional string consumeableID = 3;
-      private java.lang.Object consumeableID_ = "";
-      public boolean hasConsumeableID() {
+      // optional string name = 3;
+      private java.lang.Object name_ = "";
+      public boolean hasName() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public String getConsumeableID() {
-        java.lang.Object ref = consumeableID_;
+      public String getName() {
+        java.lang.Object ref = name_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          consumeableID_ = s;
+          name_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setConsumeableID(String value) {
+      public Builder setName(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000004;
-        consumeableID_ = value;
+        name_ = value;
         onChanged();
         return this;
       }
-      public Builder clearConsumeableID() {
+      public Builder clearName() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        consumeableID_ = getDefaultInstance().getConsumeableID();
+        name_ = getDefaultInstance().getName();
         onChanged();
         return this;
       }
-      void setConsumeableID(com.google.protobuf.ByteString value) {
+      void setName(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000004;
-        consumeableID_ = value;
+        name_ = value;
         onChanged();
       }
       
@@ -642,11 +642,11 @@ public final class UserConsumable {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\032UserConsumablesProto.proto\022\005proto\"[\n\024U" +
+      "\n\032UserConsumablesProto.proto\022\005proto\"R\n\024U" +
       "serConsumablesProto\022\n\n\002id\030\001 \001(\t\022\016\n\006userI" +
-      "D\030\002 \001(\t\022\025\n\rconsumeableID\030\003 \001(\t\022\020\n\010quanti" +
-      "ty\030\004 \001(\005B.\n\034com.lvl6.aoc2.noneventprotos" +
-      "B\016UserConsumable"
+      "D\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\020\n\010quantity\030\004 \001(\005B" +
+      ".\n\034com.lvl6.aoc2.noneventprotosB\016UserCon" +
+      "sumable"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -658,7 +658,7 @@ public final class UserConsumable {
           internal_static_proto_UserConsumablesProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_UserConsumablesProto_descriptor,
-              new java.lang.String[] { "Id", "UserID", "ConsumeableID", "Quantity", },
+              new java.lang.String[] { "Id", "UserID", "Name", "Quantity", },
               com.lvl6.aoc2.noneventprotos.UserConsumable.UserConsumablesProto.class,
               com.lvl6.aoc2.noneventprotos.UserConsumable.UserConsumablesProto.Builder.class);
           return null;

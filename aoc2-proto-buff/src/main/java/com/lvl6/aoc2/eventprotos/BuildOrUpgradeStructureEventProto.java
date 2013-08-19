@@ -85,13 +85,17 @@ public final class BuildOrUpgradeStructureEventProto {
     com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup();
     com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder();
     
-    // optional string structureId = 2;
-    boolean hasStructureId();
-    String getStructureId();
+    // optional string userStructureId = 2;
+    boolean hasUserStructureId();
+    String getUserStructureId();
     
     // optional bool isBuild = 3;
     boolean hasIsBuild();
     boolean getIsBuild();
+    
+    // optional bool usingGems = 4;
+    boolean hasUsingGems();
+    boolean getUsingGems();
   }
   public static final class BuildOrUpgradeStructureRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -135,14 +139,14 @@ public final class BuildOrUpgradeStructureEventProto {
       return mup_;
     }
     
-    // optional string structureId = 2;
-    public static final int STRUCTUREID_FIELD_NUMBER = 2;
-    private java.lang.Object structureId_;
-    public boolean hasStructureId() {
+    // optional string userStructureId = 2;
+    public static final int USERSTRUCTUREID_FIELD_NUMBER = 2;
+    private java.lang.Object userStructureId_;
+    public boolean hasUserStructureId() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public String getStructureId() {
-      java.lang.Object ref = structureId_;
+    public String getUserStructureId() {
+      java.lang.Object ref = userStructureId_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -150,17 +154,17 @@ public final class BuildOrUpgradeStructureEventProto {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          structureId_ = s;
+          userStructureId_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getStructureIdBytes() {
-      java.lang.Object ref = structureId_;
+    private com.google.protobuf.ByteString getUserStructureIdBytes() {
+      java.lang.Object ref = userStructureId_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        structureId_ = b;
+        userStructureId_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -177,10 +181,21 @@ public final class BuildOrUpgradeStructureEventProto {
       return isBuild_;
     }
     
+    // optional bool usingGems = 4;
+    public static final int USINGGEMS_FIELD_NUMBER = 4;
+    private boolean usingGems_;
+    public boolean hasUsingGems() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public boolean getUsingGems() {
+      return usingGems_;
+    }
+    
     private void initFields() {
       mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
-      structureId_ = "";
+      userStructureId_ = "";
       isBuild_ = false;
+      usingGems_ = false;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -198,10 +213,13 @@ public final class BuildOrUpgradeStructureEventProto {
         output.writeMessage(1, mup_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getStructureIdBytes());
+        output.writeBytes(2, getUserStructureIdBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeBool(3, isBuild_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBool(4, usingGems_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -218,11 +236,15 @@ public final class BuildOrUpgradeStructureEventProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getStructureIdBytes());
+          .computeBytesSize(2, getUserStructureIdBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(3, isBuild_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, usingGems_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -355,10 +377,12 @@ public final class BuildOrUpgradeStructureEventProto {
           mupBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        structureId_ = "";
+        userStructureId_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
         isBuild_ = false;
         bitField0_ = (bitField0_ & ~0x00000004);
+        usingGems_ = false;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       
@@ -408,11 +432,15 @@ public final class BuildOrUpgradeStructureEventProto {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.structureId_ = structureId_;
+        result.userStructureId_ = userStructureId_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
         result.isBuild_ = isBuild_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.usingGems_ = usingGems_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -432,11 +460,14 @@ public final class BuildOrUpgradeStructureEventProto {
         if (other.hasMup()) {
           mergeMup(other.getMup());
         }
-        if (other.hasStructureId()) {
-          setStructureId(other.getStructureId());
+        if (other.hasUserStructureId()) {
+          setUserStructureId(other.getUserStructureId());
         }
         if (other.hasIsBuild()) {
           setIsBuild(other.getIsBuild());
+        }
+        if (other.hasUsingGems()) {
+          setUsingGems(other.getUsingGems());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -480,12 +511,17 @@ public final class BuildOrUpgradeStructureEventProto {
             }
             case 18: {
               bitField0_ |= 0x00000002;
-              structureId_ = input.readBytes();
+              userStructureId_ = input.readBytes();
               break;
             }
             case 24: {
               bitField0_ |= 0x00000004;
               isBuild_ = input.readBool();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              usingGems_ = input.readBool();
               break;
             }
           }
@@ -584,39 +620,39 @@ public final class BuildOrUpgradeStructureEventProto {
         return mupBuilder_;
       }
       
-      // optional string structureId = 2;
-      private java.lang.Object structureId_ = "";
-      public boolean hasStructureId() {
+      // optional string userStructureId = 2;
+      private java.lang.Object userStructureId_ = "";
+      public boolean hasUserStructureId() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public String getStructureId() {
-        java.lang.Object ref = structureId_;
+      public String getUserStructureId() {
+        java.lang.Object ref = userStructureId_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          structureId_ = s;
+          userStructureId_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setStructureId(String value) {
+      public Builder setUserStructureId(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000002;
-        structureId_ = value;
+        userStructureId_ = value;
         onChanged();
         return this;
       }
-      public Builder clearStructureId() {
+      public Builder clearUserStructureId() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        structureId_ = getDefaultInstance().getStructureId();
+        userStructureId_ = getDefaultInstance().getUserStructureId();
         onChanged();
         return this;
       }
-      void setStructureId(com.google.protobuf.ByteString value) {
+      void setUserStructureId(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000002;
-        structureId_ = value;
+        userStructureId_ = value;
         onChanged();
       }
       
@@ -637,6 +673,27 @@ public final class BuildOrUpgradeStructureEventProto {
       public Builder clearIsBuild() {
         bitField0_ = (bitField0_ & ~0x00000004);
         isBuild_ = false;
+        onChanged();
+        return this;
+      }
+      
+      // optional bool usingGems = 4;
+      private boolean usingGems_ ;
+      public boolean hasUsingGems() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public boolean getUsingGems() {
+        return usingGems_;
+      }
+      public Builder setUsingGems(boolean value) {
+        bitField0_ |= 0x00000008;
+        usingGems_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearUsingGems() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        usingGems_ = false;
         onChanged();
         return this;
       }
@@ -1252,24 +1309,25 @@ public final class BuildOrUpgradeStructureEventProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\"BuildOrUpgradeStructureEvent.proto\022\005pr" +
-      "oto\032\023FullUserProto.proto\"q\n#BuildOrUpgra" +
-      "deStructureRequestProto\022$\n\003mup\030\001 \001(\0132\027.p" +
-      "roto.MinimumUserProto\022\023\n\013structureId\030\002 \001" +
-      "(\t\022\017\n\007isBuild\030\003 \001(\010\"\327\003\n$BuildOrUpgradeSt" +
-      "ructureResponseProto\022$\n\003mup\030\001 \001(\0132\027.prot" +
-      "o.MinimumUserProto\022Y\n\006status\030\002 \001(\0162I.pro" +
-      "to.BuildOrUpgradeStructureResponseProto." +
-      "BuildOrUpgradeStructureStatus\"\255\002\n\035BuildO" +
-      "rUpgradeStructureStatus\022\013\n\007SUCCESS\020\000\022\037\n\033",
-      "FAIL_INSUFFICIENT_RESOURCES\020\001\022\036\n\032FAIL_NO" +
-      "T_AT_REQUIRED_LEVEL\020\002\022\033\n\027FAIL_MAXED_CONS" +
-      "TRUCTION\020\003\022\034\n\030FAIL_NO_STRUCTURE_EXISTS\020\004" +
-      "\022,\n(FAIL_RESTRICTION_ON_NUMBER_OF_STRUCT" +
-      "URES\020\005\022\037\n\033FAIL_STRUCTURE_AT_MAX_LEVEL\020\006\022" +
-      "$\n FAIL_CANT_UPGRADE_WHILE_BUILDING\020\007\022\016\n" +
-      "\nFAIL_OTHER\020\010*\'\n\020ResourceCostType\022\010\n\004GOL" +
-      "D\020\000\022\t\n\005TONIC\020\001B>\n\031com.lvl6.aoc2.eventpro" +
-      "tosB!BuildOrUpgradeStructureEventProto"
+      "oto\032\023FullUserProto.proto\"\210\001\n#BuildOrUpgr" +
+      "adeStructureRequestProto\022$\n\003mup\030\001 \001(\0132\027." +
+      "proto.MinimumUserProto\022\027\n\017userStructureI" +
+      "d\030\002 \001(\t\022\017\n\007isBuild\030\003 \001(\010\022\021\n\tusingGems\030\004 " +
+      "\001(\010\"\327\003\n$BuildOrUpgradeStructureResponseP" +
+      "roto\022$\n\003mup\030\001 \001(\0132\027.proto.MinimumUserPro" +
+      "to\022Y\n\006status\030\002 \001(\0162I.proto.BuildOrUpgrad" +
+      "eStructureResponseProto.BuildOrUpgradeSt" +
+      "ructureStatus\"\255\002\n\035BuildOrUpgradeStructur",
+      "eStatus\022\013\n\007SUCCESS\020\000\022\037\n\033FAIL_INSUFFICIEN" +
+      "T_RESOURCES\020\001\022\036\n\032FAIL_NOT_AT_REQUIRED_LE" +
+      "VEL\020\002\022\033\n\027FAIL_MAXED_CONSTRUCTION\020\003\022\034\n\030FA" +
+      "IL_NO_STRUCTURE_EXISTS\020\004\022,\n(FAIL_RESTRIC" +
+      "TION_ON_NUMBER_OF_STRUCTURES\020\005\022\037\n\033FAIL_S" +
+      "TRUCTURE_AT_MAX_LEVEL\020\006\022$\n FAIL_CANT_UPG" +
+      "RADE_WHILE_BUILDING\020\007\022\016\n\nFAIL_OTHER\020\010*\'\n" +
+      "\020ResourceCostType\022\010\n\004GOLD\020\000\022\t\n\005TONIC\020\001B>" +
+      "\n\031com.lvl6.aoc2.eventprotosB!BuildOrUpgr" +
+      "adeStructureEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1281,7 +1339,7 @@ public final class BuildOrUpgradeStructureEventProto {
           internal_static_proto_BuildOrUpgradeStructureRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_BuildOrUpgradeStructureRequestProto_descriptor,
-              new java.lang.String[] { "Mup", "StructureId", "IsBuild", },
+              new java.lang.String[] { "Mup", "UserStructureId", "IsBuild", "UsingGems", },
               com.lvl6.aoc2.eventprotos.BuildOrUpgradeStructureEventProto.BuildOrUpgradeStructureRequestProto.class,
               com.lvl6.aoc2.eventprotos.BuildOrUpgradeStructureEventProto.BuildOrUpgradeStructureRequestProto.Builder.class);
           internal_static_proto_BuildOrUpgradeStructureResponseProto_descriptor =

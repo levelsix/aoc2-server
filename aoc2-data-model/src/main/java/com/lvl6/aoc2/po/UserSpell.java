@@ -26,6 +26,7 @@ public class UserSpell extends BasePersistentObject{
 	@Column(name="spell_lvl")
 	protected int spellLvl = 0;
 	
+	//begin training
 	@Column(name="time_acquired")
 	protected Date timeAcquired = new Date();
 

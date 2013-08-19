@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.lvl6.aoc2.entitymanager.SpellEntityManager;
 import com.lvl6.aoc2.entitymanager.UserSpellEntityManager;
 import com.lvl6.aoc2.po.UserSpell;
 import com.lvl6.aoc2.po.Spell;
@@ -20,12 +21,13 @@ import com.lvl6.aoc2.po.Spell;
 
 	private  Map<UUID, UserSpell> idsToUserSpells;
 	
-	private Map<UUID, UserSpell> userIdsToUserSpells;
-	//private  final String TABLE_NAME = DBConstants.UserSpell;
-
+	
 	@Autowired
 	protected UserSpellEntityManager UserSpellEntityManager;
 
+	@Autowired
+	protected SpellEntityManager spellEntityManager;
+	
 	public  UserSpell getUserSpellForId(UUID id) {
 		log.debug("retrieve UserSpell data for id " + id);
 		if (idsToUserSpells == null) {
@@ -64,6 +66,14 @@ import com.lvl6.aoc2.po.Spell;
 		List <UserSpell> list = getUserSpellEntityManager().get().find(cqlquery);
 		return list;
 	}
+
+	public Spell getSpellCorrespondingToUserSpell(UserSpell us) {
+		String spellName = us.getName();
+		String cqlquery = "select * from Spell where name= " + spellName + ";";
+		List<Spell> s = getSpellEntityManager().get().find(cqlquery);
+		return s.get(0);
+	}
+
 	
 	
 	public  void reload() {
@@ -79,4 +89,14 @@ import com.lvl6.aoc2.po.Spell;
 			UserSpellEntityManager UserSpellEntityManager) {
 		this.UserSpellEntityManager = UserSpellEntityManager;
 	}
+
+	public SpellEntityManager getSpellEntityManager() {
+		return spellEntityManager;
+	}
+
+	public void setSpellEntityManager(SpellEntityManager spellEntityManager) {
+		this.spellEntityManager = spellEntityManager;
+	}
+	
+	
 }

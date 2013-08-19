@@ -27,13 +27,22 @@ public class UserEquipRepair extends BasePersistentObject{
 	protected int equipLevel = 0;
 	
 	@Column(name="durability")
-	protected int durability = 0;
+	protected double durability = 0;
 	
 	@Column(name="expected_start")
 	protected Date expectedStart = null;
 	
 	@Column(name="entered_queue")
 	protected Date enteredQueue = null;
+	
+	@Column(name="time_acquired")
+	protected Date timeAcquired = new Date();
+	
+	@Column(name="level_of_user_when_acquired")
+	protected int levelOfUserWhenAcquired = 0;
+	
+	@Column(name="dungeon_room_or_chest_acquired_from")
+	protected String dungeonRoomOrChestAcquiredFrom = "";
 
 
 
@@ -78,12 +87,12 @@ public class UserEquipRepair extends BasePersistentObject{
 	}
 
 
-	public int getDurability() {
+	public double getDurability() {
 		return durability;
 	}
 
 
-	public void setDurability(int durability) {
+	public void setDurability(double durability) {
 		this.durability = durability;
 	}
 
@@ -108,13 +117,47 @@ public class UserEquipRepair extends BasePersistentObject{
 	}
 
 
+	public Date getTimeAcquired() {
+		return timeAcquired;
+	}
+
+
+	public void setTimeAcquired(Date timeAcquired) {
+		this.timeAcquired = timeAcquired;
+	}
+
+
+	public int getLevelOfUserWhenAcquired() {
+		return levelOfUserWhenAcquired;
+	}
+
+
+	public void setLevelOfUserWhenAcquired(int levelOfUserWhenAcquired) {
+		this.levelOfUserWhenAcquired = levelOfUserWhenAcquired;
+	}
+
+
+	public String getDungeonRoomOrChestAcquiredFrom() {
+		return dungeonRoomOrChestAcquiredFrom;
+	}
+
+
+	public void setDungeonRoomOrChestAcquiredFrom(
+			String dungeonRoomOrChestAcquiredFrom) {
+		this.dungeonRoomOrChestAcquiredFrom = dungeonRoomOrChestAcquiredFrom;
+	}
+
 
 	@Override
 	public String toString() {
 		return "UserEquipRepair [id=" + id + ", userId=" + userId
 				+ ", equipId=" + equipId + ", equipLevel=" + equipLevel
 				+ ", durability=" + durability + ", expectedStart="
-				+ expectedStart + ", enteredQueue=" + enteredQueue + "]";
+				+ expectedStart + ", enteredQueue=" + enteredQueue
+				+ ", timeAcquired=" + timeAcquired
+				+ ", levelOfUserWhenAcquired=" + levelOfUserWhenAcquired
+				+ ", dungeonRoomOrChestAcquiredFrom="
+				+ dungeonRoomOrChestAcquiredFrom + "]";
 	}
 
 
@@ -125,9 +168,12 @@ public class UserEquipRepair extends BasePersistentObject{
 				" user_id uuid," +
 				" equip_id uuid," +
 				" equip_level int," +
-				" durability int," +
+				" durability double," +
 				" expected_start timestamp" +
 				" entered_queue timestamp," +
+				" time_acquired timestamp," +
+				" level_of_user_when_acquired int," +
+				" dungeon_room_or_chest_acquired_from varchar," +
 				" primary key(id))" +
 				" with compact storage;";
 	}

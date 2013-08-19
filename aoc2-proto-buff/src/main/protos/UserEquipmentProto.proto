@@ -11,4 +11,7 @@ message UserEquipmentProto {
 	optional int32 equipLevel = 4;
 	optional int32 currDurability = 5;
 	optional bool equipped = 6;
+	optional int64 timeAcquired = 7;
+	optional int32 levelOfUserWhenAcquired = 8;
+	optional string dungeonRoomOrChestAcquiredFrom = 9;
 }

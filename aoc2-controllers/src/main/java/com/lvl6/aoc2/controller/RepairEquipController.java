@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.controller.utils.TimeUtils;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
+import com.lvl6.aoc2.entitymanager.UserEquipEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.EquipmentRetrieveUtils;
 import com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipRequestProto;
 import com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipResponseProto;
@@ -52,6 +53,9 @@ public class RepairEquipController extends EventController {
 
 	@Autowired
 	protected UserEntityManager userEntityManager;
+	
+	@Autowired
+	protected UserEquipEntityManager userEquipEntityManager;
 
 	@Autowired
 	protected TimeUtils timeUtils;
@@ -83,6 +87,14 @@ public class RepairEquipController extends EventController {
 		List<UserEquipRepairProto> uerpDelete = reqProto.getUerpDeleteList();
 		List<UserEquipRepairProto> uerpUpdate = reqProto.getUerpUpdateList();
 		List<UserEquipRepairProto> uerpNew = reqProto.getUerpNewList();
+		List<String> equipStringBeingRepaired = reqProto.getEquipsBeingRepairedIdList();
+		List<UUID> equipIdsBeingRepaired = new ArrayList<>();
+		boolean usingGems = reqProto.getUsingGems();
+		for(String s : equipStringBeingRepaired) {
+			UUID equipId = UUID.fromString(s);
+			equipIdsBeingRepaired.add(equipId);
+		}
+		
 		Date clientDate = new Date(reqProto.getClientTimeMillis());
 
 		//uuid's are not strings, need to convert from string to uuid, vice versa
@@ -108,12 +120,12 @@ public class RepairEquipController extends EventController {
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender,
 					existingU, userIdString, uerpDelete, uerpUpdate, uerpNew,
-					repairsInDb, prospectiveRepairs, clientDate);
+					repairsInDb, prospectiveRepairs, usingGems, clientDate);
 
 			boolean successful = false;
 			if (validRequest) {
 				successful = writeChangesToDb(existingU, uerpDelete,
-						uerpUpdate, uerpNew, repairsInDb);
+						uerpUpdate, uerpNew, repairsInDb, equipIdsBeingRepaired);
 			}
 
 			if (successful) {
@@ -141,12 +153,11 @@ public class RepairEquipController extends EventController {
 	}
 
 
-
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User existingU, String userIdString, List<UserEquipRepairProto> uerpDelete,
 			List<UserEquipRepairProto> uerpUpdate, List<UserEquipRepairProto> uerpNew,
-			Map<UUID, UserEquipRepair> repairsInDb,  Map<UUID, UserEquip> prospectiveRepairs,
-			Date clientDate) throws Exception {
+			Map<UUID, UserEquipRepair> repairsInDb,  Map<UUID, UserEquip> prospectiveRepairs, 
+			boolean usingGems, Date clientDate) throws Exception {
 		boolean inDbEmpty = (null == repairsInDb || repairsInDb.isEmpty());
 		boolean uerpDeleteNonEmpty = (null != uerpDelete && !uerpDelete.isEmpty());
 		boolean uerpUpdateNonEmpty = null != uerpUpdate && !uerpUpdate.isEmpty(); 
@@ -190,6 +201,7 @@ public class RepairEquipController extends EventController {
 		Map<UUID, UserEquip> newEquipsToRepair = 
 				getUserEquipService().getUserEquipsByUserEquipIds(newIds);
 
+		
 		if (!hasEnoughFunds(uerpDelete, newEquipsToRepair, existingU, repairsInDb)) {
 			log.error("unexpected error: user has not enough funds to repair " +
 					"equip. user="+ userIdString + "\t uerpDelete=" + uerpDelete +
@@ -277,7 +289,7 @@ public class RepairEquipController extends EventController {
 
 	private boolean writeChangesToDb(User u,
 			List<UserEquipRepairProto> uerpDelete, List<UserEquipRepairProto> uerpUpdate,
-			List<UserEquipRepairProto> uerpNew, Map<UUID, UserEquipRepair> repairsInDb) {
+			List<UserEquipRepairProto> uerpNew, Map<UUID, UserEquipRepair> repairsInDb, List<UUID> equipIdsBeingRepaired) {
 		try {
 			//determine the refund
 			List<UserEquip> unrepaired = deleteExisting(uerpDelete, repairsInDb);
@@ -287,7 +299,7 @@ public class RepairEquipController extends EventController {
 			updateExisting(uerpUpdate, repairsInDb);
 
 			//determine the costs
-			List<UserEquipRepair> newRepairs = addNew(uerpNew);
+			List<UserEquipRepair> newRepairs = addNew(uerpNew, equipIdsBeingRepaired);
 			Map<Integer, Integer> cost = getUserEquipRepairService()
 					.calculateRepairCost(null, newRepairs, 1);
 
@@ -355,7 +367,7 @@ public class RepairEquipController extends EventController {
 		getUserEquipRepairService().saveUserEquipRepairs(updated);
 	}
 
-	private List<UserEquipRepair> addNew(List<UserEquipRepairProto> uerpList) {
+	private List<UserEquipRepair> addNew(List<UserEquipRepairProto> uerpList,  List<UUID> equipIdsBeingRepaired) {
 		List<UserEquipRepair> newStuff = new ArrayList<UserEquipRepair>();
 
 		for(UserEquipRepairProto uerp : uerpList) {
@@ -372,11 +384,20 @@ public class RepairEquipController extends EventController {
 			uer.setExpectedStart(expectedStart);
 			Date enteredQueue = new Date(uerp.getQueuedTimeMillis());
 			uer.setEnteredQueue(enteredQueue);
+			uer.setDungeonRoomOrChestAcquiredFrom(uerp.getDungeonRoomOrChestAcquiredFrom());
+			uer.setLevelOfUserWhenAcquired(uerp.getLevelOfUserWhenAcquired());
+			Date d = new Date(uerp.getTimeAcquired());
+			uer.setTimeAcquired(d);
 
 			newStuff.add(uer);
 		}
-
 		getUserEquipRepairService().saveUserEquipRepairs(newStuff);
+		
+		//delete equips from user equips
+		for(UUID equipId : equipIdsBeingRepaired) {
+			getUserEquipEntityManager().get().delete(equipId);
+		}
+		
 
 		return newStuff;
 	}
@@ -462,6 +483,15 @@ public class RepairEquipController extends EventController {
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+
+	public UserEquipEntityManager getUserEquipEntityManager() {
+		return userEquipEntityManager;
+	}
+
+	public void setUserEquipEntityManager(
+			UserEquipEntityManager userEquipEntityManager) {
+		this.userEquipEntityManager = userEquipEntityManager;
 	}
 
 }

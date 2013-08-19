@@ -38,6 +38,18 @@ public final class UserEquipRepair {
     // optional int64 queuedTimeMillis = 7;
     boolean hasQueuedTimeMillis();
     long getQueuedTimeMillis();
+    
+    // optional int64 timeAcquired = 8;
+    boolean hasTimeAcquired();
+    long getTimeAcquired();
+    
+    // optional int32 levelOfUserWhenAcquired = 9;
+    boolean hasLevelOfUserWhenAcquired();
+    int getLevelOfUserWhenAcquired();
+    
+    // optional string dungeonRoomOrChestAcquiredFrom = 10;
+    boolean hasDungeonRoomOrChestAcquiredFrom();
+    String getDungeonRoomOrChestAcquiredFrom();
   }
   public static final class UserEquipRepairProto extends
       com.google.protobuf.GeneratedMessage
@@ -204,6 +216,58 @@ public final class UserEquipRepair {
       return queuedTimeMillis_;
     }
     
+    // optional int64 timeAcquired = 8;
+    public static final int TIMEACQUIRED_FIELD_NUMBER = 8;
+    private long timeAcquired_;
+    public boolean hasTimeAcquired() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    public long getTimeAcquired() {
+      return timeAcquired_;
+    }
+    
+    // optional int32 levelOfUserWhenAcquired = 9;
+    public static final int LEVELOFUSERWHENACQUIRED_FIELD_NUMBER = 9;
+    private int levelOfUserWhenAcquired_;
+    public boolean hasLevelOfUserWhenAcquired() {
+      return ((bitField0_ & 0x00000100) == 0x00000100);
+    }
+    public int getLevelOfUserWhenAcquired() {
+      return levelOfUserWhenAcquired_;
+    }
+    
+    // optional string dungeonRoomOrChestAcquiredFrom = 10;
+    public static final int DUNGEONROOMORCHESTACQUIREDFROM_FIELD_NUMBER = 10;
+    private java.lang.Object dungeonRoomOrChestAcquiredFrom_;
+    public boolean hasDungeonRoomOrChestAcquiredFrom() {
+      return ((bitField0_ & 0x00000200) == 0x00000200);
+    }
+    public String getDungeonRoomOrChestAcquiredFrom() {
+      java.lang.Object ref = dungeonRoomOrChestAcquiredFrom_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          dungeonRoomOrChestAcquiredFrom_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getDungeonRoomOrChestAcquiredFromBytes() {
+      java.lang.Object ref = dungeonRoomOrChestAcquiredFrom_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        dungeonRoomOrChestAcquiredFrom_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
     private void initFields() {
       userEquipRepairID_ = "";
       userID_ = "";
@@ -212,6 +276,9 @@ public final class UserEquipRepair {
       durability_ = 0;
       expectedStartMillis_ = 0L;
       queuedTimeMillis_ = 0L;
+      timeAcquired_ = 0L;
+      levelOfUserWhenAcquired_ = 0;
+      dungeonRoomOrChestAcquiredFrom_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -245,6 +312,15 @@ public final class UserEquipRepair {
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         output.writeInt64(7, queuedTimeMillis_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeInt64(8, timeAcquired_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeInt32(9, levelOfUserWhenAcquired_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        output.writeBytes(10, getDungeonRoomOrChestAcquiredFromBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -282,6 +358,18 @@ public final class UserEquipRepair {
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(7, queuedTimeMillis_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(8, timeAcquired_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(9, levelOfUserWhenAcquired_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(10, getDungeonRoomOrChestAcquiredFromBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -421,6 +509,12 @@ public final class UserEquipRepair {
         bitField0_ = (bitField0_ & ~0x00000020);
         queuedTimeMillis_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000040);
+        timeAcquired_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000080);
+        levelOfUserWhenAcquired_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000100);
+        dungeonRoomOrChestAcquiredFrom_ = "";
+        bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
       
@@ -487,6 +581,18 @@ public final class UserEquipRepair {
           to_bitField0_ |= 0x00000040;
         }
         result.queuedTimeMillis_ = queuedTimeMillis_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.timeAcquired_ = timeAcquired_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
+        result.levelOfUserWhenAcquired_ = levelOfUserWhenAcquired_;
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+          to_bitField0_ |= 0x00000200;
+        }
+        result.dungeonRoomOrChestAcquiredFrom_ = dungeonRoomOrChestAcquiredFrom_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -523,6 +629,15 @@ public final class UserEquipRepair {
         }
         if (other.hasQueuedTimeMillis()) {
           setQueuedTimeMillis(other.getQueuedTimeMillis());
+        }
+        if (other.hasTimeAcquired()) {
+          setTimeAcquired(other.getTimeAcquired());
+        }
+        if (other.hasLevelOfUserWhenAcquired()) {
+          setLevelOfUserWhenAcquired(other.getLevelOfUserWhenAcquired());
+        }
+        if (other.hasDungeonRoomOrChestAcquiredFrom()) {
+          setDungeonRoomOrChestAcquiredFrom(other.getDungeonRoomOrChestAcquiredFrom());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -588,6 +703,21 @@ public final class UserEquipRepair {
             case 56: {
               bitField0_ |= 0x00000040;
               queuedTimeMillis_ = input.readInt64();
+              break;
+            }
+            case 64: {
+              bitField0_ |= 0x00000080;
+              timeAcquired_ = input.readInt64();
+              break;
+            }
+            case 72: {
+              bitField0_ |= 0x00000100;
+              levelOfUserWhenAcquired_ = input.readInt32();
+              break;
+            }
+            case 82: {
+              bitField0_ |= 0x00000200;
+              dungeonRoomOrChestAcquiredFrom_ = input.readBytes();
               break;
             }
           }
@@ -788,6 +918,84 @@ public final class UserEquipRepair {
         return this;
       }
       
+      // optional int64 timeAcquired = 8;
+      private long timeAcquired_ ;
+      public boolean hasTimeAcquired() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      public long getTimeAcquired() {
+        return timeAcquired_;
+      }
+      public Builder setTimeAcquired(long value) {
+        bitField0_ |= 0x00000080;
+        timeAcquired_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearTimeAcquired() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        timeAcquired_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 levelOfUserWhenAcquired = 9;
+      private int levelOfUserWhenAcquired_ ;
+      public boolean hasLevelOfUserWhenAcquired() {
+        return ((bitField0_ & 0x00000100) == 0x00000100);
+      }
+      public int getLevelOfUserWhenAcquired() {
+        return levelOfUserWhenAcquired_;
+      }
+      public Builder setLevelOfUserWhenAcquired(int value) {
+        bitField0_ |= 0x00000100;
+        levelOfUserWhenAcquired_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLevelOfUserWhenAcquired() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        levelOfUserWhenAcquired_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional string dungeonRoomOrChestAcquiredFrom = 10;
+      private java.lang.Object dungeonRoomOrChestAcquiredFrom_ = "";
+      public boolean hasDungeonRoomOrChestAcquiredFrom() {
+        return ((bitField0_ & 0x00000200) == 0x00000200);
+      }
+      public String getDungeonRoomOrChestAcquiredFrom() {
+        java.lang.Object ref = dungeonRoomOrChestAcquiredFrom_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          dungeonRoomOrChestAcquiredFrom_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setDungeonRoomOrChestAcquiredFrom(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000200;
+        dungeonRoomOrChestAcquiredFrom_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearDungeonRoomOrChestAcquiredFrom() {
+        bitField0_ = (bitField0_ & ~0x00000200);
+        dungeonRoomOrChestAcquiredFrom_ = getDefaultInstance().getDungeonRoomOrChestAcquiredFrom();
+        onChanged();
+        return this;
+      }
+      void setDungeonRoomOrChestAcquiredFrom(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000200;
+        dungeonRoomOrChestAcquiredFrom_ = value;
+        onChanged();
+      }
+      
       // @@protoc_insertion_point(builder_scope:proto.UserEquipRepairProto)
     }
     
@@ -813,13 +1021,15 @@ public final class UserEquipRepair {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\032UserEquipRepairProto.proto\022\005proto\"\261\001\n\024" +
+      "\n\032UserEquipRepairProto.proto\022\005proto\"\220\002\n\024" +
       "UserEquipRepairProto\022\031\n\021userEquipRepairI" +
       "D\030\001 \001(\t\022\016\n\006userID\030\002 \001(\t\022\017\n\007equipID\030\003 \001(\t" +
       "\022\022\n\nequipLevel\030\004 \001(\005\022\022\n\ndurability\030\005 \001(\005" +
       "\022\033\n\023expectedStartMillis\030\006 \001(\003\022\030\n\020queuedT" +
-      "imeMillis\030\007 \001(\003B/\n\034com.lvl6.aoc2.noneven" +
-      "tprotosB\017UserEquipRepair"
+      "imeMillis\030\007 \001(\003\022\024\n\014timeAcquired\030\010 \001(\003\022\037\n" +
+      "\027levelOfUserWhenAcquired\030\t \001(\005\022&\n\036dungeo" +
+      "nRoomOrChestAcquiredFrom\030\n \001(\tB/\n\034com.lv" +
+      "l6.aoc2.noneventprotosB\017UserEquipRepair"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -831,7 +1041,7 @@ public final class UserEquipRepair {
           internal_static_proto_UserEquipRepairProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_UserEquipRepairProto_descriptor,
-              new java.lang.String[] { "UserEquipRepairID", "UserID", "EquipID", "EquipLevel", "Durability", "ExpectedStartMillis", "QueuedTimeMillis", },
+              new java.lang.String[] { "UserEquipRepairID", "UserID", "EquipID", "EquipLevel", "Durability", "ExpectedStartMillis", "QueuedTimeMillis", "TimeAcquired", "LevelOfUserWhenAcquired", "DungeonRoomOrChestAcquiredFrom", },
               com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.class,
               com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto.Builder.class);
           return null;

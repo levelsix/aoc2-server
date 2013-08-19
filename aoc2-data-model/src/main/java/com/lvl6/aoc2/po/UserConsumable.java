@@ -19,13 +19,13 @@ public class UserConsumable extends BasePersistentObject{
 	@Column(name="user_id")
 	protected UUID userId = null;
 	
-	@Column(name="consumable_id")
-	protected UUID consumableId = null;
+	@Column(name="name")
+	protected String name = "";
 	
 	@Column(name="quantity")
 	protected int quantity = 0;
 	
-	@Column()
+	
 
 	
 
@@ -50,13 +50,13 @@ public class UserConsumable extends BasePersistentObject{
 	}
 
 
-	public UUID getConsumableId() {
-		return consumableId;
+	public String getName() {
+		return name;
 	}
 
 
-	public void setConsumable_id(UUID consumableId) {
-		this.consumableId = consumableId;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
@@ -69,14 +69,12 @@ public class UserConsumable extends BasePersistentObject{
 		this.quantity = quantity;
 	}
 
-	
 
 
 	@Override
 	public String toString() {
-		return "UserConsumable [id=" + id + ", userId=" + userId
-				+ ", consumableId=" + consumableId + ", quantity=" + quantity
-				+ "]";
+		return "UserConsumable [id=" + id + ", userId=" + userId + ", name="
+				+ name + ", quantity=" + quantity + "]";
 	}
 
 
@@ -85,7 +83,7 @@ public class UserConsumable extends BasePersistentObject{
 		return "create table user_consumable (" +
 				" id uuid," +
 				" user_id uuid," +
-				" consumable_id uuid," +
+				" name varchar," +
 				" quantity int," +
 				" primary key(id))" +
 				" with compact storage;";

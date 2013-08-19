@@ -123,11 +123,11 @@ public class RefillHpOrManaWithConsumableController extends EventController {
 			return false;
 		}
 
-		UUID consumableId = uc.getConsumableId();
-		Consumable c = getConsumableRetrieveUtils().getConsumableForId(consumableId);
+		String consumableName = uc.getName();
+		Consumable c = getConsumableRetrieveUtils().getConsumableForName(consumableName);
 
 		if (null == c) {
-			log.error("unexpected error: no consumable with id exists. id=" + consumableId);
+			log.error("unexpected error: no consumable with id exists. id=" + consumableName);
 			responseBuilder.setStatus(RefillHpOrManaWithConsumableStatus.FAIL_NO_POT_EXISTS);
 			return false;
 		}
