@@ -25,4 +25,5 @@ enum AocTwoEventProtocolResponse {
 	S_RETURN_HOME_EVENT = 6;
 	S_COMPLETE_DUNGEON_EVENT = 7;
 
+	S_FORCE_LOGOUT_EVENT = 100;
 }

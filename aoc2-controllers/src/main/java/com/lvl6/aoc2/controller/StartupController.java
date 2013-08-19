@@ -1,10 +1,13 @@
 //package com.lvl6.aoc2.controller;
 //
 //import java.util.ArrayList;
+//import java.util.Currency;
+//import java.util.Date;
 //import java.util.HashSet;
 //import java.util.List;
 //import java.util.Map;
 //import java.util.Set;
+//import java.util.UUID;
 //
 //import org.joda.time.DateTime;
 //import org.slf4j.Logger;
@@ -13,6 +16,7 @@
 //import org.springframework.stereotype.Component;
 //import org.springframework.transaction.annotation.Transactional;
 //
+//import com.lvl6.aoc2.eventprotos.ForceLogoutEventProto.ForceLogoutResponseProto;
 //import com.lvl6.aoc2.eventprotos.StartupEventProto.StartupRequestProto;
 //import com.lvl6.aoc2.eventprotos.StartupEventProto.StartupRequestProto.LoginType;
 //import com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto;
@@ -20,16 +24,26 @@
 //import com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus;
 //import com.lvl6.aoc2.events.RequestEvent;
 //import com.lvl6.aoc2.events.request.StartupRequestEvent;
+//import com.lvl6.aoc2.events.response.ForceLogoutResponseEvent;
 //import com.lvl6.aoc2.events.response.StartupResponseEvent;
 //import com.lvl6.aoc2.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
 //import com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto;
 //import com.lvl6.aoc2.po.User;
+//import com.lvl6.aoc2.po.UserDevice;
+//import com.lvl6.aoc2.services.user.UserService;
+//import com.lvl6.aoc2.services.userdevice.UserDeviceService;
 //
 //
 //@Component
 //public class StartupController extends EventController {
 //
 //	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+//	
+//	@Autowired
+//	protected UserDeviceService userDeviceService;
+//	
+//	@Autowired
+//	protected UserService userService;
 //
 //
 //	@Override
@@ -80,9 +94,8 @@
 //			}
 //
 //			if (validRequest) {
-//				userList = getUser(userIdList, userList);
-//				successful = writeChangesToDb(responseBuilder, mup, lt,
-//						loginTime, userList);
+//				successful = writeChangesToDb(responseBuilder, mup,
+//						gameCenterId, loginTime, udid, userList);
 //			}
 //
 //			if (successful) {
@@ -178,13 +191,14 @@
 //
 //	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto mup,
 //			LoginType lt, String gameCenterId, String udid, DateTime loginTime,
-//			List<User> userList) {
+//			List<User> userList) throws Exception {
 //		if (LoginType.GAME_CENTER_ID == lt) {
 //			return isValidGameCenterId(responseBuilder, mup, loginTime,
 //					gameCenterId, udid, userList);
 //		}
 //		if (LoginType.UDID == lt) {
-//			
+//			return isValidUdid(responseBuilder, mup, loginTime,
+//					gameCenterId, udid, userList);
 //		}
 ////		if (LoginType.FACEBOOK == lt) {
 ////			return isValidFacebookLogin(responseBuilder, mup, userList);
@@ -199,143 +213,148 @@
 //		return false;
 //	}
 //
-//	private boolean isValidGameCenterId(Builder responseBuilder, MinimumUserProto mup,
-//			DateTime loginTime, String gameCenterId, String udid, List<User> userList) {
+//	//Game center id is only used to link a new device with an existing account.
+//
+//	//Example 
+//	//UserA starts new game on deviceA. 
+//	//UserA starts game on deviceB. User has a choice to login to game center 
+//	//and reuse existing account or just continue with a new account. 
+//	//After this point if the user tries linking this account, on deviceB,
+//	//to game center then only this account can be reproduced on other accounts
+//	private boolean isValidGameCenterId(Builder responseBuilder,
+//			MinimumUserProto mup, DateTime loginTime, String gameCenterId,
+//			String udid, List<User> userList) throws Exception {
 //		log.info("game center id validation");
-//		String userId = mup.getUserID();
+//
+//		//find user with game center id
+//		User u = getUserService().retrieveUser(gameCenterId, null);
 //		
-//		return false;
-//	}
-//
-//	private boolean isValidFacebookLogin(Builder responseBuilder, MinimumUserProto mup,
-//			List<User> userObjList) {
-//		log.info("facebook login validation");
-//		String facebookId = mup.getFacebookId();
-//		String nameNull = null;
-//		String emailNull = null;
-//		String udidNull = null;
-//		List<User> userList = getUserSignupService().checkForExistingUser(facebookId, nameNull,
-//				emailNull, udidNull);
-//		if (null != userList && userList.size() == 1) {
-//			//could check if some values matched...but what if user deleted app
-//			//set userId because what if user deleted app?
-//			userObjList.addAll(userList);
-//			return true;
+//		if (null != u) {
+//			//found user with specified game center id
+//			userList.add(u);
+//			responseBuilder.setStatus(StartupStatus.SUCCESS_GAME_CENTER_ID);
+//			
+//		} else {
+//			//none. find user tied to the udid
+//			u = getUserService().retrieveUserForUdid(udid);
+//			
+//			if (null != u) {
+//				//found user with udid
+//				userList.add(u);
+//				responseBuilder.setStatus(StartupStatus.SUCCESS_UDID);
+//			}
 //		}
-//		log.error("unexpected error: users in db with facebookId=" + facebookId + 
-//				",  userList" + userList);
-//		responseBuilder.setStatus(StartupStatus.INVALID_FACEBOOK_ID);
-//		return false;
-//	}
-//
-//	private boolean isValidEmailPasswordLogin(Builder responseBuilder,
-//			MinimumUserProto mup, List<User> userObjList) {
-//		log.info("email, password validation");
-//		//verify said person exists and email, password match
-//		String email = mup.getEmail();
-//		String password = mup.getPassword();
-//		String nameStrangersSee = mup.getNameStrangersSee();
-//
-//		String facebookIdNull = null;
-//		String udidNull = null;
-//
-//		List<User> userList = getUserSignupService().checkForExistingUser(
-//				facebookIdNull, nameStrangersSee, email, udidNull);
-//		if (null == userList || userList.size() != 1) {
-//			//don't want to print out password
-//			log.error("(?)user error: mupEmail=" + email + ", nameStrangersSee=" +
-//					nameStrangersSee + ", (in db) userList=" + userList);
-//			responseBuilder.setStatus(StartupStatus.FAIL_OTHER);
-//			return false;
-//		}
-//		User inDb = userList.get(0);
-//		//check the user's email password match
-//		if (loginService.validCredentials(inDb, nameStrangersSee, email, password)) {
-//			userObjList.add(inDb);
-//			return true;
-//		}
-//
-//		log.error("user error: incorrect email and password. email=" + email);
-//		responseBuilder.setStatus(StartupStatus.INVALID_EMAIL_PASSWORD);
-//		return false;
-//	}
-//
-//	private boolean isValidNoCredentialsLogin(Builder responseBuilder,
-//			MinimumUserProto mup, List<User> userObjList) {
-//		log.info("no credentials (aka just name) validation") ;
-//		String facebookIdNull = null;
-//		String nameStrangersSee = mup.getNameStrangersSee();
-//		String emailNull = null;
-//		String udidNull = null;
-//
-//		List<User> userList = getUserSignupService().checkForExistingUser(
-//				facebookIdNull, nameStrangersSee, emailNull, udidNull);
-//		if (null == userList || userList.size() != 1) {
-//			responseBuilder.setStatus(StartupStatus.FAIL_OTHER);
-//			log.error("(?)user error: nameStrangersSee=" + nameStrangersSee +
-//					", (in db) userList=" + userList);
-//			return false;
-//		}
-//		userObjList.addAll(userList);
-//		return true;
-//	}
-//
-//	private List<User> getUser(List<String> userIdList, List<User> userList) {
-//		if (userList.isEmpty()) {
-//			String userId = userIdList.get(0);
-//			User u = getLoginService().getUserById(userId);
-//			//return userList.get(0);
+//			
+//		if (null == u) {
+//			//no user with game center id nor udid, signal new user
+//			responseBuilder.setStatus(StartupStatus.SUCCESS_NEW_USER);
+//		} else {
 //			userList.add(u);
 //		}
-//
-//		return userList;
+//		return true;
 //	}
-//
-//	private boolean writeChangesToDb(Builder responseBuilder, MinimumUserProto mup, LoginType lt,
-//			DateTime loginTime, List<User> uList) {
-//
-//		User u = uList.get(0);
-//		String userId = u.getId();
-//		boolean accountInitialized = u.isAccountInitialized();
-//		Currency monies = null;
-//		if (accountInitialized) {
-//			// construct the user (with his existing currency and all)
-//			monies = getCurrencyService().getCurrencyForUser(userId);
-//
+//	
+//	private boolean isValidUdid(Builder responseBuilder,
+//			MinimumUserProto mup, DateTime loginTime, String gameCenterId,
+//			String udid, List<User> userList) throws Exception {
+//		log.info("udid validation");
+//		
+//		User u = getUserService().retrieveUserForUdid(udid);
+//		
+//		if (null == u) {
+//			responseBuilder.setStatus(StartupStatus.SUCCESS_NEW_USER);
 //		} else {
-//			//give the user the initial coins and stuff, record that he got it
-//			monies = getCurrencyService().initializeUserCurrency(userId, loginTime.toDate());
-//			u.setAccountInitialized(true);
+//			userList.add(u);
+//			responseBuilder.setStatus(StartupStatus.SUCCESS_UDID);
 //		}
-//		if (null == monies) {
-//			//every user should have currency!
-//			log.error("unexpected error: user does not have currency. userProto=" + mup);
+//		
+//		return true;
+//	}
+//	
+//
+//
+//	private boolean writeChangesToDb(Builder responseBuilder,
+//			MinimumUserProto mup, String gameCenterId,
+//			DateTime loginTime, String udid, List<User> uList) {
+//		Date loginDate = loginTime.toDate();
+//		
+//		User u;
+//		if (responseBuilder.getStatus() == StartupStatus.SUCCESS_NEW_USER) {
+//			u = getUserService().createNewUser(gameCenterId, loginTime, udid);
+//		} else {
+//			 u = uList.get(0);
 //		}
+//		//TODO: CHECK IF MULTIPLE DEVICES SHARE THIS ACCOUNT
+//		Map<String, UserDevice> udidsToDevices = bootOtherDevicesSharingAccount(u, udid);
+//		
+//		//give the user the initial currency and stuff
+//		initializeUser(u, loginDate);
+//		
+////		UUID userId = u.getId();
+//		// TODO:RECORD THE USER LOGGING IN (UPDATING THE USER_DEVICE TABLE)
+//		updateUserLogin(udidsToDevices, udid, loginDate);
 //
-//		// RECORD THE USER LOGGING IN (UPDATING THE USER TABLE)
-//		AuthorizedDevice ad = updateUserLogin(mup, uList, loginTime);
-//
-//		//KICK OFF ALL OTHER PEOPLE WITH THIS USER ACCOUNT
-//		//idea get the udid's of the authorized devices user has and send a message to those udids
-//		kickOffOtherDevicesSharingAccount(userId, ad);
-//
-//		CompleteUserProto cupb = 
-//				getNoneventProtoUtils().createCompleteUserProto(u, ad, monies);
-//		//set the recipient
-//		responseBuilder.setRecipient(cupb);
+////		CompleteUserProto cupb = 
+////				getNoneventProtoUtils().createCompleteUserProto(u, ad, monies);
+////		//set the recipient
+////		responseBuilder.setRecipient(cupb);
 //
 //		//log.info("\t\t completeUserProto=" + cupb);
 //
 //		return true;
 //	}
-//
-//	private AuthorizedDevice updateUserLogin(MinimumUserProto mup, List<User> uList, DateTime loginTime) {
-//		BasicAuthorizedDeviceProto badp = mup.getBadp(); //would the client have this?
-//
-//		String udid = badp.getUdid();
-//		String deviceId = badp.getDeviceId();
-//
-//		return getLoginService().updateUserLastLogin(uList, loginTime, udid, deviceId);
+//	
+//	//if another device, device1, is on in the foreground then device1 gets kicked off
+//	//if device1 is in the background but in the dungeon, user is penalized 
+//	//and device1 will startup regularly, not in the dungeon.
+//	private Map<String, UserDevice> bootOtherDevicesSharingAccount(User u, String udid) {
+//		UUID userId = u.getId();
+//		String userIdStr = userId.toString();
+//		Map<String, UserDevice> udidsToDevices = 
+//				getUserDeviceService().getUdidsToDevicesForUser(userId);
+//		
+//		boolean exitDungeon = false;
+//		
+//		//for each device that is not this device,
+//		//"kick them off" and make the user exit the dungeon
+//		for (String targetUdid : udidsToDevices.keySet()) {
+//			if (udid.equals(targetUdid)) {
+//				continue;
+//			}
+//			if (!exitDungeon) {
+//				exitDungeon = true;
+//			}
+//			
+//			ForceLogoutResponseEvent flre = new ForceLogoutResponseEvent(targetUdid);
+//			ForceLogoutResponseProto.Builder flrpb = ForceLogoutResponseProto.newBuilder();
+//			flrpb.setUserId(userIdStr);
+//			flrpb.setUdid(udid);
+//			
+//			flre.setForceLogoutResponseProto(flrpb.build());
+//			getEventWriter().processPreDBResponseEvent(flre, udid);
+//		}
+//		
+//		if (exitDungeon) {
+//			//TODO: kick the user out of the dungeon and
+//			//penalize him for doing so
+//			
+//		}
+//		
+//		return udidsToDevices;
+//	}
+//	
+//	private User initializeUser(User u, Date loginDate) {
+//		if (u.isAccountInitialized()) {
+//			return u;
+//		}
+//		getUserService().initializeUser(u, loginDate);
+//		
+//		return u;
+//	}
+//	
+//	private void updateUserLogin(Map<String, UserDevice> udidsToDevices,
+//			String currentUdid, Date loginDate) {
+//		
 //	}
 //
 //	private void kickOffOtherDevicesSharingAccount(String userId, AuthorizedDevice ad) {
@@ -465,101 +484,33 @@
 //
 //
 //	private void setConstants(Builder responseBuilder) {
-//		LoginConstants.Builder lcb = LoginConstants.newBuilder();
-//		CurrencyConstants cc = getCurrencyConstants();
-//		RoundConstants rc = getRoundConstants();
-//		QuestionTypeScoringConstants qtsc = getQuestionTypeScoringConstants();
-//
-//		lcb.setCurrencyConstants(cc);
-//		lcb.setRoundConstants(rc);
-//		lcb.setScoreTypes(qtsc);
+////		LoginConstants.Builder lcb = LoginConstants.newBuilder();
+////		CurrencyConstants cc = getCurrencyConstants();
+////		RoundConstants rc = getRoundConstants();
+////		QuestionTypeScoringConstants qtsc = getQuestionTypeScoringConstants();
+////
+////		lcb.setCurrencyConstants(cc);
+////		lcb.setRoundConstants(rc);
+////		lcb.setScoreTypes(qtsc);
 //
 //		responseBuilder.setLoginConstants(lcb.build());
 //	}
 //
-//	private CurrencyConstants getCurrencyConstants() {
-//		CurrencyConstants.Builder ccb = CurrencyConstants.newBuilder();
-//		ccb.setDefaultInitialRubies(PicturesPoConstants.CURRENCY__DEFAULT_INITIAL_RUBIES);
-//		ccb.setDefaultInitialTokens(PicturesPoConstants.CURRENCY__DEFAULT_INITIAL_TOKENS);
-//		int secondsTillRefill = 60 * PicturesPoConstants.CURRENCY__MINUTES_FOR_TOKEN_REGENERATION;
-//		ccb.setNumSecondsUntilRefill(secondsTillRefill);
-//		return ccb.build();
+//	public UserDeviceService getUserDeviceService() {
+//		return userDeviceService;
 //	}
 //
-//	private RoundConstants getRoundConstants() {
-//		RoundConstants.Builder rcb = RoundConstants.newBuilder();
-//		rcb.setDefaultRoundsPerGame(PicturesPoConstants.ROUND_HISTORY__DEFAULT_ROUNDS_PER_PLAYER_PER_GAME);
-//		rcb.setDefaultMinutesPerRound(PicturesPoConstants.ROUND_HISTORY__DEFAULT_MINUTES_PER_ROUND);
-//		return rcb.build();
+//	public void setUserDeviceService(UserDeviceService userDeviceService) {
+//		this.userDeviceService = userDeviceService;
 //	}
 //
-//	private QuestionTypeScoringConstants getQuestionTypeScoringConstants() {
-//		QuestionTypeScoringConstants.Builder qtscb =
-//				QuestionTypeScoringConstants.newBuilder();
-//		qtscb.setMcqCorrect(PicturesPoConstants.MCQ__POINTS_FOR_CORRECT_ANSWER);
-//		qtscb.setMcqIncorrect(PicturesPoConstants.MCQ__POINTS_FOR_INCORRECT_ANSWER);
-//
-//		qtscb.setAcqCorrect(PicturesPoConstants.ACQ__POINTS_FOR_CORRECT_ANSWER);
-//		qtscb.setAcqIncorrect(PicturesPoConstants.ACQ__POINTS_FOR_INCORRECT_ANSWER);
-//		return qtscb.build();
+//	public UserService getUserService() {
+//		return userService;
 //	}
 //
-//
-//	public UserSignupService getUserSignupService() {
-//		return userSignupService;
+//	public void setUserService(UserService userService) {
+//		this.userService = userService;
 //	}
 //
-//	public void setUserSignupService(UserSignupService userSignupService) {
-//		this.userSignupService = userSignupService;
-//	}
-//
-//	public AuthorizedDeviceService getAuthorizedDeviceService() {
-//		return authorizedDeviceService;
-//	}
-//
-//	public void setAuthorizedDeviceService(
-//			AuthorizedDeviceService authorizedDeviceService) {
-//		this.authorizedDeviceService = authorizedDeviceService;
-//	}
-//
-//	public LoginService getLoginService() {
-//		return loginService;
-//	}
-//
-//	public void setLoginService(LoginService loginService) {
-//		this.loginService = loginService;
-//	}
-//
-//	public GameHistoryService getGameHistoryService() {
-//		return gameHistoryService;
-//	}
-//
-//	public void setGameHistoryService(GameHistoryService gameHistoryService) {
-//		this.gameHistoryService = gameHistoryService;
-//	}
-//
-//	public CreateNoneventProtoUtils getNoneventProtoUtils() {
-//		return noneventProtoUtils;
-//	}
-//
-//	public void setNoneventProtoUtils(CreateNoneventProtoUtils noneventProtoUtils) {
-//		this.noneventProtoUtils = noneventProtoUtils;
-//	} 
-//
-//	public CurrencyService getCurrencyService() {
-//		return currencyService;
-//	}
-//
-//	public void setCurrencyService(CurrencyService currencyService) {
-//		this.currencyService = currencyService;
-//	}
-//
-//	public QuestionBaseService getQuestionBaseService() {
-//		return questionBaseService;
-//	}
-//
-//	public void setQuestionBaseService(QuestionBaseService questionBaseService) {
-//		this.questionBaseService = questionBaseService;
-//	}
 //
 //}

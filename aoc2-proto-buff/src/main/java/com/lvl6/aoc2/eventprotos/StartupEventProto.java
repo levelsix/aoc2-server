@@ -613,11 +613,15 @@ public final class StartupEventProto {
     
     public enum StartupStatus
         implements com.google.protobuf.ProtocolMessageEnum {
-      SUCCESS(0, 0),
-      FAIL_OTHER(1, 4),
+      SUCCESS_GAME_CENTER_ID(0, 0),
+      SUCCESS_UDID(1, 1),
+      SUCCESS_NEW_USER(2, 2),
+      FAIL_OTHER(3, 4),
       ;
       
-      public static final int SUCCESS_VALUE = 0;
+      public static final int SUCCESS_GAME_CENTER_ID_VALUE = 0;
+      public static final int SUCCESS_UDID_VALUE = 1;
+      public static final int SUCCESS_NEW_USER_VALUE = 2;
       public static final int FAIL_OTHER_VALUE = 4;
       
       
@@ -625,7 +629,9 @@ public final class StartupEventProto {
       
       public static StartupStatus valueOf(int value) {
         switch (value) {
-          case 0: return SUCCESS;
+          case 0: return SUCCESS_GAME_CENTER_ID;
+          case 1: return SUCCESS_UDID;
+          case 2: return SUCCESS_NEW_USER;
           case 4: return FAIL_OTHER;
           default: return null;
         }
@@ -657,7 +663,7 @@ public final class StartupEventProto {
       }
       
       private static final StartupStatus[] VALUES = {
-        SUCCESS, FAIL_OTHER, 
+        SUCCESS_GAME_CENTER_ID, SUCCESS_UDID, SUCCESS_NEW_USER, FAIL_OTHER, 
       };
       
       public static StartupStatus valueOf(
@@ -717,7 +723,7 @@ public final class StartupEventProto {
     private void initFields() {
       mup_ = com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.getDefaultInstance();
       currentServerTime_ = 0L;
-      status_ = com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus.SUCCESS;
+      status_ = com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus.SUCCESS_GAME_CENTER_ID;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -900,7 +906,7 @@ public final class StartupEventProto {
         bitField0_ = (bitField0_ & ~0x00000001);
         currentServerTime_ = 0L;
         bitField0_ = (bitField0_ & ~0x00000002);
-        status_ = com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus.SUCCESS;
+        status_ = com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus.SUCCESS_GAME_CENTER_ID;
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
@@ -1161,7 +1167,7 @@ public final class StartupEventProto {
       }
       
       // optional .proto.StartupResponseProto.StartupStatus status = 3;
-      private com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus status_ = com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus.SUCCESS;
+      private com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus status_ = com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus.SUCCESS_GAME_CENTER_ID;
       public boolean hasStatus() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
@@ -1179,7 +1185,7 @@ public final class StartupEventProto {
       }
       public Builder clearStatus() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        status_ = com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus.SUCCESS;
+        status_ = com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus.SUCCESS_GAME_CENTER_ID;
         onChanged();
         return this;
       }
@@ -1219,13 +1225,14 @@ public final class StartupEventProto {
       "\001 \001(\0132\027.proto.MinimumUserProto\0227\n\tloginT" +
       "ype\030\002 \001(\0162$.proto.StartupRequestProto.Lo" +
       "ginType\")\n\tLoginType\022\022\n\016GAME_CENTER_ID\020\000" +
-      "\022\010\n\004UDID\020\001\"\275\001\n\024StartupResponseProto\022!\n\003m" +
+      "\022\010\n\004UDID\020\001\"\364\001\n\024StartupResponseProto\022!\n\003m" +
       "up\030\001 \001(\0132\024.proto.FullUserProto\022\031\n\021curren" +
       "tServerTime\030\002 \001(\003\0229\n\006status\030\003 \001(\0162).prot" +
-      "o.StartupResponseProto.StartupStatus\",\n\r" +
-      "StartupStatus\022\013\n\007SUCCESS\020\000\022\016\n\nFAIL_OTHER",
-      "\020\004B.\n\031com.lvl6.aoc2.eventprotosB\021Startup" +
-      "EventProto"
+      "o.StartupResponseProto.StartupStatus\"c\n\r" +
+      "StartupStatus\022\032\n\026SUCCESS_GAME_CENTER_ID\020",
+      "\000\022\020\n\014SUCCESS_UDID\020\001\022\024\n\020SUCCESS_NEW_USER\020" +
+      "\002\022\016\n\nFAIL_OTHER\020\004B.\n\031com.lvl6.aoc2.event" +
+      "protosB\021StartupEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {

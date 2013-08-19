@@ -46,7 +46,7 @@ public class User extends BasePersistentObject{
 	protected int hp = 0;
 	
 	@Column(name="last_time_hp_regened")
-	protected Date lastTimeHpRegened = new Date();
+	protected Date lastTimeHpRegened = null;
 
 	@Column(name="max_mana")
 	protected int maxMana = 0;
@@ -55,20 +55,20 @@ public class User extends BasePersistentObject{
 	protected int mana = 0;
 	
 	@Column(name="last_time_mana_regened")
-	protected Date lastTimeManaRegened = new Date();
+	protected Date lastTimeManaRegened = null;
 	
 	//if user has a gameCenterId use that id, else generate random string
 	@Column(name="game_center_id")
 	protected String gameCenterId = "";
 	
-	@Column(name="signup_date")
-	protected Date signupDate = new Date();
+	//@Column(name="signup_date")
+	//protected Date signupDate = null;
 	
 	@Column(name="clan_id")
 	protected int clanId = 0;
 	
-	@Column(name="last_login")
-	protected Date lastLogin = new Date();
+	//@Column(name="last_login")
+	//protected Date lastLogin = null;
 	
 	@Column(name="account_initialized")
 	protected boolean accountInitialized = false;
@@ -196,13 +196,13 @@ public class User extends BasePersistentObject{
 		this.gameCenterId = gameCenterId;
 	}
 
-	public Date getSignupDate() {
-		return signupDate;
-	}
-
-	public void setSignupDate(Date signupDate) {
-		this.signupDate = signupDate;
-	}
+//	public Date getSignupDate() {
+//		return signupDate;
+//	}
+//
+//	public void setSignupDate(Date signupDate) {
+//		this.signupDate = signupDate;
+//	}
 
 	public int getClanId() {
 		return clanId;
@@ -212,13 +212,13 @@ public class User extends BasePersistentObject{
 		this.clanId = clanId;
 	}
 
-	public Date getLastLogin() {
-		return lastLogin;
-	}
-
-	public void setLastLogin(Date lastLogin) {
-		this.lastLogin = lastLogin;
-	}
+//	public Date getLastLogin() {
+//		return lastLogin;
+//	}
+//
+//	public void setLastLogin(Date lastLogin) {
+//		this.lastLogin = lastLogin;
+//	}
 	
 	public boolean isAccountInitialized() {
 		return accountInitialized;
@@ -228,6 +228,14 @@ public class User extends BasePersistentObject{
 		this.accountInitialized = accountInitialized;
 	}	
 
+
+	
+	
+//	@Column(name="email")
+//	protected String email = "";
+	
+	
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", level=" + level
@@ -236,18 +244,9 @@ public class User extends BasePersistentObject{
 				+ ", maxHp=" + maxHp + ", hp=" + hp + ", lastTimeHpRegened="
 				+ lastTimeHpRegened + ", maxMana=" + maxMana + ", mana=" + mana
 				+ ", lastTimeManaRegened=" + lastTimeManaRegened
-				+ ", gameCenterId=" + gameCenterId + ", signupDate="
-				+ signupDate + ", clanId=" + clanId + ", lastLogin="
-				+ lastLogin + ", accountInitialized=" + accountInitialized
-				+ "]";
+				+ ", gameCenterId=" + gameCenterId + ", clanId=" + clanId
+				+ ", accountInitialized=" + accountInitialized + "]";
 	}
-
-	
-	
-//	@Column(name="email")
-//	protected String email = "";
-	
-	
 
 	@Override
 	public String getTableCreateStatement() {
@@ -267,9 +266,9 @@ public class User extends BasePersistentObject{
 				" mana int," +
 				" last_time_mana_regened timestamp," +
 				" game_center_id varchar," +
-				" signup_date timestamp," +
+//				" signup_date timestamp," +
 				" clan_id int," +
-				" last_login timestamp," +
+//				" last_login timestamp," +
 				" account_initialized boolean," +
 				//" email varchar," +
 				" primary key (id))" +
@@ -290,7 +289,7 @@ public class User extends BasePersistentObject{
 		Set<String> indexes = new HashSet<String>();
 		//indexes.add("create index user_email_index on user (email);");
 		indexes.add("create index user_name_index on user (name);");
-		indexes.add("create index user_last_login_index on user (last_login);");
+//		indexes.add("create index user_last_login_index on user (last_login);");
 		indexes.add("create index user_game_center_id_index on user (game_center_id);");
 		return indexes;
 	}

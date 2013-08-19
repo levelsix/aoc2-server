@@ -1,19 +1,30 @@
 package com.lvl6.aoc2.services.user;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.lvl6.aoc2.entitymanager.UserDeviceEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
+import com.lvl6.aoc2.entitymanager.staticdata.ClassLevelInfoRetrieveUtils;
+import com.lvl6.aoc2.po.ClassLevelInfo;
 import com.lvl6.aoc2.po.User;
+import com.lvl6.aoc2.po.UserDevice;
 import com.lvl6.aoc2.po.properties.AocTwoTableConstants;
-import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
-import com.netflix.astyanax.model.CqlResult;
 
 public class UserServiceImpl implements UserService {
+	
+	@Autowired
+	protected ClassLevelInfoRetrieveUtils classLevelInfoRetrieveUtils;
+	
+	@Autowired
+	protected UserDeviceEntityManager userDeviceEntityManager;
 	
 	@Autowired
 	protected UserEntityManager userEntityManager;
@@ -21,29 +32,115 @@ public class UserServiceImpl implements UserService {
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 	
 	@Override
-	public User retrieveUser(String gameCenterId, String userId) {
+	public User createNewUser(String gameCenterId, DateTime loginTime, String udid) {
+		Date d = loginTime.toDate();
+		
+		//create the new user
+		User u = new User();
+		getUserEntityManager().get().put(u);
+		
+		//create row in user_device
+		UserDevice ud = new UserDevice();
+		ud.setUserId(u.getId());
+		ud.setDateLinked(d);
+		ud.setLastLogin(d);
+		getUserDeviceEntityManager().get().put(ud);
+		
+		return u;
+	}
+	
+	//caller should save the user object
+	@Override
+	public void initializeUser(User u, Date now) {
+		levelUpUser(u);
+		
+		u.setGems(AocTwoTableConstants.USER__GEMS);
+		u.setGold(AocTwoTableConstants.USER__GOLD);
+		u.setTonic(AocTwoTableConstants.USER__TONIC);
+		u.setLastTimeHpRegened(now);
+		u.setLastTimeManaRegened(now);
+		
+		u.setAccountInitialized(true);
+		
+		getUserEntityManager().get().put(u);
+	}
+	
+	//caller should save the user object
+	@Override
+	public void levelUpUser(User u) {
+		int classType = u.getClassType();
+		int newLvl = u.getLevel() + 1;
+		
+		ClassLevelInfo cli = getClassLevelInfoRetrieveUtils()
+				.getClassLevelInfoForClassAndLevel(classType, newLvl);
+		
+		int maxHp = cli.getMaxHp();
+		int maxMana = cli.getMaxMana();
+		
+		u.setLevel(newLvl);
+		u.setMaxHp(maxHp);
+		u.setMaxMana(maxMana);
+		
+		u.setHp(maxHp);
+		u.setMana(maxMana);
+	}
+	
+	//searches for a user based on game center or user id
+	@Override
+	public User retrieveUser(String gameCenterId, String userId) throws Exception {
+		String cqlQuery = "select * from user u ";
+		List<User> uList = new ArrayList<User>();
 		if (null != gameCenterId) {
-			String cqlQuery =
-					"select * " +
-					"from user u " +
-					"where u.game_center_id = ?;";
+			cqlQuery += "where u.game_center_id = " + gameCenterId + ";";
+			uList = getUserEntityManager().get().find(cqlQuery);
 			
-			try {
-				CqlResult<UUID,String> result =
-						getUserEntityManager().getCassandra().getKeyspace()
-						.prepareQuery(getUserEntityManager().getColumnFamily())
-							.withCql(cqlQuery)
-						.asPreparedStatement()
-							.withStringValue(gameCenterId)
-						.execute().getResult();
-				//result.
-			} catch (ConnectionException e) {
-				// TODO Auto-generated catch block
-				log.error("retrieve user db issue", e);
-			}
+		} else if (null != userId){
+			cqlQuery += "where u.user_id = " + userId + ";";
+			uList = getUserEntityManager().get().find(cqlQuery);
+			
 		}
 		
-		return null;
+		if (uList == null || uList.isEmpty()) {
+			return null;
+		} else if (uList.size() > 1) {
+			String msg = "multiple users exist. gameCenterId=" +
+					gameCenterId + ", userId=" + userId +
+					" uList=" + uList;
+			log.error("unexpected error: " + msg);
+			throw new Exception(msg);
+		} else {
+			return uList.get(0);
+		}
+		
+	}
+	
+	@Override
+	public User retrieveUserForUdid(String udid) throws Exception {
+		String cqlQuery = "select * from user_device ud ";
+		List<UserDevice> udList = null;
+		
+		if (null != udid && !udid.isEmpty()) {
+			cqlQuery += "where ud.udid = " + udid + ";";
+			
+			udList = getUserDeviceEntityManager().
+					get().find(cqlQuery);
+		}
+		
+		if (null == udList || udList.isEmpty()) {
+			//there is no user associated with this udid.
+			return null;
+		} else if (udList.size() > 1) {
+			String msg = "User id tied to more than one udid. udidList="
+					+ udList;
+			log.error("unexpected error: " + msg);
+			throw new Exception(msg);
+		} else {
+			UserDevice ud = udList.get(0);
+			String userId = ud.getUserId().toString();
+			//there is a user account tied to this udid
+			return retrieveUser(null, userId);
+			
+		}
 	}
 	
 	@Override
@@ -86,6 +183,30 @@ public class UserServiceImpl implements UserService {
 			u.setTonic(totalTonic);
 		}
 		getUserEntityManager().get().put(u);
+	}
+	
+	
+	
+	@Override
+	public ClassLevelInfoRetrieveUtils getClassLevelInfoRetrieveUtils() {
+		return classLevelInfoRetrieveUtils;
+	}
+
+	@Override
+	public void setClassLevelInfoRetrieveUtils(
+			ClassLevelInfoRetrieveUtils classLevelInfoRetrieveUtils) {
+		this.classLevelInfoRetrieveUtils = classLevelInfoRetrieveUtils;
+	}
+
+	@Override
+	public UserDeviceEntityManager getUserDeviceEntityManager() {
+		return userDeviceEntityManager;
+	}
+	
+	@Override
+	public void setUserDeviceEntityManager(
+			UserDeviceEntityManager userDeviceEntityManager) {
+		this.userDeviceEntityManager = userDeviceEntityManager;
 	}
 	
 	@Override

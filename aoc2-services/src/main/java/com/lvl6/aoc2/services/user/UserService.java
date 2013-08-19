@@ -1,23 +1,44 @@
 package com.lvl6.aoc2.services.user;
 
+import java.util.Date;
 import java.util.Map;
 
+import org.joda.time.DateTime;
+
+import com.lvl6.aoc2.entitymanager.UserDeviceEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
+import com.lvl6.aoc2.entitymanager.staticdata.ClassLevelInfoRetrieveUtils;
 import com.lvl6.aoc2.po.User;
 
 public interface UserService {
 	
-	public abstract User retrieveUser(String gameCenterId, String userId);
+	public abstract User createNewUser(String gameCenterId,
+			DateTime loginTime, String udid);
 	
-	public abstract void updateUserResources(User u, Map<Integer, Integer> resourceTypeToChanges);
+	public abstract void initializeUser(User u, Date now);
+	
+	public abstract void levelUpUser(User u);
+	
+	public abstract User retrieveUser(String gameCenterId,
+			String userId) throws Exception;
+	
+	public abstract User retrieveUserForUdid(String udid) throws Exception;
+	
+	public abstract void updateUserResources(User u,
+			Map<Integer, Integer> resourceTypeToChanges);
 	
 	public abstract void updateUserGold(User u, int goldChange);
 	
 	public abstract void updateUserTonic(User u, int tonicChange);
 	
 	
+	public ClassLevelInfoRetrieveUtils getClassLevelInfoRetrieveUtils();
 	
+	public void setClassLevelInfoRetrieveUtils(ClassLevelInfoRetrieveUtils classLevelInfoRetrieveUtils);
 	
+	public abstract UserDeviceEntityManager getUserDeviceEntityManager();
+	
+	public abstract void setUserDeviceEntityManager(UserDeviceEntityManager userDeviceEntityManager);
 	
 	public abstract UserEntityManager getUserEntityManager();
 
