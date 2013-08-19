@@ -14,6 +14,7 @@ import scala.collection.Iterable;
 
 import com.lvl6.aoc2.cassandra.Cassandra;
 import com.netflix.astyanax.ColumnListMutation;
+import com.netflix.astyanax.Keyspace;
 import com.netflix.astyanax.MutationBatch;
 import com.netflix.astyanax.Serializer;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
@@ -76,19 +77,23 @@ abstract public class BaseWideRow<Ky, Col, Val> implements InitializingBean {
 	
 	public WideRowValue<Ky, Col, Val> getSingleColumn(Ky rowKey, Col column) throws ConnectionException{
 		WideRowValue<Ky, Col, Val> wrv = new WideRowValue<Ky, Col, Val>().setKey(rowKey).setColumn(column);
-		Column<Col> result = cassandra.getKeyspace().prepareQuery(getColumnFamily())
+		Column<Col> result = getKeyspace().prepareQuery(getColumnFamily())
 			    .getKey(rowKey)
 			    .getColumn(column)
 			    .execute().getResult();
 		wrv.setValue(result.getValue(getValueSerializer()));
 		return wrv;
 	}
+
+	protected Keyspace getKeyspace() {
+		return cassandra.getKeyspace();
+	}
 	
 	
 	public Collection<WideRowValue<Ky, Col, Val>> getEntireRow(Ky key) throws ConnectionException{
 		log.info("Getting row for key: {}", key);
 		Collection<WideRowValue<Ky, Col, Val>> values = new ArrayList<WideRowValue<Ky, Col, Val>>();
-		ColumnList<Col> result = cassandra.getKeyspace().prepareQuery(getColumnFamily())
+		ColumnList<Col> result = getKeyspace().prepareQuery(getColumnFamily())
 			    .getKey(key)
 			    .execute().getResult();
 		if (!result.isEmpty()) {
@@ -107,7 +112,7 @@ abstract public class BaseWideRow<Ky, Col, Val> implements InitializingBean {
 	
 	
 	public void saveValue(WideRowValue<Ky, Col, Val> wrv) throws ConnectionException {
-		cassandra.getKeyspace().prepareColumnMutation(getColumnFamily(), wrv.getKey(), wrv.getColumn())
+		getKeyspace().prepareColumnMutation(getColumnFamily(), wrv.getKey(), wrv.getColumn())
 		.putValue(wrv.getValue(), getValueSerializer(), null)
 	    .execute();
 	}
@@ -115,15 +120,33 @@ abstract public class BaseWideRow<Ky, Col, Val> implements InitializingBean {
 	
 	public void saveValues(Collection<WideRowValue<Ky, Col, Val>> values) throws ConnectionException {
 		Map<Ky, Iterable<WideRowValue<Ky, Col, Val>>> grouped = WideRowUtil.groupWideRowValuesByKey(values);
-		MutationBatch m = cassandra.getKeyspace().prepareMutationBatch();
+		MutationBatch m = getKeyspace().prepareMutationBatch();
 		for(Ky kee: grouped.keySet()) {
 			Iterable<WideRowValue<Ky, Col, Val>> itb = grouped.get(kee);
 			ColumnListMutation<Col> clm = m.withRow(getColumnFamily(), kee);
 			scala.collection.Iterator<WideRowValue<Ky, Col, Val>> it = itb.iterator();
 			while(it.hasNext()) {
 				WideRowValue<Ky, Col, Val> value = it.next();
-				clm.putColumn(value.getColumn(), value.getValue(), getValueSerializer(), null);
+				putColumn(clm, value);
 			}
+		}
+		m.execute();
+	}
+	
+	
+	
+
+	protected void putColumn(ColumnListMutation<Col> clm,	WideRowValue<Ky, Col, Val> value) {
+		clm.putColumn(value.getColumn(), value.getValue(), getValueSerializer(), null);
+	}
+	
+	
+	public void saveValuesWithUniqueKeys(Map<Ky, WideRowValue<Ky, Col, Val>> values)throws ConnectionException {
+		MutationBatch m = getKeyspace().prepareMutationBatch();
+		for(Ky kee: values.keySet()) {
+			WideRowValue<Ky, Col, Val> value = values.get(kee);
+			ColumnListMutation<Col> clm = m.withRow(getColumnFamily(), kee);
+			putColumn(clm, value);
 		}
 		m.execute();
 	}
@@ -142,7 +165,7 @@ abstract public class BaseWideRow<Ky, Col, Val> implements InitializingBean {
 	
 	protected void createTable() {
 		try {
-			cassandra.getKeyspace().createColumnFamily(getColumnFamily(), null);
+			getKeyspace().createColumnFamily(getColumnFamily(), null);
 		}catch(Exception e) {
 			log.info("Could not create wide row table for {} message: {}", getColumnFamilyName(), e.getMessage());
 		}

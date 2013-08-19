@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.google.common.collect.ImmutableMap;
 import com.lvl6.aoc2.cassandra.Cassandra;
 import com.lvl6.aoc2.po.BasePersistentObject;
+import com.netflix.astyanax.Keyspace;
 import com.netflix.astyanax.Serializer;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 import com.netflix.astyanax.entitystore.DefaultEntityManager;
@@ -62,10 +63,10 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 
 	
 	protected void setupEntityManager() throws ConnectionException{
-		log.info("Building entity manager for {} and keyspace {}", type.getSimpleName(), cassandra.getKeyspace().getKeyspaceName());
+		log.info("Building entity manager for {} and keyspace {}", type.getSimpleName(), getKeyspace().getKeyspaceName());
 		em = new DefaultEntityManager.Builder<Clas, Ky>()
 		.withEntityType(type)
-		.withKeyspace(cassandra.getKeyspace())
+		.withKeyspace(getKeyspace())
 		.withColumnFamily(columnFamily)
 		.withAutoCommit(true)
 		.build();
@@ -82,7 +83,7 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 	
 	protected void createTable(Clas cls) {
 		try {
-			cassandra.getKeyspace()
+			getKeyspace()
 			    .prepareQuery(columnFamily)
 			    .withCql(cls.getTableCreateStatement())
 			    .execute();
@@ -90,11 +91,16 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 			log.info("Could not create table for {} message: {}", type.getSimpleName(), e.getMessage());
 		}
 	}
+
+
+	protected Keyspace getKeyspace() {
+		return cassandra.getKeyspace();
+	}
 	
 	protected void updateTable(Clas cls) {
 		for(String update : cls.getTableUpdateStatements()) {
 			try {
-				cassandra.getKeyspace()
+				getKeyspace()
 				    .prepareQuery(columnFamily)
 				    .withCql(update)
 				    .execute();
@@ -107,7 +113,7 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 	protected void addOrRemoveIndexes(Clas cls) {
 		for(String index : cls.getIndexCreateStatements()) {
 			try {
-				cassandra.getKeyspace()
+				getKeyspace()
 				    .prepareQuery(columnFamily)
 				    .withCql(index)
 				    .execute();
