@@ -28,8 +28,12 @@ message RepairEquipRequestProto {
 	//the ones the server doesn't know about
 	repeated UserEquipRepairProto uerpNew = 4;
 	
+	repeated string equipsBeingRepairedId = 5; 
+	
+	optional bool usingGems = 6;
+	
 	//just for the hell of it
-	optional int64 clientTimeMillis = 5;
+	optional int64 clientTimeMillis = 7;
 }
 
 message RepairEquipResponseProto {

@@ -49,12 +49,18 @@ public class Equipment extends BasePersistentObject{
 	@Column(name="class_required")
 	protected int classRequired = 0;
 	
+	//rename to hero
 	@Column(name="lvl_required")
 	protected int lvlRequired = 0;
 	
+	//fixing from 0 to 100%
+	@Column(name="durability_fix_price")
+	protected int durabilityFixPrice = 0;
 	
-
-
+	@Column(name="durability_fix_time_constant")
+	protected int durabilityFixTimeConstant = 0;
+	
+	
 	public UUID getId() {
 		return id;
 	}
@@ -185,6 +191,25 @@ public class Equipment extends BasePersistentObject{
 	}
 
 
+	public int getDurabilityFixPrice() {
+		return durabilityFixPrice;
+	}
+
+
+	public void setDurabilityFixPrice(int durabilityFixPrice) {
+		this.durabilityFixPrice = durabilityFixPrice;
+	}
+	
+
+	public int getDurabilityFixTimeConstant() {
+		return durabilityFixTimeConstant;
+	}
+
+
+	public void setDurabilityFixTimeConstant(int durabilityFixTimeConstant) {
+		this.durabilityFixTimeConstant = durabilityFixTimeConstant;
+	}
+
 
 	@Override
 	public String toString() {
@@ -194,7 +219,9 @@ public class Equipment extends BasePersistentObject{
 				+ ", defense=" + defense + ", additionalHp=" + additionalHp
 				+ ", additionalMana=" + additionalMana + ", rarity=" + rarity
 				+ ", classRequired=" + classRequired + ", lvlRequired="
-				+ lvlRequired + "]";
+				+ lvlRequired + ", durabilityFixPrice=" + durabilityFixPrice
+				+ ", durabilityFixTimeConstant=" + durabilityFixTimeConstant
+				+ "]";
 	}
 
 
@@ -214,6 +241,8 @@ public class Equipment extends BasePersistentObject{
 				" rarity int," +
 				" class_required int," +
 				" lvl_required int," +
+				" durability_fix_price int," +
+				" durability_fix_time_constant int," +
 				" primary key(id))" +
 				" with compact storage;";
 	}

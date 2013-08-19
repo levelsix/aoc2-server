@@ -10,9 +10,9 @@ option java_outer_classname = "BuildOrUpgradeStructureEventProto";
 
 message BuildOrUpgradeStructureRequestProto {
 	optional MinimumUserProto mup = 1;
-	optional string structureId = 2;
+	optional string userStructureId = 2;
 	optional bool isBuild = 3;
-//	optional bool speedup = 4;
+	optional bool usingGems = 4;
 }
 
 message BuildOrUpgradeStructureResponseProto {

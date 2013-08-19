@@ -56,12 +56,16 @@ import com.lvl6.aoc2.po.CombatRoom;
 		}
 	}
 
+	public CombatRoom getCombatRoomForName(String dungeonRoomName) {
+		String cqlquery = "select * from combatRoom where name=" + dungeonRoomName + ";";
+		List<CombatRoom> list = getCombatRoomEntityManager().get().find(cqlquery);
+		return list.get(0);
+	}
 
-
+	
 	public  void reload() {
 		setStaticIdsToCombatRooms();
 	}
-	
 	
 
 	public CombatRoomEntityManager getCombatRoomEntityManager() {

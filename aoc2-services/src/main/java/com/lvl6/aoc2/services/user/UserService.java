@@ -15,10 +15,12 @@ public interface UserService {
 	
 	public abstract void updateUserTonic(User u, int tonicChange);
 	
+	public abstract int calculateGemCostForMissingResources(User u, int missingResources, int missingResourcesType);
 	
+	public abstract int calculateGemCostForPercentageOfResource(User u, double percentage, int maxStorage);
 	
-	
-	
+	public abstract int calculateGemCostForSpeedUp(int minutes);
+		
 	public abstract UserEntityManager getUserEntityManager();
 
 	public abstract void setUserEntityManager(UserEntityManager userEntityManager);

@@ -42,8 +42,8 @@ public class UserStructure extends BasePersistentObject{
 	@Column(name="start_upgrade_time")
 	protected Date startUpgradeTime = new Date();
 
-	@Column(name="is_constructing")
-	protected boolean isConstructing = false;
+	@Column(name="is_finished_constructing")
+	protected boolean isFinishedConstructing = false;
 
 	@Column(name="level_of_user_when_upgrading")
 	protected int levelOfUserWhenUpgrading = 0;
@@ -138,14 +138,14 @@ public class UserStructure extends BasePersistentObject{
 		this.startUpgradeTime = startUpgradeTime;
 	}
 
-
-	public boolean isConstructing() {
-		return isConstructing;
+	
+	public boolean isFinishedConstructing() {
+		return isFinishedConstructing;
 	}
 
 
-	public void setConstructing(boolean isConstructing) {
-		this.isConstructing = isConstructing;
+	public void setFinishedConstructing(boolean isFinishedConstructing) {
+		this.isFinishedConstructing = isFinishedConstructing;
 	}
 
 
@@ -166,9 +166,9 @@ public class UserStructure extends BasePersistentObject{
 				+ ", xCoordinate=" + xCoordinate + ", yCoordinate="
 				+ yCoordinate + ", lastCollectTime=" + lastCollectTime
 				+ ", purchaseTime=" + purchaseTime + ", startUpgradeTime="
-				+ startUpgradeTime + ", isConstructing=" + isConstructing
-				+ ", levelOfUserWhenUpgrading=" + levelOfUserWhenUpgrading
-				+ "]";
+				+ startUpgradeTime + ", isFinishedConstructing="
+				+ isFinishedConstructing + ", levelOfUserWhenUpgrading="
+				+ levelOfUserWhenUpgrading + "]";
 	}
 
 
@@ -184,7 +184,7 @@ public class UserStructure extends BasePersistentObject{
 				" last_collect_time timestamp," +
 				" purchase_time timestamp," +
 				" start_upgrade_time timestamp," +
-				" is_constructing boolean," +
+				" is_finished_constructing boolean," +
 				" level_of_user_when_upgrading int," +
 				" primary key(id))" +
 				" with compact storage;";

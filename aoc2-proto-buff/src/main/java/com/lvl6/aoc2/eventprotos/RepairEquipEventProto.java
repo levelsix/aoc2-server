@@ -46,7 +46,16 @@ public final class RepairEquipEventProto {
     com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProtoOrBuilder getUerpNewOrBuilder(
         int index);
     
-    // optional int64 clientTimeMillis = 5;
+    // repeated string equipsBeingRepairedId = 5;
+    java.util.List<String> getEquipsBeingRepairedIdList();
+    int getEquipsBeingRepairedIdCount();
+    String getEquipsBeingRepairedId(int index);
+    
+    // optional bool usingGems = 6;
+    boolean hasUsingGems();
+    boolean getUsingGems();
+    
+    // optional int64 clientTimeMillis = 7;
     boolean hasClientTimeMillis();
     long getClientTimeMillis();
   }
@@ -155,11 +164,35 @@ public final class RepairEquipEventProto {
       return uerpNew_.get(index);
     }
     
-    // optional int64 clientTimeMillis = 5;
-    public static final int CLIENTTIMEMILLIS_FIELD_NUMBER = 5;
+    // repeated string equipsBeingRepairedId = 5;
+    public static final int EQUIPSBEINGREPAIREDID_FIELD_NUMBER = 5;
+    private com.google.protobuf.LazyStringList equipsBeingRepairedId_;
+    public java.util.List<String>
+        getEquipsBeingRepairedIdList() {
+      return equipsBeingRepairedId_;
+    }
+    public int getEquipsBeingRepairedIdCount() {
+      return equipsBeingRepairedId_.size();
+    }
+    public String getEquipsBeingRepairedId(int index) {
+      return equipsBeingRepairedId_.get(index);
+    }
+    
+    // optional bool usingGems = 6;
+    public static final int USINGGEMS_FIELD_NUMBER = 6;
+    private boolean usingGems_;
+    public boolean hasUsingGems() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public boolean getUsingGems() {
+      return usingGems_;
+    }
+    
+    // optional int64 clientTimeMillis = 7;
+    public static final int CLIENTTIMEMILLIS_FIELD_NUMBER = 7;
     private long clientTimeMillis_;
     public boolean hasClientTimeMillis() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public long getClientTimeMillis() {
       return clientTimeMillis_;
@@ -170,6 +203,8 @@ public final class RepairEquipEventProto {
       uerpDelete_ = java.util.Collections.emptyList();
       uerpUpdate_ = java.util.Collections.emptyList();
       uerpNew_ = java.util.Collections.emptyList();
+      equipsBeingRepairedId_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      usingGems_ = false;
       clientTimeMillis_ = 0L;
     }
     private byte memoizedIsInitialized = -1;
@@ -196,8 +231,14 @@ public final class RepairEquipEventProto {
       for (int i = 0; i < uerpNew_.size(); i++) {
         output.writeMessage(4, uerpNew_.get(i));
       }
+      for (int i = 0; i < equipsBeingRepairedId_.size(); i++) {
+        output.writeBytes(5, equipsBeingRepairedId_.getByteString(i));
+      }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt64(5, clientTimeMillis_);
+        output.writeBool(6, usingGems_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeInt64(7, clientTimeMillis_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -224,9 +265,22 @@ public final class RepairEquipEventProto {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, uerpNew_.get(i));
       }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < equipsBeingRepairedId_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(equipsBeingRepairedId_.getByteString(i));
+        }
+        size += dataSize;
+        size += 1 * getEquipsBeingRepairedIdList().size();
+      }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, clientTimeMillis_);
+          .computeBoolSize(6, usingGems_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(7, clientTimeMillis_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -380,8 +434,12 @@ public final class RepairEquipEventProto {
         } else {
           uerpNewBuilder_.clear();
         }
-        clientTimeMillis_ = 0L;
+        equipsBeingRepairedId_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000010);
+        usingGems_ = false;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        clientTimeMillis_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
       
@@ -455,8 +513,18 @@ public final class RepairEquipEventProto {
         } else {
           result.uerpNew_ = uerpNewBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+        if (((bitField0_ & 0x00000010) == 0x00000010)) {
+          equipsBeingRepairedId_ = new com.google.protobuf.UnmodifiableLazyStringList(
+              equipsBeingRepairedId_);
+          bitField0_ = (bitField0_ & ~0x00000010);
+        }
+        result.equipsBeingRepairedId_ = equipsBeingRepairedId_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000002;
+        }
+        result.usingGems_ = usingGems_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000004;
         }
         result.clientTimeMillis_ = clientTimeMillis_;
         result.bitField0_ = to_bitField0_;
@@ -556,6 +624,19 @@ public final class RepairEquipEventProto {
             }
           }
         }
+        if (!other.equipsBeingRepairedId_.isEmpty()) {
+          if (equipsBeingRepairedId_.isEmpty()) {
+            equipsBeingRepairedId_ = other.equipsBeingRepairedId_;
+            bitField0_ = (bitField0_ & ~0x00000010);
+          } else {
+            ensureEquipsBeingRepairedIdIsMutable();
+            equipsBeingRepairedId_.addAll(other.equipsBeingRepairedId_);
+          }
+          onChanged();
+        }
+        if (other.hasUsingGems()) {
+          setUsingGems(other.getUsingGems());
+        }
         if (other.hasClientTimeMillis()) {
           setClientTimeMillis(other.getClientTimeMillis());
         }
@@ -617,8 +698,18 @@ public final class RepairEquipEventProto {
               addUerpNew(subBuilder.buildPartial());
               break;
             }
-            case 40: {
-              bitField0_ |= 0x00000010;
+            case 42: {
+              ensureEquipsBeingRepairedIdIsMutable();
+              equipsBeingRepairedId_.add(input.readBytes());
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000020;
+              usingGems_ = input.readBool();
+              break;
+            }
+            case 56: {
+              bitField0_ |= 0x00000040;
               clientTimeMillis_ = input.readInt64();
               break;
             }
@@ -1276,22 +1367,99 @@ public final class RepairEquipEventProto {
         return uerpNewBuilder_;
       }
       
-      // optional int64 clientTimeMillis = 5;
+      // repeated string equipsBeingRepairedId = 5;
+      private com.google.protobuf.LazyStringList equipsBeingRepairedId_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureEquipsBeingRepairedIdIsMutable() {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+          equipsBeingRepairedId_ = new com.google.protobuf.LazyStringArrayList(equipsBeingRepairedId_);
+          bitField0_ |= 0x00000010;
+         }
+      }
+      public java.util.List<String>
+          getEquipsBeingRepairedIdList() {
+        return java.util.Collections.unmodifiableList(equipsBeingRepairedId_);
+      }
+      public int getEquipsBeingRepairedIdCount() {
+        return equipsBeingRepairedId_.size();
+      }
+      public String getEquipsBeingRepairedId(int index) {
+        return equipsBeingRepairedId_.get(index);
+      }
+      public Builder setEquipsBeingRepairedId(
+          int index, String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureEquipsBeingRepairedIdIsMutable();
+        equipsBeingRepairedId_.set(index, value);
+        onChanged();
+        return this;
+      }
+      public Builder addEquipsBeingRepairedId(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureEquipsBeingRepairedIdIsMutable();
+        equipsBeingRepairedId_.add(value);
+        onChanged();
+        return this;
+      }
+      public Builder addAllEquipsBeingRepairedId(
+          java.lang.Iterable<String> values) {
+        ensureEquipsBeingRepairedIdIsMutable();
+        super.addAll(values, equipsBeingRepairedId_);
+        onChanged();
+        return this;
+      }
+      public Builder clearEquipsBeingRepairedId() {
+        equipsBeingRepairedId_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+        return this;
+      }
+      void addEquipsBeingRepairedId(com.google.protobuf.ByteString value) {
+        ensureEquipsBeingRepairedIdIsMutable();
+        equipsBeingRepairedId_.add(value);
+        onChanged();
+      }
+      
+      // optional bool usingGems = 6;
+      private boolean usingGems_ ;
+      public boolean hasUsingGems() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public boolean getUsingGems() {
+        return usingGems_;
+      }
+      public Builder setUsingGems(boolean value) {
+        bitField0_ |= 0x00000020;
+        usingGems_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearUsingGems() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        usingGems_ = false;
+        onChanged();
+        return this;
+      }
+      
+      // optional int64 clientTimeMillis = 7;
       private long clientTimeMillis_ ;
       public boolean hasClientTimeMillis() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       public long getClientTimeMillis() {
         return clientTimeMillis_;
       }
       public Builder setClientTimeMillis(long value) {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000040;
         clientTimeMillis_ = value;
         onChanged();
         return this;
       }
       public Builder clearClientTimeMillis() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000040);
         clientTimeMillis_ = 0L;
         onChanged();
         return this;
@@ -1894,20 +2062,22 @@ public final class RepairEquipEventProto {
     java.lang.String[] descriptorData = {
       "\n\026RepairEquipEvent.proto\022\005proto\032\023FullUse" +
       "rProto.proto\032\030UserEquipmentProto.proto\032\032" +
-      "UserEquipRepairProto.proto\"\351\001\n\027RepairEqu" +
+      "UserEquipRepairProto.proto\"\233\002\n\027RepairEqu" +
       "ipRequestProto\022$\n\003mup\030\001 \001(\0132\027.proto.Mini" +
       "mumUserProto\022/\n\nuerpDelete\030\002 \003(\0132\033.proto" +
       ".UserEquipRepairProto\022/\n\nuerpUpdate\030\003 \003(" +
       "\0132\033.proto.UserEquipRepairProto\022,\n\007uerpNe" +
-      "w\030\004 \003(\0132\033.proto.UserEquipRepairProto\022\030\n\020" +
-      "clientTimeMillis\030\005 \001(\003\"\363\001\n\030RepairEquipRe" +
-      "sponseProto\022$\n\003mup\030\001 \001(\0132\027.proto.Minimum",
-      "UserProto\022A\n\006status\030\002 \001(\01621.proto.Repair" +
-      "EquipResponseProto.RepairEquipStatus\"n\n\021" +
-      "RepairEquipStatus\022\013\n\007SUCCESS\020\000\022\035\n\031FAIL_U" +
-      "NSYNCHRONIZED_TIMES\020\001\022\035\n\031FAIL_NOT_ENOUGH" +
-      "_RESOURCES\020\002\022\016\n\nFAIL_OTHER\020\003B2\n\031com.lvl6" +
-      ".aoc2.eventprotosB\025RepairEquipEventProto"
+      "w\030\004 \003(\0132\033.proto.UserEquipRepairProto\022\035\n\025" +
+      "equipsBeingRepairedId\030\005 \003(\t\022\021\n\tusingGems" +
+      "\030\006 \001(\010\022\030\n\020clientTimeMillis\030\007 \001(\003\"\363\001\n\030Rep",
+      "airEquipResponseProto\022$\n\003mup\030\001 \001(\0132\027.pro" +
+      "to.MinimumUserProto\022A\n\006status\030\002 \001(\01621.pr" +
+      "oto.RepairEquipResponseProto.RepairEquip" +
+      "Status\"n\n\021RepairEquipStatus\022\013\n\007SUCCESS\020\000" +
+      "\022\035\n\031FAIL_UNSYNCHRONIZED_TIMES\020\001\022\035\n\031FAIL_" +
+      "NOT_ENOUGH_RESOURCES\020\002\022\016\n\nFAIL_OTHER\020\003B2" +
+      "\n\031com.lvl6.aoc2.eventprotosB\025RepairEquip" +
+      "EventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1919,7 +2089,7 @@ public final class RepairEquipEventProto {
           internal_static_proto_RepairEquipRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_RepairEquipRequestProto_descriptor,
-              new java.lang.String[] { "Mup", "UerpDelete", "UerpUpdate", "UerpNew", "ClientTimeMillis", },
+              new java.lang.String[] { "Mup", "UerpDelete", "UerpUpdate", "UerpNew", "EquipsBeingRepairedId", "UsingGems", "ClientTimeMillis", },
               com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipRequestProto.class,
               com.lvl6.aoc2.eventprotos.RepairEquipEventProto.RepairEquipRequestProto.Builder.class);
           internal_static_proto_RepairEquipResponseProto_descriptor =

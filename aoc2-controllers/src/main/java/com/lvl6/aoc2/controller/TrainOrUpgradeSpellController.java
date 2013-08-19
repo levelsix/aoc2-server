@@ -1,7 +1,6 @@
 package com.lvl6.aoc2.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -11,8 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.google.common.collect.Iterables;
-import com.lvl6.aoc2.entitymanager.SpellEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.UserSpellEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.SpellRetrieveUtils;
@@ -29,10 +26,9 @@ import com.lvl6.aoc2.events.response.TrainOrUpgradeSpellResponseEvent;
 import com.lvl6.aoc2.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
 import com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto;
 import com.lvl6.aoc2.po.Spell;
-import com.lvl6.aoc2.po.Structure;
 import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserSpell;
-import com.lvl6.aoc2.po.UserStructure;
+import com.lvl6.aoc2.services.user.UserService;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
 
@@ -46,6 +42,9 @@ public class TrainOrUpgradeSpellController extends EventController {
 	
 	@Autowired
 	protected UserEntityManager userEntityManager; 
+	
+	@Autowired
+	protected UserService userService; 
 
 	@Autowired
 	protected UserSpellRetrieveUtils userSpellRetrieveUtils; 
@@ -71,6 +70,7 @@ public class TrainOrUpgradeSpellController extends EventController {
 
 		//get the values client sent
 		MinimumUserProto sender = reqProto.getMup();
+		boolean usingGems = reqProto.getUsingGems();
 
 		//uuid's are not strings, need to convert from string to uuid, vice versa
 		String userIdString = sender.getUserID();
@@ -94,12 +94,12 @@ public class TrainOrUpgradeSpellController extends EventController {
 
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender, inDb,
-					us, sList, clientDate);
+					us, sList, usingGems, clientDate);
 
 			boolean successful = false;
 			if (validRequest) {
 				Spell s = sList.get(0);
-				successful = writeChangesToDb(inDb, us, s, clientDate);
+				successful = writeChangesToDb(inDb, us, s, usingGems, clientDate);
 			}
 
 			if (successful) {
@@ -127,7 +127,7 @@ public class TrainOrUpgradeSpellController extends EventController {
 	}
 
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
-			User inDb, UserSpell us, List<Spell> sList, Date clientDate) throws ConnectionException {
+			User inDb, UserSpell us, List<Spell> sList, boolean usingGems, Date clientDate) throws ConnectionException {
 		if (null == inDb || null == us) {
 			log.error("unexpected error: no user exists. sender=" + sender +
 					"\t inDb=" + inDb + "\t us=" + us);
@@ -165,22 +165,44 @@ public class TrainOrUpgradeSpellController extends EventController {
 			return false;
 		}
 		
-		if(s.getResearchCostResource() == ResourceCostType.GOLD_VALUE) {
-			if(inDb.getGold() < s.getResearchCost()) {
-				log.error("user doesn't have enough gold to train new spell");
-				responseBuilder.setStatus(TrainOrUpgradeSpellStatus.FAIL_INSUFFICIENT_RESOURCES);
+		if(!usingGems) {
+			if(s.getResearchCostResource() == ResourceCostType.GOLD_VALUE) {
+				if(inDb.getGold() < s.getResearchCost()) {
+					log.error("user doesn't have enough gold to train new spell");
+					responseBuilder.setStatus(TrainOrUpgradeSpellStatus.FAIL_INSUFFICIENT_RESOURCES);
+					return false;
+				}
+			} else if(s.getResearchCostResource() == ResourceCostType.TONIC_VALUE) {
+				if(inDb.getTonic() < s.getResearchCost()) {
+					log.error("user doesn't have enough tonic to train new spell");
+					responseBuilder.setStatus(TrainOrUpgradeSpellStatus.FAIL_INSUFFICIENT_RESOURCES);
+					return false;
+				}
+			} else {
+				log.error("spell doesn't cost either gold or tonic...strange...Hi Ashwin/Art");
+				responseBuilder.setStatus(TrainOrUpgradeSpellStatus.FAIL_OTHER);
 				return false;
 			}
-		} else if(s.getResearchCostResource() == ResourceCostType.TONIC_VALUE) {
-			if(inDb.getTonic() < s.getResearchCost()) {
-				log.error("user doesn't have enough tonic to train new spell");
-				responseBuilder.setStatus(TrainOrUpgradeSpellStatus.FAIL_INSUFFICIENT_RESOURCES);
-				return false;
+		}
+		else {
+			if(s.getResearchCostResource() == ResourceCostType.GOLD_VALUE) {
+				int missingGoldResources = s.getResearchCost() - inDb.getGold();
+				if(inDb.getGems() < getUserService().calculateGemCostForMissingResources(inDb, missingGoldResources, ResourceCostType.GOLD_VALUE)) {
+					log.error("user doesn't have enough gems to buy missing resources");
+					responseBuilder.setStatus(TrainOrUpgradeSpellStatus.FAIL_NOT_ENOUGH_GEMS);
+					return false;
+				}
 			}
-		} else {
-			log.error("spell doesn't cost either gold or tonic...strange...Hi Ashwin/Art");
-			responseBuilder.setStatus(TrainOrUpgradeSpellStatus.FAIL_OTHER);
-			return false;
+			else {
+				int missingTonicResources = s.getResearchCost() - inDb.getTonic();
+				if(inDb.getGems() < getUserService().calculateGemCostForMissingResources(inDb, missingTonicResources, ResourceCostType.TONIC_VALUE)) {
+					log.error("user doesn't have enough gems to buy missing resources");
+					responseBuilder.setStatus(TrainOrUpgradeSpellStatus.FAIL_NOT_ENOUGH_GEMS);
+					return false;
+				}
+			}
+			
+			
 		}
 		
 		int count=0;
@@ -209,41 +231,47 @@ public class TrainOrUpgradeSpellController extends EventController {
 	}
 
 	private boolean writeChangesToDb(User inDb, UserSpell us,
-			Spell s, Date clientDate) {
+			Spell s, boolean usingGems, Date clientDate) {
 		try {
-			if(s.getResearchCost() == ResourceCostType.GOLD_VALUE) {
-				inDb.setGold(inDb.getGold()-s.getResearchCost());
+			if(!usingGems) {
+				if(s.getResearchCost() == ResourceCostType.GOLD_VALUE) {
+					inDb.setGold(inDb.getGold()-s.getResearchCost());
+				}
+				else {
+					inDb.setTonic(inDb.getTonic()-s.getResearchCost());
+				}
 			}
 			else {
-				inDb.setTonic(inDb.getTonic()-s.getResearchCost());
+				if(s.getResearchCost() == ResourceCostType.GOLD_VALUE) {
+					int missingGoldResources = s.getResearchCost() - inDb.getGold();
+					inDb.setGold(0);
+					inDb.setGems(inDb.getGems() - getUserService().calculateGemCostForMissingResources
+							(inDb, missingGoldResources, ResourceCostType.GOLD_VALUE));
+				}
+				else {
+					int missingTonicResources = s.getResearchCost() - inDb.getTonic();
+					inDb.setTonic(0);
+					inDb.setGems(inDb.getGems() - getUserService().calculateGemCostForMissingResources
+							(inDb, missingTonicResources, ResourceCostType.TONIC_VALUE));
+				}
 			}
 			//update user
 			getUserEntityManager().get().put(inDb);
-			Date rightNow = new Date();
 			UUID newId = UUID.randomUUID();
 			//and update his user spell rows
-			if(s.getLevel() == 1) {
-//				String cqlquery = "INSERT INTO user_spell (id, user_id, spell_id, lvl, spell_lvl, time_acquired, " +
-//						"is_training, level_of_user_when_upgrading) VALUES (" + newId + "," + inDb.getId() + "," + s.getId() + "," 
-//						+ 1 + "," + rightNow + "," + true + "," + inDb.getLevel() + ");"; 
-				us.setId(newId);
-				us.setUserId(inDb.getId());
-				us.setName(s.getName());
-				us.setSpellLvl(1);
-				us.setTimeAcquired(clientDate);
-				us.setIsTraining(true);
-				us.setLevelOfUserWhenUpgrading(inDb.getLevel());
-				getUserSpellEntityManager().get().put(us);
-			}
-			else if(s.getLevel() > 1) {
-//				String cqlquery = "UPDATE user_spell USING CONSISTENCY QUORUM SET 'spell_lvl' = " + s.getLevel() + ", 'time_acquired' = " 
-//						+ rightNow + ", 'is_training' = " + true + ", 'level_of_user_when_upgrading' = " + inDb.getLevel() + ";";
-				us.setSpellLvl(s.getLevel());
-				us.setTimeAcquired(clientDate);
-				us.setIsTraining(true);
-				us.setLevelOfUserWhenUpgrading(inDb.getLevel());
-				getUserSpellEntityManager().get().put(us);
-			}
+			
+			//update user spell
+			UserSpell us2 = new UserSpell();
+			
+			us2.setId(newId);
+			us2.setUserId(inDb.getId());
+			us2.setName(s.getName());
+			us2.setSpellLvl(s.getLevel());
+			us2.setTimeAcquired(clientDate);
+			us2.setIsTraining(true);
+			us2.setLevelOfUserWhenUpgrading(inDb.getLevel());
+			getUserSpellEntityManager().get().put(us2);
+		
 			return true;
 
 		} catch (Exception e) {
@@ -297,6 +325,14 @@ public class TrainOrUpgradeSpellController extends EventController {
 
 	public void setUserEntityManager(UserEntityManager userEntityManager) {
 		this.userEntityManager = userEntityManager;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 
 

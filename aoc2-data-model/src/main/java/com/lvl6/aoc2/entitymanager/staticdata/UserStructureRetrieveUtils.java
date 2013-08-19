@@ -19,13 +19,8 @@ import com.lvl6.aoc2.po.UserStructure;
 
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
-	private  Map<UUID, Map<Integer, UserStructure>> structIdToLevelsToUserStructure;
-
 	private  Map<UUID, UserStructure> idsToUserStructures;
 	
-	private Map<UUID, UserStructure> userIdsToUserStructures;
-	//private  final String TABLE_NAME = DBConstants.UserStructure;
-
 	@Autowired
 	protected UserStructureEntityManager UserStructureEntityManager;
 
