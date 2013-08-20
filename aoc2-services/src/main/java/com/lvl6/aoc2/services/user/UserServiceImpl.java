@@ -14,13 +14,13 @@ import com.lvl6.aoc2.entitymanager.UserDeviceEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.ClassLevelInfoRetrieveUtils;
 import com.lvl6.aoc2.po.ClassLevelInfo;
-import com.lvl6.aoc2.entitymanager.staticdata.UserStructureRetrieveUtils;
 import com.lvl6.aoc2.noneventprotos.FunctionalityTypeEnum.FunctionalityType;
 import com.lvl6.aoc2.po.Structure;
 import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserDevice;
 import com.lvl6.aoc2.po.UserStructure;
 import com.lvl6.aoc2.po.properties.AocTwoTableConstants;
+import com.lvl6.aoc2.services.userstructure.UserStructureService;
 
 public class UserServiceImpl implements UserService {
 	
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 	protected UserEntityManager userEntityManager;
 	
 	@Autowired
-	protected UserStructureRetrieveUtils userStructureRetrieveUtils;
+	protected UserStructureService userStructureService;
 
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 	
@@ -172,10 +172,10 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	public int calculateGemCostForMissingResources(User u, int missingResources, int missingResourcesType) {
-		List<UserStructure> usList = getUserStructureRetrieveUtils().getAllUserStructuresForUser(u.getId());
+		List<UserStructure> usList = getUserStructureService().getAllUserStructuresForUser(u.getId());
 		int maxStorage = 0;
 		for(UserStructure us : usList) {
-			Structure s = getUserStructureRetrieveUtils().getStructureCorrespondingToUserStructure(us);
+			Structure s = getUserStructureService().getStructureCorrespondingToUserStructure(us);
 			if((s.getFunctionalityResourceType() == missingResourcesType) && (s.getFunctionalityType() == FunctionalityType.RESOURCE_STORAGE_VALUE)) {
 				maxStorage = maxStorage + s.getFunctionalityCapacity();
 			}
@@ -252,13 +252,12 @@ public class UserServiceImpl implements UserService {
 		this.userEntityManager = userEntityManager;
 	}
 
-	public UserStructureRetrieveUtils getUserStructureRetrieveUtils() {
-		return userStructureRetrieveUtils;
+	public UserStructureService getUserStructureService() {
+		return userStructureService;
 	}
 
-	public void setUserStructureRetrieveUtils(
-			UserStructureRetrieveUtils userStructureRetrieveUtils) {
-		this.userStructureRetrieveUtils = userStructureRetrieveUtils;
+	public void setUserStructureService(UserStructureService userStructureService) {
+		this.userStructureService = userStructureService;
 	}
 
 
