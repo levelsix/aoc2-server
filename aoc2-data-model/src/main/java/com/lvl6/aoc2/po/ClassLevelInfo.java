@@ -29,10 +29,15 @@ public class ClassLevelInfo extends BasePersistentObject{
 	@Column(name="max_mana")
 	protected int maxMana = 0;
 	
+	//exp required to level up
 	@Column(name="max_exp")
 	protected int maxExp = 0;
 	
-
+	@Column(name="attack")
+	protected int attack = 0;
+	
+	@Column(name="defense")
+	protected int defense = 0;
 	
 	
 
@@ -96,11 +101,32 @@ public class ClassLevelInfo extends BasePersistentObject{
 	}
 
 
+	public int getAttack() {
+		return attack;
+	}
+
+
+	public void setAttack(int attack) {
+		this.attack = attack;
+	}
+
+
+	public int getDefense() {
+		return defense;
+	}
+
+
+	public void setDefense(int defense) {
+		this.defense = defense;
+	}
+
+
 	@Override
 	public String toString() {
 		return "ClassLevelInfo [id=" + id + ", classType=" + classType
 				+ ", lvl=" + lvl + ", maxHp=" + maxHp + ", maxMana=" + maxMana
-				+ ", maxExp=" + maxExp + "]";
+				+ ", maxExp=" + maxExp + ", attack=" + attack + ", defense="
+				+ defense + "]";
 	}
 
 
@@ -113,6 +139,8 @@ public class ClassLevelInfo extends BasePersistentObject{
 				" max_hp int," +
 				" max_mana int," +
 				" max_exp int," +
+				" attack int," +
+				" defense int," +
 				" primary key(id))" +
 				" with compact storage;";
 	}

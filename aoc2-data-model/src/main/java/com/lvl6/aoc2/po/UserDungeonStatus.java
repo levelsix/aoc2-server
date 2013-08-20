@@ -162,10 +162,9 @@ public class UserDungeonStatus extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_equip_user_id_index on user_equip (user_id);");
-		indexes.add("create index user_equip_equip_id_index on user_equip (equip_id);");
-		indexes.add("create index user_equip_equip_level_index on user_equip (equip_level);");
-		indexes.add("create index user_equip_equipped_index on user_equip (equipped);");
+		indexes.add("create index user_dungeon_status_user_id_index on user_dungeon_status (user_id);");
+		indexes.add("create index user_dungeon_status_dungeon_room_name_index on user_dungeon_status (dungeon_room_name);");
+		
 		return indexes;
 	}
 	

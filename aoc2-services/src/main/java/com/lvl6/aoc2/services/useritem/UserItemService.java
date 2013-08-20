@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.lvl6.aoc2.entitymanager.UserItemEntityManager;
+import com.lvl6.aoc2.po.Item;
 import com.lvl6.aoc2.po.UserItem;
 
 public interface UserItemService {
@@ -20,5 +21,12 @@ public interface UserItemService {
 	
 	public abstract void setUserItemEntityManager(UserItemEntityManager userItemEntityManager);
 	
+	public abstract UserItem getUserItemForId(UUID id);
+	
+	public abstract Map<UUID, UserItem> getUserItemsForIds(List<UUID> ids);
+	
+	public abstract List<UserItem> getAllUserItemsForUser(UUID userId);
+	
+	public abstract Item getItemCorrespondingToUserItem(UserItem ui);
 	
 }

@@ -1,4 +1,5 @@
-package com.lvl6.aoc2.entitymanager.staticdata;
+package com.lvl6.aoc2.services.userdungeonstatushistory;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,13 +9,23 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+
 
 import com.lvl6.aoc2.entitymanager.UserDungeonStatusHistoryEntityManager;
+
 import com.lvl6.aoc2.po.UserDungeonStatusHistory;
 
-@Component public class UserDungeonStatusHistoryRetrieveUtils {
 
+public class UserDungeonStatusHistoryServiceImpl implements UserDungeonStatusHistoryService {
+	
+	@Autowired
+	protected UserDungeonStatusHistoryEntityManager userDungeonStatusHistoryEntityManager;
+	
+//	@Autowired
+//	protected UserDungeonStatusHistory
+
+
+		
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	private  Map<UUID, UserDungeonStatusHistory> idsToUserDungeonStatusHistorys;
@@ -22,6 +33,7 @@ import com.lvl6.aoc2.po.UserDungeonStatusHistory;
 	@Autowired
 	protected UserDungeonStatusHistoryEntityManager UserDungeonStatusHistoryEntityManager;
 
+	@Override
 	public  UserDungeonStatusHistory getUserDungeonStatusHistoryForId(UUID id) {
 		log.debug("retrieve UserDungeonStatusHistory data for id " + id);
 		if (idsToUserDungeonStatusHistorys == null) {
@@ -30,6 +42,7 @@ import com.lvl6.aoc2.po.UserDungeonStatusHistory;
 		return idsToUserDungeonStatusHistorys.get(id);
 	}
 
+	@Override
 	public  Map<UUID, UserDungeonStatusHistory> getUserDungeonStatusHistorysForIds(List<UUID> ids) {
 		log.debug("retrieve UserDungeonStatusHistorys data for ids " + ids);
 		if (idsToUserDungeonStatusHistorys == null) {
@@ -55,24 +68,16 @@ import com.lvl6.aoc2.po.UserDungeonStatusHistory;
 					
 	}
 
-//	public  List<UserDungeonStatusHistory> getAllUserDungeonStatusHistorysForUser(UUID userId) {
-//		String cqlquery = "select * from user_equip where user_id=" + userId + ";"; 
-//		List <UserDungeonStatusHistory> list = getUserDungeonStatusHistoryEntityManager().get().find(cqlquery);
-//		return list;
-//	}
-//	
-	
-	public  void reload() {
-		setStaticIdsToUserDungeonStatusHistorys();
-	}
-	
-	
 	public UserDungeonStatusHistoryEntityManager getUserDungeonStatusHistoryEntityManager() {
-		return UserDungeonStatusHistoryEntityManager;
+		return userDungeonStatusHistoryEntityManager;
 	}
 
 	public void setUserDungeonStatusHistoryEntityManager(
-			UserDungeonStatusHistoryEntityManager UserDungeonStatusHistoryEntityManager) {
-		this.UserDungeonStatusHistoryEntityManager = UserDungeonStatusHistoryEntityManager;
+			UserDungeonStatusHistoryEntityManager userDungeonStatusHistoryEntityManager) {
+		this.userDungeonStatusHistoryEntityManager = userDungeonStatusHistoryEntityManager;
 	}
+
+
+
+	
 }

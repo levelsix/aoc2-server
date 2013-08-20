@@ -129,8 +129,8 @@ public class UserChest extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_spell_user_id_index on user_spell (user_id);");
-		indexes.add("create index user_spell_spell_id_index on user_spell (spell_id);");
+		indexes.add("create index user_chest_user_id_index on user_chest (user_id);");
+		indexes.add("create index user_chest_chest_id_index on user_chest (chest_id);");
 		return indexes;
 	}
 	

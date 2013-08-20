@@ -144,10 +144,7 @@ public class UserConsumableQueue extends BasePersistentObject{
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index user_consumable_queue_user_id_index on user_consumable_queue (user_id);");
-		indexes.add("create index user_equip_repair_equip_id_index on user_equip_repair (equip_id);");
-		indexes.add("create index user_equip_repair_equip_level_index on user_equip_repair (equip_level);");
-		indexes.add("create index user_equip_repair_expected_start_index on user_equip_repair (expected_start);");
-		indexes.add("create index user_equip_repair_entered_queue_index on user_equip_repair (entered_queue);");
+		indexes.add("create index user_consumable_queue_name_index on user_consumable_queue (name);");
 		return indexes;
 	}
 	

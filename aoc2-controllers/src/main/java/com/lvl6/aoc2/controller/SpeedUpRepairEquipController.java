@@ -17,8 +17,6 @@ import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEquipEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEquipRepairEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.EquipmentRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserEquipRepairRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserEquipRetrieveUtils;
 import com.lvl6.aoc2.eventprotos.SpeedUpRepairEquipEventProto.SpeedUpRepairEquipRequestProto;
 import com.lvl6.aoc2.eventprotos.SpeedUpRepairEquipEventProto.SpeedUpRepairEquipResponseProto;
 import com.lvl6.aoc2.eventprotos.SpeedUpRepairEquipEventProto.SpeedUpRepairEquipResponseProto.Builder;
@@ -44,11 +42,9 @@ public class SpeedUpRepairEquipController extends EventController {
 	@Autowired
 	protected EquipmentRetrieveUtils equipmentRetrieveUtils; 
 	
-	@Autowired
-	protected UserEquipRetrieveUtils userEquipRetrieveUtils; 
+
 	
-	@Autowired
-	protected UserEquipRepairRetrieveUtils userEquipRepairRetrieveUtils; 
+
 
 	@Autowired
 	protected UserEquipRepairService userEquipRepairService;
@@ -272,14 +268,7 @@ public class SpeedUpRepairEquipController extends EventController {
 		this.userEquipEntityManager = userEquipEntityManager;
 	}
 
-	public UserEquipRetrieveUtils getUserEquipRetrieveUtils() {
-		return userEquipRetrieveUtils;
-	}
 
-	public void setUserEquipRetrieveUtils(
-			UserEquipRetrieveUtils userEquipRetrieveUtils) {
-		this.userEquipRetrieveUtils = userEquipRetrieveUtils;
-	}
 
 	public UserEquipRepairEntityManager getUserEquipRepairEntityManager() {
 		return userEquipRepairEntityManager;
@@ -290,15 +279,6 @@ public class SpeedUpRepairEquipController extends EventController {
 		this.userEquipRepairEntityManager = userEquipRepairEntityManager;
 	}
 
-	public UserEquipRepairRetrieveUtils getUserEquipRepairRetrieveUtils() {
-		return userEquipRepairRetrieveUtils;
-	}
-
-	public void setUserEquipRepairRetrieveUtils(
-			UserEquipRepairRetrieveUtils userEquipRepairRetrieveUtils) {
-		this.userEquipRepairRetrieveUtils = userEquipRepairRetrieveUtils;
-	}
-	
 	
 
 }

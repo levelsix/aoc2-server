@@ -17,8 +17,6 @@ import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEquipEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEquipRepairEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.EquipmentRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserEquipRepairRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserEquipRetrieveUtils;
 import com.lvl6.aoc2.eventprotos.BuildOrUpgradeStructureEventProto.ResourceCostType;
 import com.lvl6.aoc2.eventprotos.RepairEquipWhenMissingResourcesEventProto.RepairEquipWhenMissingResourcesRequestProto;
 import com.lvl6.aoc2.eventprotos.RepairEquipWhenMissingResourcesEventProto.RepairEquipWhenMissingResourcesResponseProto;
@@ -45,15 +43,10 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 
 	@Autowired
 	protected EquipmentRetrieveUtils equipmentRetrieveUtils; 
-	
-	@Autowired
-	protected UserEquipRetrieveUtils userEquipRetrieveUtils; 
-	
-	@Autowired
-	protected UserEquipRepairRetrieveUtils userEquipRepairRetrieveUtils; 
 
+	
 	@Autowired
-	protected UserEquipRepairService userEquipRepairService;
+	protected UserEquipRepairService userEquipRepairService; 
 	
 	@Autowired
 	protected UserEquipRepairEntityManager userEquipRepairEntityManager;
@@ -113,7 +106,7 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
 			UserEquip ue = getUserEquipEntityManager().get().get(userEquipId);
-			Equipment e = getUserEquipRetrieveUtils().getEquipmentCorrespondingToUserEquip(ue);
+			Equipment e = getUserEquipService().getEquipmentCorrespondingToUserEquip(ue);
 
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender,
@@ -282,14 +275,7 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 		this.userEquipEntityManager = userEquipEntityManager;
 	}
 
-	public UserEquipRetrieveUtils getUserEquipRetrieveUtils() {
-		return userEquipRetrieveUtils;
-	}
 
-	public void setUserEquipRetrieveUtils(
-			UserEquipRetrieveUtils userEquipRetrieveUtils) {
-		this.userEquipRetrieveUtils = userEquipRetrieveUtils;
-	}
 
 	public UserEquipRepairEntityManager getUserEquipRepairEntityManager() {
 		return userEquipRepairEntityManager;
@@ -300,15 +286,7 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 		this.userEquipRepairEntityManager = userEquipRepairEntityManager;
 	}
 
-	public UserEquipRepairRetrieveUtils getUserEquipRepairRetrieveUtils() {
-		return userEquipRepairRetrieveUtils;
-	}
 
-	public void setUserEquipRepairRetrieveUtils(
-			UserEquipRepairRetrieveUtils userEquipRepairRetrieveUtils) {
-		this.userEquipRepairRetrieveUtils = userEquipRepairRetrieveUtils;
-	}
-	
 	
 
 }

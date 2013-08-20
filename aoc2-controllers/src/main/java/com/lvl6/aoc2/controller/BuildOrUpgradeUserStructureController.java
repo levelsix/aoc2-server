@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.UserStructureEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.StructureRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserStructureRetrieveUtils;
 import com.lvl6.aoc2.eventprotos.BuildOrUpgradeStructureEventProto.BuildOrUpgradeStructureRequestProto;
 import com.lvl6.aoc2.eventprotos.BuildOrUpgradeStructureEventProto.BuildOrUpgradeStructureResponseProto;
 import com.lvl6.aoc2.eventprotos.BuildOrUpgradeStructureEventProto.BuildOrUpgradeStructureResponseProto.BuildOrUpgradeStructureStatus;
@@ -29,6 +28,7 @@ import com.lvl6.aoc2.po.Structure;
 import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserStructure;
 import com.lvl6.aoc2.services.user.UserService;
+import com.lvl6.aoc2.services.userstructure.UserStructureService;
 import com.lvl6.aoc2.widerows.RestrictionOnNumberOfUserStructure;
 import com.lvl6.aoc2.widerows.WideRowValue;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
@@ -43,7 +43,7 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 	protected StructureRetrieveUtils structureRetrieveUtils; 
 	
 	@Autowired
-	protected UserStructureRetrieveUtils userStructureRetrieveUtils; 
+	protected UserStructureService userStructureService; 
 
 	@Autowired
 	protected UserStructureEntityManager userStructureEntityManager;
@@ -223,7 +223,7 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 		}
 		
 		int count=0;
-		List<UserStructure> userStructs = getUserStructureRetrieveUtils().getAllUserStructuresForUser(inDb.getId());
+		List<UserStructure> userStructs = getUserStructureService().getAllUserStructuresForUser(inDb.getId());
 		for(UserStructure us2: userStructs) {
 			if(us2.isFinishedConstructing())
 				count++;
@@ -328,15 +328,16 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 	}
 	
 	
-	public UserStructureRetrieveUtils getUserStructureRetrieveUtils() {
-		return userStructureRetrieveUtils;
+
+	
+	public UserStructureService getUserStructureService() {
+		return userStructureService;
 	}
 
-	public void setUserStructureRetrieveUtils(
-			UserStructureRetrieveUtils userStructureRetrieveUtils) {
-		this.userStructureRetrieveUtils = userStructureRetrieveUtils;
+	public void setUserStructureService(UserStructureService userStructureService) {
+		this.userStructureService = userStructureService;
 	}
-	
+
 	public StructureRetrieveUtils getStructureRetrieveUtils() {
 		return structureRetrieveUtils;
 	}

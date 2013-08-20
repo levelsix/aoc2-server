@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.lvl6.aoc2.entitymanager.ItemEntityManager;
 import com.lvl6.aoc2.entitymanager.UserItemEntityManager;
-import com.lvl6.aoc2.entitymanager.staticdata.UserItemRetrieveUtils;
 import com.lvl6.aoc2.po.Item;
-import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserItem;
 
 public class UserItemServiceImpl implements UserItemService {
@@ -20,7 +21,12 @@ public class UserItemServiceImpl implements UserItemService {
 	protected UserItemEntityManager userItemEntityManager;
 	
 	@Autowired
-	protected UserItemRetrieveUtils userItemRetrieveUtils;
+	protected ItemEntityManager itemEntityManager;
+	
+	
+	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+
+	private  Map<UUID, UserItem> idsToUserItems;
 
 	
 	@Override
@@ -43,7 +49,7 @@ public class UserItemServiceImpl implements UserItemService {
 
 	@Override
 	public int getNumberOfSpecificUserKeys(UUID itemId, UUID userId) {
-		List<UserItem> uiList = getUserItemRetrieveUtils().getAllUserItemsForUser(userId);
+		List<UserItem> uiList = getAllUserItemsForUser(userId);
 		int specificKeyCount = 0;
 		for(UserItem ui : uiList) {
 			if(ui.getItemId() == itemId)
@@ -51,6 +57,58 @@ public class UserItemServiceImpl implements UserItemService {
 		}
 		return specificKeyCount;
 	}
+
+	@Override
+	public  UserItem getUserItemForId(UUID id) {
+		log.debug("retrieve UserItem data for id " + id);
+		if (idsToUserItems == null) {
+			setStaticIdsToUserItems();      
+		}
+		return idsToUserItems.get(id);
+	}
+
+	@Override
+	public  Map<UUID, UserItem> getUserItemsForIds(List<UUID> ids) {
+		log.debug("retrieve UserItems data for ids " + ids);
+		if (idsToUserItems == null) {
+			setStaticIdsToUserItems();      
+		}
+		Map<UUID, UserItem> toreturn = new HashMap<UUID, UserItem>();
+		for (UUID id : ids) {
+			toreturn.put(id,  idsToUserItems.get(id));
+		}
+		return toreturn;
+	}
+
+	
+	private  void setStaticIdsToUserItems() {
+		log.debug("setting  map of UserItemIds to UserItems");
+
+		String cqlquery = "select * from user_item;"; 
+		List <UserItem> list = getUserItemEntityManager().get().find(cqlquery);
+		idsToUserItems = new HashMap<UUID, UserItem>();
+		for(UserItem us : list) {
+			UUID id= us.getId();
+			idsToUserItems.put(id, us);
+		}
+					
+	}
+
+	@Override
+	public  List<UserItem> getAllUserItemsForUser(UUID userId) {
+		String cqlquery = "select * from user_item where user_id=" + userId + ";"; 
+		List <UserItem> list = getUserItemEntityManager().get().find(cqlquery);
+		return list;
+	}
+	
+	@Override
+	public Item getItemCorrespondingToUserItem(UserItem ui) {
+		UUID itemId = ui.getItemId();
+		String cqlquery = "select * from Item where itemId= " + itemId + ";";
+		List<Item> i = getItemEntityManager().get().find(cqlquery);
+		return i.get(0);
+	}
+	
 	
 	
 	@Override
@@ -64,12 +122,14 @@ public class UserItemServiceImpl implements UserItemService {
 		this.userItemEntityManager = userItemEntityManager;
 	}
 
-	public UserItemRetrieveUtils getUserItemRetrieveUtils() {
-		return userItemRetrieveUtils;
+
+	public ItemEntityManager getItemEntityManager() {
+		return itemEntityManager;
 	}
 
-	public void setUserItemRetrieveUtils(UserItemRetrieveUtils userItemRetrieveUtils) {
-		this.userItemRetrieveUtils = userItemRetrieveUtils;
+	public void setItemEntityManager(ItemEntityManager itemEntityManager) {
+		this.itemEntityManager = itemEntityManager;
 	}
+	
 	
 }

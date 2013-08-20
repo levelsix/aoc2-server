@@ -97,8 +97,8 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index room_reward_chest_id_index on room_reward (chest_id);");
-		indexes.add("create index room_reward_equip_id_index on room_reward (equip_id);");
+		indexes.add("create index pre_dungeon_user_consumable_info_user_id_index on pre_dungeon_user_consumable_info (user_id);");
+		indexes.add("create index pre_dungeon_user_consumable_info_name_index on pre_dungeon_user_consumable_info (name);");
 		return indexes;
 	}
 	

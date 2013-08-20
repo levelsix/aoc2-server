@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.UserStructureEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.StructureRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserStructureRetrieveUtils;
 import com.lvl6.aoc2.eventprotos.SpeedUpBuildOrUpgradeStructureEventProto.SpeedUpBuildOrUpgradeStructureRequestProto;
 import com.lvl6.aoc2.eventprotos.SpeedUpBuildOrUpgradeStructureEventProto.SpeedUpBuildOrUpgradeStructureResponseProto;
 import com.lvl6.aoc2.eventprotos.SpeedUpBuildOrUpgradeStructureEventProto.SpeedUpBuildOrUpgradeStructureResponseProto.SpeedUpBuildOrUpgradeStructureStatus;
@@ -26,6 +25,7 @@ import com.lvl6.aoc2.po.Structure;
 import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserStructure;
 import com.lvl6.aoc2.services.user.UserService;
+import com.lvl6.aoc2.services.userstructure.UserStructureService;
 import com.lvl6.aoc2.widerows.RestrictionOnNumberOfUserStructure;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
@@ -39,7 +39,7 @@ public class SpeedUpBuildOrUpgradeStructureController extends EventController {
 	protected StructureRetrieveUtils structureRetrieveUtils; 
 	
 	@Autowired
-	protected UserStructureRetrieveUtils userStructureRetrieveUtils; 
+	protected UserStructureService userStructureService; 
 
 	@Autowired
 	protected UserStructureEntityManager userStructureEntityManager;
@@ -92,7 +92,7 @@ public class SpeedUpBuildOrUpgradeStructureController extends EventController {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
 			UserStructure us = getUserStructureEntityManager().get().get(userStructureId);
-			Structure s = getUserStructureRetrieveUtils().getStructureCorrespondingToUserStructure(us);
+			Structure s = getUserStructureService().getStructureCorrespondingToUserStructure(us);
 
 			
 			//validate request
@@ -190,15 +190,15 @@ public class SpeedUpBuildOrUpgradeStructureController extends EventController {
 		
 
 	
-	public UserStructureRetrieveUtils getUserStructureRetrieveUtils() {
-		return userStructureRetrieveUtils;
+
+	public UserStructureService getUserStructureService() {
+		return userStructureService;
 	}
 
-	public void setUserStructureRetrieveUtils(
-			UserStructureRetrieveUtils userStructureRetrieveUtils) {
-		this.userStructureRetrieveUtils = userStructureRetrieveUtils;
+	public void setUserStructureService(UserStructureService userStructureService) {
+		this.userStructureService = userStructureService;
 	}
-	
+
 	public StructureRetrieveUtils getStructureRetrieveUtils() {
 		return structureRetrieveUtils;
 	}

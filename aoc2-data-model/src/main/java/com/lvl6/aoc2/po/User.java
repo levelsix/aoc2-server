@@ -23,6 +23,7 @@ public class User extends BasePersistentObject{
 	@Column(name="level")
 	protected int level = 0;
 	
+	//total experience
 	@Column(name="experience")
 	protected int experience = 0;
 
