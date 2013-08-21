@@ -1,5 +1,6 @@
 package com.lvl6.aoc2.services.userdevice;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,8 +39,12 @@ public class UserDeviceServiceImpl implements UserDeviceService {
 		return udidsToDevices;
 	}
 	
+	@Override
+	public void saveUserDevices(Collection<UserDevice> devices) {
+		getUserDeviceEntityManager().get().put(devices);
+	}
 	
-	
+
 	@Override
 	public UserDeviceEntityManager getUserDeviceEntityManager() {
 		return userDeviceEntityManager;

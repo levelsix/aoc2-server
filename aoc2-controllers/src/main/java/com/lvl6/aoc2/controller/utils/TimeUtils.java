@@ -3,6 +3,7 @@ package com.lvl6.aoc2.controller.utils;
 import java.util.Date;
 
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.joda.time.Period;
 import org.springframework.stereotype.Component;
 
@@ -34,5 +35,13 @@ public class TimeUtils {
     Period interim = new Period(dOne, dTwo);
     
     return interim.getMinutes();
+  }
+  
+  //not sure if DateTime works, as well.
+  public boolean isFirstEarlierThanSecond(Date one, Date two) {
+	  LocalDate ldOne = new LocalDate(one);
+	  LocalDate ldTwo = new LocalDate(two);
+	  
+	  return ldOne.isBefore(ldTwo);
   }
 }

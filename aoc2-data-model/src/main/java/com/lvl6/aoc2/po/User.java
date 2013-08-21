@@ -66,7 +66,7 @@ public class User extends BasePersistentObject{
 	//protected Date signupDate = null;
 	
 	@Column(name="clan_id")
-	protected int clanId = 0;
+	protected String clanId = null;
 	
 	//@Column(name="last_login")
 	//protected Date lastLogin = null;
@@ -205,11 +205,11 @@ public class User extends BasePersistentObject{
 //		this.signupDate = signupDate;
 //	}
 
-	public int getClanId() {
+	public String getClanId() {
 		return clanId;
 	}
 
-	public void setClanId(int clanId) {
+	public void setClanId(String clanId) {
 		this.clanId = clanId;
 	}
 
@@ -268,7 +268,7 @@ public class User extends BasePersistentObject{
 				" last_time_mana_regened timestamp," +
 				" game_center_id varchar," +
 //				" signup_date timestamp," +
-				" clan_id int," +
+				" clan_id varchar," +
 //				" last_login timestamp," +
 				" account_initialized boolean," +
 				//" email varchar," +
@@ -290,8 +290,15 @@ public class User extends BasePersistentObject{
 		Set<String> indexes = new HashSet<String>();
 		//indexes.add("create index user_email_index on user (email);");
 		indexes.add("create index user_name_index on user (name);");
-//		indexes.add("create index user_last_login_index on user (last_login);");
+		indexes.add("create index user_level_index on user (level);");
+		indexes.add("create index user_experience_index on user (experience);");
+		indexes.add("create index user_gold_index on user (gold);");
+		indexes.add("create index user_tonic_index on user (tonic);");
+		indexes.add("create index user_gems_index on user (gems);");
+		indexes.add("create index user_class_type_index on user (class_type);");
 		indexes.add("create index user_game_center_id_index on user (game_center_id);");
+		indexes.add("create index user_clan_id_index on user (clan_id);");
+//		indexes.add("create index user_last_login_index on user (last_login);");
 		return indexes;
 	}
 	
