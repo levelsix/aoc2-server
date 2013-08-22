@@ -21,8 +21,8 @@ public class CombatRoom extends BasePersistentObject{
 	protected int type = 1;
 	
 	//if this room comes first, second, ... in this dungeon
-	@Column(name="order")
-	protected int order = 1;
+	@Column(name="ordering")
+	protected int ordering = 1;
 	
 	@Column(name="lvl_required")
 	protected int lvlRequired = 0;
@@ -64,13 +64,13 @@ public class CombatRoom extends BasePersistentObject{
 	}
 
 
-	public int getOrder() {
-		return order;
+	public int getOrdering() {
+		return ordering;
 	}
 
 
-	public void setOrder(int order) {
-		this.order = order;
+	public void setOrdering(int ordering) {
+		this.ordering = ordering;
 	}
 
 
@@ -125,10 +125,13 @@ public class CombatRoom extends BasePersistentObject{
 
 
 
+
+
+
 	@Override
 	public String toString() {
-		return "CombatRoom [id=" + id + ", type=" + type + ", order=" + order
-				+ ", lvlRequired=" + lvlRequired + ", name=" + name
+		return "CombatRoom [id=" + id + ", type=" + type + ", ordering="
+				+ ordering + ", lvlRequired=" + lvlRequired + ", name=" + name
 				+ ", timeMillisOne=" + timeMillisOne + ", timeMillisTwo="
 				+ timeMillisTwo + ", timeMillisThree=" + timeMillisThree + "]";
 	}
@@ -139,7 +142,7 @@ public class CombatRoom extends BasePersistentObject{
 		return "create table combat_room (" +
 				" id uuid," +
 				" type int," +
-				" order int," +
+				" ordering int," +
 				" lvl_required int," +
 				" name varchar," +
 				" time_milllis_one int," +

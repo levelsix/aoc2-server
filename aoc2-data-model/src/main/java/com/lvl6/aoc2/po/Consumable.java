@@ -32,8 +32,8 @@ public class Consumable extends BasePersistentObject{
 	@Column(name="cost_resouce_type")
 	protected int costResourceType = 0;
 	
-	@Column(name="limit")
-	protected int limit = 0;
+	@Column(name="max_limit")
+	protected int maxLimit = 0;
 	
 	@Column(name="create_time_seconds")
 	protected int createTimeSeconds = 0;
@@ -103,13 +103,13 @@ public class Consumable extends BasePersistentObject{
 	}
 
 
-	public int getLimit() {
-		return limit;
+	public int getMaxLimit() {
+		return maxLimit;
 	}
 
 
-	public void setLimit(int limit) {
-		this.limit = limit;
+	public void setMaxLimit(int maxLimit) {
+		this.maxLimit = maxLimit;
 	}
 
 
@@ -134,15 +134,16 @@ public class Consumable extends BasePersistentObject{
 
 
 
+
 	@Override
 	public String toString() {
 		return "Consumable [id=" + id + ", name=" + name
 				+ ", functionalityType=" + functionalityType
 				+ ", functionalityConstant=" + functionalityConstant
 				+ ", cost=" + cost + ", costResourceType=" + costResourceType
-				+ ", limit=" + limit + ", createTimeSeconds="
-				+ createTimeSeconds + ", baseSpeedupCost="
-				+ baseSpeedupCost + "]";
+				+ ", maxLimit=" + maxLimit + ", createTimeSeconds="
+				+ createTimeSeconds + ", baseSpeedupCost=" + baseSpeedupCost
+				+ "]";
 	}
 
 
@@ -155,7 +156,7 @@ public class Consumable extends BasePersistentObject{
 				" functionality_constant double," +
 				" cost int," +
 				" cost_resource_type int," +
-				" limit int," +
+				" max_limit int," +
 				" create_time_seconds int," +
 				" base_speedup_cost int," +
 				" primary key (id))" +
