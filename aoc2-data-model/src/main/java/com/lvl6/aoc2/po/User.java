@@ -58,7 +58,7 @@ public class User extends BasePersistentObject{
 	@Column(name="last_time_mana_regened")
 	protected Date lastTimeManaRegened = null;
 	
-	//if user has a gameCenterId use that id, else generate random string
+	//if has a gameCenterId use that id, else generate random string
 	@Column(name="game_center_id")
 	protected String gameCenterId = "";
 	
@@ -288,17 +288,17 @@ public class User extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		//indexes.add("create index user_email_index "+tableName()+" user (email);");
-		indexes.add("create index user_name_index "+tableName()+" user (name);");
-		indexes.add("create index user_level_index "+tableName()+" user (level);");
-		indexes.add("create index user_experience_index "+tableName()+" user (experience);");
-		indexes.add("create index user_gold_index "+tableName()+" user (gold);");
-		indexes.add("create index user_tonic_index "+tableName()+" user (tonic);");
-		indexes.add("create index user_gems_index "+tableName()+" user (gems);");
-		indexes.add("create index user_class_type_index "+tableName()+" user (class_type);");
-		indexes.add("create index user_game_center_id_index "+tableName()+" user (game_center_id);");
-		indexes.add("create index user_clan_id_index "+tableName()+" user (clan_id);");
-//		indexes.add("create index user_last_login_index "+tableName()+" user (last_login);");
+		//indexes.add("create index user_email_index "+tableName()+" (email);");
+		indexes.add("create index user_name_index "+tableName()+" (name);");
+		indexes.add("create index user_level_index "+tableName()+" (level);");
+		indexes.add("create index user_experience_index "+tableName()+" (experience);");
+		indexes.add("create index user_gold_index "+tableName()+" (gold);");
+		indexes.add("create index user_tonic_index "+tableName()+" (tonic);");
+		indexes.add("create index user_gems_index "+tableName()+" (gems);");
+		indexes.add("create index user_class_type_index "+tableName()+" (class_type);");
+		indexes.add("create index user_game_center_id_index "+tableName()+" (game_center_id);");
+		indexes.add("create index user_clan_id_index "+tableName()+" (clan_id);");
+//		indexes.add("create index user_last_login_index "+tableName()+" (last_login);");
 		return indexes;
 	}
 	

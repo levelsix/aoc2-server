@@ -351,8 +351,8 @@ public class Spell extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index spell_elemental_type_index "+tableName()+" spell (elemental_type);");
-		indexes.add("create index spell_class_type_index "+tableName()+" spell (class_type);");
+		indexes.add("create index spell_elemental_type_index "+tableName()+" (elemental_type);");
+		indexes.add("create index spell_class_type_index "+tableName()+" (class_type);");
 		return indexes;
 	}
 	

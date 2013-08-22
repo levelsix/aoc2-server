@@ -158,8 +158,8 @@ public class UserDungeonStatusHistory extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_dungeon_status_history_user_id_index "+tableName()+" user_dungeon_status_history (user_id);");
-		indexes.add("create index user_dungeon_status_history_dungeon_room_name_index "+tableName()+" user_dungeon_status_history (dungeon_room_name);");
+		indexes.add("create index user_dungeon_status_history_user_id_index "+tableName()+" (user_id);");
+		indexes.add("create index user_dungeon_status_history_dungeon_room_name_index "+tableName()+" (dungeon_room_name);");
 	
 		return indexes;
 	}

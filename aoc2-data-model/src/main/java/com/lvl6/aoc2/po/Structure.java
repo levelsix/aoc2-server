@@ -279,9 +279,9 @@ public class Structure extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index structure_structure_id_index "+tableName()+" structure (structure_id);");
-		indexes.add("create index structure_income_index "+tableName()+" structure (income);");
-		indexes.add("create index structure_functionality_type_index "+tableName()+" structure (functionality_type);");
+		indexes.add("create index structure_structure_id_index "+tableName()+" (structure_id);");
+		indexes.add("create index structure_income_index "+tableName()+" (income);");
+		indexes.add("create index structure_functionality_type_index "+tableName()+" (functionality_type);");
 		return indexes;
 	}
 	

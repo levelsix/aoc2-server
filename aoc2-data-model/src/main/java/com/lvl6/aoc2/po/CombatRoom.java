@@ -165,7 +165,7 @@ public class CombatRoom extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index combat_room_type_index "+tableName()+" combat_room (type);");
+		indexes.add("create index combat_room_type_index "+tableName()+" (type);");
 		
 		return indexes;
 	}

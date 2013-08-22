@@ -202,10 +202,10 @@ public class UserStructure extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_structure_is_upgrading_index "+tableName()+" user_structure (is_upgrading);");
-		indexes.add("create index user_structure_last_collect_time_index "+tableName()+" user_structure (last_collect_time);");
-		indexes.add("create index user_structure_user_id_index "+tableName()+" user_structure (user_id);");
-		indexes.add("create index user_structure_structure_id_index "+tableName()+" user_structure (structure_id);");
+		indexes.add("create user_structure_index_is_upgrading_index "+tableName()+" (is_upgrading);");
+		indexes.add("create user_structure_index_last_collect_time_index "+tableName()+" (last_collect_time);");
+		indexes.add("create user_structure_index_user_id_index "+tableName()+" (user_id);");
+		indexes.add("create user_structure_index_structure_id_index "+tableName()+" (structure_id);");
 		return indexes;
 	}
 	

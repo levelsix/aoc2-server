@@ -200,7 +200,7 @@ public class Monster extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index monster_is_boss_index "+tableName()+" monster (is_boss);");
+		indexes.add("create index monster_is_boss_index "+tableName()+" (is_boss);");
 		return indexes;
 	}
 	

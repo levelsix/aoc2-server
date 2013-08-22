@@ -259,11 +259,11 @@ public class Equipment extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index equipment_type_index "+tableName()+" equipment (type);");
-		indexes.add("create index equipment_rarity_index "+tableName()+" equipment (rarity);");
-		indexes.add("create index equipment_class_required_index "+tableName()+" equipment (class_required);");
-		indexes.add("create index equipment_lvl_required_index "+tableName()+" equipment (lvl_required);");
-		indexes.add("create index equipment_equip_id_index "+tableName()+" equipment (equip_id);");
+		indexes.add("create index equipment_type_index "+tableName()+" (type);");
+		indexes.add("create index equipment_rarity_index "+tableName()+" (rarity);");
+		indexes.add("create index equipment_class_required_index "+tableName()+" (class_required);");
+		indexes.add("create index equipment_lvl_required_index "+tableName()+" (lvl_required);");
+		indexes.add("create index equipment_equip_id_index "+tableName()+" (equip_id);");
 		return indexes;
 	}
 	

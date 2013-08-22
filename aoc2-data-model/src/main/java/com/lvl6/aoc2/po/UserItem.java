@@ -127,8 +127,8 @@ public class UserItem extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_item_user_id_index "+tableName()+" user_item (user_id);");
-		indexes.add("create index user_item_item_id_index "+tableName()+" user_item (item_id);");
+		indexes.add("create index user_item_user_id_index "+tableName()+" (user_id);");
+		indexes.add("create index user_item_item_id_index "+tableName()+" (item_id);");
 
 		return indexes;
 	}

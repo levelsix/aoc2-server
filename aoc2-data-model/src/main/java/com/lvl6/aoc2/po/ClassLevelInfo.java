@@ -157,8 +157,8 @@ public class ClassLevelInfo extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index class_level_info_class_type_index "+tableName()+" class_level_info (class_type);");
-		indexes.add("create index class_level_info_lvl_index "+tableName()+" class_level_info (lvl);");
+		indexes.add("create index class_level_info_class_type_index "+tableName()+" (class_type);");
+		indexes.add("create index class_level_info_lvl_index "+tableName()+" (lvl);");
 		return indexes;
 	}
 	

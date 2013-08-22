@@ -173,8 +173,8 @@ public class Chest extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index chest_id_index "+tableName()+" chest (chest_id);");
-		indexes.add("create index chest_type_index "+tableName()+" chest (chest_type);");
+		indexes.add("create index chest_id_index "+tableName()+" (chest_id);");
+		indexes.add("create index chest_type_index "+tableName()+" (chest_type);");
 		return indexes;
 	}
 	

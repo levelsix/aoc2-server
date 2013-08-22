@@ -175,8 +175,8 @@ public class Consumable extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index consumable_name_index "+tableName()+" consumable (name);");
-		indexes.add("create index consumable_functionality_type_index "+tableName()+" consumable (functionality_type);");
+		indexes.add("create index consumable_name_index "+tableName()+" (name);");
+		indexes.add("create index consumable_functionality_type_index "+tableName()+" (functionality_type);");
 		return indexes;
 	}
 	

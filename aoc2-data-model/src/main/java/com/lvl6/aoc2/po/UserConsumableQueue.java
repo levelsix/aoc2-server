@@ -143,8 +143,8 @@ public class UserConsumableQueue extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_consumable_queue_user_id_index "+tableName()+" user_consumable_queue (user_id);");
-		indexes.add("create index user_consumable_queue_name_index "+tableName()+" user_consumable_queue (name);");
+		indexes.add("create index user_consumable_queue_user_id_index "+tableName()+" (user_id);");
+		indexes.add("create index user_consumable_queue_name_index "+tableName()+" (name);");
 		return indexes;
 	}
 	
