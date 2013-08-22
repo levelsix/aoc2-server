@@ -90,7 +90,7 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create pre_dungeon_user_equip_info (" +
+		return "create table "+tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" equip_id uuid," +

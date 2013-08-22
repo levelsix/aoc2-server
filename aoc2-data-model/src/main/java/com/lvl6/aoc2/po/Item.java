@@ -76,7 +76,7 @@ public class Item extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table item (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" item_id uuid," +
 				" name varchar," +

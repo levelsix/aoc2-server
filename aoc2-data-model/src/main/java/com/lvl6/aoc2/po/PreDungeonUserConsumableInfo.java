@@ -76,7 +76,7 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create pre_dungeon_user_consumable_info (" +
+		return "create table "+tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" name varchar," +

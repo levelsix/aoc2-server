@@ -150,7 +150,7 @@ public class UserEquip extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_equip (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" equip_id uuid," +

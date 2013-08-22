@@ -106,7 +106,7 @@ public class UserChest extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_chest (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" chest_id uuid," +

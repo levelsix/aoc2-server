@@ -149,7 +149,7 @@ public class Consumable extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table consumable (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" name varchar," +
 				" functionality_type int," +

@@ -25,6 +25,11 @@ abstract public class BasePersistentObject {
 	abstract public Set<String> getIndexCreateStatements();
 	
 	
+	public String tableName() {
+		return this.getClass().getSimpleName().toLowerCase();
+	}
+	
+	
 	abstract public UUID getId(); 
 	abstract public void setId(UUID id); 
 	

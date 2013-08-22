@@ -133,7 +133,7 @@ public class UserDungeonStatusHistory extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_dungeon_status_history (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" hp int," +

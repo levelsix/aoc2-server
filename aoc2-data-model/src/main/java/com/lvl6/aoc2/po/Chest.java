@@ -147,7 +147,7 @@ public class Chest extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table chest (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" chest_id uuid," +
 				" chest_name varchar," +

@@ -163,7 +163,7 @@ public class UserEquipRepair extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_equip_repair (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" equip_id uuid," +

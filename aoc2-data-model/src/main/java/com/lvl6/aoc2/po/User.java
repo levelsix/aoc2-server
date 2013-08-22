@@ -251,7 +251,7 @@ public class User extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" name varchar," +
 				" level int," +

@@ -121,7 +121,7 @@ public class UserSpell extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_spell (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" name varchar," +

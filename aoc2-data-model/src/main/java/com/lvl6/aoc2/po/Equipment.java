@@ -227,7 +227,7 @@ public class Equipment extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table equipment (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" equip_id uuid," +
 				" name varchar," +

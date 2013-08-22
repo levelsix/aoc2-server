@@ -91,7 +91,7 @@ public class RoomReward extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table room_reward (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" chest_id int," +
 				" chest_drop_rate double," +

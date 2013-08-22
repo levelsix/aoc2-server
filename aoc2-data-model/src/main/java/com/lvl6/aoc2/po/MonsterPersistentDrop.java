@@ -132,7 +132,7 @@ public class MonsterPersistentDrop extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table monster_persistent_drop (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" monster_id uuid," +
 				" equip_id uuid," +

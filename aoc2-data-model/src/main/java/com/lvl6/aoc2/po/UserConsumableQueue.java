@@ -119,7 +119,7 @@ public class UserConsumableQueue extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_consumable_queue (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" name varchar," +

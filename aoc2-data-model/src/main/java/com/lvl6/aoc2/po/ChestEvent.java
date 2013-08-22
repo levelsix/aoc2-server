@@ -91,7 +91,7 @@ public class ChestEvent extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table ChestEvent (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" start_time timestamp," +
 				" end_time timestamp," +

@@ -313,7 +313,7 @@ public class Spell extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table spell (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" name varchar," +
 				" class_type int," +

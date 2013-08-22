@@ -139,7 +139,7 @@ public class CombatRoom extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table combat_room (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" type int," +
 				" ordering int," +

@@ -246,7 +246,7 @@ public class Structure extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table structure (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" structure_id uuid," +
 				" name varchar," +

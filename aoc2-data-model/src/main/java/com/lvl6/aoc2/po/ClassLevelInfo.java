@@ -132,7 +132,7 @@ public class ClassLevelInfo extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table class_level_info (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" class_type int," +
 				" lvl int," +

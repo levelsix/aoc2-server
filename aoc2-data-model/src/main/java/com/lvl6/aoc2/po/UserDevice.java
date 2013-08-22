@@ -118,7 +118,7 @@ public class UserDevice extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_device (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" udid uuid," +

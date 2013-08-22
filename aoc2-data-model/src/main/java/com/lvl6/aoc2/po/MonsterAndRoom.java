@@ -92,7 +92,7 @@ public class MonsterAndRoom extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table monster_and_room (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" monster_id uuid," +
 				" room_id uuid," +
