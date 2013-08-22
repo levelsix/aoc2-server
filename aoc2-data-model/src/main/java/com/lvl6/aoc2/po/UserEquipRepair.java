@@ -190,11 +190,11 @@ public class UserEquipRepair extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_equip_repair_user_id_index on user_equip_repair (user_id);");
-		indexes.add("create index user_equip_repair_equip_id_index on user_equip_repair (equip_id);");
-		indexes.add("create index user_equip_repair_equip_level_index on user_equip_repair (equip_level);");
-		indexes.add("create index user_equip_repair_expected_start_index on user_equip_repair (expected_start);");
-		indexes.add("create index user_equip_repair_entered_queue_index on user_equip_repair (entered_queue);");
+		indexes.add("create index user_equip_repair_user_id_index "+tableName()+" user_equip_repair (user_id);");
+		indexes.add("create index user_equip_repair_equip_id_index "+tableName()+" user_equip_repair (equip_id);");
+		indexes.add("create index user_equip_repair_equip_level_index "+tableName()+" user_equip_repair (equip_level);");
+		indexes.add("create index user_equip_repair_expected_start_index "+tableName()+" user_equip_repair (expected_start);");
+		indexes.add("create index user_equip_repair_entered_queue_index "+tableName()+" user_equip_repair (entered_queue);");
 		return indexes;
 	}
 	

@@ -19,7 +19,7 @@ abstract public class BasePersistentObject {
 	abstract public Set<String> getTableUpdateStatements();
 	
 	/**
-	 * The CQL statements needed to create or remove indexes on existing table for this object
+	 * The CQL statements needed to create or remove indexes "+tableName()+" existing table for this object
 	 * @return
 	 */
 	abstract public Set<String> getIndexCreateStatements();

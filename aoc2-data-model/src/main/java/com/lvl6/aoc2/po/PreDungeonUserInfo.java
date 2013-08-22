@@ -141,8 +141,8 @@ public class PreDungeonUserInfo extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create pre_dungeon_user_info_user_id_index on pre_dungeon_user_info (user_id);");
-		indexes.add("create pre_dungeon_user_info_combat_room_name_index on pre_dungeon_user_info (combat_room_name);");
+		indexes.add("create pre_dungeon_user_info_user_id_index "+tableName()+" pre_dungeon_user_info (user_id);");
+		indexes.add("create pre_dungeon_user_info_combat_room_name_index "+tableName()+" pre_dungeon_user_info (combat_room_name);");
 		return indexes;
 	}
 	

@@ -128,8 +128,8 @@ public class UserStructureContent extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_structure_content_content_type_index on user_structure_content (content_type);");
-		indexes.add("create index user_structure_content_user_structure_id_index on user_structure_content (user_structure_id);");
+		indexes.add("create index user_structure_content_content_type_index "+tableName()+" user_structure_content (content_type);");
+		indexes.add("create index user_structure_content_user_structure_id_index "+tableName()+" user_structure_content (user_structure_id);");
 		return indexes;
 	}
 	

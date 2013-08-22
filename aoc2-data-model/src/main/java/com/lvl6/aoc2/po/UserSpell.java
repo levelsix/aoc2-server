@@ -145,8 +145,8 @@ public class UserSpell extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_spell_user_id_index on user_spell (user_id);");
-		indexes.add("create index user_spell_spell_id_index on user_spell (spell_id);");
+		indexes.add("create index user_spell_user_id_index "+tableName()+" user_spell (user_id);");
+		indexes.add("create index user_spell_spell_id_index "+tableName()+" user_spell (spell_id);");
 		return indexes;
 	}
 	

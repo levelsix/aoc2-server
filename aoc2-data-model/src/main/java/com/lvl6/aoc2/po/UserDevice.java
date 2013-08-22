@@ -142,10 +142,10 @@ public class UserDevice extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_device_user_id_index on user_device (user_id);");
-		indexes.add("create index user_device_udid_index on user_device (udid);");
-		indexes.add("create index user_device_last_login_index on user_device (last_login);");
-		indexes.add("create index user_device_last_logout_index on user_device (last_logout);");
+		indexes.add("create index user_device_user_id_index "+tableName()+" user_device (user_id);");
+		indexes.add("create index user_device_udid_index "+tableName()+" user_device (udid);");
+		indexes.add("create index user_device_last_login_index "+tableName()+" user_device (last_login);");
+		indexes.add("create index user_device_last_logout_index "+tableName()+" user_device (last_logout);");
 		return indexes;
 	}
 	

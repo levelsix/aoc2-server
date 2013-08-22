@@ -114,8 +114,8 @@ public class MonsterAndRoom extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index monster_and_room_monster_id_index on monster_and_room (monster_id);");
-		indexes.add("create index monster_and_room_room_id_index on monster_and_room (room_id);");
+		indexes.add("create index monster_and_room_monster_id_index "+tableName()+" monster_and_room (monster_id);");
+		indexes.add("create index monster_and_room_room_id_index "+tableName()+" monster_and_room (room_id);");
 		return indexes;
 	}
 	

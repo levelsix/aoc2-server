@@ -49,7 +49,7 @@ public class Structure extends BasePersistentObject{
 	@Column(name="functionality_resource_type")
 	protected int functionalityResourceType = 0;
 	
-	//base cost for researching spell, income, storage, dependent on building, assume it's in minutes for now
+	//base cost for researching spell, income, storage, dependent "+tableName()+" building, assume it's in minutes for now
 	@Column(name="functionality_value")
 	protected int functionalityValue = 0;
 	
@@ -279,9 +279,9 @@ public class Structure extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index structure_structure_id_index on structure (structure_id);");
-		indexes.add("create index structure_income_index on structure (income);");
-		indexes.add("create index structure_functionality_type_index on structure (functionality_type);");
+		indexes.add("create index structure_structure_id_index "+tableName()+" structure (structure_id);");
+		indexes.add("create index structure_income_index "+tableName()+" structure (income);");
+		indexes.add("create index structure_functionality_type_index "+tableName()+" structure (functionality_type);");
 		return indexes;
 	}
 	

@@ -113,11 +113,11 @@ public class ChestEvent extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index ChestEvent_type_index on ChestEvent (type);");
-		indexes.add("create index ChestEvent_rarity_index on ChestEvent (rarity);");
-		indexes.add("create index ChestEvent_class_required_index on ChestEvent (class_required);");
-		indexes.add("create index ChestEvent_lvl_required_index on ChestEvent (lvl_required);");
-		indexes.add("create index ChestEvent_equip_id_index on ChestEvent (equip_id);");
+		indexes.add("create index ChestEvent_type_index "+tableName()+" ChestEvent (type);");
+		indexes.add("create index ChestEvent_rarity_index "+tableName()+" ChestEvent (rarity);");
+		indexes.add("create index ChestEvent_class_required_index "+tableName()+" ChestEvent (class_required);");
+		indexes.add("create index ChestEvent_lvl_required_index "+tableName()+" ChestEvent (lvl_required);");
+		indexes.add("create index ChestEvent_equip_id_index "+tableName()+" ChestEvent (equip_id);");
 		return indexes;
 	}
 	

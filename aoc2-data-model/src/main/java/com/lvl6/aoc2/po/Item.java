@@ -97,11 +97,11 @@ public class Item extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index item_type_index on item (type);");
-		indexes.add("create index item_rarity_index on item (rarity);");
-		indexes.add("create index item_class_required_index on item (class_required);");
-		indexes.add("create index item_lvl_required_index on item (lvl_required);");
-		indexes.add("create index item_equip_id_index on item (equip_id);");
+		indexes.add("create index item_type_index "+tableName()+" item (type);");
+		indexes.add("create index item_rarity_index "+tableName()+" item (rarity);");
+		indexes.add("create index item_class_required_index "+tableName()+" item (class_required);");
+		indexes.add("create index item_lvl_required_index "+tableName()+" item (lvl_required);");
+		indexes.add("create index item_equip_id_index "+tableName()+" item (equip_id);");
 		return indexes;
 	}
 	

@@ -157,7 +157,7 @@ public class MonsterPersistentDrop extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index monster_persistent_drop_monster_id_index on monster_persistent_drop (monster_id);");
+		indexes.add("create index monster_persistent_drop_monster_id_index "+tableName()+" monster_persistent_drop (monster_id);");
 		return indexes;
 	}
 	

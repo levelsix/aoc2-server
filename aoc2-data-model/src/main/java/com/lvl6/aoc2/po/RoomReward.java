@@ -113,8 +113,8 @@ public class RoomReward extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index room_reward_chest_id_index on room_reward (chest_id);");
-		indexes.add("create index room_reward_equip_id_index on room_reward (equip_id);");
+		indexes.add("create index room_reward_chest_id_index "+tableName()+" room_reward (chest_id);");
+		indexes.add("create index room_reward_equip_id_index "+tableName()+" room_reward (equip_id);");
 		return indexes;
 	}
 	

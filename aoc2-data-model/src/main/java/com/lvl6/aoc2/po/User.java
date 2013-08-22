@@ -288,17 +288,17 @@ public class User extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		//indexes.add("create index user_email_index on user (email);");
-		indexes.add("create index user_name_index on user (name);");
-		indexes.add("create index user_level_index on user (level);");
-		indexes.add("create index user_experience_index on user (experience);");
-		indexes.add("create index user_gold_index on user (gold);");
-		indexes.add("create index user_tonic_index on user (tonic);");
-		indexes.add("create index user_gems_index on user (gems);");
-		indexes.add("create index user_class_type_index on user (class_type);");
-		indexes.add("create index user_game_center_id_index on user (game_center_id);");
-		indexes.add("create index user_clan_id_index on user (clan_id);");
-//		indexes.add("create index user_last_login_index on user (last_login);");
+		//indexes.add("create index user_email_index "+tableName()+" user (email);");
+		indexes.add("create index user_name_index "+tableName()+" user (name);");
+		indexes.add("create index user_level_index "+tableName()+" user (level);");
+		indexes.add("create index user_experience_index "+tableName()+" user (experience);");
+		indexes.add("create index user_gold_index "+tableName()+" user (gold);");
+		indexes.add("create index user_tonic_index "+tableName()+" user (tonic);");
+		indexes.add("create index user_gems_index "+tableName()+" user (gems);");
+		indexes.add("create index user_class_type_index "+tableName()+" user (class_type);");
+		indexes.add("create index user_game_center_id_index "+tableName()+" user (game_center_id);");
+		indexes.add("create index user_clan_id_index "+tableName()+" user (clan_id);");
+//		indexes.add("create index user_last_login_index "+tableName()+" user (last_login);");
 		return indexes;
 	}
 	
