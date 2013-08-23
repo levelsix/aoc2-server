@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void levelUpUser(User u) {
 		int classType = u.getClassType();
-		int newLvl = u.getLevel() + 1;
+		int newLvl = u.getLvl() + 1;
 		
 		ClassLevelInfo cli = getClassLevelInfoRetrieveUtils()
 				.getClassLevelInfoForClassAndLevel(classType, newLvl);
@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
 		int maxHp = cli.getMaxHp();
 		int maxMana = cli.getMaxMana();
 		
-		u.setLevel(newLvl);
+		u.setLvl(newLvl);
 		u.setMaxHp(maxHp);
 		u.setMaxMana(maxMana);
 		
