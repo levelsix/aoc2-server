@@ -19,9 +19,8 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 	@Column(name="user_id")
 	protected UUID userId = UUID.randomUUID();
 	
-	//the 'equip_id' column in equipment table, not the 'id' column
-	@Column(name="name")
-	protected String name = "";
+	@Column(name="consumable_name")
+	protected String consumableName = null;
 	
 	@Column(name="quantity")
 	protected int quantity = 0;
@@ -47,13 +46,13 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 	}
 
 
-	public String getName() {
-		return name;
+	public String getConsumableName() {
+		return consumableName;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setName(String consumableName) {
+		this.consumableName = consumableName;
 	}
 
 
@@ -67,10 +66,12 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 	}
 
 
+
 	@Override
 	public String toString() {
 		return "PreDungeonUserConsumableInfo [id=" + id + ", userId=" + userId
-				+ ", name=" + name + ", quantity=" + quantity + "]";
+				+ ", consumableName=" + consumableName + ", quantity="
+				+ quantity + "]";
 	}
 
 
@@ -79,7 +80,7 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 		return "create pre_dungeon_user_consumable_info (" +
 				" id uuid," +
 				" user_id uuid," +
-				" name varchar," +
+				" consumable_name varchar," +
 				" quantity int," +
 				" primary key(id))" +
 				" with compact storage;";
@@ -98,7 +99,7 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index pre_dungeon_user_consumable_info_user_id_index on pre_dungeon_user_consumable_info (user_id);");
-		indexes.add("create index pre_dungeon_user_consumable_info_name_index on pre_dungeon_user_consumable_info (name);");
+		indexes.add("create index pre_dungeon_user_consumable_info_consumable_name_index on pre_dungeon_user_consumable_info (consumable_name);");
 		return indexes;
 	}
 	

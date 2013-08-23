@@ -20,12 +20,12 @@ public class User extends BasePersistentObject{
 	@Column(name="name")
 	protected String name = "";
 	
-	@Column(name="level")
-	protected int level = 0;
+	@Column(name="lvl")
+	protected int lvl = 0;
 	
-	//total experience
-	@Column(name="experience")
-	protected int experience = 0;
+	//total exp
+	@Column(name="exp")
+	protected int exp = 0;
 
 	@Column(name="gold")
 	protected int gold = 0;
@@ -93,20 +93,20 @@ public class User extends BasePersistentObject{
 		this.name = name;
 	}
 
-	public int getLevel() {
-		return level;
+	public int getLvl() {
+		return lvl;
 	}
 
-	public void setLevel(int level) {
-		this.level = level;
+	public void setLvl(int lvl) {
+		this.lvl = lvl;
 	}
 
-	public int getExperience() {
-		return experience;
+	public int getExp() {
+		return exp;
 	}
 
-	public void setExperience(int experience) {
-		this.experience = experience;
+	public void setExp(int exp) {
+		this.exp = exp;
 	}
 
 	public int getGold() {
@@ -239,8 +239,8 @@ public class User extends BasePersistentObject{
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", level=" + level
-				+ ", experience=" + experience + ", gold=" + gold + ", tonic="
+		return "User [id=" + id + ", name=" + name + ", lvl=" + lvl
+				+ ", exp=" + exp + ", gold=" + gold + ", tonic="
 				+ tonic + ", gems=" + gems + ", classType=" + classType
 				+ ", maxHp=" + maxHp + ", hp=" + hp + ", lastTimeHpRegened="
 				+ lastTimeHpRegened + ", maxMana=" + maxMana + ", mana=" + mana
@@ -254,8 +254,8 @@ public class User extends BasePersistentObject{
 		return "create table user (" +
 				" id uuid," +
 				" name varchar," +
-				" level int," +
-				" experience int," +
+				" lvl int," +
+				" exp int," +
 				" gold int," +
 				" tonic int," +
 				" gems int," +
@@ -290,8 +290,8 @@ public class User extends BasePersistentObject{
 		Set<String> indexes = new HashSet<String>();
 		//indexes.add("create index user_email_index on user (email);");
 		indexes.add("create index user_name_index on user (name);");
-		indexes.add("create index user_level_index on user (level);");
-		indexes.add("create index user_experience_index on user (experience);");
+		indexes.add("create index user_lvl_index on user (lvl);");
+		indexes.add("create index user_exp_index on user (exp);");
 		indexes.add("create index user_gold_index on user (gold);");
 		indexes.add("create index user_tonic_index on user (tonic);");
 		indexes.add("create index user_gems_index on user (gems);");

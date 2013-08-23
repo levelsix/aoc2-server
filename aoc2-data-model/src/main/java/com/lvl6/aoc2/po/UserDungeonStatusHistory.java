@@ -138,10 +138,10 @@ public class UserDungeonStatusHistory extends BasePersistentObject{
 				" user_id uuid," +
 				" hp int," +
 				" mana int," +
-				" actionsPerformed int," +
-				" currentTime timestamp," +
+				" actions_performed int," +
+				" current_time timestamp," +
 				" dungeon_room_name varchar," +
-				" monsters_remaining int," +
+//				" monsters_remaining int," +
 				" primary key(id))" +
 				" with compact storage;";
 	}

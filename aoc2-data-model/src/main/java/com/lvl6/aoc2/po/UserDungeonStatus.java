@@ -143,7 +143,7 @@ public class UserDungeonStatus extends BasePersistentObject{
 				" actions_performed int," +
 				" current_time timestamp," +
 				" dungeon_room_name varchar," +
-				" monsters_remaining int," +
+//				" monsters_remaining int," +
 				" primary key(id))" +
 				" with compact storage;";
 	}

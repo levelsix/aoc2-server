@@ -169,7 +169,7 @@ public class UserEquipRepair extends BasePersistentObject{
 				" name varchar," +
 				" equip_level int," +
 				" durability double," +
-				" expected_start timestamp" +
+				" expected_start timestamp," +
 				" entered_queue timestamp," +
 				" time_acquired timestamp," +
 				" level_of_user_when_acquired int," +

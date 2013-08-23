@@ -48,9 +48,9 @@ public class CreateNoneventProtoUtilsImpl implements CreateNoneventProtoUtils {
 		FullUserProto.Builder fupb = FullUserProto.newBuilder();
 		
 		String uId = u.getId().toString();
-		int level = u.getLevel();
+		int level = u.getLvl();
 		String name = u.getName();
-		int exp = u.getExperience();
+		int exp = u.getExp();
 		int gold = u.getGold();
 		int tonic = u.getTonic();
 		int gems = u.getGems();

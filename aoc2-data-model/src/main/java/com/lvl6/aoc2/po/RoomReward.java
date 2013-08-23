@@ -113,6 +113,7 @@ public class RoomReward extends BasePersistentObject{
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index room_reward_chest_name_index on room_reward (chest_name);");
+		indexes.add("create index room_reward_chest_drop_rate_index on room_reward (chest_drop_rate);");
 		indexes.add("create index room_reward_equip_name_index on room_reward (equip_name);");
 		return indexes;
 	}

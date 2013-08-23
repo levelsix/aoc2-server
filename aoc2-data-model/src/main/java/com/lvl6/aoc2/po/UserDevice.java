@@ -121,7 +121,7 @@ public class UserDevice extends BasePersistentObject{
 		return "create table user_device (" +
 				" id uuid," +
 				" user_id uuid," +
-				" udid uuid," +
+				" udid varchar," +
 				" device_id varchar," +
 				" date_linked timestamp," +
 				" last_login timestamp," +

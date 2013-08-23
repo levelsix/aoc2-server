@@ -23,8 +23,8 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 	@Column(name="equip_name")
 	protected String equipName = "";
 	
-	@Column(name="level")
-	protected int level = 0;
+	@Column(name="lvl")
+	protected int lvl = 0;
 	
 	@Column(name="durability")
 	protected double durability = 0.0;
@@ -61,13 +61,13 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 	}
 
 
-	public int getLevel() {
-		return level;
+	public int getLvl() {
+		return lvl;
 	}
 
 
-	public void setLevel(int level) {
-		this.level = level;
+	public void setLvl(int lvl) {
+		this.lvl = lvl;
 	}
 
 
@@ -85,7 +85,7 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 	@Override
 	public String toString() {
 		return "PreDungeonUserEquipInfo [id=" + id + ", userId=" + userId
-				+ ", equipName=" + equipName + ", level=" + level
+				+ ", equipName=" + equipName + ", lvl=" + lvl
 				+ ", durability=" + durability + "]";
 	}
 

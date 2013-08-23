@@ -19,6 +19,9 @@ public class Structure extends BasePersistentObject{
 //	@Column(name="structure_id")
 //	protected UUID structureId = UUID.randomUUID();
 	
+	//groups structures
+	//(e.g. structure table could contain 9 rows: Inn level 1 to
+	//9, with 9 diff row keys. But name would be Inn)
 	@Column(name="name")
 	protected String name = "";
 	
@@ -254,7 +257,7 @@ public class Structure extends BasePersistentObject{
 				" user_lvl_required int," +
 				" size int," +
 				" functionality_type int," +
-				" functionality_resurce_type int," +
+				" functionality_resource_type int," +
 				" functionality_value int," +
 				" functionality_capacity int," +
 				" functionality_speedup_base_cost int," +
@@ -275,9 +278,16 @@ public class Structure extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index structure_structure_id_index on structure (structure_id);");
-		indexes.add("create index structure_income_index on structure (income);");
+		indexes.add("create index structure_name_index on structure (name);");
+		indexes.add("create index structure_build_cost_index on structure (build_cost);");
+		indexes.add("create index structure_build_cost_resource_type_index on structure (build_cost_resource_type);");
+		indexes.add("create index structure_build_time_seconds_index on structure (build_time_seconds);");
+		indexes.add("create index structure_user_lvl_required_index on structure (user_lvl_required);");
 		indexes.add("create index structure_functionality_type_index on structure (functionality_type);");
+		indexes.add("create index structure_functionality_resource_type_index on structure (functionality_resource_type);");
+		indexes.add("create index structure_functionality_value_index on structure (functionality_value);");
+		indexes.add("create index structure_functionality_capacity_index on structure (functionality_capacity);");
+		
 		return indexes;
 	}
 	

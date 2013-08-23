@@ -45,9 +45,15 @@ public class UserStructure extends BasePersistentObject{
 	@Column(name="is_finished_constructing")
 	protected boolean isFinishedConstructing = false;
 
+	//for tracking purposes
 	@Column(name="level_of_user_when_upgrading")
 	protected int levelOfUserWhenUpgrading = 0;
 	
+	//since user can build more than one of any building,
+	//this keeps track of how many of the same building
+	//the user has
+	@Column(name="nth_copy")
+	protected int nthCopy = 1;
 	
 	public UUID getId() {
 		return id;
@@ -161,6 +167,17 @@ public class UserStructure extends BasePersistentObject{
 	}
 
 
+	public int getNthCopy() {
+		return nthCopy;
+	}
+
+
+	public void setNthCopy(int nthCopy) {
+		this.nthCopy = nthCopy;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "UserStructure [id=" + id + ", userId=" + userId + ", name="
@@ -188,6 +205,7 @@ public class UserStructure extends BasePersistentObject{
 				" start_upgrade_time timestamp," +
 				" is_finished_constructing boolean," +
 				" level_of_user_when_upgrading int," +
+				" nth_copy int," +
 				" primary key(id))" +
 				" with compact storage;";
 	}
@@ -204,10 +222,12 @@ public class UserStructure extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_structure_is_upgrading_index on user_structure (is_upgrading);");
-		indexes.add("create index user_structure_last_collect_time_index on user_structure (last_collect_time);");
 		indexes.add("create index user_structure_user_id_index on user_structure (user_id);");
-		indexes.add("create index user_structure_name_index on user_structure (name);");
+		indexes.add("create index user_structure_structure_name_index on user_structure (structure_name);");
+		indexes.add("create index user_structure_last_collect_time_index on user_structure (last_collect_time);");
+		indexes.add("create index user_structure_purchase_time_index on user_structure (purchase_time);");
+		indexes.add("create index user_structure_start_upgrade_time_index on user_structure (start_upgrade_time);");
+		indexes.add("create index user_structure_is_finished_constructing_index on user_structure (is_finished_constructing);");
 		return indexes;
 	}
 	

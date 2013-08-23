@@ -102,7 +102,7 @@ public class UserConsumable extends BasePersistentObject{
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index user_consumable_user_id_index on user_consumable (user_id);");
-		indexes.add("create index user_consumable_consumable_id_index on user_consumable (consumable_id);");
+		indexes.add("create index user_consumable_name_index on user_consumable (name);");
 		return indexes;
 	}
 	
