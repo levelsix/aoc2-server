@@ -129,7 +129,7 @@ public class UserItem extends BasePersistentObject{
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index user_item_user_id_index on user_item (user_id);");
 		indexes.add("create index user_item_item_id_index on user_item (item_id);");
-
+		indexes.add("create index user_item_time_acquired_index on user_item (time_acquired);");
 		return indexes;
 	}
 	

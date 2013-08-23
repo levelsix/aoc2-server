@@ -63,8 +63,8 @@ public class Spell extends BasePersistentObject{
 	@Column(name="user_level_required")
 	protected int userLevelRequired = 0;
 	
-	@Column(name="level")
-	protected int level = 0;
+	@Column(name="lvl")
+	protected int lvl = 0;
 	
 	@Column(name="research_cost")
 	protected int researchCost = 0;
@@ -241,13 +241,13 @@ public class Spell extends BasePersistentObject{
 	}
 
 
-	public int getLevel() {
-		return level;
+	public int getLvl() {
+		return lvl;
 	}
 
 
-	public void setLevel(int level) {
-		this.level = level;
+	public void setLevel(int lvl) {
+		this.lvl = lvl;
 	}
 
 
@@ -303,7 +303,7 @@ public class Spell extends BasePersistentObject{
 				+ targetted + ", size=" + size + ", castTimeMillis="
 				+ castTimeMillis + ", cooldownMillis=" + cooldownMillis
 				+ ", range=" + range + ", userLevelRequired="
-				+ userLevelRequired + ", level=" + level + ", researchCost="
+				+ userLevelRequired + ", lvl=" + lvl + ", researchCost="
 				+ researchCost + ", researchCostResource="
 				+ researchCostResource + ", researchTimeMillis="
 				+ researchTimeMillis + ", researchSpeedupBaseCost="
@@ -330,7 +330,7 @@ public class Spell extends BasePersistentObject{
 				" cooldown_millis int," +
 				" range int," +
 				" user_level_required int," +
-				" level int," +
+				" lvl int," +
 				" research_cost int," +
 				" research_cost_resource int," +
 				" research_time_millis int," +
@@ -351,8 +351,15 @@ public class Spell extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index spell_elemental_type_index on spell (elemental_type);");
+		indexes.add("create index spell_name_index on spell (name);");
 		indexes.add("create index spell_class_type_index on spell (class_type);");
+		indexes.add("create index spell_function_type_index on spell (function_type);");
+		indexes.add("create index spell_mana_cost_index on spell (mana_cost);");
+		indexes.add("create index spell_elemental_type_index on spell (elemental_type);");
+		indexes.add("create index spell_user_level_required_index on spell (user_level_required);");
+		indexes.add("create index spell_research_cost_index on spell (research_cost);");
+		indexes.add("create index spell_research_cost_resource_index on spell (research_cost_resource);");
+		indexes.add("create index spell_research_time_millis_index on spell (research_time_millis);");
 		return indexes;
 	}
 	

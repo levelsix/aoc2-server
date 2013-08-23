@@ -93,7 +93,7 @@ public class RoomReward extends BasePersistentObject{
 	public String getTableCreateStatement() {
 		return "create table room_reward (" +
 				" id uuid," +
-				" chest_id int," +
+				" chest_id uuid," +
 				" chest_drop_rate double," +
 				" equip_id int," +
 				" equip_drop_rate double," +
@@ -114,6 +114,7 @@ public class RoomReward extends BasePersistentObject{
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index room_reward_chest_id_index on room_reward (chest_id);");
+		indexes.add("create index room_reward_chest_drop_rate_index on room_reward (chest_drop_rate);");
 		indexes.add("create index room_reward_equip_id_index on room_reward (equip_id);");
 		return indexes;
 	}

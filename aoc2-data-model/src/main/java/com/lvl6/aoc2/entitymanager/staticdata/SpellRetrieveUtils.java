@@ -60,12 +60,12 @@ import com.lvl6.aoc2.po.Spell;
 		if(idsToSpells == null) {
 			setStaticIdsToSpells();
 		}
-		int level = s.getLevel();
+		int level = s.getLvl();
 		String spellName = s.getName();
 		String cqlquery = "select * from spell;"; 
 		List <Spell> list = getSpellEntityManager().get().find(cqlquery);
 		for(Spell spell : list) {
-			if((spell.getName() == spellName) && (spell.getLevel() == level+1))
+			if((spell.getName() == spellName) && (spell.getLvl() == level+1))
 				return spell;	
 		}
 		return null;
