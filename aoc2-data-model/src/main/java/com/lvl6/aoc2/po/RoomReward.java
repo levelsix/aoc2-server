@@ -16,17 +16,18 @@ public class RoomReward extends BasePersistentObject{
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
-	@Column(name="chest_name")
-	protected String chestName = "";
+	@Column(name="chest_id")
+	protected UUID chestId = UUID.randomUUID();;
 	
 	@Column(name="chest_drop_rate")
 	protected double chestDropRate = 0.0;
 	
-	@Column(name="equip_name")
-	protected String equipName = "";
+	@Column(name="equip_id")
+	protected UUID equipId = UUID.randomUUID();;
 
 	@Column(name="equip_drop_rate")
 	protected double equipDropRate = 0.0;
+
 
 
 	public UUID getId() {
@@ -39,13 +40,13 @@ public class RoomReward extends BasePersistentObject{
 	}
 
 
-	public String getChestName() {
-		return chestName;
+	public UUID getChestId() {
+		return chestId;
 	}
 
 
-	public void setChestName(String chestName) {
-		this.chestName = chestName;
+	public void setChestId(UUID chestId) {
+		this.chestId = chestId;
 	}
 
 
@@ -59,13 +60,13 @@ public class RoomReward extends BasePersistentObject{
 	}
 
 
-	public String getEquipName() {
-		return equipName;
+	public UUID getEquipId() {
+		return equipId;
 	}
 
 
-	public void setEquipName(String equipName) {
-		this.equipName = equipName;
+	public void setEquipId(UUID equipId) {
+		this.equipId = equipId;
 	}
 
 
@@ -82,9 +83,9 @@ public class RoomReward extends BasePersistentObject{
 
 	@Override
 	public String toString() {
-		return "RoomReward [id=" + id + ", chestName=" + chestName
-				+ ", chestDropRate=" + chestDropRate + ", equipName="
-				+ equipName + ", equipDropRate=" + equipDropRate + "]";
+		return "RoomReward [id=" + id + ", chestId=" + chestId
+				+ ", chestDropRate=" + chestDropRate + ", equipId=" + equipId
+				+ ", equipDropRate=" + equipDropRate + "]";
 	}
 
 
@@ -92,9 +93,9 @@ public class RoomReward extends BasePersistentObject{
 	public String getTableCreateStatement() {
 		return "create table room_reward (" +
 				" id uuid," +
-				" chest_name varchar," +
+				" chest_id uuid," +
 				" chest_drop_rate double," +
-				" equip_name varchar," +
+				" equip_id uuid," +
 				" equip_drop_rate double," +
 				" primary key(id))" +
 				" with compact storage;";
@@ -112,9 +113,9 @@ public class RoomReward extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index room_reward_chest_name_index on room_reward (chest_name);");
+		indexes.add("create index room_reward_chest_id_index on room_reward (chest_id);");
 		indexes.add("create index room_reward_chest_drop_rate_index on room_reward (chest_drop_rate);");
-		indexes.add("create index room_reward_equip_name_index on room_reward (equip_name);");
+		indexes.add("create index room_reward_equip_id_index on room_reward (equip_id);");
 		return indexes;
 	}
 	

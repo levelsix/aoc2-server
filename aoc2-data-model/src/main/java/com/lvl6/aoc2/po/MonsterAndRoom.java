@@ -16,8 +16,8 @@ public class MonsterAndRoom extends BasePersistentObject{
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
-	@Column(name="monster_name")
-	protected String monsterName = "";
+	@Column(name="monster_id")
+	protected UUID monsterId = UUID.randomUUID();;
 	
 	@Column(name="combat_room_name")
 	protected String combatRoomName = "";
@@ -40,13 +40,14 @@ public class MonsterAndRoom extends BasePersistentObject{
 		this.id = id;
 	}
 
-	public String getMonsterName() {
-		return monsterName;
+
+	public UUID getMonsterId() {
+		return monsterId;
 	}
 
 
-	public void setMonsterName(String monsterName) {
-		this.monsterName = monsterName;
+	public void setMonsterId(UUID monsterId) {
+		this.monsterId = monsterId;
 	}
 
 
@@ -80,12 +81,9 @@ public class MonsterAndRoom extends BasePersistentObject{
 	}
 
 
-
-
-
 	@Override
 	public String toString() {
-		return "MonsterAndRoom [id=" + id + ", monsterName=" + monsterName
+		return "MonsterAndRoom [id=" + id + ", monsterId=" + monsterId
 				+ ", combatRoomName=" + combatRoomName + ", quantity="
 				+ quantity + ", wave_num=" + wave_num + "]";
 	}
@@ -95,7 +93,7 @@ public class MonsterAndRoom extends BasePersistentObject{
 	public String getTableCreateStatement() {
 		return "create table monster_and_room (" +
 				" id uuid," +
-				" monster_name uuid," +
+				" monster_id uuid," +
 				" combat_room_name uuid," +
 				" quantity int," +
 				" wave_num int," +
@@ -115,7 +113,7 @@ public class MonsterAndRoom extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index monster_and_room_monster_name_index on monster_and_room (monster_name);");
+		indexes.add("create index monster_and_room_monster_id_index on monster_and_room (monster_id);");
 		indexes.add("create index monster_and_room_combat_room_name_index on monster_and_room (combat_room_name);");
 		return indexes;
 	}

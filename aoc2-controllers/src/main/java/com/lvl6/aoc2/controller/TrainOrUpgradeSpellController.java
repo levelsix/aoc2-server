@@ -145,8 +145,8 @@ public class TrainOrUpgradeSpellController extends EventController {
 		}
 
 		//check if user meets level requirement of spell
-		if(inDb.getLevel() < s.getUserLevelRequired()) {
-			log.error("user is not high enough level to train/upgrade. user level=" + inDb.getLevel() + 
+		if(inDb.getLvl() < s.getUserLevelRequired()) {
+			log.error("user is not high enough level to train/upgrade. user level=" + inDb.getLvl() + 
 					", required level: " + s.getUserLevelRequired());
 			responseBuilder.setStatus(TrainOrUpgradeSpellStatus.FAIL_NOT_AT_REQUIRED_LEVEL);
 			return false;
@@ -266,10 +266,10 @@ public class TrainOrUpgradeSpellController extends EventController {
 			us2.setId(newId);
 			us2.setUserId(inDb.getId());
 			us2.setName(s.getName());
-			us2.setSpellLvl(s.getLevel());
+			us2.setSpellLvl(s.getLvl());
 			us2.setTimeAcquired(clientDate);
 			us2.setIsTraining(true);
-			us2.setLevelOfUserWhenUpgrading(inDb.getLevel());
+			us2.setLevelOfUserWhenUpgrading(inDb.getLvl());
 			getUserSpellEntityManager().get().put(us2);
 		
 			return true;

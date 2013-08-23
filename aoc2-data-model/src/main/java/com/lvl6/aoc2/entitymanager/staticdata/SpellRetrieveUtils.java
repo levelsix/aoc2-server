@@ -61,7 +61,7 @@ import com.lvl6.aoc2.po.Spell;
 			setStaticIdsToSpells();
 		}
 		for(Spell value : idsToSpells.values()) {
-			if((value.getName() == s.getName()) && (value.getLevel() == s.getLevel()+1))
+			if((value.getName() == s.getName()) && (value.getLvl() == s.getLvl()+1))
 				return value;	
 		}
 		return null;
@@ -73,7 +73,7 @@ import com.lvl6.aoc2.po.Spell;
 			setStaticIdsToSpells();
 		}
 		for(Spell value : idsToSpells.values()) {
-			if((value.getName() == name) && (value.getLevel() == level))
+			if((value.getName() == name) && (value.getLvl() == level))
 				return value;
 		}
 		return null;

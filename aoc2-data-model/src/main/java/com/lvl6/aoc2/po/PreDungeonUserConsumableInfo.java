@@ -19,8 +19,8 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 	@Column(name="user_id")
 	protected UUID userId = UUID.randomUUID();
 	
-	@Column(name="consumable_name")
-	protected String consumableName = null;
+	@Column(name="consumable_id")
+	protected UUID consumableId = UUID.randomUUID();;
 	
 	@Column(name="quantity")
 	protected int quantity = 0;
@@ -46,13 +46,13 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 	}
 
 
-	public String getConsumableName() {
-		return consumableName;
+	public UUID getConsumableId() {
+		return consumableId;
 	}
 
 
-	public void setName(String consumableName) {
-		this.consumableName = consumableName;
+	public void setConsumableId(UUID consumableId) {
+		this.consumableId = consumableId;
 	}
 
 
@@ -65,13 +65,11 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 		this.quantity = quantity;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "PreDungeonUserConsumableInfo [id=" + id + ", userId=" + userId
-				+ ", consumableName=" + consumableName + ", quantity="
-				+ quantity + "]";
+				+ ", consumableId=" + consumableId + ", quantity=" + quantity
+				+ "]";
 	}
 
 
@@ -80,7 +78,7 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 		return "create pre_dungeon_user_consumable_info (" +
 				" id uuid," +
 				" user_id uuid," +
-				" consumable_name varchar," +
+				" consumable_id uuid," +
 				" quantity int," +
 				" primary key(id))" +
 				" with compact storage;";
@@ -99,7 +97,7 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index pre_dungeon_user_consumable_info_user_id_index on pre_dungeon_user_consumable_info (user_id);");
-		indexes.add("create index pre_dungeon_user_consumable_info_consumable_name_index on pre_dungeon_user_consumable_info (consumable_name);");
+		indexes.add("create index pre_dungeon_user_consumable_info_consumable_id_index on pre_dungeon_user_consumable_info (consumable_id);");
 		return indexes;
 	}
 	

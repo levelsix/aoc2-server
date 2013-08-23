@@ -222,7 +222,7 @@ public class OpenChestController extends EventController {
 			ue.setEquipLevel(1);
 			ue.setEquipped(false);
 			ue.setId(newId);
-			ue.setLevelOfUserWhenAcquired(inDb.getLevel());
+			ue.setLevelOfUserWhenAcquired(inDb.getLvl());
 			ue.setTimeAcquired(clientDate);
 			ue.setUserId(inDb.getId());
 			
@@ -231,7 +231,7 @@ public class OpenChestController extends EventController {
 			//remove chest from userchest
 			
 			for(UserChest uc : ucList) {
-				if(uc.getChestId() == chest.getChestId()) {
+				if(uc.getChestId() == chest.getId()) {
 					getUserItemEntityManager().get().delete(uc.getId());
 					break;
 				}

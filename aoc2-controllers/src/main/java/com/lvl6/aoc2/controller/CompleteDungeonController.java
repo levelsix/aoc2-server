@@ -198,7 +198,7 @@ public class CompleteDungeonController extends EventController {
 				uc.setChestId(chestId);
 				uc.setDungeonRoomAcquiredIn(dungeonRoomName);
 				uc.setId(newId);
-				uc.setLevelOfUserWhenAcquired(inDb.getLevel());
+				uc.setLevelOfUserWhenAcquired(inDb.getLvl());
 				uc.setTimeAcquired(clientDate);
 				uc.setUserId(inDb.getId());
 				getUserChestEntityManager().get().put(uc);
@@ -209,7 +209,7 @@ public class CompleteDungeonController extends EventController {
 				ui.setDungeonRoomAcquiredIn(dungeonRoomName);
 				ui.setId(newId);
 				ui.setName(ip.getItemName());
-				ui.setLevelOfUserWhenAcquired(inDb.getLevel());
+				ui.setLevelOfUserWhenAcquired(inDb.getLvl());
 				ui.setTimeAcquired(clientDate);
 				ui.setUserId(inDb.getId());
 				getUserItemEntityManager().get().put(ui);
@@ -218,7 +218,7 @@ public class CompleteDungeonController extends EventController {
 				UserEquip ue = new UserEquip();
 				UUID newId = UUID.randomUUID();
 				ue.setDungeonRoomOrChestAcquiredFrom(dungeonRoomName);
-				ue.setLevelOfUserWhenAcquired(inDb.getLevel());
+				ue.setLevelOfUserWhenAcquired(inDb.getLvl());
 				ue.setTimeAcquired(clientDate);
 				ue.setId(newId);
 				ue.setUserId(inDb.getId());

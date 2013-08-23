@@ -151,8 +151,8 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 		}
 
 		//check if user meets level requirement of structure
-		if(inDb.getLevel() < s.getUserLvlRequired()) {
-			log.error("user is not high enough level to build/upgrade. user level=" + inDb.getLevel() + 
+		if(inDb.getLvl() < s.getUserLvlRequired()) {
+			log.error("user is not high enough level to build/upgrade. user level=" + inDb.getLvl() + 
 					", required level: " + s.getUserLvlRequired());
 			responseBuilder.setStatus(BuildOrUpgradeStructureStatus.FAIL_NOT_AT_REQUIRED_LEVEL);
 			return false;
@@ -235,7 +235,7 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 			return false;
 		}
 		
-		int userLevel = inDb.getLevel();
+		int userLevel = inDb.getLvl();
 		int numAllowed = 0;
 		//check if there's a restriction on the number of a certain structure you can have
 		Collection<WideRowValue<Integer, UUID, Integer>> savedValues =
@@ -307,7 +307,7 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 			us2.setLvl(s.getLvl());
 			us2.setPurchaseTime(clientDate);
 			us2.setFinishedConstructing(false);
-			us2.setLevelOfUserWhenUpgrading(inDb.getLevel());
+			us2.setLevelOfUserWhenUpgrading(inDb.getLvl());
 			getUserStructureEntityManager().get().put(us2);
 			
 			return true;

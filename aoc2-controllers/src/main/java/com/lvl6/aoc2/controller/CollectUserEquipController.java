@@ -141,9 +141,8 @@ public class CollectUserEquipController extends EventController {
 		boolean bool = false;
 		
 		for(UserEquipRepairProto uer: uerList) {
-			String equipIdString = uer.getEquipID();
-			UUID equipId = UUID.fromString(equipIdString);
-			Equipment e = getEquipmentRetrieveUtils().getEquipmentForId(equipId);
+			String equipName = uer.getEquipName();
+			Equipment e = getEquipmentRetrieveUtils().getEquipmentCorrespondingToName(equipName);
 			long finishTime = uer.getExpectedStartMillis() + e.getDurabilityFixTimeConstant()*(long)(1-e.getDurability()); 
 			if(finishTime > clientDate.getTime()) {
 				bool = true;
