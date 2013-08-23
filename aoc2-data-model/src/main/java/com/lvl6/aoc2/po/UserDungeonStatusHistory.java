@@ -138,10 +138,10 @@ public class UserDungeonStatusHistory extends BasePersistentObject{
 				" user_id uuid," +
 				" hp int," +
 				" mana int," +
-				" actionsPerformed int," +
-				" currentTime timestamp," +
+				" actions_performed int," +
+				" current_time timestamp," +
 				" dungeon_room_name varchar," +
-				" monsters_remaining int," +
+//				" monsters_remaining int," +
 				" primary key(id))" +
 				" with compact storage;";
 	}
@@ -154,7 +154,7 @@ public class UserDungeonStatusHistory extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
+/*	
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
@@ -162,7 +162,7 @@ public class UserDungeonStatusHistory extends BasePersistentObject{
 		indexes.add("create index user_dungeon_status_history_dungeon_room_name_index "+tableName()+" (dungeon_room_name);");
 	
 		return indexes;
-	}
+	}*/
 	
 	
 }

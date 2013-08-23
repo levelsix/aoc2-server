@@ -17,18 +17,17 @@ public class RoomReward extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="chest_id")
-	protected UUID chestId = UUID.randomUUID();
+	protected UUID chestId = UUID.randomUUID();;
 	
 	@Column(name="chest_drop_rate")
 	protected double chestDropRate = 0.0;
 	
 	@Column(name="equip_id")
-	protected UUID equipId = UUID.randomUUID();
+	protected UUID equipId = UUID.randomUUID();;
 
 	@Column(name="equip_drop_rate")
 	protected double equipDropRate = 0.0;
 
-	
 
 
 	public UUID getId() {
@@ -80,6 +79,7 @@ public class RoomReward extends BasePersistentObject{
 		this.equipDropRate = equipDropRate;
 	}
 
+	
 
 	@Override
 	public String toString() {
@@ -93,9 +93,9 @@ public class RoomReward extends BasePersistentObject{
 	public String getTableCreateStatement() {
 		return "create table "+ tableName()+" (" +
 				" id uuid," +
-				" chest_id int," +
+				" chest_id uuid," +
 				" chest_drop_rate double," +
-				" equip_id int," +
+				" equip_id uuid," +
 				" equip_drop_rate double," +
 				" primary key(id))" +
 				" with compact storage;";
@@ -109,14 +109,20 @@ public class RoomReward extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
+/*	
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
+<<<<<<< HEAD
 		indexes.add("create index room_reward_chest_id_index "+tableName()+" (chest_id);");
 		indexes.add("create index room_reward_equip_id_index "+tableName()+" (equip_id);");
+=======
+		indexes.add("create index room_reward_chest_id_index on room_reward (chest_id);");
+		indexes.add("create index room_reward_chest_drop_rate_index on room_reward (chest_drop_rate);");
+		indexes.add("create index room_reward_equip_id_index on room_reward (equip_id);");
+>>>>>>> 62d75ceb56adbd358ff3954dbdd8c79911563c5e
 		return indexes;
-	}
+	}*/
 	
 	
 }

@@ -16,10 +16,6 @@ public class Chest extends BasePersistentObject{
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
-	//we'll set this manually
-	@Column(name="chest_id")
-	protected UUID chestId = null;
-	
 	@Column(name="chest_name")
 	protected String chestName = "";
 	
@@ -50,16 +46,6 @@ public class Chest extends BasePersistentObject{
 
 	public void setId(UUID id) {
 		this.id = id;
-	}
-
-
-	public UUID getChestId() {
-		return chestId;
-	}
-
-
-	public void setChestId(UUID chestId) {
-		this.chestId = chestId;
 	}
 
 
@@ -131,16 +117,14 @@ public class Chest extends BasePersistentObject{
 		this.chestName = chestName;
 	}
 
-	
-	
 
 
 	@Override
 	public String toString() {
-		return "Chest [id=" + id + ", chestId=" + chestId + ", chestName="
-				+ chestName + ", chestDropRate=" + chestDropRate + ", equipId="
-				+ equipId + ", equipWeight=" + equipWeight + ", chestType="
-				+ chestType + ", gemsRequiredToOpen=" + gemsRequiredToOpen
+		return "Chest [id=" + id + ", chestName=" + chestName
+				+ ", chestDropRate=" + chestDropRate + ", equipId=" + equipId
+				+ ", equipWeight=" + equipWeight + ", chestType=" + chestType
+				+ ", gemsRequiredToOpen=" + gemsRequiredToOpen
 				+ ", keysRequiredToOpen=" + keysRequiredToOpen + "]";
 	}
 
@@ -149,7 +133,6 @@ public class Chest extends BasePersistentObject{
 	public String getTableCreateStatement() {
 		return "create table "+ tableName()+" (" +
 				" id uuid," +
-				" chest_id uuid," +
 				" chest_name varchar," +
 				" chest_drop_rate double," +
 				" equip_id uuid," +
@@ -169,16 +152,17 @@ public class Chest extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
+/*	
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index chest_id_index "+tableName()+" (chest_id);");
-		indexes.add("create index chest_type_index "+tableName()+" (chest_type);");
+		indexes.add("create index chest_chest_name_index on chest (chest_name);");
+		indexes.add("create index chest_type_index on chest (chest_type);");
+		indexes.add("create index chest_equip_id_index on chest (equip_id);");
 		return indexes;
 	}
 	
-	
+	*/
 	
 	
 	

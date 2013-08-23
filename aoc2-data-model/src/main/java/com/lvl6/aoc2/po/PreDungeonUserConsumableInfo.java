@@ -19,9 +19,8 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 	@Column(name="user_id")
 	protected UUID userId = UUID.randomUUID();
 	
-	//the 'equip_id' column in equipment table, not the 'id' column
-	@Column(name="name")
-	protected String name = "";
+	@Column(name="consumable_id")
+	protected UUID consumableId = UUID.randomUUID();;
 	
 	@Column(name="quantity")
 	protected int quantity = 0;
@@ -47,13 +46,13 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 	}
 
 
-	public String getName() {
-		return name;
+	public UUID getConsumableId() {
+		return consumableId;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setConsumableId(UUID consumableId) {
+		this.consumableId = consumableId;
 	}
 
 
@@ -66,11 +65,11 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 		this.quantity = quantity;
 	}
 
-
 	@Override
 	public String toString() {
 		return "PreDungeonUserConsumableInfo [id=" + id + ", userId=" + userId
-				+ ", name=" + name + ", quantity=" + quantity + "]";
+				+ ", consumableId=" + consumableId + ", quantity=" + quantity
+				+ "]";
 	}
 
 
@@ -79,7 +78,7 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 		return "create table "+tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
-				" name varchar," +
+				" consumable_id uuid," +
 				" quantity int," +
 				" primary key(id))" +
 				" with compact storage;";
@@ -94,13 +93,15 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index pre_dungeon_user_consumable_info_user_id_index "+tableName()+" (user_id);");
 		indexes.add("create index pre_dungeon_user_consumable_info_name_index "+tableName()+" (name);");
+//		indexes.add("create index pre_dungeon_user_consumable_info_user_id_index on pre_dungeon_user_consumable_info (user_id);");
+	//	indexes.add("create index pre_dungeon_user_consumable_info_consumable_id_index on pre_dungeon_user_consumable_info (consumable_id);");
 		return indexes;
 	}
-	
+	*/
 	
 }

@@ -121,7 +121,7 @@ public class UserDevice extends BasePersistentObject{
 		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
-				" udid uuid," +
+				" udid varchar," +
 				" device_id varchar," +
 				" date_linked timestamp," +
 				" last_login timestamp," +
@@ -138,7 +138,7 @@ public class UserDevice extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
+/*	
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
@@ -148,7 +148,7 @@ public class UserDevice extends BasePersistentObject{
 		indexes.add("create index user_device_last_logout_index "+tableName()+" (last_logout);");
 		return indexes;
 	}
-	
+	*/
 	
 	
 	

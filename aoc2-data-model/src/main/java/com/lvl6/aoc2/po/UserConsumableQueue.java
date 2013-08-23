@@ -124,7 +124,7 @@ public class UserConsumableQueue extends BasePersistentObject{
 				" user_id uuid," +
 				" name varchar," +
 				" quantity int," +
-				" expected_start timestamp" +
+				" expected_start timestamp," +
 				" entered_queue timestamp," +
 				" is_finished_building boolean," +
 				" primary key(id))" +
@@ -140,13 +140,20 @@ public class UserConsumableQueue extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
+<<<<<<< HEAD
 		indexes.add("create index user_consumable_queue_user_id_index "+tableName()+" (user_id);");
 		indexes.add("create index user_consumable_queue_name_index "+tableName()+" (name);");
+=======
+		indexes.add("create index user_consumable_queue_user_id_index on user_consumable_queue (user_id);");
+		indexes.add("create index user_consumable_queue_name_index on user_consumable_queue (name);");
+		indexes.add("create index user_consumable_queue_expected_start_index on user_consumable_queue (expected_start);");
+		indexes.add("create index user_consumable_queue_entered_queue_index on user_consumable_queue (entered_queue);");
+>>>>>>> 62d75ceb56adbd358ff3954dbdd8c79911563c5e
 		return indexes;
-	}
+	}*/
 	
 	
 }

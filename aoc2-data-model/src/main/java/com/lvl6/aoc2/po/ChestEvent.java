@@ -27,7 +27,7 @@ public class ChestEvent extends BasePersistentObject{
 	protected String eventName = "";
 	
 	@Column(name="chest_id")
-	protected UUID chestId = null;
+	protected UUID chestId = UUID.randomUUID();
 	
 
 	public UUID getId() {
@@ -69,7 +69,6 @@ public class ChestEvent extends BasePersistentObject{
 		this.eventName = eventName;
 	}
 
-
 	public UUID getChestId() {
 		return chestId;
 	}
@@ -80,7 +79,6 @@ public class ChestEvent extends BasePersistentObject{
 	}
 
 
-	
 	@Override
 	public String toString() {
 		return "ChestEvent [id=" + id + ", startTime=" + startTime
@@ -110,7 +108,7 @@ public class ChestEvent extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index ChestEvent_type_index "+tableName()+" (type);");
@@ -118,7 +116,8 @@ public class ChestEvent extends BasePersistentObject{
 		indexes.add("create index ChestEvent_class_required_index "+tableName()+" (class_required);");
 		indexes.add("create index ChestEvent_lvl_required_index "+tableName()+" (lvl_required);");
 		indexes.add("create index ChestEvent_equip_id_index "+tableName()+" (equip_id);");
+		indexes.add("create index ChestEvent_chest_id_index on ChestEvent (chest_id);");
 		return indexes;
-	}
+	}*/
 	
 }

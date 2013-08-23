@@ -98,14 +98,19 @@ public class UserConsumable extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
+<<<<<<< HEAD
 		indexes.add("create index user_consumable_user_id_index "+tableName()+" (user_id);");
 		//indexes.add("create index user_consumable_consumable_id_index "+tableName()+" user_consumable (consumable_id);");
 		//TODO: there is no consumable_id column
+=======
+		indexes.add("create index user_consumable_user_id_index on user_consumable (user_id);");
+		indexes.add("create index user_consumable_name_index on user_consumable (name);");
+>>>>>>> 62d75ceb56adbd358ff3954dbdd8c79911563c5e
 		return indexes;
-	}
+	}*/
 	
 	
 	

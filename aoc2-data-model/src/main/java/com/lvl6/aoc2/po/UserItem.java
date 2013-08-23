@@ -20,8 +20,8 @@ public class UserItem extends BasePersistentObject{
 	@Column(name="user_id")
 	protected UUID userId = null;
 	
-	@Column(name="item_id")
-	protected UUID itemId = null;
+	@Column(name="name")
+	protected String name = "";
 	
 	@Column(name="time_acquired")
 	protected Date timeAcquired = new Date();
@@ -50,16 +50,6 @@ public class UserItem extends BasePersistentObject{
 
 	public void setUserId(UUID userId) {
 		this.userId = userId;
-	}
-
-
-	public UUID getItemId() {
-		return itemId;
-	}
-
-
-	public void setItemId(UUID itemId) {
-		this.itemId = itemId;
 	}
 
 
@@ -93,10 +83,22 @@ public class UserItem extends BasePersistentObject{
 	}
 
 
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+
 	@Override
 	public String toString() {
-		return "UserItem [id=" + id + ", userId=" + userId + ", itemId="
-				+ itemId + ", timeAcquired=" + timeAcquired
+		return "UserItem [id=" + id + ", userId=" + userId + ", name=" + name
+				+ ", timeAcquired=" + timeAcquired
 				+ ", levelOfUserWhenAcquired=" + levelOfUserWhenAcquired
 				+ ", dungeonRoomAcquiredIn=" + dungeonRoomAcquiredIn + "]";
 	}
@@ -107,7 +109,7 @@ public class UserItem extends BasePersistentObject{
 		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
-				" item_id uuid," +
+				" name varchar," +
 				" time_acquired timestamp," +
 				" level_of_user_when_acquired int," +
 				" dungeon_room_acquired_in int," +
@@ -124,14 +126,20 @@ public class UserItem extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
+<<<<<<< HEAD
 		indexes.add("create index user_item_user_id_index "+tableName()+" (user_id);");
 		indexes.add("create index user_item_item_id_index "+tableName()+" (item_id);");
 
+=======
+		indexes.add("create index user_item_user_id_index on user_item (user_id);");
+		indexes.add("create index user_item_item_id_index on user_item (item_id);");
+		indexes.add("create index user_item_time_acquired_index on user_item (time_acquired);");
+>>>>>>> 62d75ceb56adbd358ff3954dbdd8c79911563c5e
 		return indexes;
-	}
+	}*/
 	
 	
 }

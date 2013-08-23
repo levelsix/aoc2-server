@@ -141,9 +141,8 @@ public class CollectUserEquipController extends EventController {
 		boolean bool = false;
 		
 		for(UserEquipRepairProto uer: uerList) {
-			String equipIdString = uer.getEquipID();
-			UUID equipId = UUID.fromString(equipIdString);
-			Equipment e = getEquipmentRetrieveUtils().getEquipmentForId(equipId);
+			String equipName = uer.getEquipName();
+			Equipment e = getEquipmentRetrieveUtils().getEquipmentCorrespondingToName(equipName);
 			long finishTime = uer.getExpectedStartMillis() + e.getDurabilityFixTimeConstant()*(long)(1-e.getDurability()); 
 			if(finishTime > clientDate.getTime()) {
 				bool = true;
@@ -173,7 +172,7 @@ public class CollectUserEquipController extends EventController {
 				UserEquip ue = new UserEquip();
 				ue.setDungeonRoomOrChestAcquiredFrom(uer2.getDungeonRoomOrChestAcquiredFrom());
 				ue.setDurability(100.0);
-				ue.setEquipId(uer2.getEquipId());
+				ue.setName(uer2.getName());
 				ue.setEquipLevel(uer2.getEquipLevel());
 				ue.setEquipped(false);
 				ue.setId(UUID.randomUUID());

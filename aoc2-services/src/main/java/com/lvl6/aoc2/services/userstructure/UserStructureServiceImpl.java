@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lvl6.aoc2.entitymanager.StructureEntityManager;
 import com.lvl6.aoc2.entitymanager.UserStructureEntityManager;
+import com.lvl6.aoc2.entitymanager.staticdata.StructureRetrieveUtils;
 import com.lvl6.aoc2.po.Structure;
 import com.lvl6.aoc2.po.UserStructure;
 
@@ -22,10 +23,14 @@ public class UserStructureServiceImpl implements UserStructureService {
 	private  Map<UUID, UserStructure> idsToUserStructures;
 	
 	@Autowired
-	protected UserStructureEntityManager UserStructureEntityManager;
+	protected UserStructureEntityManager userStructureEntityManager;
 
 	@Autowired
-	protected StructureEntityManager StructureEntityManager;
+	protected StructureEntityManager structureEntityManager;
+	
+	@Autowired
+	protected StructureRetrieveUtils structureRetrieveUtils;
+	
 	
 	@Override
 	public  UserStructure getUserStructureForId(UUID id) {
@@ -61,7 +66,7 @@ public class UserStructureServiceImpl implements UserStructureService {
 		}
 					
 	}
-
+	
 	@Override
 	public  List<UserStructure> getAllUserStructuresForUser(UUID userId) {
 		String cqlquery = "select * from user_structure where user_id=" + userId + ";"; 
@@ -71,29 +76,43 @@ public class UserStructureServiceImpl implements UserStructureService {
 	
 	@Override
 	public Structure getStructureCorrespondingToUserStructure(UserStructure us) {
-		UUID structureId = us.getStructureId();
-		String cqlquery = "select * from Structure where structureId= " + structureId + ";";
-		List<Structure> s = getStructureEntityManager().get().find(cqlquery);
-		return s.get(0);
+		String structureName = us.getName();
+		int level = us.getLvl();
+		return getStructureRetrieveUtils().getStructureWithNameAndLevel(structureName, level);
 	}
+	
+	
 
 	public UserStructureEntityManager getUserStructureEntityManager() {
-		return UserStructureEntityManager;
+		return userStructureEntityManager;
 	}
 
 	public void setUserStructureEntityManager(
 			UserStructureEntityManager userStructureEntityManager) {
-		UserStructureEntityManager = userStructureEntityManager;
+		this.userStructureEntityManager = userStructureEntityManager;
 	}
 
 	public StructureEntityManager getStructureEntityManager() {
-		return StructureEntityManager;
+		return structureEntityManager;
 	}
 
 	public void setStructureEntityManager(
 			StructureEntityManager structureEntityManager) {
-		StructureEntityManager = structureEntityManager;
+		this.structureEntityManager = structureEntityManager;
 	}
+
+	public StructureRetrieveUtils getStructureRetrieveUtils() {
+		return structureRetrieveUtils;
+	}
+
+	public void setStructureRetrieveUtils(
+			StructureRetrieveUtils structureRetrieveUtils) {
+		this.structureRetrieveUtils = structureRetrieveUtils;
+	}
+
+
+	
+	
 	
 	
 	

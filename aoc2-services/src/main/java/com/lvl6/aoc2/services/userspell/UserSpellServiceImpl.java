@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lvl6.aoc2.entitymanager.SpellEntityManager;
 import com.lvl6.aoc2.entitymanager.UserSpellEntityManager;
+import com.lvl6.aoc2.entitymanager.staticdata.SpellRetrieveUtils;
 
 import com.lvl6.aoc2.po.Spell;
 import com.lvl6.aoc2.po.UserSpell;
@@ -22,6 +23,8 @@ public class UserSpellServiceImpl implements UserSpellService {
 
 	private  Map<UUID, UserSpell> idsToUserSpells;
 	
+	@Autowired
+	protected SpellRetrieveUtils spellRetrieveUtils;
 
 	@Autowired
 	protected UserSpellEntityManager UserSpellEntityManager;
@@ -73,10 +76,10 @@ public class UserSpellServiceImpl implements UserSpellService {
 
 	@Override
 	public Spell getSpellCorrespondingToUserSpell(UserSpell us) {
-		String spellName = us.getName();
-		String cqlquery = "select * from Spell where name= " + spellName + ";";
-		List<Spell> s = getSpellEntityManager().get().find(cqlquery);
-		return s.get(0);
+		String name = us.getName();
+		int level = us.getSpellLvl();
+		return getSpellRetrieveUtils().getSpellAccordingToNameAndLevel(name, level);
+		
 	}
 
 	public UserSpellEntityManager getUserSpellEntityManager() {
@@ -95,6 +98,15 @@ public class UserSpellServiceImpl implements UserSpellService {
 	public void setSpellEntityManager(SpellEntityManager spellEntityManager) {
 		this.spellEntityManager = spellEntityManager;
 	}
+
+	public SpellRetrieveUtils getSpellRetrieveUtils() {
+		return spellRetrieveUtils;
+	}
+
+	public void setSpellRetrieveUtils(SpellRetrieveUtils spellRetrieveUtils) {
+		this.spellRetrieveUtils = spellRetrieveUtils;
+	}
+	
 	
 	
 

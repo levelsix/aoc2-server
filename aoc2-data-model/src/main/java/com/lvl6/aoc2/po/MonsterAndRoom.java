@@ -17,10 +17,10 @@ public class MonsterAndRoom extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="monster_id")
-	protected UUID monsterId = null;
+	protected UUID monsterId = UUID.randomUUID();;
 	
-	@Column(name="room_id")
-	protected UUID roomId = null;
+	@Column(name="combat_room_name")
+	protected String combatRoomName = "";
 	
 	@Column(name="quantity")
 	protected int quantity = 0;
@@ -51,13 +51,13 @@ public class MonsterAndRoom extends BasePersistentObject{
 	}
 
 
-	public UUID getRoomId() {
-		return roomId;
+	public String getCombatRoomName() {
+		return combatRoomName;
 	}
 
 
-	public void setRoomId(UUID roomId) {
-		this.roomId = roomId;
+	public void setCombatRoomName(String combatRoomName) {
+		this.combatRoomName = combatRoomName;
 	}
 
 
@@ -81,12 +81,11 @@ public class MonsterAndRoom extends BasePersistentObject{
 	}
 
 
-
 	@Override
 	public String toString() {
 		return "MonsterAndRoom [id=" + id + ", monsterId=" + monsterId
-				+ ", roomId=" + roomId + ", quantity=" + quantity
-				+ ", wave_num=" + wave_num + "]";
+				+ ", combatRoomName=" + combatRoomName + ", quantity="
+				+ quantity + ", wave_num=" + wave_num + "]";
 	}
 
 
@@ -95,7 +94,7 @@ public class MonsterAndRoom extends BasePersistentObject{
 		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" monster_id uuid," +
-				" room_id uuid," +
+				" combat_room_name uuid," +
 				" quantity int," +
 				" wave_num int," +
 				" primary key (id))" +
@@ -111,12 +110,14 @@ public class MonsterAndRoom extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index monster_and_room_monster_id_index "+tableName()+" (monster_id);");
 		indexes.add("create index monster_and_room_room_id_index "+tableName()+" (room_id);");
+		indexes.add("create index monster_and_room_monster_id_index on monster_and_room (monster_id);");
+		indexes.add("create index monster_and_room_combat_room_name_index on monster_and_room (combat_room_name);");
 		return indexes;
-	}
+	}*/
 	
 }

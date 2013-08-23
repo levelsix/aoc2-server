@@ -143,7 +143,7 @@ public class UserDungeonStatus extends BasePersistentObject{
 				" actions_performed int," +
 				" current_time timestamp," +
 				" dungeon_room_name varchar," +
-				" monsters_remaining int," +
+//				" monsters_remaining int," +
 				" primary key(id))" +
 				" with compact storage;";
 	}
@@ -159,14 +159,14 @@ public class UserDungeonStatus extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index user_dungeon_status_user_id_index "+tableName()+" (user_id);");
 		indexes.add("create index user_dungeon_status_dungeon_room_name_index "+tableName()+" (dungeon_room_name);");
 		
 		return indexes;
-	}
+	}*/
 	
 	
 }

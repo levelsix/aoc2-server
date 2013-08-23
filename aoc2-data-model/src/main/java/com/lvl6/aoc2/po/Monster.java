@@ -34,8 +34,8 @@ public class Monster extends BasePersistentObject{
 	@Column(name="defense")
 	protected int defense = 0;
 	
-	@Column(name="type")
-	protected int type = 0;
+	@Column(name="monster_type")
+	protected int monsterType = 0;
 	
 	@Column(name="color")
 	protected int color = 0;
@@ -119,13 +119,13 @@ public class Monster extends BasePersistentObject{
 	}
 
 
-	public int getType() {
-		return type;
+	public int getMonsterType() {
+		return monsterType;
 	}
 
 
-	public void setType(int type) {
-		this.type = type;
+	public void setType(int monsterType) {
+		this.monsterType = monsterType;
 	}
 
 
@@ -164,9 +164,9 @@ public class Monster extends BasePersistentObject{
 	public String toString() {
 		return "Monster [id=" + id + ", name=" + name + ", isBoss=" + isBoss
 				+ ", maxHp=" + maxHp + ", maxMana=" + maxMana + ", attack="
-				+ attack + ", defense=" + defense + ", type=" + type
-				+ ", color=" + color + ", size=" + size + ", expReward="
-				+ expReward + "]";
+				+ attack + ", defense=" + defense + ", monsterType="
+				+ monsterType + ", color=" + color + ", size=" + size
+				+ ", expReward=" + expReward + "]";
 	}
 
 
@@ -180,7 +180,7 @@ public class Monster extends BasePersistentObject{
 				" max_mana int," +
 				" attack int," +
 				" defense int," +
-				" type int," +
+				" monster_type int," +
 				" color int," +
 				" size int," +
 				" exp_reward int," +
@@ -197,13 +197,16 @@ public class Monster extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index monster_is_boss_index "+tableName()+" (is_boss);");
+		indexes.add("create index monster_name_index on monster (name);");
+		indexes.add("create index monster_is_boss_index on monster (is_boss);");
+		indexes.add("create index monster_monster_type_index on monster (monster_type)");
 		return indexes;
 	}
-	
+	*/
 	
 	
 }

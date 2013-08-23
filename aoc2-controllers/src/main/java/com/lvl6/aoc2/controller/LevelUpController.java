@@ -99,7 +99,7 @@ public class LevelUpController extends EventController {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
 			
-			ClassLevelInfo cli = getClassLevelInfoRetrieveUtils().getClassLevelInfoForClassAndLevel(inDb.getClassType(), inDb.getLevel()+1);
+			ClassLevelInfo cli = getClassLevelInfoRetrieveUtils().getClassLevelInfoForClassAndLevel(inDb.getClassType(), inDb.getLvl()+1);
 			
 
 			//validate request
@@ -118,16 +118,16 @@ public class LevelUpController extends EventController {
 			resEvent.setLevelUpResponseProto(responseBuilder.build());
 			log.info("Writing event: " + resEvent);
 			getEventWriter().handleEvent(resEvent);
-			responseBuilder.setNewLevel(inDb.getLevel());
+			responseBuilder.setNewLevel(inDb.getLvl());
 			responseBuilder.setNewAttack(cli.getAttack());
 			responseBuilder.setNewDefense(cli.getDefense());
 			responseBuilder.setNewHp(cli.getMaxHp());
 			responseBuilder.setNewMana(cli.getMaxMana());
-			responseBuilder.setNewNextLevel(inDb.getLevel()+1);
+			responseBuilder.setNewNextLevel(inDb.getLvl()+1);
 			responseBuilder.setExperienceRequiredForNewNextLevel(cli.getMaxExp());
 			
 			for(DungeonProto dp : dpList) {
-				if(dp.getLevelReq() != inDb.getLevel())
+				if(dp.getLevelReq() != inDb.getLvl())
 					dpList.remove(dp);
 			}
 			
@@ -159,7 +159,7 @@ public class LevelUpController extends EventController {
 			return false;
 		}
 		
-		if(inDb.getExperience() < cli.getMaxExp()) {
+		if(inDb.getExp() < cli.getMaxExp()) {
 			log.error("user doesn't have required exp to level");
 			responseBuilder.setStatus(LevelUpStatus.FAIL_NOT_ENOUGH_EXP);
 			return false;
@@ -171,7 +171,7 @@ public class LevelUpController extends EventController {
 
 	private boolean writeChangesToDb(User inDb, ClassLevelInfo cli, Date clientDate) {
 		try {
-			inDb.setLevel(inDb.getLevel()+1);
+			inDb.setLvl(inDb.getLvl()+1);
 			inDb.setMaxHp(cli.getMaxHp());
 			inDb.setMaxMana(cli.getMaxMana());
 			getUserEntityManager().get().put(inDb);

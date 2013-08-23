@@ -206,7 +206,7 @@ public class StartDungeonController extends EventController {
 		
 		//check if user is high enough lvl to enter particular dungeon
 		CombatRoom dungeonRoom = getCombatRoomRetrieveUtils().getCombatRoomForName(dungeonName);
-		if(inDb.getLevel() < dungeonRoom.getLvlRequired()) {
+		if(inDb.getLvl() < dungeonRoom.getLvlRequired()) {
 			log.error("user's lvl not high enough for room");
 			responseBuilder.setStatus(StartDungeonStatus.FAIL_NOT_AT_REQUIRED_LEVEL);
 			return false;
@@ -234,7 +234,7 @@ public class StartDungeonController extends EventController {
 			pdui.setCombatRoomName(dungeonName);
 			pdui.setHealth(inDb.getHp());
 			pdui.setId(UUID.randomUUID());
-			pdui.setLevelOfUser(inDb.getLevel());
+			pdui.setLevelOfUser(inDb.getLvl());
 			pdui.setMana(inDb.getMana());
 			pdui.setTimeUserEntersDungeon(clientDate);
 			pdui.setUserId(inDb.getId());
@@ -243,9 +243,9 @@ public class StartDungeonController extends EventController {
 			for(UserEquip ue : equippedList) {
 				PreDungeonUserEquipInfo pduei = new PreDungeonUserEquipInfo();
 				pduei.setDurability(ue.getDurability());
-				pduei.setEquipId(ue.getEquipId());
+				pduei.setEquipId(ue.getId());
 				pduei.setId(UUID.randomUUID());
-				pduei.setLevel(ue.getEquipLevel());
+				pduei.setLvl(ue.getEquipLevel());
 				pduei.setUserId(inDb.getId());
 				getPreDungeonUserEquipInfoEntityManager().get().put(pduei);
 			}
@@ -255,7 +255,7 @@ public class StartDungeonController extends EventController {
 				Integer quantity = entry.getValue();
 				PreDungeonUserConsumableInfo pduci = new PreDungeonUserConsumableInfo();
 				pduci.setId(UUID.randomUUID());
-				pduci.setName(uc.getName());
+				pduci.setConsumableId(uc.getId());
 				pduci.setQuantity(quantity);
 				pduci.setUserId(inDb.getId());
 			}

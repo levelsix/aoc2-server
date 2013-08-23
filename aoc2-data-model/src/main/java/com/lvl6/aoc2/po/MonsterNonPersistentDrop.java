@@ -19,7 +19,7 @@ public class MonsterNonPersistentDrop extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="monster_id")
-	protected UUID monsterId = null;
+	protected UUID monsterId = UUID.randomUUID();;
 	
 	@Column(name="drop_type")
 	protected int dropType = 0;
@@ -28,7 +28,7 @@ public class MonsterNonPersistentDrop extends BasePersistentObject{
 	protected UUID correspondingId = null;
 	
 	@Column(name="item_id")
-	protected UUID itemId = null;
+	protected UUID itemId = UUID.randomUUID();;
 	
 	@Column(name="item_drop_rate")
 	protected double itemDropRate = 0.5;
@@ -92,8 +92,8 @@ public class MonsterNonPersistentDrop extends BasePersistentObject{
 	public void setItemDropRate(double itemDropRate) {
 		this.itemDropRate = itemDropRate;
 	}
-	
-	
+
+
 	@Override
 	public String toString() {
 		return "MonsterNonPersistentDrop [id=" + id + ", monsterId="
@@ -125,13 +125,15 @@ public class MonsterNonPersistentDrop extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index monster_non_persistent_drop_monster_id_index "+tableName()+" (monster_id);");
+		indexes.add("create index monster_non_persistent_drop_monster_id_index on monster_non_persistent_drop (monster_id);");
+		indexes.add("create index monster_non_persistent_drop_item_id_index on monster_non_persistent_drop (item_id);");
 		return indexes;
 	}
-	
+	*/
 }
 
 

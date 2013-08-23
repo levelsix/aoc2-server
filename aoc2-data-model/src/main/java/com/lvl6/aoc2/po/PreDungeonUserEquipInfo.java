@@ -21,10 +21,10 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 	
 	//the 'equip_id' column in equipment table, not the 'id' column
 	@Column(name="equip_id")
-	protected UUID equipId = UUID.randomUUID();
+	protected UUID equipId = UUID.randomUUID();;
 	
-	@Column(name="level")
-	protected int level = 0;
+	@Column(name="lvl")
+	protected int lvl = 0;
 	
 	@Column(name="durability")
 	protected double durability = 0.0;
@@ -49,7 +49,6 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 		this.userId = userId;
 	}
 
-
 	public UUID getEquipId() {
 		return equipId;
 	}
@@ -60,13 +59,13 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 	}
 
 
-	public int getLevel() {
-		return level;
+	public int getLvl() {
+		return lvl;
 	}
 
 
-	public void setLevel(int level) {
-		this.level = level;
+	public void setLvl(int lvl) {
+		this.lvl = lvl;
 	}
 
 
@@ -83,7 +82,7 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 	@Override
 	public String toString() {
 		return "PreDungeonUserEquipInfo [id=" + id + ", userId=" + userId
-				+ ", equipId=" + equipId + ", level=" + level + ", durability="
+				+ ", equipId=" + equipId + ", lvl=" + lvl + ", durability="
 				+ durability + "]";
 	}
 
@@ -108,7 +107,7 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
+/*	
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
@@ -117,5 +116,5 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
+	*/
 }

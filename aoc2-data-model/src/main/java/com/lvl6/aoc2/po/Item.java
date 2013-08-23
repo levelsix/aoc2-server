@@ -16,9 +16,6 @@ public class Item extends BasePersistentObject{
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
-	@Column(name="item_id")
-	protected UUID itemId = UUID.randomUUID();
-	
 	@Column(name="name")
 	protected String name = "";
 	
@@ -34,16 +31,6 @@ public class Item extends BasePersistentObject{
 
 	public void setId(UUID id) {
 		this.id = id;
-	}
-
-
-	public UUID getItemId() {
-		return itemId;
-	}
-
-
-	public void setItemId(UUID itemId) {
-		this.itemId = itemId;
 	}
 
 
@@ -67,10 +54,12 @@ public class Item extends BasePersistentObject{
 	}
 
 
+
+
 	@Override
 	public String toString() {
-		return "Item [id=" + id + ", itemId=" + itemId + ", name=" + name
-				+ ", itemType=" + itemType + "]";
+		return "Item [id=" + id + ", name=" + name + ", itemType=" + itemType
+				+ "]";
 	}
 
 
@@ -78,7 +67,6 @@ public class Item extends BasePersistentObject{
 	public String getTableCreateStatement() {
 		return "create table "+ tableName()+" (" +
 				" id uuid," +
-				" item_id uuid," +
 				" name varchar," +
 				" item_type int," +
 				" primary key(id))" +
@@ -93,7 +81,7 @@ public class Item extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
+/*	
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
@@ -102,7 +90,8 @@ public class Item extends BasePersistentObject{
 		indexes.add("create index item_class_required_index "+tableName()+" (class_required);");
 		indexes.add("create index item_lvl_required_index "+tableName()+" (lvl_required);");
 		indexes.add("create index item_equip_id_index "+tableName()+" (equip_id);");
+		indexes.add("create index item_name_index on item (name);");
 		return indexes;
-	}
+	}*/
 	
 }

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lvl6.aoc2.entitymanager.EquipmentEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEquipRepairEntityManager;
+import com.lvl6.aoc2.entitymanager.staticdata.EquipmentRetrieveUtils;
 import com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto;
 import com.lvl6.aoc2.po.Equipment;
 import com.lvl6.aoc2.po.UserEquip;
@@ -29,11 +30,12 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 
 	private  Map<UUID, UserEquipRepair> idsToUserEquipRepairs;
 	
-	@Autowired
-	protected UserEquipRepairEntityManager UserEquipRepairEntityManager;
 	
 	@Autowired
-	protected EquipmentEntityManager EquipmentEntityManager;
+	protected EquipmentEntityManager equipmentEntityManager;
+	
+	@Autowired
+	protected EquipmentRetrieveUtils equipmentRetrieveUtils;
 	
 	
 	@Override
@@ -152,10 +154,7 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 	
 	@Override
 	public Equipment getEquipmentCorrespondingToUserEquipRepair(UserEquipRepair ue) {
-		UUID equipId = ue.getEquipId();
-		String cqlquery = "select * from user_equip_repair where equipId= " + equipId + ";";
-		List<Equipment> e = getEquipmentEntityManager().get().find(cqlquery);
-		return e.get(0);
+		return getEquipmentRetrieveUtils().getEquipmentCorrespondingToName(ue.getName());
 	}
 	
 	
@@ -181,16 +180,26 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 	}
 
 	public EquipmentEntityManager getEquipmentEntityManager() {
-		return EquipmentEntityManager;
+		return equipmentEntityManager;
 	}
 
 	public void setEquipmentEntityManager(
 			EquipmentEntityManager equipmentEntityManager) {
-		EquipmentEntityManager = equipmentEntityManager;
+		this.equipmentEntityManager = equipmentEntityManager;
 	}
 
+	public EquipmentRetrieveUtils getEquipmentRetrieveUtils() {
+		return equipmentRetrieveUtils;
+	}
+
+	public void setEquipmentRetrieveUtils(
+			EquipmentRetrieveUtils equipmentRetrieveUtils) {
+		this.equipmentRetrieveUtils = equipmentRetrieveUtils;
+	}
+
+}
+
 
 	
 	
 	
-}

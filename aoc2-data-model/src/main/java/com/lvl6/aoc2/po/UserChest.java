@@ -125,14 +125,14 @@ public class UserChest extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
+/*	
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index user_chest_user_id_index "+tableName()+" (user_id);");
 		indexes.add("create index user_chest_chest_id_index "+tableName()+" (chest_id);");
 		return indexes;
-	}
+	}*/
 	
 	
 	

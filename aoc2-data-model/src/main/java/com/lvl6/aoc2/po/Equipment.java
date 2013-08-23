@@ -16,9 +16,6 @@ public class Equipment extends BasePersistentObject{
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
-	@Column(name="equip_id")
-	protected UUID equipId = UUID.randomUUID();
-	
 	@Column(name="name")
 	protected String name = "";
 	
@@ -68,16 +65,6 @@ public class Equipment extends BasePersistentObject{
 
 	public void setId(UUID id) {
 		this.id = id;
-	}
-
-
-	public UUID getEquipId() {
-		return equipId;
-	}
-
-
-	public void setEquipId(UUID equipId) {
-		this.equipId = equipId;
 	}
 
 
@@ -213,15 +200,14 @@ public class Equipment extends BasePersistentObject{
 
 	@Override
 	public String toString() {
-		return "Equipment [id=" + id + ", equipId=" + equipId + ", name="
-				+ name + ", level=" + level + ", type=" + type
-				+ ", durability=" + durability + ", attack=" + attack
-				+ ", defense=" + defense + ", additionalHp=" + additionalHp
-				+ ", additionalMana=" + additionalMana + ", rarity=" + rarity
-				+ ", classRequired=" + classRequired + ", lvlRequired="
-				+ lvlRequired + ", durabilityFixPrice=" + durabilityFixPrice
-				+ ", durabilityFixTimeConstant=" + durabilityFixTimeConstant
-				+ "]";
+		return "Equipment [id=" + id + ", name=" + name + ", level=" + level
+				+ ", type=" + type + ", durability=" + durability + ", attack="
+				+ attack + ", defense=" + defense + ", additionalHp="
+				+ additionalHp + ", additionalMana=" + additionalMana
+				+ ", rarity=" + rarity + ", classRequired=" + classRequired
+				+ ", lvlRequired=" + lvlRequired + ", durabilityFixPrice="
+				+ durabilityFixPrice + ", durabilityFixTimeConstant="
+				+ durabilityFixTimeConstant + "]";
 	}
 
 
@@ -229,7 +215,6 @@ public class Equipment extends BasePersistentObject{
 	public String getTableCreateStatement() {
 		return "create table "+ tableName()+" (" +
 				" id uuid," +
-				" equip_id uuid," +
 				" name varchar," +
 				" level int," +
 				" type int," +
@@ -256,15 +241,15 @@ public class Equipment extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index equipment_type_index "+tableName()+" (type);");
-		indexes.add("create index equipment_rarity_index "+tableName()+" (rarity);");
-		indexes.add("create index equipment_class_required_index "+tableName()+" (class_required);");
-		indexes.add("create index equipment_lvl_required_index "+tableName()+" (lvl_required);");
-		indexes.add("create index equipment_equip_id_index "+tableName()+" (equip_id);");
+		indexes.add("create index equipment_type_index on equipment (type);");
+		indexes.add("create index equipment_rarity_index on equipment (rarity);");
+		indexes.add("create index equipment_class_required_index on equipment (class_required);");
+		indexes.add("create index equipment_lvl_required_index on equipment (lvl_required);");
+		indexes.add("create index equipment_name_index on equipment (name);");
 		return indexes;
 	}
-	
+	*/
 }

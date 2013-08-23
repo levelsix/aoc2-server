@@ -19,10 +19,10 @@ public class MonsterPersistentDrop extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="monster_id")
-	protected UUID monsterId = null;
+	protected UUID monsterId = UUID.randomUUID();;
 	
 	@Column(name="equip_id")
-	protected UUID equipId = null;
+	protected UUID equipId = UUID.randomUUID();;
 	
 	@Column(name="equip_drop_rate")
 	protected double equipDropRate = 0.5;
@@ -119,7 +119,7 @@ public class MonsterPersistentDrop extends BasePersistentObject{
 		this.maxTonic = maxTonic;
 	}
 
-	
+
 
 	@Override
 	public String toString() {
@@ -154,11 +154,12 @@ public class MonsterPersistentDrop extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index monster_persistent_drop_monster_id_index "+tableName()+" (monster_id);");
+		//indexes.add("create index monster_persistent_drop_equip_id_index on monster_persistent_drop (equip_id);");
 		return indexes;
-	}
+	}*/
 	
 }

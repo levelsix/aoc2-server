@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,14 +20,17 @@ public class User extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="name")
+	@Index
 	protected String name = "";
 	
-	@Column(name="level")
-	protected int level = 0;
+	@Column(name="lvl")
+	@Index
+	protected int lvl = 0;
 	
-	//total experience
-	@Column(name="experience")
-	protected int experience = 0;
+	//total exp
+	@Column(name="exp")
+	@Index
+	protected int exp = 0;
 
 	@Column(name="gold")
 	protected int gold = 0;
@@ -35,9 +40,11 @@ public class User extends BasePersistentObject{
 	
 	//in game currency
 	@Column(name="gems")
+	@Index
 	protected int gems = 0;
 	
 	@Column(name="class_type")
+	@Index
 	protected int classType = 0;
 
 	@Column(name="max_hp")
@@ -60,18 +67,21 @@ public class User extends BasePersistentObject{
 	
 	//if has a gameCenterId use that id, else generate random string
 	@Column(name="game_center_id")
+	@Index
 	protected String gameCenterId = "";
 	
 	//@Column(name="signup_date")
 	//protected Date signupDate = null;
 	
 	@Column(name="clan_id")
+	@Index
 	protected String clanId = null;
 	
 	//@Column(name="last_login")
 	//protected Date lastLogin = null;
 	
 	@Column(name="account_initialized")
+	@Index
 	protected boolean accountInitialized = false;
 	
 	
@@ -93,20 +103,20 @@ public class User extends BasePersistentObject{
 		this.name = name;
 	}
 
-	public int getLevel() {
-		return level;
+	public int getLvl() {
+		return lvl;
 	}
 
-	public void setLevel(int level) {
-		this.level = level;
+	public void setLvl(int lvl) {
+		this.lvl = lvl;
 	}
 
-	public int getExperience() {
-		return experience;
+	public int getExp() {
+		return exp;
 	}
 
-	public void setExperience(int experience) {
-		this.experience = experience;
+	public void setExp(int exp) {
+		this.exp = exp;
 	}
 
 	public int getGold() {
@@ -239,8 +249,8 @@ public class User extends BasePersistentObject{
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", level=" + level
-				+ ", experience=" + experience + ", gold=" + gold + ", tonic="
+		return "User [id=" + id + ", name=" + name + ", lvl=" + lvl
+				+ ", exp=" + exp + ", gold=" + gold + ", tonic="
 				+ tonic + ", gems=" + gems + ", classType=" + classType
 				+ ", maxHp=" + maxHp + ", hp=" + hp + ", lastTimeHpRegened="
 				+ lastTimeHpRegened + ", maxMana=" + maxMana + ", mana=" + mana
@@ -254,8 +264,8 @@ public class User extends BasePersistentObject{
 		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" name varchar," +
-				" level int," +
-				" experience int," +
+				" lvl int," +
+				" exp int," +
 				" gold int," +
 				" tonic int," +
 				" gems int," +
@@ -285,21 +295,21 @@ public class User extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		//indexes.add("create index user_email_index "+tableName()+" (email);");
-		indexes.add("create index user_name_index "+tableName()+" (name);");
-		indexes.add("create index user_level_index "+tableName()+" (level);");
-		indexes.add("create index user_experience_index "+tableName()+" (experience);");
-		indexes.add("create index user_gold_index "+tableName()+" (gold);");
-		indexes.add("create index user_tonic_index "+tableName()+" (tonic);");
-		indexes.add("create index user_gems_index "+tableName()+" (gems);");
-		indexes.add("create index user_class_type_index "+tableName()+" (class_type);");
-		indexes.add("create index user_game_center_id_index "+tableName()+" (game_center_id);");
-		indexes.add("create index user_clan_id_index "+tableName()+" (clan_id);");
-//		indexes.add("create index user_last_login_index "+tableName()+" (last_login);");
+		//indexes.add("create index user_email_index on user (email);");
+		indexes.add("create index user_name_index on user (name);");
+		indexes.add("create index user_lvl_index on user (lvl);");
+		indexes.add("create index user_exp_index on user (exp);");
+		indexes.add("create index user_gold_index on user (gold);");
+		indexes.add("create index user_tonic_index on user (tonic);");
+		indexes.add("create index user_gems_index on user (gems);");
+		indexes.add("create index user_class_type_index on user (class_type);");
+		indexes.add("create index user_game_center_id_index on user (game_center_id);");
+		indexes.add("create index user_clan_id_index on user (clan_id);");
+//		indexes.add("create index user_last_login_index on user (last_login);");
 		return indexes;
-	}
+	}*/
 	
 }
