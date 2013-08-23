@@ -26,8 +26,8 @@ public class ChestEvent extends BasePersistentObject{
 	@Column(name="event_name")
 	protected String eventName = "";
 	
-	@Column(name="chest_id")
-	protected UUID chestId = null;
+	@Column(name="chest_name")
+	protected String chestName = "";
 	
 
 	public UUID getId() {
@@ -70,22 +70,23 @@ public class ChestEvent extends BasePersistentObject{
 	}
 
 
-	public UUID getChestId() {
-		return chestId;
+
+	public String getChestName() {
+		return chestName;
 	}
 
 
-	public void setChestId(UUID chestId) {
-		this.chestId = chestId;
+	public void setChestName(String chestName) {
+		this.chestName = chestName;
 	}
-
 
 	
+
 	@Override
 	public String toString() {
 		return "ChestEvent [id=" + id + ", startTime=" + startTime
 				+ ", endTime=" + endTime + ", eventName=" + eventName
-				+ ", chestId=" + chestId + "]";
+				+ ", chestName=" + chestName + "]";
 	}
 
 
@@ -96,7 +97,7 @@ public class ChestEvent extends BasePersistentObject{
 				" start_time timestamp," +
 				" end_time timestamp," +
 				" event_name varchar," +
-				" chest_id uuid," +
+				" chest_name varchar," +
 				" primary key(id))" +
 				" with compact storage;";
 	}
@@ -113,11 +114,7 @@ public class ChestEvent extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index ChestEvent_type_index on ChestEvent (type);");
-		indexes.add("create index ChestEvent_rarity_index on ChestEvent (rarity);");
-		indexes.add("create index ChestEvent_class_required_index on ChestEvent (class_required);");
-		indexes.add("create index ChestEvent_lvl_required_index on ChestEvent (lvl_required);");
-		indexes.add("create index ChestEvent_equip_id_index on ChestEvent (equip_id);");
+		indexes.add("create index ChestEvent_chest_name_index on ChestEvent (chest_name);");
 		return indexes;
 	}
 	

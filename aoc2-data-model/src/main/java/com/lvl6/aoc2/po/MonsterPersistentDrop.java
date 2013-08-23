@@ -18,11 +18,11 @@ public class MonsterPersistentDrop extends BasePersistentObject{
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
-	@Column(name="monster_id")
-	protected UUID monsterId = null;
+	@Column(name="monster_name")
+	protected String monsterName = "";
 	
-	@Column(name="equip_id")
-	protected UUID equipId = null;
+	@Column(name="equip_name")
+	protected String equipName = "";
 	
 	@Column(name="equip_drop_rate")
 	protected double equipDropRate = 0.5;
@@ -50,23 +50,24 @@ public class MonsterPersistentDrop extends BasePersistentObject{
 	}
 
 
-	public UUID getMonsterId() {
-		return monsterId;
+
+	public String getMonsterName() {
+		return monsterName;
 	}
 
 
-	public void setMonsterId(UUID monsterId) {
-		this.monsterId = monsterId;
+	public void setMonsterName(String monsterName) {
+		this.monsterName = monsterName;
 	}
 
 
-	public UUID getEquipId() {
-		return equipId;
+	public String getEquipName() {
+		return equipName;
 	}
 
 
-	public void setEquipId(UUID equipId) {
-		this.equipId = equipId;
+	public void setEquipName(String equipName) {
+		this.equipName = equipName;
 	}
 
 
@@ -119,14 +120,15 @@ public class MonsterPersistentDrop extends BasePersistentObject{
 		this.maxTonic = maxTonic;
 	}
 
-	
+
 
 	@Override
 	public String toString() {
-		return "MonsterPersistentDrop [id=" + id + ", monsterId=" + monsterId
-				+ ", equipId=" + equipId + ", equipDropRate=" + equipDropRate
-				+ ", minGold=" + minGold + ", maxGold=" + maxGold
-				+ ", minTonic=" + minTonic + ", maxTonic=" + maxTonic + "]";
+		return "MonsterPersistentDrop [id=" + id + ", monsterName="
+				+ monsterName + ", equipName=" + equipName + ", equipDropRate="
+				+ equipDropRate + ", minGold=" + minGold + ", maxGold="
+				+ maxGold + ", minTonic=" + minTonic + ", maxTonic=" + maxTonic
+				+ "]";
 	}
 
 
@@ -134,8 +136,8 @@ public class MonsterPersistentDrop extends BasePersistentObject{
 	public String getTableCreateStatement() {
 		return "create table monster_persistent_drop (" +
 				" id uuid," +
-				" monster_id uuid," +
-				" equip_id uuid," +
+				" monster_name varchar," +
+				" equip_name varchar," +
 				" equip_drop_rate double," +
 				" min_gold int," +
 				" max_gold int," +
@@ -157,7 +159,9 @@ public class MonsterPersistentDrop extends BasePersistentObject{
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index monster_persistent_drop_monster_id_index on monster_persistent_drop (monster_id);");
+		indexes.add("create index monster_persistent_drop_monster_name_index on monster_persistent_drop (monster_name);");
+		indexes.add("create index monster_persistent_drop_equip_name_index on monster_persistent_drop (equip_name);");
+
 		return indexes;
 	}
 	
