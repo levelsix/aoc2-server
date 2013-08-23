@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lvl6.aoc2.entitymanager.ItemEntityManager;
 import com.lvl6.aoc2.entitymanager.UserItemEntityManager;
+import com.lvl6.aoc2.entitymanager.staticdata.ItemRetrieveUtils;
 import com.lvl6.aoc2.po.Item;
 import com.lvl6.aoc2.po.UserItem;
 
@@ -22,6 +23,9 @@ public class UserItemServiceImpl implements UserItemService {
 	
 	@Autowired
 	protected ItemEntityManager itemEntityManager;
+	
+	@Autowired
+	protected ItemRetrieveUtils itemRetrieveUtils;
 	
 	
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
@@ -48,11 +52,11 @@ public class UserItemServiceImpl implements UserItemService {
 	}
 
 	@Override
-	public int getNumberOfSpecificUserKeys(UUID itemId, UUID userId) {
+	public int getNumberOfSpecificUserKeys(String name, UUID userId) {
 		List<UserItem> uiList = getAllUserItemsForUser(userId);
 		int specificKeyCount = 0;
 		for(UserItem ui : uiList) {
-			if(ui.getItemId() == itemId)
+			if(ui.getName() == name)
 				specificKeyCount++;
 		}
 		return specificKeyCount;
@@ -103,10 +107,7 @@ public class UserItemServiceImpl implements UserItemService {
 	
 	@Override
 	public Item getItemCorrespondingToUserItem(UserItem ui) {
-		UUID itemId = ui.getItemId();
-		String cqlquery = "select * from Item where itemId= " + itemId + ";";
-		List<Item> i = getItemEntityManager().get().find(cqlquery);
-		return i.get(0);
+		return getItemRetrieveUtils().getItemAccordingToName(ui.getName());
 	}
 	
 	
@@ -130,6 +131,15 @@ public class UserItemServiceImpl implements UserItemService {
 	public void setItemEntityManager(ItemEntityManager itemEntityManager) {
 		this.itemEntityManager = itemEntityManager;
 	}
+
+	public ItemRetrieveUtils getItemRetrieveUtils() {
+		return itemRetrieveUtils;
+	}
+
+	public void setItemRetrieveUtils(ItemRetrieveUtils itemRetrieveUtils) {
+		this.itemRetrieveUtils = itemRetrieveUtils;
+	}
+	
 	
 	
 }

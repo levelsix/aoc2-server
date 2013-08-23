@@ -243,7 +243,7 @@ public class StartDungeonController extends EventController {
 			for(UserEquip ue : equippedList) {
 				PreDungeonUserEquipInfo pduei = new PreDungeonUserEquipInfo();
 				pduei.setDurability(ue.getDurability());
-				pduei.setEquipId(ue.getEquipId());
+				pduei.setEquipName(ue.getName());
 				pduei.setId(UUID.randomUUID());
 				pduei.setLevel(ue.getEquipLevel());
 				pduei.setUserId(inDb.getId());

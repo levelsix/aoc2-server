@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.SpellEntityManager;
-import com.lvl6.aoc2.po.Consumable;
 import com.lvl6.aoc2.po.Spell;
 
 @Component public class SpellRetrieveUtils {
@@ -19,6 +18,7 @@ import com.lvl6.aoc2.po.Spell;
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	private  Map<UUID, Spell> idsToSpells;
+	
 	//private  final String TABLE_NAME = DBConstants.CONSUMABLE;
 
 	@Autowired
@@ -60,16 +60,23 @@ import com.lvl6.aoc2.po.Spell;
 		if(idsToSpells == null) {
 			setStaticIdsToSpells();
 		}
-		int level = s.getLvl();
-		String spellName = s.getName();
-		String cqlquery = "select * from spell;"; 
-		List <Spell> list = getSpellEntityManager().get().find(cqlquery);
-		for(Spell spell : list) {
-			if((spell.getName() == spellName) && (spell.getLvl() == level+1))
-				return spell;	
+		for(Spell value : idsToSpells.values()) {
+			if((value.getName() == s.getName()) && (value.getLevel() == s.getLevel()+1))
+				return value;	
 		}
 		return null;
 		
+	}
+	
+	public Spell getSpellAccordingToNameAndLevel(String name, int level) {
+		if(idsToSpells == null) {
+			setStaticIdsToSpells();
+		}
+		for(Spell value : idsToSpells.values()) {
+			if((value.getName() == name) && (value.getLevel() == level))
+				return value;
+		}
+		return null;
 	}
 	
 

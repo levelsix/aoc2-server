@@ -20,8 +20,8 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 	protected UUID userId = UUID.randomUUID();
 	
 	//the 'equip_id' column in equipment table, not the 'id' column
-	@Column(name="equip_id")
-	protected UUID equipId = UUID.randomUUID();
+	@Column(name="equip_name")
+	protected String equipName = "";
 	
 	@Column(name="lvl")
 	protected int lvl = 0;
@@ -50,13 +50,14 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 	}
 
 
-	public UUID getEquipId() {
-		return equipId;
+
+	public String getEquipName() {
+		return equipName;
 	}
 
 
-	public void setEquipId(UUID equipId) {
-		this.equipId = equipId;
+	public void setEquipName(String equipName) {
+		this.equipName = equipName;
 	}
 
 
@@ -80,11 +81,12 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 	}
 
 
+
 	@Override
 	public String toString() {
 		return "PreDungeonUserEquipInfo [id=" + id + ", userId=" + userId
-				+ ", equipId=" + equipId + ", lvl=" + lvl + ", durability="
-				+ durability + "]";
+				+ ", equipName=" + equipName + ", lvl=" + lvl
+				+ ", durability=" + durability + "]";
 	}
 
 
@@ -93,8 +95,8 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 		return "create pre_dungeon_user_equip_info (" +
 				" id uuid," +
 				" user_id uuid," +
-				" equip_id uuid," +
-				" lvl int," +
+				" equip_name varchar," +
+				" level int," +
 				" durability double," +
 				" primary key(id))" +
 				" with compact storage;";
@@ -113,7 +115,7 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index pre_dungeon_user_equip_info_user_id_index on pre_dungeon_user_equip_info (user_id);");
-		indexes.add("create index pre_dungeon_user_equip_info_equip_id_index on pre_dungeon_user_equip_info (equip_id);");
+		indexes.add("create index pre_dungeon_user_equip_info_equip_name_index on pre_dungeon_user_equip_info (equip_name);");
 		return indexes;
 	}
 	

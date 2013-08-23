@@ -141,11 +141,11 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 		}
 
 		UUID id = us.getId();
-		UUID structureId = us.getStructureId();
+		String structureName = us.getName();
 		Structure s = getStructureRetrieveUtils().getStructureForId(id);
 
 		if (null == s) {
-			log.error("unexpected error: no structure with id exists. id=" + structureId);
+			log.error("unexpected error: no structure with id exists. id=" + structureName);
 			responseBuilder.setStatus(BuildOrUpgradeStructureStatus.FAIL_NO_STRUCTURE_EXISTS);
 			return false;
 		}
@@ -303,7 +303,7 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 			
 			us2.setId(UUID.randomUUID());
 			us2.setUserId(inDb.getId());
-			us2.setStructureId(s.getStructureId());
+			us2.setName(s.getName());
 			us2.setLvl(s.getLvl());
 			us2.setPurchaseTime(clientDate);
 			us2.setFinishedConstructing(false);

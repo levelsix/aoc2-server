@@ -21,8 +21,8 @@ public class UserEquip extends BasePersistentObject{
 	protected UUID userId = null;
 	
 	//the 'equip_id' column in equipment table, not the 'id' column
-	@Column(name="equip_id")
-	protected UUID equipId = null;
+	@Column(name="name")
+	protected String name = "";
 	
 	@Column(name="equip_level")
 	protected int equipLevel = 0;
@@ -64,13 +64,13 @@ public class UserEquip extends BasePersistentObject{
 	}
 
 
-	public UUID getEquipId() {
-		return equipId;
+	public String getName() {
+		return name;
 	}
 
 
-	public void setEquipId(UUID equipId) {
-		this.equipId = equipId;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
@@ -134,16 +134,16 @@ public class UserEquip extends BasePersistentObject{
 		this.dungeonRoomOrChestAcquiredFrom = dungeonRoomOrChestAcquiredFrom;
 	}
 	
-	
+
 
 
 	@Override
 	public String toString() {
-		return "UserEquip [id=" + id + ", userId=" + userId + ", equipId="
-				+ equipId + ", equipLevel=" + equipLevel + ", durability="
-				+ durability + ", equipped=" + equipped + ", timeAcquired="
-				+ timeAcquired + ", levelOfUserWhenAcquired="
-				+ levelOfUserWhenAcquired + ", dungeonRoomOrChestAcquiredFrom="
+		return "UserEquip [id=" + id + ", userId=" + userId + ", name=" + name
+				+ ", equipLevel=" + equipLevel + ", durability=" + durability
+				+ ", equipped=" + equipped + ", timeAcquired=" + timeAcquired
+				+ ", levelOfUserWhenAcquired=" + levelOfUserWhenAcquired
+				+ ", dungeonRoomOrChestAcquiredFrom="
 				+ dungeonRoomOrChestAcquiredFrom + "]";
 	}
 
@@ -153,7 +153,7 @@ public class UserEquip extends BasePersistentObject{
 		return "create table user_equip (" +
 				" id uuid," +
 				" user_id uuid," +
-				" equip_id uuid," +
+				" name varchar," +
 				" equip_level int," +
 				" durability double," +
 				" equipped boolean," +
@@ -177,7 +177,7 @@ public class UserEquip extends BasePersistentObject{
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index user_equip_user_id_index on user_equip (user_id);");
-		indexes.add("create index user_equip_equip_id_index on user_equip (equip_id);");
+		indexes.add("create index user_equip_name_index on user_equip (name);");
 		indexes.add("create index user_equip_equip_level_index on user_equip (equip_level);");
 		indexes.add("create index user_equip_equipped_index on user_equip (equipped);");
 		return indexes;

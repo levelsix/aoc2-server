@@ -15,7 +15,7 @@ public interface UserItemService {
 	
 	public abstract void saveItems(Collection<UserItem> newItems);
 	
-	public abstract int getNumberOfSpecificUserKeys(UUID itemId, UUID userId);
+	public abstract int getNumberOfSpecificUserKeys(String name, UUID userId);
 	
 	public abstract UserItemEntityManager getUserItemEntityManager();
 	

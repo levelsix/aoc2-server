@@ -15,9 +15,9 @@ public class Structure extends BasePersistentObject{
 
 	@Id
 	protected UUID id = UUID.randomUUID();
-
-	@Column(name="structure_id")
-	protected UUID structureId = UUID.randomUUID();
+	
+//	@Column(name="structure_id")
+//	protected UUID structureId = UUID.randomUUID();
 	
 	//groups structures
 	//(e.g. structure table could contain 9 rows: Inn level 1 to
@@ -75,14 +75,15 @@ public class Structure extends BasePersistentObject{
 		this.id = id;
 	}
 
-	public UUID getStructureId() {
-		return structureId;
-	}
-	
-	
-	public void setStructureId(UUID structureId) {
-		this.structureId = structureId;
-	}
+
+//	public UUID getStructureId() {
+//		return structureId;
+//	}
+//
+//
+//	public void setStructureId(UUID structureId) {
+//		this.structureId = structureId;
+//	}
 
 
 	public String getName() {
@@ -223,8 +224,6 @@ public class Structure extends BasePersistentObject{
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
 	}
-
-
 
 
 

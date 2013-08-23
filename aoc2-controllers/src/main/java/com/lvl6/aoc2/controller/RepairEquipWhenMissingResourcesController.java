@@ -179,7 +179,7 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 			UserEquipRepair uer = new UserEquipRepair();
 			uer.setDurability(ue.getDurability());
 			uer.setEnteredQueue(clientDate);
-			uer.setEquipId(e.getEquipId());
+			uer.setName(e.getName());
 			uer.setEquipLevel(ue.getEquipLevel());
 			uer.setId(UUID.randomUUID());
 			uer.setUserId(inDb.getId());
@@ -190,12 +190,12 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 			String cqlquery = "select * from user_equip_repair where user_id=" + inDb.getId() + ";";
 			List <UserEquipRepair> uerList = getUserEquipRepairEntityManager().get().find(cqlquery);
 			long expectedEndTimeOfQueue = uerList.get(0).getExpectedStart().getTime() + 
-					getEquipmentRetrieveUtils().getEquipmentForId(uerList.get(0).getEquipId()).getDurabilityFixTimeConstant()*(long)(1-uerList.get(0).getDurability());
+					getEquipmentRetrieveUtils().getEquipmentForId(uerList.get(0).getId()).getDurabilityFixTimeConstant()*(long)(1-uerList.get(0).getDurability());
 			for(UserEquipRepair uer2 : uerList) {
-				if((uer2.getExpectedStart().getTime() + getEquipmentRetrieveUtils().getEquipmentForId(uerList.get(0).getEquipId()).getDurabilityFixTimeConstant()*(long)(1-uerList.get(0).getDurability())) 
+				if((uer2.getExpectedStart().getTime() + getEquipmentRetrieveUtils().getEquipmentForId(uerList.get(0).getId()).getDurabilityFixTimeConstant()*(long)(1-uerList.get(0).getDurability())) 
 						> expectedEndTimeOfQueue) {
 					expectedEndTimeOfQueue = uer2.getExpectedStart().getTime() + 
-							getEquipmentRetrieveUtils().getEquipmentForId(uerList.get(0).getEquipId()).getDurabilityFixTimeConstant()*(long)(1-uerList.get(0).getDurability());
+							getEquipmentRetrieveUtils().getEquipmentForId(uerList.get(0).getId()).getDurabilityFixTimeConstant()*(long)(1-uerList.get(0).getDurability());
 				}
 			}
 			Date d = new Date(expectedEndTimeOfQueue);

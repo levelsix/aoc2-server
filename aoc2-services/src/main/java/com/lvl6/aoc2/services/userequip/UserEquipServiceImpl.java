@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lvl6.aoc2.entitymanager.EquipmentEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEquipEntityManager;
+import com.lvl6.aoc2.entitymanager.staticdata.EquipmentRetrieveUtils;
 import com.lvl6.aoc2.po.Equipment;
 import com.lvl6.aoc2.po.UserEquip;
 
@@ -20,6 +21,9 @@ public class UserEquipServiceImpl implements UserEquipService {
 	
 	@Autowired
 	protected UserEquipEntityManager userEquipEntityManager;
+	
+	@Autowired
+	protected EquipmentRetrieveUtils equipmentRetrieveUtils;
 	
 	@Autowired
 	protected EquipmentEntityManager equipmentEntityManager;
@@ -94,10 +98,8 @@ public class UserEquipServiceImpl implements UserEquipService {
 	}
 	
 	public Equipment getEquipmentCorrespondingToUserEquip(UserEquip ue) {
-		UUID equipId = ue.getEquipId();
-		String cqlquery = "select * from user_equip where equipId= " + equipId + ";";
-		List<Equipment> e = getEquipmentEntityManager().get().find(cqlquery);
-		return e.get(0);
+		String equipName = ue.getName();
+		return getEquipmentRetrieveUtils().getEquipmentCorrespondingToName(equipName);
 	}
 	
 	public List<UserEquip> getAllEquippedUserEquipsForUser(UUID userId) {
@@ -130,6 +132,16 @@ public class UserEquipServiceImpl implements UserEquipService {
 			EquipmentEntityManager equipmentEntityManager) {
 		this.equipmentEntityManager = equipmentEntityManager;
 	}
+
+	public EquipmentRetrieveUtils getEquipmentRetrieveUtils() {
+		return equipmentRetrieveUtils;
+	}
+
+	public void setEquipmentRetrieveUtils(
+			EquipmentRetrieveUtils equipmentRetrieveUtils) {
+		this.equipmentRetrieveUtils = equipmentRetrieveUtils;
+	}
+	
 	
 	
 	

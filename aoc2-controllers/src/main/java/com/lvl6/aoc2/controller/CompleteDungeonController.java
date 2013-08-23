@@ -208,7 +208,7 @@ public class CompleteDungeonController extends EventController {
 				UUID newId = UUID.randomUUID();
 				ui.setDungeonRoomAcquiredIn(dungeonRoomName);
 				ui.setId(newId);
-				ui.setItemId(UUID.fromString(ip.getItemID()));
+				ui.setName(ip.getItemName());
 				ui.setLevelOfUserWhenAcquired(inDb.getLevel());
 				ui.setTimeAcquired(clientDate);
 				ui.setUserId(inDb.getId());
@@ -217,7 +217,6 @@ public class CompleteDungeonController extends EventController {
 			for(EquipmentProto ep : equipmentsRewarded) {
 				UserEquip ue = new UserEquip();
 				UUID newId = UUID.randomUUID();
-				UUID equipId = UUID.fromString(ep.getEquipID());
 				ue.setDungeonRoomOrChestAcquiredFrom(dungeonRoomName);
 				ue.setLevelOfUserWhenAcquired(inDb.getLevel());
 				ue.setTimeAcquired(clientDate);
@@ -225,7 +224,7 @@ public class CompleteDungeonController extends EventController {
 				ue.setUserId(inDb.getId());
 				ue.setEquipped(false);
 				ue.setEquipLevel(1);
-				ue.setEquipId(equipId);
+				ue.setName(ep.getName());
 				ue.setDurability(100.0);
 				getUserEquipEntityManager().get().put(ue);
 				

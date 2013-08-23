@@ -127,10 +127,10 @@ public class RetrieveResourceController extends EventController {
 			return false;
 		}
 
-		UUID structureId = us.getStructureId();
+		String structureName = us.getName();
 		
 		if (null == s) {
-			log.error("unexpected error: no structure with id exists. id=" + structureId);
+			log.error("unexpected error: no structure with id exists. id=" + structureName);
 			responseBuilder.setStatus(RetrieveResourceStatus.FAIL_NO_STRUCTURE_OR_USER_EXISTS);
 			return false;
 		}

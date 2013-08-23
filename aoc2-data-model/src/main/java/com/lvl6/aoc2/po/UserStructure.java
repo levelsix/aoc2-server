@@ -20,8 +20,9 @@ public class UserStructure extends BasePersistentObject{
 	@Column(name="user_id")
 	protected UUID userId = UUID.randomUUID();
 	
-	@Column(name="structure_name")
-	protected String structureName = null;
+	//refers to type of structure, not random generated uuid row key
+	@Column(name="name")
+	protected String name = "";
 	
 	@Column(name="lvl")
 	protected int lvl = 0;
@@ -74,13 +75,15 @@ public class UserStructure extends BasePersistentObject{
 	}
 
 
-	public String getStructureName() {
-		return structureName;
+
+
+	public String getName() {
+		return name;
 	}
 
 
-	public void setStructureName(String structureName) {
-		this.structureName = structureName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
@@ -177,14 +180,14 @@ public class UserStructure extends BasePersistentObject{
 
 	@Override
 	public String toString() {
-		return "UserStructure [id=" + id + ", userId=" + userId
-				+ ", structureName=" + structureName + ", lvl=" + lvl
-				+ ", xCoordinate=" + xCoordinate + ", yCoordinate="
-				+ yCoordinate + ", lastCollectTime=" + lastCollectTime
-				+ ", purchaseTime=" + purchaseTime + ", startUpgradeTime="
-				+ startUpgradeTime + ", isFinishedConstructing="
-				+ isFinishedConstructing + ", levelOfUserWhenUpgrading="
-				+ levelOfUserWhenUpgrading + ", nthCopy=" + nthCopy + "]";
+		return "UserStructure [id=" + id + ", userId=" + userId + ", name="
+				+ name + ", lvl=" + lvl + ", xCoordinate=" + xCoordinate
+				+ ", yCoordinate=" + yCoordinate + ", lastCollectTime="
+				+ lastCollectTime + ", purchaseTime=" + purchaseTime
+				+ ", startUpgradeTime=" + startUpgradeTime
+				+ ", isFinishedConstructing=" + isFinishedConstructing
+				+ ", levelOfUserWhenUpgrading=" + levelOfUserWhenUpgrading
+				+ "]";
 	}
 
 
@@ -193,7 +196,7 @@ public class UserStructure extends BasePersistentObject{
 		return "create table user_structure (" +
 				" id uuid," +
 				" user_id uuid," +
-				" structure_name uuid," +
+				" name varchar," +
 				" lvl int," +
 				" x_coordinate int," +
 				" y_coordinate int," +
