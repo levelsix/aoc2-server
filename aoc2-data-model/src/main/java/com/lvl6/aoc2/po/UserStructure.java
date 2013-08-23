@@ -21,8 +21,8 @@ public class UserStructure extends BasePersistentObject{
 	protected UUID userId = UUID.randomUUID();
 	
 	//refers to type of structure, not random generated uuid row key
-	@Column(name="structure_id")
-	protected UUID structureId = UUID.randomUUID();
+	@Column(name="name")
+	protected String name = "";
 	
 	@Column(name="lvl")
 	protected int lvl = 0;
@@ -69,13 +69,15 @@ public class UserStructure extends BasePersistentObject{
 	}
 
 
-	public UUID getStructureId() {
-		return structureId;
+
+
+	public String getName() {
+		return name;
 	}
 
 
-	public void setStructureId(UUID structureId) {
-		this.structureId = structureId;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
@@ -161,14 +163,14 @@ public class UserStructure extends BasePersistentObject{
 
 	@Override
 	public String toString() {
-		return "UserStructure [id=" + id + ", userId=" + userId
-				+ ", structureId=" + structureId + ", lvl=" + lvl
-				+ ", xCoordinate=" + xCoordinate + ", yCoordinate="
-				+ yCoordinate + ", lastCollectTime=" + lastCollectTime
-				+ ", purchaseTime=" + purchaseTime + ", startUpgradeTime="
-				+ startUpgradeTime + ", isFinishedConstructing="
-				+ isFinishedConstructing + ", levelOfUserWhenUpgrading="
-				+ levelOfUserWhenUpgrading + "]";
+		return "UserStructure [id=" + id + ", userId=" + userId + ", name="
+				+ name + ", lvl=" + lvl + ", xCoordinate=" + xCoordinate
+				+ ", yCoordinate=" + yCoordinate + ", lastCollectTime="
+				+ lastCollectTime + ", purchaseTime=" + purchaseTime
+				+ ", startUpgradeTime=" + startUpgradeTime
+				+ ", isFinishedConstructing=" + isFinishedConstructing
+				+ ", levelOfUserWhenUpgrading=" + levelOfUserWhenUpgrading
+				+ "]";
 	}
 
 
@@ -177,7 +179,7 @@ public class UserStructure extends BasePersistentObject{
 		return "create table user_structure (" +
 				" id uuid," +
 				" user_id uuid," +
-				" structure_id uuid," +
+				" name varchar," +
 				" lvl int," +
 				" x_coordinate int," +
 				" y_coordinate int," +
@@ -205,7 +207,7 @@ public class UserStructure extends BasePersistentObject{
 		indexes.add("create index user_structure_is_upgrading_index on user_structure (is_upgrading);");
 		indexes.add("create index user_structure_last_collect_time_index on user_structure (last_collect_time);");
 		indexes.add("create index user_structure_user_id_index on user_structure (user_id);");
-		indexes.add("create index user_structure_structure_id_index on user_structure (structure_id);");
+		indexes.add("create index user_structure_name_index on user_structure (name);");
 		return indexes;
 	}
 	

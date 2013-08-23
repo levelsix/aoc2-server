@@ -15,7 +15,7 @@ message OpenChestRequestProto {
 
 message OpenChestResponseProto {
 	optional MinimumUserProto mup = 1;
-	optional string equipId = 2;
+	optional string equipName = 2;
 	optional OpenChestStatus status = 3;
 	
 	

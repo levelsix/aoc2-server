@@ -591,9 +591,9 @@ public final class OpenChestEventProto {
     com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup();
     com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder();
     
-    // optional string equipId = 2;
-    boolean hasEquipId();
-    String getEquipId();
+    // optional string equipName = 2;
+    boolean hasEquipName();
+    String getEquipName();
     
     // optional .proto.OpenChestResponseProto.OpenChestStatus status = 3;
     boolean hasStatus();
@@ -716,14 +716,14 @@ public final class OpenChestEventProto {
       return mup_;
     }
     
-    // optional string equipId = 2;
-    public static final int EQUIPID_FIELD_NUMBER = 2;
-    private java.lang.Object equipId_;
-    public boolean hasEquipId() {
+    // optional string equipName = 2;
+    public static final int EQUIPNAME_FIELD_NUMBER = 2;
+    private java.lang.Object equipName_;
+    public boolean hasEquipName() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public String getEquipId() {
-      java.lang.Object ref = equipId_;
+    public String getEquipName() {
+      java.lang.Object ref = equipName_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -731,17 +731,17 @@ public final class OpenChestEventProto {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          equipId_ = s;
+          equipName_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getEquipIdBytes() {
-      java.lang.Object ref = equipId_;
+    private com.google.protobuf.ByteString getEquipNameBytes() {
+      java.lang.Object ref = equipName_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        equipId_ = b;
+        equipName_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -760,7 +760,7 @@ public final class OpenChestEventProto {
     
     private void initFields() {
       mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
-      equipId_ = "";
+      equipName_ = "";
       status_ = com.lvl6.aoc2.eventprotos.OpenChestEventProto.OpenChestResponseProto.OpenChestStatus.SUCCESS;
     }
     private byte memoizedIsInitialized = -1;
@@ -779,7 +779,7 @@ public final class OpenChestEventProto {
         output.writeMessage(1, mup_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getEquipIdBytes());
+        output.writeBytes(2, getEquipNameBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeEnum(3, status_.getNumber());
@@ -799,7 +799,7 @@ public final class OpenChestEventProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getEquipIdBytes());
+          .computeBytesSize(2, getEquipNameBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -936,7 +936,7 @@ public final class OpenChestEventProto {
           mupBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        equipId_ = "";
+        equipName_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
         status_ = com.lvl6.aoc2.eventprotos.OpenChestEventProto.OpenChestResponseProto.OpenChestStatus.SUCCESS;
         bitField0_ = (bitField0_ & ~0x00000004);
@@ -989,7 +989,7 @@ public final class OpenChestEventProto {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.equipId_ = equipId_;
+        result.equipName_ = equipName_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
@@ -1013,8 +1013,8 @@ public final class OpenChestEventProto {
         if (other.hasMup()) {
           mergeMup(other.getMup());
         }
-        if (other.hasEquipId()) {
-          setEquipId(other.getEquipId());
+        if (other.hasEquipName()) {
+          setEquipName(other.getEquipName());
         }
         if (other.hasStatus()) {
           setStatus(other.getStatus());
@@ -1061,7 +1061,7 @@ public final class OpenChestEventProto {
             }
             case 18: {
               bitField0_ |= 0x00000002;
-              equipId_ = input.readBytes();
+              equipName_ = input.readBytes();
               break;
             }
             case 24: {
@@ -1171,39 +1171,39 @@ public final class OpenChestEventProto {
         return mupBuilder_;
       }
       
-      // optional string equipId = 2;
-      private java.lang.Object equipId_ = "";
-      public boolean hasEquipId() {
+      // optional string equipName = 2;
+      private java.lang.Object equipName_ = "";
+      public boolean hasEquipName() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
-      public String getEquipId() {
-        java.lang.Object ref = equipId_;
+      public String getEquipName() {
+        java.lang.Object ref = equipName_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          equipId_ = s;
+          equipName_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setEquipId(String value) {
+      public Builder setEquipName(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000002;
-        equipId_ = value;
+        equipName_ = value;
         onChanged();
         return this;
       }
-      public Builder clearEquipId() {
+      public Builder clearEquipName() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        equipId_ = getDefaultInstance().getEquipId();
+        equipName_ = getDefaultInstance().getEquipName();
         onChanged();
         return this;
       }
-      void setEquipId(com.google.protobuf.ByteString value) {
+      void setEquipName(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000002;
-        equipId_ = value;
+        equipName_ = value;
         onChanged();
       }
       
@@ -1264,15 +1264,15 @@ public final class OpenChestEventProto {
       "\n\024OpenChestEvent.proto\022\005proto\032\023FullUserP" +
       "roto.proto\"_\n\025OpenChestRequestProto\022$\n\003m" +
       "up\030\001 \001(\0132\027.proto.MinimumUserProto\022\017\n\007che" +
-      "stId\030\002 \001(\t\022\017\n\007usedKey\030\003 \001(\010\"\362\001\n\026OpenChes" +
+      "stId\030\002 \001(\t\022\017\n\007usedKey\030\003 \001(\010\"\364\001\n\026OpenChes" +
       "tResponseProto\022$\n\003mup\030\001 \001(\0132\027.proto.Mini" +
-      "mumUserProto\022\017\n\007equipId\030\002 \001(\t\022=\n\006status\030" +
-      "\003 \001(\0162-.proto.OpenChestResponseProto.Ope" +
-      "nChestStatus\"b\n\017OpenChestStatus\022\013\n\007SUCCE" +
-      "SS\020\000\022\030\n\024FAIL_NOT_ENOUGH_GEMS\020\001\022\030\n\024FAIL_N" +
-      "OT_ENOUGH_KEYS\020\002\022\016\n\nFAIL_OTHER\020\003B0\n\031com.",
-      "lvl6.aoc2.eventprotosB\023OpenChestEventPro" +
-      "to"
+      "mumUserProto\022\021\n\tequipName\030\002 \001(\t\022=\n\006statu" +
+      "s\030\003 \001(\0162-.proto.OpenChestResponseProto.O" +
+      "penChestStatus\"b\n\017OpenChestStatus\022\013\n\007SUC" +
+      "CESS\020\000\022\030\n\024FAIL_NOT_ENOUGH_GEMS\020\001\022\030\n\024FAIL" +
+      "_NOT_ENOUGH_KEYS\020\002\022\016\n\nFAIL_OTHER\020\003B0\n\031co",
+      "m.lvl6.aoc2.eventprotosB\023OpenChestEventP" +
+      "roto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1292,7 +1292,7 @@ public final class OpenChestEventProto {
           internal_static_proto_OpenChestResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_OpenChestResponseProto_descriptor,
-              new java.lang.String[] { "Mup", "EquipId", "Status", },
+              new java.lang.String[] { "Mup", "EquipName", "Status", },
               com.lvl6.aoc2.eventprotos.OpenChestEventProto.OpenChestResponseProto.class,
               com.lvl6.aoc2.eventprotos.OpenChestEventProto.OpenChestResponseProto.Builder.class);
           return null;

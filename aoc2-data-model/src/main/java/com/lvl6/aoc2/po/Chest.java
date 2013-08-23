@@ -175,6 +175,7 @@ public class Chest extends BasePersistentObject{
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index chest_id_index on chest (chest_id);");
 		indexes.add("create index chest_type_index on chest (chest_type);");
+		indexes.add("create index chest_equip_id_index on chest (equip_id);");
 		return indexes;
 	}
 	

@@ -173,7 +173,7 @@ public class CollectUserEquipController extends EventController {
 				UserEquip ue = new UserEquip();
 				ue.setDungeonRoomOrChestAcquiredFrom(uer2.getDungeonRoomOrChestAcquiredFrom());
 				ue.setDurability(100.0);
-				ue.setEquipId(uer2.getEquipId());
+				ue.setName(uer2.getName());
 				ue.setEquipLevel(uer2.getEquipLevel());
 				ue.setEquipped(false);
 				ue.setId(UUID.randomUUID());

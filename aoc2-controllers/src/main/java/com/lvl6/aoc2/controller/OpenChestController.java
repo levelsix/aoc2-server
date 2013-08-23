@@ -139,8 +139,8 @@ public class OpenChestController extends EventController {
 
 			//write to client
 			resEvent.setOpenChestResponseProto(responseBuilder.build());
-			String equipId = chooseEquipFromChest(chestId).getEquipId().toString(); 
-			responseBuilder.setEquipId(equipId);
+			String equipName = chooseEquipFromChest(chestId).getName(); 
+			responseBuilder.setEquipName(equipName);
 			log.info("Writing event: " + resEvent);
 			getEventWriter().handleEvent(resEvent);
 
@@ -171,7 +171,7 @@ public class OpenChestController extends EventController {
 		Chest chest = getChestRetrieveUtils().getChestForId(chestId);
 		if(usedKey){
 			Item key = getItemRetrieveUtils().findMatchingKeyToChest(chest.getChestType());
-			int numOfMatchingUserKeys = getUserItemService().getNumberOfSpecificUserKeys(key.getItemId(), inDb.getId());
+			int numOfMatchingUserKeys = getUserItemService().getNumberOfSpecificUserKeys(key.getName(), inDb.getId());
 			
 			if(numOfMatchingUserKeys < chest.getKeysRequiredToOpen()) {
 				log.error("user doesn't have key to open chest");
@@ -201,7 +201,7 @@ public class OpenChestController extends EventController {
 				int keysCount = chest.getKeysRequiredToOpen();
 				int count = 0;
 				for(UserItem ui : uiList) {
-					if((ui.getItemId() == key.getItemId()) && (count < keysCount)) {
+					if((ui.getName() == key.getName()) && (count < keysCount)) {
 						getUserItemEntityManager().get().delete(ui.getId());
 						count++;
 					}
@@ -218,7 +218,7 @@ public class OpenChestController extends EventController {
 			UserEquip ue = new UserEquip();
 			ue.setDungeonRoomOrChestAcquiredFrom(chest.getChestName());
 			ue.setDurability(100.0);
-			ue.setEquipId(equip.getEquipId());
+			ue.setName(equip.getName());
 			ue.setEquipLevel(1);
 			ue.setEquipped(false);
 			ue.setId(newId);

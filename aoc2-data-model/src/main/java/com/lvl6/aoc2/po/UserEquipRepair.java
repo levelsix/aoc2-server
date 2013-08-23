@@ -20,8 +20,8 @@ public class UserEquipRepair extends BasePersistentObject{
 	@Column(name="user_id")
 	protected UUID userId = null;
 	
-	@Column(name="equip_id")
-	protected UUID equipId = null;
+	@Column(name="name")
+	protected String name = "";
 	
 	@Column(name="equip_level")
 	protected int equipLevel = 0;
@@ -67,13 +67,13 @@ public class UserEquipRepair extends BasePersistentObject{
 	}
 
 
-	public UUID getEquipId() {
-		return equipId;
+	public String getName() {
+		return name;
 	}
 
 
-	public void setEquipId(UUID equipId) {
-		this.equipId = equipId;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
@@ -148,15 +148,15 @@ public class UserEquipRepair extends BasePersistentObject{
 	}
 
 
+
 	@Override
 	public String toString() {
-		return "UserEquipRepair [id=" + id + ", userId=" + userId
-				+ ", equipId=" + equipId + ", equipLevel=" + equipLevel
-				+ ", durability=" + durability + ", expectedStart="
-				+ expectedStart + ", enteredQueue=" + enteredQueue
-				+ ", timeAcquired=" + timeAcquired
-				+ ", levelOfUserWhenAcquired=" + levelOfUserWhenAcquired
-				+ ", dungeonRoomOrChestAcquiredFrom="
+		return "UserEquipRepair [id=" + id + ", userId=" + userId + ", name="
+				+ name + ", equipLevel=" + equipLevel + ", durability="
+				+ durability + ", expectedStart=" + expectedStart
+				+ ", enteredQueue=" + enteredQueue + ", timeAcquired="
+				+ timeAcquired + ", levelOfUserWhenAcquired="
+				+ levelOfUserWhenAcquired + ", dungeonRoomOrChestAcquiredFrom="
 				+ dungeonRoomOrChestAcquiredFrom + "]";
 	}
 
@@ -166,7 +166,7 @@ public class UserEquipRepair extends BasePersistentObject{
 		return "create table user_equip_repair (" +
 				" id uuid," +
 				" user_id uuid," +
-				" equip_id uuid," +
+				" name varchar," +
 				" equip_level int," +
 				" durability double," +
 				" expected_start timestamp" +
@@ -191,7 +191,7 @@ public class UserEquipRepair extends BasePersistentObject{
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index user_equip_repair_user_id_index on user_equip_repair (user_id);");
-		indexes.add("create index user_equip_repair_equip_id_index on user_equip_repair (equip_id);");
+		indexes.add("create index user_equip_repair_name_index on user_equip_repair (name);");
 		indexes.add("create index user_equip_repair_equip_level_index on user_equip_repair (equip_level);");
 		indexes.add("create index user_equip_repair_expected_start_index on user_equip_repair (expected_start);");
 		indexes.add("create index user_equip_repair_entered_queue_index on user_equip_repair (entered_queue);");

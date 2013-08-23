@@ -80,9 +80,9 @@ public final class Item {
   public interface ItemProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional string itemID = 1;
-    boolean hasItemID();
-    String getItemID();
+    // optional string itemName = 1;
+    boolean hasItemName();
+    String getItemName();
     
     // optional int32 itemType = 2;
     boolean hasItemType();
@@ -117,14 +117,14 @@ public final class Item {
     }
     
     private int bitField0_;
-    // optional string itemID = 1;
-    public static final int ITEMID_FIELD_NUMBER = 1;
-    private java.lang.Object itemID_;
-    public boolean hasItemID() {
+    // optional string itemName = 1;
+    public static final int ITEMNAME_FIELD_NUMBER = 1;
+    private java.lang.Object itemName_;
+    public boolean hasItemName() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public String getItemID() {
-      java.lang.Object ref = itemID_;
+    public String getItemName() {
+      java.lang.Object ref = itemName_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -132,17 +132,17 @@ public final class Item {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          itemID_ = s;
+          itemName_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getItemIDBytes() {
-      java.lang.Object ref = itemID_;
+    private com.google.protobuf.ByteString getItemNameBytes() {
+      java.lang.Object ref = itemName_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        itemID_ = b;
+        itemName_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -160,7 +160,7 @@ public final class Item {
     }
     
     private void initFields() {
-      itemID_ = "";
+      itemName_ = "";
       itemType_ = 0;
     }
     private byte memoizedIsInitialized = -1;
@@ -176,7 +176,7 @@ public final class Item {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getItemIDBytes());
+        output.writeBytes(1, getItemNameBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeInt32(2, itemType_);
@@ -192,7 +192,7 @@ public final class Item {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getItemIDBytes());
+          .computeBytesSize(1, getItemNameBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -322,7 +322,7 @@ public final class Item {
       
       public Builder clear() {
         super.clear();
-        itemID_ = "";
+        itemName_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         itemType_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -367,7 +367,7 @@ public final class Item {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.itemID_ = itemID_;
+        result.itemName_ = itemName_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
@@ -388,8 +388,8 @@ public final class Item {
       
       public Builder mergeFrom(com.lvl6.aoc2.noneventprotos.Item.ItemProto other) {
         if (other == com.lvl6.aoc2.noneventprotos.Item.ItemProto.getDefaultInstance()) return this;
-        if (other.hasItemID()) {
-          setItemID(other.getItemID());
+        if (other.hasItemName()) {
+          setItemName(other.getItemName());
         }
         if (other.hasItemType()) {
           setItemType(other.getItemType());
@@ -427,7 +427,7 @@ public final class Item {
             }
             case 10: {
               bitField0_ |= 0x00000001;
-              itemID_ = input.readBytes();
+              itemName_ = input.readBytes();
               break;
             }
             case 16: {
@@ -441,39 +441,39 @@ public final class Item {
       
       private int bitField0_;
       
-      // optional string itemID = 1;
-      private java.lang.Object itemID_ = "";
-      public boolean hasItemID() {
+      // optional string itemName = 1;
+      private java.lang.Object itemName_ = "";
+      public boolean hasItemName() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public String getItemID() {
-        java.lang.Object ref = itemID_;
+      public String getItemName() {
+        java.lang.Object ref = itemName_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          itemID_ = s;
+          itemName_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setItemID(String value) {
+      public Builder setItemName(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000001;
-        itemID_ = value;
+        itemName_ = value;
         onChanged();
         return this;
       }
-      public Builder clearItemID() {
+      public Builder clearItemName() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        itemID_ = getDefaultInstance().getItemID();
+        itemName_ = getDefaultInstance().getItemName();
         onChanged();
         return this;
       }
-      void setItemID(com.google.protobuf.ByteString value) {
+      void setItemName(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000001;
-        itemID_ = value;
+        itemName_ = value;
         onChanged();
       }
       
@@ -523,11 +523,11 @@ public final class Item {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017ItemProto.proto\022\005proto\"-\n\tItemProto\022\016\n" +
-      "\006itemID\030\001 \001(\t\022\020\n\010itemType\030\002 \001(\005*3\n\010itemT" +
-      "ype\022\017\n\013QUEST_ITEMS\020\000\022\026\n\022FIRST_RELEASED_K" +
-      "EY\020\001B$\n\034com.lvl6.aoc2.noneventprotosB\004It" +
-      "em"
+      "\n\017ItemProto.proto\022\005proto\"/\n\tItemProto\022\020\n" +
+      "\010itemName\030\001 \001(\t\022\020\n\010itemType\030\002 \001(\005*3\n\010ite" +
+      "mType\022\017\n\013QUEST_ITEMS\020\000\022\026\n\022FIRST_RELEASED" +
+      "_KEY\020\001B$\n\034com.lvl6.aoc2.noneventprotosB\004" +
+      "Item"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -539,7 +539,7 @@ public final class Item {
           internal_static_proto_ItemProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_ItemProto_descriptor,
-              new java.lang.String[] { "ItemID", "ItemType", },
+              new java.lang.String[] { "ItemName", "ItemType", },
               com.lvl6.aoc2.noneventprotos.Item.ItemProto.class,
               com.lvl6.aoc2.noneventprotos.Item.ItemProto.Builder.class);
           return null;

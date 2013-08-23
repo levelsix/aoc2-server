@@ -16,8 +16,8 @@ public class Structure extends BasePersistentObject{
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
-	@Column(name="structure_id")
-	protected UUID structureId = UUID.randomUUID();
+//	@Column(name="structure_id")
+//	protected UUID structureId = UUID.randomUUID();
 	
 	@Column(name="name")
 	protected String name = "";
@@ -73,14 +73,14 @@ public class Structure extends BasePersistentObject{
 	}
 
 
-	public UUID getStructureId() {
-		return structureId;
-	}
-
-
-	public void setStructureId(UUID structureId) {
-		this.structureId = structureId;
-	}
+//	public UUID getStructureId() {
+//		return structureId;
+//	}
+//
+//
+//	public void setStructureId(UUID structureId) {
+//		this.structureId = structureId;
+//	}
 
 
 	public String getName() {
@@ -224,13 +224,10 @@ public class Structure extends BasePersistentObject{
 
 
 
-
-
 	@Override
 	public String toString() {
-		return "Structure [id=" + id + ", structureId=" + structureId
-				+ ", name=" + name + ", lvl=" + lvl + ", buildCost="
-				+ buildCost + ", buildCostResourceType="
+		return "Structure [id=" + id + ", name=" + name + ", lvl=" + lvl
+				+ ", buildCost=" + buildCost + ", buildCostResourceType="
 				+ buildCostResourceType + ", buildTimeSeconds="
 				+ buildTimeSeconds + ", buildSpeedupBaseCost="
 				+ buildSpeedupBaseCost + ", userLvlRequired=" + userLvlRequired
@@ -248,7 +245,6 @@ public class Structure extends BasePersistentObject{
 	public String getTableCreateStatement() {
 		return "create table structure (" +
 				" id uuid," +
-				" structure_id uuid," +
 				" name varchar," +
 				" lvl int," +
 				" build_cost int," +
