@@ -259,7 +259,7 @@ public class User extends BasePersistentObject{
 				+ ", accountInitialized=" + accountInitialized + "]";
 	}
 
-	@Override
+/*	@Override
 	public String getTableCreateStatement() {
 		return "create table "+ tableName()+" (" +
 				" id uuid," +
@@ -284,7 +284,7 @@ public class User extends BasePersistentObject{
 				//" email varchar," +
 				" primary key (id))" +
 				" with compact storage;";
-	}
+	}*/
 	
 
 	@Override

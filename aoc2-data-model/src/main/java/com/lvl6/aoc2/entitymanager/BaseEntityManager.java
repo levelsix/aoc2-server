@@ -82,6 +82,7 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 	
 	protected void createTable(Clas cls) {
 		try {
+			log.info("Creating table: {}", cls.getTableCreateStatement());
 			getKeyspace()
 			    .prepareQuery(columnFamily)
 			    .withCql(cls.getTableCreateStatement())
