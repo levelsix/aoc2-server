@@ -21,11 +21,13 @@ public class MonsterNonPersistentDrop extends BasePersistentObject{
 	@Column(name="monster_id")
 	protected UUID monsterId = UUID.randomUUID();;
 	
+	//monster_event or monster quest or others
 	@Column(name="drop_type")
 	protected int dropType = 0;
 	
-	@Column(name="corresponding_id")
-	protected UUID correspondingId = null;
+	//monster-event drop or monster-quest drop
+	@Column(name="drop_type_id")
+	protected UUID dropTypeId = null;
 	
 	@Column(name="item_id")
 	protected UUID itemId = UUID.randomUUID();;
@@ -33,6 +35,8 @@ public class MonsterNonPersistentDrop extends BasePersistentObject{
 	@Column(name="item_drop_rate")
 	protected double itemDropRate = 0.5;
 	
+
+
 
 	public UUID getId() {
 		return id;
@@ -64,13 +68,13 @@ public class MonsterNonPersistentDrop extends BasePersistentObject{
 	}
 
 
-	public UUID getCorrespondingId() {
-		return correspondingId;
+	public UUID getDropTypeId() {
+		return dropTypeId;
 	}
 
 
-	public void setCorrespondingId(UUID correspondingId) {
-		this.correspondingId = correspondingId;
+	public void setDropTypeId(UUID dropTypeId) {
+		this.dropTypeId = dropTypeId;
 	}
 
 
@@ -97,8 +101,8 @@ public class MonsterNonPersistentDrop extends BasePersistentObject{
 	@Override
 	public String toString() {
 		return "MonsterNonPersistentDrop [id=" + id + ", monsterId="
-				+ monsterId + ", dropType=" + dropType + ", correspondingId="
-				+ correspondingId + ", itemId=" + itemId + ", itemDropRate="
+				+ monsterId + ", dropType=" + dropType + ", dropTypeId="
+				+ dropTypeId + ", itemId=" + itemId + ", itemDropRate="
 				+ itemDropRate + "]";
 	}
 
@@ -109,7 +113,7 @@ public class MonsterNonPersistentDrop extends BasePersistentObject{
 				" id uuid," +
 				" monster_id uuid," +
 				" drop_type int," +
-				" corresponding_id uuid," +
+				" drop_type_id uuid," +
 				" item_id uuid," +
 				" item_drop_rate double," +
 				" primary key (id))" +
@@ -129,6 +133,8 @@ public class MonsterNonPersistentDrop extends BasePersistentObject{
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index monster_non_persistent_drop_monster_id_index on monster_non_persistent_drop (monster_id);");
+		indexes.add("create index monster_non_persistent_drop_drop_type_index on monster_non_persistent_drop (drop_type);");
+		indexes.add("create index monster_non_persistent_drop_drop_type_id_index on monster_non_persistent_drop (drop_type_id);");
 		indexes.add("create index monster_non_persistent_drop_item_id_index on monster_non_persistent_drop (item_id);");
 
 		return indexes;

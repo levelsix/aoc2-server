@@ -17,6 +17,9 @@ public class ChestEvent extends BasePersistentObject{
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
+	@Column(name="chest_id")
+	protected UUID chestId = UUID.randomUUID();
+	
 	@Column(name="start_time")
 	protected Date startTime = new Date();
 	
@@ -26,9 +29,8 @@ public class ChestEvent extends BasePersistentObject{
 	@Column(name="event_name")
 	protected String eventName = "";
 	
-	@Column(name="chest_id")
-	protected UUID chestId = UUID.randomUUID();
-	
+
+
 
 	public UUID getId() {
 		return id;
@@ -37,6 +39,16 @@ public class ChestEvent extends BasePersistentObject{
 
 	public void setId(UUID id) {
 		this.id = id;
+	}
+
+
+	public UUID getChestId() {
+		return chestId;
+	}
+
+
+	public void setChestId(UUID chestId) {
+		this.chestId = chestId;
 	}
 
 
@@ -69,21 +81,12 @@ public class ChestEvent extends BasePersistentObject{
 		this.eventName = eventName;
 	}
 
-	public UUID getChestId() {
-		return chestId;
-	}
-
-
-	public void setChestId(UUID chestId) {
-		this.chestId = chestId;
-	}
-
 
 	@Override
 	public String toString() {
-		return "ChestEvent [id=" + id + ", startTime=" + startTime
-				+ ", endTime=" + endTime + ", eventName=" + eventName
-				+ ", chestId=" + chestId + "]";
+		return "ChestEvent [id=" + id + ", chestId=" + chestId + ", startTime="
+				+ startTime + ", endTime=" + endTime + ", eventName="
+				+ eventName + "]";
 	}
 
 

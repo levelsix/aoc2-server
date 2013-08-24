@@ -20,8 +20,8 @@ public class UserConsumableQueue extends BasePersistentObject{
 	@Column(name="user_id")
 	protected UUID userId = null;
 	
-	@Column(name="name")
-	protected String name = "";
+	@Column(name="consumable_id")
+	protected UUID consumableId = null;
 	
 	@Column(name="quantity")
 	protected int quantity = 0;
@@ -57,13 +57,13 @@ public class UserConsumableQueue extends BasePersistentObject{
 	}
 
 
-	public String getName() {
-		return name;
+	public UUID getConsumableId() {
+		return consumableId;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setConsumableId(UUID consumableId) {
+		this.consumableId = consumableId;
 	}
 
 
@@ -110,7 +110,7 @@ public class UserConsumableQueue extends BasePersistentObject{
 	@Override
 	public String toString() {
 		return "UserConsumableQueue [id=" + id + ", userId=" + userId
-				+ ", name=" + name + ", quantity=" + quantity
+				+ ", consumableId=" + consumableId + ", quantity=" + quantity
 				+ ", expectedStart=" + expectedStart + ", enteredQueue="
 				+ enteredQueue + ", isFinishedBuilding=" + isFinishedBuilding
 				+ "]";
@@ -122,7 +122,7 @@ public class UserConsumableQueue extends BasePersistentObject{
 		return "create table user_consumable_queue (" +
 				" id uuid," +
 				" user_id uuid," +
-				" name varchar," +
+				" consumable_id uuid," +
 				" quantity int," +
 				" expected_start timestamp," +
 				" entered_queue timestamp," +
@@ -144,7 +144,7 @@ public class UserConsumableQueue extends BasePersistentObject{
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index user_consumable_queue_user_id_index on user_consumable_queue (user_id);");
-		indexes.add("create index user_consumable_queue_name_index on user_consumable_queue (name);");
+		indexes.add("create index user_consumable_queue_consumable_id_index on user_consumable_queue (consumable_id);");
 		indexes.add("create index user_consumable_queue_expected_start_index on user_consumable_queue (expected_start);");
 		indexes.add("create index user_consumable_queue_entered_queue_index on user_consumable_queue (entered_queue);");
 		return indexes;

@@ -20,8 +20,8 @@ public class UserItem extends BasePersistentObject{
 	@Column(name="user_id")
 	protected UUID userId = null;
 	
-	@Column(name="name")
-	protected String name = "";
+	@Column(name="item_id")
+	protected UUID itemId = null;
 	
 	@Column(name="time_acquired")
 	protected Date timeAcquired = new Date();
@@ -83,22 +83,21 @@ public class UserItem extends BasePersistentObject{
 	}
 
 
-	public String getName() {
-		return name;
+	public UUID getItemId() {
+		return itemId;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setItemId(UUID itemId) {
+		this.itemId = itemId;
 	}
-
 
 
 
 	@Override
 	public String toString() {
-		return "UserItem [id=" + id + ", userId=" + userId + ", name=" + name
-				+ ", timeAcquired=" + timeAcquired
+		return "UserItem [id=" + id + ", userId=" + userId + ", itemId="
+				+ itemId + ", timeAcquired=" + timeAcquired
 				+ ", levelOfUserWhenAcquired=" + levelOfUserWhenAcquired
 				+ ", dungeonRoomAcquiredIn=" + dungeonRoomAcquiredIn + "]";
 	}
@@ -109,10 +108,10 @@ public class UserItem extends BasePersistentObject{
 		return "create table user_item (" +
 				" id uuid," +
 				" user_id uuid," +
-				" name varchar," +
+				" item_id uuid," +
 				" time_acquired timestamp," +
 				" level_of_user_when_acquired int," +
-				" dungeon_room_acquired_in int," +
+				" dungeon_room_acquired_in varchar," +
 				" primary key(id))" +
 				" with compact storage;";
 	}

@@ -164,7 +164,7 @@ public class UserDungeonStatus extends BasePersistentObject{
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index user_dungeon_status_user_id_index on user_dungeon_status (user_id);");
 		indexes.add("create index user_dungeon_status_dungeon_room_name_index on user_dungeon_status (dungeon_room_name);");
-		
+		indexes.add("create index user_dungeon_status_current_time_index on user_dungeon_status (current_time);");
 		return indexes;
 	}
 	

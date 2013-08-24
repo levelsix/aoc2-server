@@ -324,7 +324,7 @@ public class Spell extends BasePersistentObject{
 				" duration_millis int," +
 				" elemental_type int," +
 				" speed int," +
-				" targetted bool," +
+				" targetted boolean," +
 				" size int, " +
 				" cast_time_millis int" +
 				" cooldown_millis int," +

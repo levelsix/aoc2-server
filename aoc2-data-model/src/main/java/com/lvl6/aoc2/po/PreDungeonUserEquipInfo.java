@@ -19,7 +19,7 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 	@Column(name="user_id")
 	protected UUID userId = UUID.randomUUID();
 	
-	//the 'equip_id' column in equipment table, not the 'id' column
+	//the 'id' column in equipment table
 	@Column(name="equip_id")
 	protected UUID equipId = UUID.randomUUID();;
 	
@@ -89,11 +89,11 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create pre_dungeon_user_equip_info (" +
+		return "create table pre_dungeon_user_equip_info (" +
 				" id uuid," +
 				" user_id uuid," +
 				" equip_id uuid," +
-				" level int," +
+				" lvl int," +
 				" durability double," +
 				" primary key(id))" +
 				" with compact storage;";

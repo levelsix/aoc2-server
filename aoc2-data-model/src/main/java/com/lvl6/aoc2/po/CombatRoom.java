@@ -27,8 +27,9 @@ public class CombatRoom extends BasePersistentObject{
 	@Column(name="lvl_required")
 	protected int lvlRequired = 0;
 	
-	@Column(name="name")
-	protected String name = "Inferno";
+	//flavor text for the user
+	@Column(name="room_name")
+	protected String roomName = "Inferno";
 	
 	//for all stars
 	@Column(name="time_millis_one")
@@ -41,6 +42,15 @@ public class CombatRoom extends BasePersistentObject{
 	//for one star
 	@Column(name="time_millis_three")
 	protected int timeMillisThree = 240000;
+
+	// links a map-a-user-plays-in to a room
+	// Using AoC terms,
+	// world map (tapping on map button) = a dungeon
+	// a city (kirin village, venetia,...) = a combat room
+	// With this column, instead of each city/combat room correlating
+	// to only one map, two or three cities/rooms can use the same map.
+	@Column(name="map_index")
+	protected int mapIndex = 0;
 
 
 
@@ -84,13 +94,13 @@ public class CombatRoom extends BasePersistentObject{
 	}
 
 
-	public String getName() {
-		return name;
+	public String getRoomName() {
+		return roomName;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
 	}
 
 
@@ -124,16 +134,23 @@ public class CombatRoom extends BasePersistentObject{
 	}
 
 
+	public int getMapIndex() {
+		return mapIndex;
+	}
 
 
+	public void setMapIndex(int mapIndex) {
+		this.mapIndex = mapIndex;
+	}
 
 
 	@Override
 	public String toString() {
 		return "CombatRoom [id=" + id + ", type=" + type + ", ordering="
-				+ ordering + ", lvlRequired=" + lvlRequired + ", name=" + name
-				+ ", timeMillisOne=" + timeMillisOne + ", timeMillisTwo="
-				+ timeMillisTwo + ", timeMillisThree=" + timeMillisThree + "]";
+				+ ordering + ", lvlRequired=" + lvlRequired + ", roomName="
+				+ roomName + ", timeMillisOne=" + timeMillisOne
+				+ ", timeMillisTwo=" + timeMillisTwo + ", timeMillisThree="
+				+ timeMillisThree + ", mapIndex=" + mapIndex + "]";
 	}
 
 
@@ -144,11 +161,11 @@ public class CombatRoom extends BasePersistentObject{
 				" type int," +
 				" ordering int," +
 				" lvl_required int," +
-				" name varchar," +
+				" room_name varchar," +
 				" time_milllis_one int," +
 				" time_millis_two int," +
 				" time_millis_three int," +
-				" num_rooms int," +
+				" map_index int," +
 				" primary key (id))" +
 				" with compact storage;";
 	}
@@ -166,7 +183,9 @@ public class CombatRoom extends BasePersistentObject{
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index combat_room_type_index on combat_room (type);");
-		
+		indexes.add("create index combat_room_lvl_required_index on combat_room (lvl_required);");
+		indexes.add("create index combat_room_room_name_index on combat_room (room_name);");
+		indexes.add("create index combat_room_map_index_index on combat_room (map_index);");
 		return indexes;
 	}
 	
