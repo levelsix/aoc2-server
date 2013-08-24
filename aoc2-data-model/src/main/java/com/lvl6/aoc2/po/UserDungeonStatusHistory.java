@@ -133,7 +133,7 @@ public class UserDungeonStatusHistory extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_dungeon_status_history (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" hp int," +
@@ -154,15 +154,15 @@ public class UserDungeonStatusHistory extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
+/*	
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_dungeon_status_history_user_id_index on user_dungeon_status_history (user_id);");
-		indexes.add("create index user_dungeon_status_history_dungeon_room_name_index on user_dungeon_status_history (dungeon_room_name);");
+		indexes.add("create index user_dungeon_status_history_user_id_index "+tableName()+" (user_id);");
+		indexes.add("create index user_dungeon_status_history_dungeon_room_name_index "+tableName()+" (dungeon_room_name);");
 	
 		return indexes;
-	}
+	}*/
 	
 	
 }

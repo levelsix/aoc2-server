@@ -156,7 +156,7 @@ public class CombatRoom extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table combat_room (" +
+		return "create table "+ tableName() +" (" +
 				" id uuid," +
 				" type int," +
 				" ordering int," +
@@ -175,17 +175,6 @@ public class CombatRoom extends BasePersistentObject{
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		
-		return indexes;
-	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index combat_room_type_index on combat_room (type);");
-		indexes.add("create index combat_room_lvl_required_index on combat_room (lvl_required);");
-		indexes.add("create index combat_room_room_name_index on combat_room (room_name);");
-		indexes.add("create index combat_room_map_index_index on combat_room (map_index);");
 		return indexes;
 	}
 	

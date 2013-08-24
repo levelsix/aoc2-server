@@ -119,7 +119,7 @@ public class UserConsumableQueue extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_consumable_queue (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" consumable_id uuid," +
@@ -140,15 +140,20 @@ public class UserConsumableQueue extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
+<<<<<<< HEAD
+		indexes.add("create index user_consumable_queue_user_id_index "+tableName()+" (user_id);");
+		indexes.add("create index user_consumable_queue_name_index "+tableName()+" (name);");
+=======
 		indexes.add("create index user_consumable_queue_user_id_index on user_consumable_queue (user_id);");
 		indexes.add("create index user_consumable_queue_consumable_id_index on user_consumable_queue (consumable_id);");
 		indexes.add("create index user_consumable_queue_expected_start_index on user_consumable_queue (expected_start);");
 		indexes.add("create index user_consumable_queue_entered_queue_index on user_consumable_queue (entered_queue);");
+>>>>>>> 62d75ceb56adbd358ff3954dbdd8c79911563c5e
 		return indexes;
-	}
+	}*/
 	
 	
 }

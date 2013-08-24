@@ -180,7 +180,7 @@ public class UserStructure extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_structure (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" structure_id uuid," +
@@ -205,17 +205,24 @@ public class UserStructure extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
+<<<<<<< HEAD
+		indexes.add("create user_structure_index_is_upgrading_index "+tableName()+" (is_upgrading);");
+		indexes.add("create user_structure_index_last_collect_time_index "+tableName()+" (last_collect_time);");
+		indexes.add("create user_structure_index_user_id_index "+tableName()+" (user_id);");
+		indexes.add("create user_structure_index_structure_id_index "+tableName()+" (structure_id);");
+=======
 		indexes.add("create index user_structure_user_id_index on user_structure (user_id);");
 		indexes.add("create index user_structure_structure_id_index on user_structure (structure_id);");
 		indexes.add("create index user_structure_last_collect_time_index on user_structure (last_collect_time);");
 		indexes.add("create index user_structure_purchase_time_index on user_structure (purchase_time);");
 		indexes.add("create index user_structure_start_upgrade_time_index on user_structure (start_upgrade_time);");
 		indexes.add("create index user_structure_is_finished_constructing_index on user_structure (is_finished_constructing);");
+>>>>>>> 62d75ceb56adbd358ff3954dbdd8c79911563c5e
 		return indexes;
-	}
+	}*/
 	
 	
 	

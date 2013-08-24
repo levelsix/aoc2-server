@@ -75,7 +75,7 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table pre_dungeon_user_consumable_info (" +
+		return "create table "+tableName() +" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" consumable_id uuid," +
@@ -93,13 +93,15 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index pre_dungeon_user_consumable_info_user_id_index on pre_dungeon_user_consumable_info (user_id);");
-		indexes.add("create index pre_dungeon_user_consumable_info_consumable_id_index on pre_dungeon_user_consumable_info (consumable_id);");
+		indexes.add("create index pre_dungeon_user_consumable_info_user_id_index "+tableName()+" (user_id);");
+		indexes.add("create index pre_dungeon_user_consumable_info_name_index "+tableName()+" (name);");
+//		indexes.add("create index pre_dungeon_user_consumable_info_user_id_index on pre_dungeon_user_consumable_info (user_id);");
+	//	indexes.add("create index pre_dungeon_user_consumable_info_consumable_id_index on pre_dungeon_user_consumable_info (consumable_id);");
 		return indexes;
 	}
-	
+	*/
 	
 }

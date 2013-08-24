@@ -131,7 +131,7 @@ public class Chest extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table chest (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" chest_name varchar," +
 				" chest_drop_rate double," +
@@ -152,7 +152,7 @@ public class Chest extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
+/*	
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
@@ -162,7 +162,7 @@ public class Chest extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
+	*/
 	
 	
 	

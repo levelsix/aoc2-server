@@ -92,7 +92,7 @@ public class ChestEvent extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table ChestEvent (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" start_time timestamp," +
 				" end_time timestamp," +
@@ -111,11 +111,16 @@ public class ChestEvent extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
+		indexes.add("create index ChestEvent_type_index "+tableName()+" (type);");
+		indexes.add("create index ChestEvent_rarity_index "+tableName()+" (rarity);");
+		indexes.add("create index ChestEvent_class_required_index "+tableName()+" (class_required);");
+		indexes.add("create index ChestEvent_lvl_required_index "+tableName()+" (lvl_required);");
+		indexes.add("create index ChestEvent_equip_id_index "+tableName()+" (equip_id);");
 		indexes.add("create index ChestEvent_chest_id_index on ChestEvent (chest_id);");
 		return indexes;
-	}
+	}*/
 	
 }

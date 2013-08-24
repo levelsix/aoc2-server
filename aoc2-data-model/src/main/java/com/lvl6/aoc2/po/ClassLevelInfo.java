@@ -132,7 +132,7 @@ public class ClassLevelInfo extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table class_level_info (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" class_type int," +
 				" lvl int," +
@@ -154,12 +154,12 @@ public class ClassLevelInfo extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index class_level_info_class_type_index on class_level_info (class_type);");
-		indexes.add("create index class_level_info_lvl_index on class_level_info (lvl);");
+		indexes.add("create index class_level_info_class_type_index "+tableName()+" (class_type);");
+		indexes.add("create index class_level_info_lvl_index "+tableName()+" (lvl);");
 		return indexes;
-	}
+	}*/
 	
 }

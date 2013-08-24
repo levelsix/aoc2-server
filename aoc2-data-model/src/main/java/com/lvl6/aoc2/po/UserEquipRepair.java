@@ -128,7 +128,7 @@ public class UserEquipRepair extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_equip_repair (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" equip_id uuid," +
@@ -151,15 +151,23 @@ public class UserEquipRepair extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
+<<<<<<< HEAD
+		indexes.add("create index user_equip_repair_user_id_index "+tableName()+" (user_id);");
+		indexes.add("create index user_equip_repair_equip_id_index "+tableName()+" (equip_id);");
+		indexes.add("create index user_equip_repair_equip_level_index "+tableName()+" (equip_level);");
+		indexes.add("create index user_equip_repair_expected_start_index "+tableName()+" (expected_start);");
+		indexes.add("create index user_equip_repair_entered_queue_index "+tableName()+" (entered_queue);");
+=======
 		indexes.add("create index user_equip_repair_user_id_index on user_equip_repair (user_id);");
 		indexes.add("create index user_equip_repair_equip_id_index on user_equip_repair (equip_id);");
 		indexes.add("create index user_equip_repair_expected_start_index on user_equip_repair (expected_start);");
 		indexes.add("create index user_equip_repair_entered_queue_index on user_equip_repair (entered_queue);");
+>>>>>>> 62d75ceb56adbd358ff3954dbdd8c79911563c5e
 		return indexes;
-	}
+	}*/
 	
 	
 }

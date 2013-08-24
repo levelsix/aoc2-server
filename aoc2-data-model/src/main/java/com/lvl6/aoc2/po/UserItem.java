@@ -105,7 +105,7 @@ public class UserItem extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_item (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" item_id uuid," +
@@ -125,14 +125,20 @@ public class UserItem extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
+<<<<<<< HEAD
+		indexes.add("create index user_item_user_id_index "+tableName()+" (user_id);");
+		indexes.add("create index user_item_item_id_index "+tableName()+" (item_id);");
+
+=======
 		indexes.add("create index user_item_user_id_index on user_item (user_id);");
 		indexes.add("create index user_item_item_id_index on user_item (item_id);");
 		indexes.add("create index user_item_time_acquired_index on user_item (time_acquired);");
+>>>>>>> 62d75ceb56adbd358ff3954dbdd8c79911563c5e
 		return indexes;
-	}
+	}*/
 	
 	
 }

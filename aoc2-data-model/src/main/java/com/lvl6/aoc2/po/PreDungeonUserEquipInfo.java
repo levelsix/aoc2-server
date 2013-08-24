@@ -89,7 +89,7 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table pre_dungeon_user_equip_info (" +
+		return "create table "+tableName() +" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" equip_id uuid," +
@@ -107,14 +107,14 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
+/*	
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index pre_dungeon_user_equip_info_user_id_index on pre_dungeon_user_equip_info (user_id);");
-		indexes.add("create index pre_dungeon_user_equip_info_equip_id_index on pre_dungeon_user_equip_info (equip_id);");
+		indexes.add("create index pre_dungeon_user_equip_info_user_id_index "+tableName()+" (user_id);");
+		indexes.add("create index pre_dungeon_user_equip_info_equip_id_index "+tableName()+" (equip_id);");
 		return indexes;
 	}
 	
-	
+	*/
 }

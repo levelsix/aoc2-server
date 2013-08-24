@@ -149,7 +149,7 @@ public class Consumable extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table consumable (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" name varchar," +
 				" functionality_type int," +
@@ -172,13 +172,13 @@ public class Consumable extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index consumable_name_index on consumable (name);");
-		indexes.add("create index consumable_functionality_type_index on consumable (functionality_type);");
+		indexes.add("create index consumable_name_index "+tableName()+" (name);");
+		indexes.add("create index consumable_functionality_type_index "+tableName()+" (functionality_type);");
 		return indexes;
-	}
+	}*/
 	
 
 }

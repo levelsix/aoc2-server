@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,13 +20,16 @@ public class User extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="name")
+	@Index
 	protected String name = "";
 	
 	@Column(name="lvl")
+	@Index
 	protected int lvl = 0;
 	
 	//total exp
 	@Column(name="exp")
+	@Index
 	protected int exp = 0;
 
 	@Column(name="gold")
@@ -35,9 +40,11 @@ public class User extends BasePersistentObject{
 	
 	//in game currency
 	@Column(name="gems")
+	@Index
 	protected int gems = 0;
 	
 	@Column(name="class_type")
+	@Index
 	protected int classType = 0;
 
 	@Column(name="max_hp")
@@ -58,20 +65,23 @@ public class User extends BasePersistentObject{
 	@Column(name="last_time_mana_regened")
 	protected Date lastTimeManaRegened = null;
 	
-	//if user has a gameCenterId use that id, else generate random string
+	//if has a gameCenterId use that id, else generate random string
 	@Column(name="game_center_id")
+	@Index
 	protected String gameCenterId = "";
 	
 	//@Column(name="signup_date")
 	//protected Date signupDate = null;
 	
 	@Column(name="clan_id")
+	@Index
 	protected String clanId = null;
 	
 	//@Column(name="last_login")
 	//protected Date lastLogin = null;
 	
 	@Column(name="account_initialized")
+	@Index
 	protected boolean accountInitialized = false;
 	
 	
@@ -251,7 +261,7 @@ public class User extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" name varchar," +
 				" lvl int," +
@@ -285,7 +295,7 @@ public class User extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		//indexes.add("create index user_email_index on user (email);");
@@ -300,6 +310,6 @@ public class User extends BasePersistentObject{
 		indexes.add("create index user_clan_id_index on user (clan_id);");
 //		indexes.add("create index user_last_login_index on user (last_login);");
 		return indexes;
-	}
+	}*/
 	
 }

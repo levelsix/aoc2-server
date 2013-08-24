@@ -105,7 +105,7 @@ public class UserStructureContent extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table user_structure_content (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" user_structure_id uuid," +
 				" content_type int," +
@@ -125,14 +125,19 @@ public class UserStructureContent extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
+<<<<<<< HEAD
+		indexes.add("create index_content_type_index "+tableName()+" (content_type);");
+		indexes.add("create index_user_structure_id_index "+tableName()+" (user_structure_id);");
+=======
 		indexes.add("create index user_structure_content_user_structure_id_index on user_structure_content (user_structure_id);");
 		indexes.add("create index user_structure_content_content_type_index on user_structure_content (content_type);");
 		indexes.add("create index user_structure_content_content_id_index on user_structure_content (content_id);");
+>>>>>>> 62d75ceb56adbd358ff3954dbdd8c79911563c5e
 		return indexes;
-	}
+	}*/
 	
 	
 	

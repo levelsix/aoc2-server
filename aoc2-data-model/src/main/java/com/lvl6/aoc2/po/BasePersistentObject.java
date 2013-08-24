@@ -1,9 +1,24 @@
 package com.lvl6.aoc2.po;
 
+import java.lang.reflect.Field;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.persistence.Column;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import scala.actors.threadpool.Arrays;
+
+import com.lvl6.aoc2.entitymanager.Index;
+
 abstract public class BasePersistentObject {
+	
+	
+	private static final Logger log = LoggerFactory.getLogger(BasePersistentObject.class);
 
 	/**
 	 * The CQL statement to create the table for this Object
@@ -19,10 +34,36 @@ abstract public class BasePersistentObject {
 	abstract public Set<String> getTableUpdateStatements();
 	
 	/**
-	 * The CQL statements needed to create or remove indexes on existing table for this object
+	 * The CQL statements needed to create or remove indexes for this object
 	 * @return
 	 */
-	abstract public Set<String> getIndexCreateStatements();
+	
+	private Set<String> indexCreateStatements = new HashSet<String>();
+	public Set<String> getIndexCreateStatements(){
+		@SuppressWarnings("unchecked")
+		List<Field> fields = Arrays.asList(this.getClass().getDeclaredFields());
+		for(Field field : fields) {
+			try {
+			if(field.isAnnotationPresent(Index.class)) {
+				Column clm = field.getAnnotation(Column.class);
+				String fieldName = clm.name();
+				indexCreateStatements.add(indexCreateStatement(field, fieldName));
+			}
+			}catch(Exception e) {
+				log.error("Error creating index create statement", e);
+			}
+		}
+		return indexCreateStatements;
+	}
+	
+	protected String indexCreateStatement(Field field, String fieldName) {
+		return "create index "+tableName()+"_"+fieldName+"_key on "+tableName()+" ("+fieldName+");";
+	}
+	
+	
+	public String tableName() {
+		return this.getClass().getSimpleName().toLowerCase();
+	}
 	
 	
 	abstract public UUID getId(); 

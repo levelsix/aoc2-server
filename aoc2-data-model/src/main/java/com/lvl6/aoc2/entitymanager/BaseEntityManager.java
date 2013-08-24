@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.google.common.collect.ImmutableMap;
 import com.lvl6.aoc2.cassandra.Cassandra;
 import com.lvl6.aoc2.po.BasePersistentObject;
 import com.netflix.astyanax.Keyspace;
@@ -113,6 +112,7 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 	protected void addOrRemoveIndexes(Clas cls) {
 		for(String index : cls.getIndexCreateStatements()) {
 			try {
+				log.info("Creating index: {}",index);
 				getKeyspace()
 				    .prepareQuery(columnFamily)
 				    .withCql(index)
@@ -125,7 +125,7 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 	
 
 	
-	abstract protected ImmutableMap<String, Object> getIndexes();
+/*	abstract protected ImmutableMap<String, Object> getIndexes();
 
 	protected ImmutableMap<String, Object> getIndexProps(String propertyName) {
 		return ImmutableMap.<String, Object>builder()
@@ -133,7 +133,7 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 	    .put("index_name",       getClass().getName().toLowerCase()+"_"+propertyName+"_index")
 	    .put("index_type",       "KEYS")
 	    .build();
-	}
+	}*/
 
 	public EntityManager<Clas, Ky> getEm() {
 		return em;

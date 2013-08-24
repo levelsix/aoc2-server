@@ -91,7 +91,7 @@ public class MonsterAndRoom extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table monster_and_room (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" monster_id uuid," +
 				" combat_room_name uuid," +
@@ -110,12 +110,14 @@ public class MonsterAndRoom extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
+		indexes.add("create index monster_and_room_monster_id_index "+tableName()+" (monster_id);");
+		indexes.add("create index monster_and_room_room_id_index "+tableName()+" (room_id);");
 		indexes.add("create index monster_and_room_monster_id_index on monster_and_room (monster_id);");
 		indexes.add("create index monster_and_room_combat_room_name_index on monster_and_room (combat_room_name);");
 		return indexes;
-	}
+	}*/
 	
 }

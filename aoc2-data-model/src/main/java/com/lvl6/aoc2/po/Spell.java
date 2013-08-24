@@ -313,7 +313,7 @@ public class Spell extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table spell (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" name varchar," +
 				" class_type int," +
@@ -348,9 +348,13 @@ public class Spell extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
+<<<<<<< HEAD
+		indexes.add("create index spell_elemental_type_index "+tableName()+" (elemental_type);");
+		indexes.add("create index spell_class_type_index "+tableName()+" (class_type);");
+=======
 		indexes.add("create index spell_name_index on spell (name);");
 		indexes.add("create index spell_class_type_index on spell (class_type);");
 		indexes.add("create index spell_function_type_index on spell (function_type);");
@@ -360,8 +364,9 @@ public class Spell extends BasePersistentObject{
 		indexes.add("create index spell_research_cost_index on spell (research_cost);");
 		indexes.add("create index spell_research_cost_resource_index on spell (research_cost_resource);");
 		indexes.add("create index spell_research_time_millis_index on spell (research_time_millis);");
+>>>>>>> 62d75ceb56adbd358ff3954dbdd8c79911563c5e
 		return indexes;
-	}
+	}*/
 	
 	
 }

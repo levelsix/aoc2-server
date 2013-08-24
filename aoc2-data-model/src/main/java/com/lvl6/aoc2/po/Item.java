@@ -65,7 +65,7 @@ public class Item extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table item (" +
+		return "create table "+ tableName() +" (" +
 				" id uuid," +
 				" name varchar," +
 				" item_type int," +
@@ -80,14 +80,5 @@ public class Item extends BasePersistentObject{
 		
 		return indexes;
 	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index item_name_index on item (name);");
-		indexes.add("create index item_type_index on item (type);");
-		return indexes;
-	}
-	
+		
 }

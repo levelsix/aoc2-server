@@ -213,7 +213,7 @@ public class Equipment extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table equipment (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" name varchar," +
 				" level int," +
@@ -241,7 +241,7 @@ public class Equipment extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		indexes.add("create index equipment_name_index on equipment (name);");
@@ -251,5 +251,5 @@ public class Equipment extends BasePersistentObject{
 		indexes.add("create index equipment_lvl_required_index on equipment (lvl_required);");
 		return indexes;
 	}
-	
+	*/
 }

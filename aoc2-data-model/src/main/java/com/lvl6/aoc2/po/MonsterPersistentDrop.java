@@ -132,7 +132,7 @@ public class MonsterPersistentDrop extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table monster_persistent_drop (" +
+		return "create table "+ tableName()+" (" +
 				" id uuid," +
 				" monster_id uuid," +
 				" equip_id uuid," +
@@ -154,13 +154,12 @@ public class MonsterPersistentDrop extends BasePersistentObject{
 	}
 	
 	
-	@Override
+/*	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index monster_persistent_drop_monster_id_index on monster_persistent_drop (monster_id);");
-		indexes.add("create index monster_persistent_drop_equip_id_index on monster_persistent_drop (equip_id);");
-
+		indexes.add("create index monster_persistent_drop_monster_id_index "+tableName()+" (monster_id);");
+		//indexes.add("create index monster_persistent_drop_equip_id_index on monster_persistent_drop (equip_id);");
 		return indexes;
-	}
+	}*/
 	
 }

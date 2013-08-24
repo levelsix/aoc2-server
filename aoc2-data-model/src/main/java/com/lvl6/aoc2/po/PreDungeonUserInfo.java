@@ -117,7 +117,7 @@ public class PreDungeonUserInfo extends BasePersistentObject{
 
 	@Override
 	public String getTableCreateStatement() {
-		return "create table pre_dungeon_user_info (" +
+		return "create table "+tableName() +" (" +
 				" id uuid," +
 				" user_id uuid," +
 				" health int," +
@@ -137,7 +137,7 @@ public class PreDungeonUserInfo extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
+/*	
 	@Override
 	public Set<String> getIndexCreateStatements() {
 		Set<String> indexes = new HashSet<String>();
@@ -147,5 +147,5 @@ public class PreDungeonUserInfo extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
+	*/
 }
