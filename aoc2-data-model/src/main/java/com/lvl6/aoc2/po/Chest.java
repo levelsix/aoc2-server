@@ -129,7 +129,7 @@ public class Chest extends BasePersistentObject{
 	}
 
 
-	@Override
+/*	@Override
 	public String getTableCreateStatement() {
 		return "create table "+ tableName()+" (" +
 				" id uuid," +
@@ -142,7 +142,7 @@ public class Chest extends BasePersistentObject{
 				" keys_required_to_open int," +
 				" primary key(id))" +
 				" with compact storage;";
-	}
+	}*/
 	
 	
 	@Override

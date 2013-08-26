@@ -7,12 +7,14 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import scala.actors.threadpool.Arrays;
 
+import com.lvl6.aoc2.cassandra.CQL3Util;
 import com.lvl6.aoc2.entitymanager.Index;
 
 abstract public class BasePersistentObject {
@@ -24,7 +26,45 @@ abstract public class BasePersistentObject {
 	 * The CQL statement to create the table for this Object
 	 * @return
 	 */
-	abstract public String getTableCreateStatement();
+	public String getTableCreateStatement() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("create table ");
+		sb.append(tableName());
+		sb.append(" ( ");
+		addFieldsToTableCreateStatement(sb);
+		sb.append("primary key (id)) ");
+		sb.append(tableOptionsString());
+		return sb.toString();
+	}
+	
+	protected void addFieldsToTableCreateStatement(StringBuilder sb) {
+		@SuppressWarnings("unchecked")
+		List<Field> fields = Arrays.asList(this.getClass().getDeclaredFields());
+		for(Field field : fields) {
+			try {
+			if(field.isAnnotationPresent(Index.class)) {
+				Column clm = field.getAnnotation(Column.class);
+				String fieldName = clm.name();
+				sb.append(fieldName);
+				sb.append(" ");
+				sb.append(CQL3Util.getCql3Type(field.getType()));
+				sb.append(", ");
+			}else if(field.isAnnotationPresent(Id.class)) {
+				String fieldName = field.getName();
+				sb.append(fieldName);
+				sb.append(" ");
+				sb.append(CQL3Util.getCql3Type(field.getType()));
+				sb.append(", ");
+			}
+			}catch(Exception e) {
+				log.error("Error creating index create statement", e);
+			}
+		}
+	}
+	
+	protected String tableOptionsString() {
+		return " with compact storage;";
+	}
 	
 	/**
 	 * The CQL statements needed to add or remove columns from existing table for this object

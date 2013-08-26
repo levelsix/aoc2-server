@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.ConsumableEntityManager;
 import com.lvl6.aoc2.entitymanager.UserConsumableEntityManager;
@@ -14,7 +15,7 @@ import com.lvl6.aoc2.noneventprotos.UserConsumable.UserConsumablesProto;
 import com.lvl6.aoc2.po.Consumable;
 import com.lvl6.aoc2.po.UserConsumable;
 
-
+@Component
 public class UserConsumableServiceImpl implements UserConsumableService {
 	
 	@Autowired

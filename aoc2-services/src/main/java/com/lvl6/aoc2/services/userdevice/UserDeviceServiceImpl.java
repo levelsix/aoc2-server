@@ -9,10 +9,13 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.UserDeviceEntityManager;
 import com.lvl6.aoc2.po.UserDevice;
 
+
+@Component
 public class UserDeviceServiceImpl implements UserDeviceService {
 	
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());

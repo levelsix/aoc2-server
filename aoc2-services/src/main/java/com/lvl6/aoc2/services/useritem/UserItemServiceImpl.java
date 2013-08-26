@@ -9,6 +9,7 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.ItemEntityManager;
 import com.lvl6.aoc2.entitymanager.UserItemEntityManager;
@@ -16,6 +17,8 @@ import com.lvl6.aoc2.entitymanager.staticdata.ItemRetrieveUtils;
 import com.lvl6.aoc2.po.Item;
 import com.lvl6.aoc2.po.UserItem;
 
+
+@Component
 public class UserItemServiceImpl implements UserItemService {
 	
 	@Autowired

@@ -2,6 +2,10 @@ package com.lvl6.aoc2.dto;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Component;
+
+
+@Component
 public class ApplicationMode implements Serializable {
 
 

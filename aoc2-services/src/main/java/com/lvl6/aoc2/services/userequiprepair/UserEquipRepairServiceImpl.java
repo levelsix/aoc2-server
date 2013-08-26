@@ -11,6 +11,7 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.EquipmentEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEquipRepairEntityManager;
@@ -20,7 +21,7 @@ import com.lvl6.aoc2.po.Equipment;
 import com.lvl6.aoc2.po.UserEquip;
 import com.lvl6.aoc2.po.UserEquipRepair;
 
-
+@Component
 public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 	
 	@Autowired
