@@ -1,10 +1,13 @@
 package com.lvl6.aoc2.services.equipment;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.EquipmentEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.EquipmentRetrieveUtils;
 
+
+@Component
 public class EquipmentServiceImpl implements EquipmentService {
 	
 	@Autowired

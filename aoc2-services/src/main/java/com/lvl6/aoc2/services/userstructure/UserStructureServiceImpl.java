@@ -9,6 +9,7 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.StructureEntityManager;
 import com.lvl6.aoc2.entitymanager.UserStructureEntityManager;
@@ -16,6 +17,8 @@ import com.lvl6.aoc2.entitymanager.staticdata.StructureRetrieveUtils;
 import com.lvl6.aoc2.po.Structure;
 import com.lvl6.aoc2.po.UserStructure;
 
+
+@Component
 public class UserStructureServiceImpl implements UserStructureService {
 	
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());

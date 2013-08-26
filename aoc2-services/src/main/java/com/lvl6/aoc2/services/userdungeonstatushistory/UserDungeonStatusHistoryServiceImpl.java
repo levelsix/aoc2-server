@@ -9,13 +9,13 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.UserDungeonStatusHistoryEntityManager;
-
 import com.lvl6.aoc2.po.UserDungeonStatusHistory;
 
 
+@Component
 public class UserDungeonStatusHistoryServiceImpl implements UserDungeonStatusHistoryService {
 	
 	@Autowired

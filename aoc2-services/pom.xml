@@ -17,10 +17,7 @@
 			<artifactId>aoc2-proto-buff</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.hazelcast</groupId>
-			<artifactId>hazelcast-all</artifactId>
-		</dependency>
+
 	</dependencies>
 
 

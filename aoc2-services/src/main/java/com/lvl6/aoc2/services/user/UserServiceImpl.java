@@ -9,19 +9,22 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.UserDeviceEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.ClassLevelInfoRetrieveUtils;
-import com.lvl6.aoc2.po.ClassLevelInfo;
 import com.lvl6.aoc2.noneventprotos.FunctionalityTypeEnum.FunctionalityType;
+import com.lvl6.aoc2.po.ClassLevelInfo;
 import com.lvl6.aoc2.po.Structure;
 import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserDevice;
 import com.lvl6.aoc2.po.UserStructure;
-import com.lvl6.aoc2.po.properties.AocTwoTableConstants;
+import com.lvl6.aoc2.properties.AocTwoTableConstants;
 import com.lvl6.aoc2.services.userstructure.UserStructureService;
 
+
+@Component
 public class UserServiceImpl implements UserService {
 	
 	@Autowired

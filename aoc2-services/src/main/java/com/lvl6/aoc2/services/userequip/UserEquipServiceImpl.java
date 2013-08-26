@@ -10,6 +10,7 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.EquipmentEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEquipEntityManager;
@@ -17,6 +18,8 @@ import com.lvl6.aoc2.entitymanager.staticdata.EquipmentRetrieveUtils;
 import com.lvl6.aoc2.po.Equipment;
 import com.lvl6.aoc2.po.UserEquip;
 
+
+@Component
 public class UserEquipServiceImpl implements UserEquipService {
 	
 	@Autowired

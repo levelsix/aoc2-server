@@ -125,16 +125,6 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 	}
 	
 
-	
-/*	abstract protected ImmutableMap<String, Object> getIndexes();
-
-	protected ImmutableMap<String, Object> getIndexProps(String propertyName) {
-		return ImmutableMap.<String, Object>builder()
-	    .put("validation_class", "UTF8Type")
-	    .put("index_name",       getClass().getName().toLowerCase()+"_"+propertyName+"_index")
-	    .put("index_type",       "KEYS")
-	    .build();
-	}*/
 
 	public EntityManager<Clas, Ky> getEm() {
 		return em;

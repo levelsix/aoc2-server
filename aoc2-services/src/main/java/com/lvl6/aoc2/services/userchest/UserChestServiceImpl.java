@@ -5,17 +5,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.ConsumableEntityManager;
 import com.lvl6.aoc2.entitymanager.UserChestEntityManager;
 import com.lvl6.aoc2.entitymanager.UserConsumableEntityManager;
 import com.lvl6.aoc2.po.UserChest;
 
-
+@Component
 public class UserChestServiceImpl implements UserChestService {
 	
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());

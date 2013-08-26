@@ -31,7 +31,7 @@ import com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto;
 import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserEquip;
 import com.lvl6.aoc2.po.UserEquipRepair;
-import com.lvl6.aoc2.po.properties.AocTwoTableConstants;
+import com.lvl6.aoc2.properties.AocTwoTableConstants;
 import com.lvl6.aoc2.services.user.UserService;
 import com.lvl6.aoc2.services.userequip.UserEquipService;
 import com.lvl6.aoc2.services.userequiprepair.UserEquipRepairService;
