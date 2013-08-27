@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,6 +20,7 @@ public class UserDungeonStatusHistory extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = null;
 	
 	//the 'equip_id' column in equipment table, not the 'id' column
@@ -31,9 +34,11 @@ public class UserDungeonStatusHistory extends BasePersistentObject{
 	protected int actionsPerformed = 0;
 	
 	@Column(name="current_time")
+	@Index
 	protected Date currentTime = new Date();
 	
 	@Column(name="dungeon_room_name")
+	@Index
 	protected String dungeonRoomName = "";
 
 //	@Column(name="monsters_remaining")
@@ -130,22 +135,6 @@ public class UserDungeonStatusHistory extends BasePersistentObject{
 				+ ", dungeonRoomName=" + dungeonRoomName + "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table "+ tableName()+" (" +
-				" id uuid," +
-				" user_id uuid," +
-				" hp int," +
-				" mana int," +
-				" actions_performed int," +
-				" current_time timestamp," +
-				" dungeon_room_name varchar," +
-//				" monsters_remaining int," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -153,16 +142,5 @@ public class UserDungeonStatusHistory extends BasePersistentObject{
 		
 		return indexes;
 	}
-	
-/*	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_dungeon_status_history_user_id_index "+tableName()+" (user_id);");
-		indexes.add("create index user_dungeon_status_history_dungeon_room_name_index "+tableName()+" (dungeon_room_name);");
-	
-		return indexes;
-	}*/
-	
 	
 }

@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -17,9 +19,11 @@ public class UserConsumable extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = null;
 	
 	@Column(name="consumable_id")
+	@Index
 	protected String consumable_id = "";
 	
 	@Column(name="quantity")
@@ -74,18 +78,6 @@ public class UserConsumable extends BasePersistentObject{
 				+ "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table "+ tableName() +" (" +
-				" id uuid," +
-				" user_id uuid," +
-				" consumable_id uuid," +
-				" quantity int," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -93,18 +85,6 @@ public class UserConsumable extends BasePersistentObject{
 		
 		return indexes;
 	}
-	
-	
-/*	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_consumable_user_id_index on user_consumable (user_id);");
-		indexes.add("create index user_consumable_consumable_id_index on user_consumable (consumable_id);");
-		return indexes;
-	}*/
-	
-	
-	
 	
 	
 }

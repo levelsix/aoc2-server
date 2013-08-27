@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -19,17 +21,21 @@ public class MonsterNonPersistentDrop extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="monster_id")
-	protected UUID monsterId = UUID.randomUUID();;
+	@Index
+	protected UUID monsterId = UUID.randomUUID();
 	
 	//monster_event or monster quest or others
 	@Column(name="drop_type")
+	@Index
 	protected int dropType = 0;
 	
-	//monster-event drop or monster-quest drop
+	//monster-event id or monster-quest id
 	@Column(name="drop_type_id")
+	@Index
 	protected UUID dropTypeId = null;
 	
 	@Column(name="item_id")
+	@Index
 	protected UUID itemId = UUID.randomUUID();;
 	
 	@Column(name="item_drop_rate")
@@ -106,19 +112,6 @@ public class MonsterNonPersistentDrop extends BasePersistentObject{
 				+ itemDropRate + "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table "+ tableName()+" (" +
-				" id uuid," +
-				" monster_id uuid," +
-				" drop_type int," +
-				" drop_type_id uuid," +
-				" item_id uuid," +
-				" item_drop_rate double," +
-				" primary key (id))" +
-				" with compact storage;";
-	}
 	
 	
 	@Override
@@ -128,24 +121,4 @@ public class MonsterNonPersistentDrop extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
-/*	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index monster_non_persistent_drop_monster_id_index "+tableName()+" (monster_id);");
-		indexes.add("create index monster_non_persistent_drop_monster_id_index on monster_non_persistent_drop (monster_id);");
-		indexes.add("create index monster_non_persistent_drop_drop_type_index on monster_non_persistent_drop (drop_type);");
-		indexes.add("create index monster_non_persistent_drop_drop_type_id_index on monster_non_persistent_drop (drop_type_id);");
-		indexes.add("create index monster_non_persistent_drop_item_id_index on monster_non_persistent_drop (item_id);");
-		return indexes;
-	}
-	*/
 }
-
-
-
-
-
-
-
-

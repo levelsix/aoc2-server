@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,6 +20,7 @@ public class PreDungeonUserInfo extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = UUID.randomUUID();
 	
 	@Column(name="health")
@@ -26,15 +29,18 @@ public class PreDungeonUserInfo extends BasePersistentObject{
 	@Column(name="mana")
 	protected int mana = 0;
 	
-	@Column(name="combat_room_name")
-	protected String combatRoomName = "";
+	@Column(name="combat_room_id")
+	@Index
+	protected String combatRoomId = "";
 	
 	@Column(name="level_of_user")
 	protected int levelOfUser = 0;
 
 	@Column(name="time_user_enters_dungeon")
+	@Index
 	protected Date timeUserEntersDungeon = new Date();
 	
+
 
 	public UUID getId() {
 		return id;
@@ -76,13 +82,13 @@ public class PreDungeonUserInfo extends BasePersistentObject{
 	}
 
 
-	public String getCombatRoomName() {
-		return combatRoomName;
+	public String getCombatRoomId() {
+		return combatRoomId;
 	}
 
 
-	public void setCombatRoomName(String combatRoomName) {
-		this.combatRoomName = combatRoomName;
+	public void setCombatRoomId(String combatRoomId) {
+		this.combatRoomId = combatRoomId;
 	}
 
 
@@ -109,26 +115,11 @@ public class PreDungeonUserInfo extends BasePersistentObject{
 	@Override
 	public String toString() {
 		return "PreDungeonUserInfo [id=" + id + ", userId=" + userId
-				+ ", health=" + health + ", mana=" + mana + ", combatRoomName="
-				+ combatRoomName + ", levelOfUser=" + levelOfUser
+				+ ", health=" + health + ", mana=" + mana + ", combatRoomId="
+				+ combatRoomId + ", levelOfUser=" + levelOfUser
 				+ ", timeUserEntersDungeon=" + timeUserEntersDungeon + "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table "+tableName() +" (" +
-				" id uuid," +
-				" user_id uuid," +
-				" health int," +
-				" mana int," +
-				" combat_room_name varchar," +
-				" level_of_user int," +
-				" time_user_enters_dungeon timestamp," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -137,15 +128,4 @@ public class PreDungeonUserInfo extends BasePersistentObject{
 		return indexes;
 	}
 	
-/*	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create pre_dungeon_user_info_user_id_index on pre_dungeon_user_info (user_id);");
-		indexes.add("create pre_dungeon_user_info_combat_room_name_index on pre_dungeon_user_info (combat_room_name);");
-		indexes.add("create pre_dungeon_user_info_time_user_enters_dungeon_index on pre_dungeon_user_info (time_user_enters_dungeon);");
-		return indexes;
-	}
-	
-	*/
 }

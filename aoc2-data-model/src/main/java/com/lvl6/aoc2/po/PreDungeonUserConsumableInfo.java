@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -17,9 +19,11 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = UUID.randomUUID();
 	
 	@Column(name="consumable_id")
+	@Index
 	protected UUID consumableId = UUID.randomUUID();;
 	
 	@Column(name="quantity")
@@ -73,17 +77,6 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 	}
 
 
-	@Override
-	public String getTableCreateStatement() {
-		return "create table "+tableName() +" (" +
-				" id uuid," +
-				" user_id uuid," +
-				" consumable_id uuid," +
-				" quantity int," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -92,16 +85,5 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
-/*	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index pre_dungeon_user_consumable_info_user_id_index "+tableName()+" (user_id);");
-		indexes.add("create index pre_dungeon_user_consumable_info_name_index "+tableName()+" (name);");
-//		indexes.add("create index pre_dungeon_user_consumable_info_user_id_index on pre_dungeon_user_consumable_info (user_id);");
-	//	indexes.add("create index pre_dungeon_user_consumable_info_consumable_id_index on pre_dungeon_user_consumable_info (consumable_id);");
-		return indexes;
-	}
-	*/
 	
 }

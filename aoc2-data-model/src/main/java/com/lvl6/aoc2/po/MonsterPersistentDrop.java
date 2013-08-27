@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -19,9 +21,11 @@ public class MonsterPersistentDrop extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="monster_id")
+	@Index
 	protected UUID monsterId = UUID.randomUUID();;
 	
 	@Column(name="equip_id")
+	@Index
 	protected UUID equipId = UUID.randomUUID();;
 	
 	@Column(name="equip_drop_rate")
@@ -129,22 +133,6 @@ public class MonsterPersistentDrop extends BasePersistentObject{
 				+ ", minTonic=" + minTonic + ", maxTonic=" + maxTonic + "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table "+ tableName()+" (" +
-				" id uuid," +
-				" monster_id uuid," +
-				" equip_id uuid," +
-				" equip_drop_rate double," +
-				" min_gold int," +
-				" max_gold int," +
-				" min_tonic int," +
-				" max_tonic int," +
-				" primary key (id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -153,13 +141,5 @@ public class MonsterPersistentDrop extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
-/*	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index monster_persistent_drop_monster_id_index "+tableName()+" (monster_id);");
-		//indexes.add("create index monster_persistent_drop_equip_id_index on monster_persistent_drop (equip_id);");
-		return indexes;
-	}*/
 	
 }

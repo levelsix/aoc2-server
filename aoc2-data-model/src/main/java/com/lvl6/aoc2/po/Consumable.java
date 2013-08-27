@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -17,9 +19,11 @@ public class Consumable extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="name")
+	@Index
 	protected String name = "";
 	
 	@Column(name="functionality_type")
+	@Index
 	protected int functionalityType = 0;
 	
 	//(if (Float: < 1) ? percent : flat) 
@@ -27,6 +31,7 @@ public class Consumable extends BasePersistentObject{
 	protected double functionalityConstant = 0;
 	
 	@Column(name="cost")
+	@Index
 	protected int cost = 0;
 	
 	@Column(name="cost_resouce_type")
@@ -146,23 +151,6 @@ public class Consumable extends BasePersistentObject{
 				+ "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table "+ tableName()+" (" +
-				" id uuid," +
-				" name varchar," +
-				" functionality_type int," +
-				" functionality_constant double," +
-				" cost int," +
-				" cost_resource_type int," +
-				" max_limit int," +
-				" create_time_seconds int," +
-				" base_speedup_cost int," +
-				" primary key (id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -171,14 +159,4 @@ public class Consumable extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
-/*	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index consumable_name_index "+tableName()+" (name);");
-		indexes.add("create index consumable_functionality_type_index "+tableName()+" (functionality_type);");
-		return indexes;
-	}*/
-	
-
 }

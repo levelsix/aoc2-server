@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -17,6 +19,7 @@ public class Item extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="name")
+	@Index
 	protected String name = "";
 	
 	@Column(name="item_type")
@@ -62,17 +65,6 @@ public class Item extends BasePersistentObject{
 				+ "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table "+ tableName() +" (" +
-				" id uuid," +
-				" name varchar," +
-				" item_type int," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {

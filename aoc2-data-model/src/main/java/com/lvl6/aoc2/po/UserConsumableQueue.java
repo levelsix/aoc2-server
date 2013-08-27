@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,18 +20,22 @@ public class UserConsumableQueue extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = null;
 	
 	@Column(name="consumable_id")
+	@Index
 	protected UUID consumableId = null;
 	
 	@Column(name="quantity")
 	protected int quantity = 0;
 	
 	@Column(name="expected_start")
+	@Index
 	protected Date expectedStart = null;
 	
 	@Column(name="entered_queue")
+	@Index
 	protected Date enteredQueue = null;
 
 	@Column(name="is_finished_building")
@@ -116,21 +122,6 @@ public class UserConsumableQueue extends BasePersistentObject{
 				+ "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table "+ tableName()+" (" +
-				" id uuid," +
-				" user_id uuid," +
-				" consumable_id uuid," +
-				" quantity int," +
-				" expected_start timestamp," +
-				" entered_queue timestamp," +
-				" is_finished_building boolean," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -138,22 +129,6 @@ public class UserConsumableQueue extends BasePersistentObject{
 		
 		return indexes;
 	}
-	
-	
-/*	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-<<<<<<< HEAD
-		indexes.add("create index user_consumable_queue_user_id_index "+tableName()+" (user_id);");
-		indexes.add("create index user_consumable_queue_name_index "+tableName()+" (name);");
-=======
-		indexes.add("create index user_consumable_queue_user_id_index on user_consumable_queue (user_id);");
-		indexes.add("create index user_consumable_queue_consumable_id_index on user_consumable_queue (consumable_id);");
-		indexes.add("create index user_consumable_queue_expected_start_index on user_consumable_queue (expected_start);");
-		indexes.add("create index user_consumable_queue_entered_queue_index on user_consumable_queue (entered_queue);");
->>>>>>> 62d75ceb56adbd358ff3954dbdd8c79911563c5e
-		return indexes;
-	}*/
 	
 	
 }

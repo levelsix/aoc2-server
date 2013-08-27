@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -17,12 +19,14 @@ public class Equipment extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="name")
+	@Index
 	protected String name = "";
 	
 	@Column(name="level")
 	protected int level = 0;
 	
 	@Column(name="type")
+	@Index
 	protected int type = 0;
 	
 	@Column(name="durability")
@@ -41,16 +45,19 @@ public class Equipment extends BasePersistentObject{
 	protected int additionalMana = 0;
 	
 	@Column(name="rarity")
+	@Index
 	protected int rarity = 0;
 
 	@Column(name="class_required")
+	@Index
 	protected int classRequired = 0;
 	
-	//rename to hero
+	//hero lvl required
 	@Column(name="lvl_required")
+	@Index
 	protected int lvlRequired = 0;
 	
-	//fixing from 0 to 100%
+	//fixing from 0(durability?) to 100%
 	@Column(name="durability_fix_price")
 	protected int durabilityFixPrice = 0;
 	
@@ -212,44 +219,10 @@ public class Equipment extends BasePersistentObject{
 
 
 	@Override
-	public String getTableCreateStatement() {
-		return "create table "+ tableName()+" (" +
-				" id uuid," +
-				" name varchar," +
-				" level int," +
-				" type int," +
-				" durability double," +
-				" attack int," +
-				" defense int," +
-				" additional_hp int," +
-				" additional_mana int," +
-				" rarity int," +
-				" class_required int," +
-				" lvl_required int," +
-				" durability_fix_price int," +
-				" durability_fix_time_constant int," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
-	
-	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		
 		return indexes;
 	}
 	
-	
-/*	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index equipment_name_index on equipment (name);");
-		indexes.add("create index equipment_type_index on equipment (type);");
-		indexes.add("create index equipment_rarity_index on equipment (rarity);");
-		indexes.add("create index equipment_class_required_index on equipment (class_required);");
-		indexes.add("create index equipment_lvl_required_index on equipment (lvl_required);");
-		return indexes;
-	}
-	*/
 }

@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,6 +20,7 @@ public class CombatRoom extends BasePersistentObject{
 	
 	//room type = dungeon, specifies to which dungeon this room belongs
 	@Column(name="type")
+	@Index
 	protected int type = 1;
 	
 	//if this room comes first, second, ... in this dungeon
@@ -25,10 +28,12 @@ public class CombatRoom extends BasePersistentObject{
 	protected int ordering = 1;
 	
 	@Column(name="lvl_required")
+	@Index
 	protected int lvlRequired = 0;
 	
 	//flavor text for the user
 	@Column(name="room_name")
+	@Index
 	protected String roomName = "Inferno";
 	
 	//for all stars
@@ -50,6 +55,7 @@ public class CombatRoom extends BasePersistentObject{
 	// With this column, instead of each city/combat room correlating
 	// to only one map, two or three cities/rooms can use the same map.
 	@Column(name="map_index")
+	@Index
 	protected int mapIndex = 0;
 
 
@@ -154,23 +160,6 @@ public class CombatRoom extends BasePersistentObject{
 	}
 
 
-	@Override
-	public String getTableCreateStatement() {
-		return "create table "+ tableName() +" (" +
-				" id uuid," +
-				" type int," +
-				" ordering int," +
-				" lvl_required int," +
-				" room_name varchar," +
-				" time_milllis_one int," +
-				" time_millis_two int," +
-				" time_millis_three int," +
-				" map_index int," +
-				" primary key (id))" +
-				" with compact storage;";
-	}
-	
-	
 	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();

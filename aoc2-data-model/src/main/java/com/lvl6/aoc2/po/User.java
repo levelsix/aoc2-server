@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import com.lvl6.aoc2.entitymanager.Index;
 
 
-
+ 
 @Entity
 public class User extends BasePersistentObject{
 
@@ -33,9 +33,11 @@ public class User extends BasePersistentObject{
 	protected int exp = 0;
 
 	@Column(name="gold")
+	@Index
 	protected int gold = 0;
 	
 	@Column(name="tonic")
+	@Index
 	protected int tonic = 0;
 	
 	//in game currency
@@ -259,33 +261,6 @@ public class User extends BasePersistentObject{
 				+ ", accountInitialized=" + accountInitialized + "]";
 	}
 
-/*	@Override
-	public String getTableCreateStatement() {
-		return "create table "+ tableName()+" (" +
-				" id uuid," +
-				" name varchar," +
-				" lvl int," +
-				" exp int," +
-				" gold int," +
-				" tonic int," +
-				" gems int," +
-				" class_type int," +
-				" max_hp int," +
-				" hp int," +
-				" last_time_hp_regened timestamp," +
-				" max_mana int," +
-				" mana int," +
-				" last_time_mana_regened timestamp," +
-				" game_center_id varchar," +
-//				" signup_date timestamp," +
-				" clan_id varchar," +
-//				" last_login timestamp," +
-				" account_initialized boolean," +
-				//" email varchar," +
-				" primary key (id))" +
-				" with compact storage;";
-	}*/
-	
 
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -293,23 +268,5 @@ public class User extends BasePersistentObject{
 		
 		return indexes;
 	}
-	
-	
-/*	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		//indexes.add("create index user_email_index on user (email);");
-		indexes.add("create index user_name_index on user (name);");
-		indexes.add("create index user_lvl_index on user (lvl);");
-		indexes.add("create index user_exp_index on user (exp);");
-		indexes.add("create index user_gold_index on user (gold);");
-		indexes.add("create index user_tonic_index on user (tonic);");
-		indexes.add("create index user_gems_index on user (gems);");
-		indexes.add("create index user_class_type_index on user (class_type);");
-		indexes.add("create index user_game_center_id_index on user (game_center_id);");
-		indexes.add("create index user_clan_id_index on user (clan_id);");
-//		indexes.add("create index user_last_login_index on user (last_login);");
-		return indexes;
-	}*/
 	
 }

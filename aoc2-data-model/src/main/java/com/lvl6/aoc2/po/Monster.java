@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -17,9 +19,11 @@ public class Monster extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="name")
+	@Index
 	protected String name = "";
 	
 	@Column(name="is_boss")
+	@Index
 	protected boolean isBoss = false;
 	
 	@Column(name="max_hp")
@@ -169,25 +173,6 @@ public class Monster extends BasePersistentObject{
 				+ ", expReward=" + expReward + "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table "+ tableName()+" (" +
-				" id udid," +
-				" name varchar," +
-				" is_boss boolean," +
-				" max_hp int," +
-				" max_mana int," +
-				" attack int," +
-				" defense int," +
-				" monster_type int," +
-				" color int," +
-				" size int," +
-				" exp_reward int," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -195,18 +180,5 @@ public class Monster extends BasePersistentObject{
 		
 		return indexes;
 	}
-	
-	
-/*	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index monster_is_boss_index "+tableName()+" (is_boss);");
-		indexes.add("create index monster_name_index on monster (name);");
-		indexes.add("create index monster_is_boss_index on monster (is_boss);");
-		indexes.add("create index monster_monster_type_index on monster (monster_type)");
-		return indexes;
-	}
-	*/
-	
 	
 }

@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,12 +20,15 @@ public class UserItem extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = null;
 	
 	@Column(name="item_id")
+	@Index
 	protected UUID itemId = null;
 	
 	@Column(name="time_acquired")
+	@Index
 	protected Date timeAcquired = new Date();
 	
 	@Column(name="level_of_user_when_acquired")
@@ -102,20 +107,6 @@ public class UserItem extends BasePersistentObject{
 				+ ", dungeonRoomAcquiredIn=" + dungeonRoomAcquiredIn + "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table "+ tableName()+" (" +
-				" id uuid," +
-				" user_id uuid," +
-				" item_id uuid," +
-				" time_acquired timestamp," +
-				" level_of_user_when_acquired int," +
-				" dungeon_room_acquired_in varchar," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -123,22 +114,6 @@ public class UserItem extends BasePersistentObject{
 		
 		return indexes;
 	}
-	
-	
-/*	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-<<<<<<< HEAD
-		indexes.add("create index user_item_user_id_index "+tableName()+" (user_id);");
-		indexes.add("create index user_item_item_id_index "+tableName()+" (item_id);");
-
-=======
-		indexes.add("create index user_item_user_id_index on user_item (user_id);");
-		indexes.add("create index user_item_item_id_index on user_item (item_id);");
-		indexes.add("create index user_item_time_acquired_index on user_item (time_acquired);");
->>>>>>> 62d75ceb56adbd358ff3954dbdd8c79911563c5e
-		return indexes;
-	}*/
 	
 	
 }

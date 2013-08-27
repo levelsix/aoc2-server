@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -17,10 +19,12 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = UUID.randomUUID();
 	
 	//the 'id' column in equipment table
 	@Column(name="equip_id")
+	@Index
 	protected UUID equipId = UUID.randomUUID();;
 	
 	@Column(name="lvl")
@@ -86,19 +90,6 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 				+ durability + "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table "+tableName() +" (" +
-				" id uuid," +
-				" user_id uuid," +
-				" equip_id uuid," +
-				" lvl int," +
-				" durability double," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -107,14 +98,4 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 		return indexes;
 	}
 	
-/*	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index pre_dungeon_user_equip_info_user_id_index "+tableName()+" (user_id);");
-		indexes.add("create index pre_dungeon_user_equip_info_equip_id_index "+tableName()+" (equip_id);");
-		return indexes;
-	}
-	
-	*/
 }

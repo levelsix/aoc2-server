@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,9 +20,11 @@ public class ClassLevelInfo extends BasePersistentObject{
 	
 	//we'll set this manually
 	@Column(name="class_type")
+	@Index
 	protected int classType = 0;
 	
 	@Column(name="lvl")
+	@Index
 	protected int lvl = 0;
 	
 	@Column(name="max_hp")
@@ -129,22 +133,6 @@ public class ClassLevelInfo extends BasePersistentObject{
 				+ defense + "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table "+ tableName()+" (" +
-				" id uuid," +
-				" class_type int," +
-				" lvl int," +
-				" max_hp int," +
-				" max_mana int," +
-				" max_exp int," +
-				" attack int," +
-				" defense int," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -152,14 +140,5 @@ public class ClassLevelInfo extends BasePersistentObject{
 		
 		return indexes;
 	}
-	
-	
-/*	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index class_level_info_class_type_index "+tableName()+" (class_type);");
-		indexes.add("create index class_level_info_lvl_index "+tableName()+" (lvl);");
-		return indexes;
-	}*/
 	
 }

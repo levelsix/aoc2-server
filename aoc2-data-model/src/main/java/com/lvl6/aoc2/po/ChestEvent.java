@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,15 +20,19 @@ public class ChestEvent extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="chest_id")
+	@Index
 	protected UUID chestId = UUID.randomUUID();
 	
 	@Column(name="start_time")
+	@Index
 	protected Date startTime = new Date();
 	
 	@Column(name="end_time")
+	@Index
 	protected Date endTime = new Date();
 	
 	@Column(name="event_name")
+	@Index
 	protected String eventName = "";
 	
 
@@ -89,38 +95,11 @@ public class ChestEvent extends BasePersistentObject{
 				+ eventName + "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table "+ tableName()+" (" +
-				" id uuid," +
-				" start_time timestamp," +
-				" end_time timestamp," +
-				" event_name varchar," +
-				" chest_id uuid," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
-	
 	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		
 		return indexes;
 	}
-	
-	
-/*	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index ChestEvent_type_index "+tableName()+" (type);");
-		indexes.add("create index ChestEvent_rarity_index "+tableName()+" (rarity);");
-		indexes.add("create index ChestEvent_class_required_index "+tableName()+" (class_required);");
-		indexes.add("create index ChestEvent_lvl_required_index "+tableName()+" (lvl_required);");
-		indexes.add("create index ChestEvent_equip_id_index "+tableName()+" (equip_id);");
-		indexes.add("create index ChestEvent_chest_id_index on ChestEvent (chest_id);");
-		return indexes;
-	}*/
 	
 }
