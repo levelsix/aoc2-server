@@ -71,9 +71,12 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 		.build();
 		try {
 			Clas cls = this.type.newInstance();
-			createTable(cls);
-			updateTable(cls);
-			addOrRemoveIndexes(cls);
+			if(getCassandra().getCreateTables().equals("create")) {
+				log.info("Creating tables");
+				createTable(cls);
+				updateTable(cls);
+				addOrRemoveIndexes(cls);
+			}
 		}catch(Exception e) {
 			log.warn("Error creating storage for {}", type.getSimpleName(), e);
 		}

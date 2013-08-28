@@ -31,6 +31,8 @@ public class Cassandra implements InitializingBean {
 	protected String clusterName = "";
 	protected String seeds = "";
 	
+	protected String createTables = "off";
+
 	protected Integer connectionsPerHost = 1;
 	protected Integer port = 9160;
 
@@ -175,6 +177,17 @@ public class Cassandra implements InitializingBean {
 		this.keyspace = keyspace;
 	}
 
+	
+	public String getCreateTables() {
+		return createTables;
+	}
+
+	public void setCreateTables(String createTables) {
+		this.createTables = createTables;
+	}
+
+	
+	
 	@Override
 	public String toString() {
 		return "Cassandra [keyspaceName=" + keyspaceName + ", cqlVersion=" + cqlVersion
