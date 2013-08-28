@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.UserStructureEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.StructureRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserStructureRetrieveUtils;
 import com.lvl6.aoc2.eventprotos.BuildOrUpgradeStructureEventProto.BuildOrUpgradeStructureRequestProto;
 import com.lvl6.aoc2.eventprotos.BuildOrUpgradeStructureEventProto.BuildOrUpgradeStructureResponseProto;
 import com.lvl6.aoc2.eventprotos.BuildOrUpgradeStructureEventProto.BuildOrUpgradeStructureResponseProto.BuildOrUpgradeStructureStatus;
@@ -29,6 +28,7 @@ import com.lvl6.aoc2.po.Structure;
 import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserStructure;
 import com.lvl6.aoc2.services.user.UserService;
+import com.lvl6.aoc2.services.userstructure.UserStructureService;
 import com.lvl6.aoc2.widerows.RestrictionOnNumberOfUserStructure;
 import com.lvl6.aoc2.widerows.WideRowValue;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
@@ -43,7 +43,7 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 	protected StructureRetrieveUtils structureRetrieveUtils; 
 	
 	@Autowired
-	protected UserStructureRetrieveUtils userStructureRetrieveUtils; 
+	protected UserStructureService userStructureService; 
 
 	@Autowired
 	protected UserStructureEntityManager userStructureEntityManager;
@@ -141,18 +141,18 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 		}
 
 		UUID id = us.getId();
-		UUID structureId = us.getStructureId();
+		String structureName = us.getName();
 		Structure s = getStructureRetrieveUtils().getStructureForId(id);
 
 		if (null == s) {
-			log.error("unexpected error: no structure with id exists. id=" + structureId);
+			log.error("unexpected error: no structure with id exists. id=" + structureName);
 			responseBuilder.setStatus(BuildOrUpgradeStructureStatus.FAIL_NO_STRUCTURE_EXISTS);
 			return false;
 		}
 
 		//check if user meets level requirement of structure
-		if(inDb.getLevel() < s.getUserLvlRequired()) {
-			log.error("user is not high enough level to build/upgrade. user level=" + inDb.getLevel() + 
+		if(inDb.getLvl() < s.getUserLvlRequired()) {
+			log.error("user is not high enough level to build/upgrade. user level=" + inDb.getLvl() + 
 					", required level: " + s.getUserLvlRequired());
 			responseBuilder.setStatus(BuildOrUpgradeStructureStatus.FAIL_NOT_AT_REQUIRED_LEVEL);
 			return false;
@@ -223,7 +223,7 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 		}
 		
 		int count=0;
-		List<UserStructure> userStructs = getUserStructureRetrieveUtils().getAllUserStructuresForUser(inDb.getId());
+		List<UserStructure> userStructs = getUserStructureService().getAllUserStructuresForUser(inDb.getId());
 		for(UserStructure us2: userStructs) {
 			if(us2.isFinishedConstructing())
 				count++;
@@ -235,7 +235,7 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 			return false;
 		}
 		
-		int userLevel = inDb.getLevel();
+		int userLevel = inDb.getLvl();
 		int numAllowed = 0;
 		//check if there's a restriction on the number of a certain structure you can have
 		Collection<WideRowValue<Integer, UUID, Integer>> savedValues =
@@ -303,11 +303,11 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 			
 			us2.setId(UUID.randomUUID());
 			us2.setUserId(inDb.getId());
-			us2.setStructureId(s.getStructureId());
+			us2.setName(s.getName());
 			us2.setLvl(s.getLvl());
 			us2.setPurchaseTime(clientDate);
 			us2.setFinishedConstructing(false);
-			us2.setLevelOfUserWhenUpgrading(inDb.getLevel());
+			us2.setLevelOfUserWhenUpgrading(inDb.getLvl());
 			getUserStructureEntityManager().get().put(us2);
 			
 			return true;
@@ -328,15 +328,16 @@ public class BuildOrUpgradeUserStructureController extends EventController {
 	}
 	
 	
-	public UserStructureRetrieveUtils getUserStructureRetrieveUtils() {
-		return userStructureRetrieveUtils;
+
+	
+	public UserStructureService getUserStructureService() {
+		return userStructureService;
 	}
 
-	public void setUserStructureRetrieveUtils(
-			UserStructureRetrieveUtils userStructureRetrieveUtils) {
-		this.userStructureRetrieveUtils = userStructureRetrieveUtils;
+	public void setUserStructureService(UserStructureService userStructureService) {
+		this.userStructureService = userStructureService;
 	}
-	
+
 	public StructureRetrieveUtils getStructureRetrieveUtils() {
 		return structureRetrieveUtils;
 	}

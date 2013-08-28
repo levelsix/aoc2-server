@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import com.lvl6.aoc2.entitymanager.UserEquipRepairEntityManager;
 import com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto;
+import com.lvl6.aoc2.po.Equipment;
 import com.lvl6.aoc2.po.UserEquip;
 import com.lvl6.aoc2.po.UserEquipRepair;
 
@@ -30,5 +31,13 @@ public interface UserEquipRepairService {
 	public abstract UserEquipRepairEntityManager getUserEquipmentRepairEntityManager();
 	
 	public abstract void setUserEquipmentRepairEntityManager(UserEquipRepairEntityManager userEquipRepairEntityManager);
+
+	public abstract UserEquipRepair getUserEquipRepairForId(UUID id);
+	
+	public abstract Map<UUID, UserEquipRepair> getUserEquipRepairsForIds(List<UUID> ids);
+	
+	public abstract List<UserEquipRepair> getAllUserEquipRepairsForUser(UUID userId);
+	
+	public abstract Equipment getEquipmentCorrespondingToUserEquipRepair(UserEquipRepair ue);
 
 }

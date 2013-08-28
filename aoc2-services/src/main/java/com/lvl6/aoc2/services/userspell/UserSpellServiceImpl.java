@@ -1,4 +1,4 @@
-package com.lvl6.aoc2.entitymanager.staticdata;
+package com.lvl6.aoc2.services.userspell;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,22 +12,28 @@ import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.SpellEntityManager;
 import com.lvl6.aoc2.entitymanager.UserSpellEntityManager;
-import com.lvl6.aoc2.po.UserSpell;
+import com.lvl6.aoc2.entitymanager.staticdata.SpellRetrieveUtils;
 import com.lvl6.aoc2.po.Spell;
+import com.lvl6.aoc2.po.UserSpell;
 
-@Component public class UserSpellRetrieveUtils {
 
+@Component
+public class UserSpellServiceImpl implements UserSpellService {
+	
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	private  Map<UUID, UserSpell> idsToUserSpells;
 	
-	
+	@Autowired
+	protected SpellRetrieveUtils spellRetrieveUtils;
+
 	@Autowired
 	protected UserSpellEntityManager UserSpellEntityManager;
 
 	@Autowired
 	protected SpellEntityManager spellEntityManager;
 	
+	@Override
 	public  UserSpell getUserSpellForId(UUID id) {
 		log.debug("retrieve UserSpell data for id " + id);
 		if (idsToUserSpells == null) {
@@ -36,6 +42,7 @@ import com.lvl6.aoc2.po.Spell;
 		return idsToUserSpells.get(id);
 	}
 
+	@Override
 	public  Map<UUID, UserSpell> getUserSpellsForIds(List<UUID> ids) {
 		log.debug("retrieve UserSpells data for ids " + ids);
 		if (idsToUserSpells == null) {
@@ -61,33 +68,28 @@ import com.lvl6.aoc2.po.Spell;
 					
 	}
 
+	@Override
 	public  List<UserSpell> getAllUserSpellsForUser(UUID userId) {
 		String cqlquery = "select * from user_spell where user_id=" + userId + ";"; 
 		List <UserSpell> list = getUserSpellEntityManager().get().find(cqlquery);
 		return list;
 	}
 
+	@Override
 	public Spell getSpellCorrespondingToUserSpell(UserSpell us) {
-		String spellName = us.getName();
-		String cqlquery = "select * from Spell where name= " + spellName + ";";
-		List<Spell> s = getSpellEntityManager().get().find(cqlquery);
-		return s.get(0);
+		String name = us.getName();
+		int level = us.getSpellLvl();
+		return getSpellRetrieveUtils().getSpellAccordingToNameAndLevel(name, level);
+		
 	}
 
-	
-	
-	public  void reload() {
-		setStaticIdsToUserSpells();
-	}
-	
-	
 	public UserSpellEntityManager getUserSpellEntityManager() {
 		return UserSpellEntityManager;
 	}
 
 	public void setUserSpellEntityManager(
-			UserSpellEntityManager UserSpellEntityManager) {
-		this.UserSpellEntityManager = UserSpellEntityManager;
+			UserSpellEntityManager userSpellEntityManager) {
+		UserSpellEntityManager = userSpellEntityManager;
 	}
 
 	public SpellEntityManager getSpellEntityManager() {
@@ -97,6 +99,18 @@ import com.lvl6.aoc2.po.Spell;
 	public void setSpellEntityManager(SpellEntityManager spellEntityManager) {
 		this.spellEntityManager = spellEntityManager;
 	}
+
+	public SpellRetrieveUtils getSpellRetrieveUtils() {
+		return spellRetrieveUtils;
+	}
+
+	public void setSpellRetrieveUtils(SpellRetrieveUtils spellRetrieveUtils) {
+		this.spellRetrieveUtils = spellRetrieveUtils;
+	}
 	
+	
+	
+
+
 	
 }

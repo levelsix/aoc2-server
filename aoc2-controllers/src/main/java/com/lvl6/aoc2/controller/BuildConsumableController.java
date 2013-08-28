@@ -143,6 +143,12 @@ public class BuildConsumableController extends EventController {
 			Map<UserConsumableQueue, Integer> alreadyQueuedConsumables,
 			boolean usingGems, Date clientDate) throws Exception {
 	
+		if(inDb == null) {
+			log.error("user doesn't exist");
+			responseBuilder.setStatus(BuildConsumableStatus.FAIL_OTHER);
+			return false;
+		}
+		
 		if (ucqDelete.isEmpty() && ucqUpdate.isEmpty() && ucqNew.isEmpty()) {
 			log.error("everything sent is empty");
 			responseBuilder.setStatus(BuildConsumableStatus.FAIL_OTHER);

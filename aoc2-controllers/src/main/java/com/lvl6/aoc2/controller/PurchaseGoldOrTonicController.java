@@ -15,7 +15,6 @@ import com.lvl6.aoc2.controller.utils.TimeUtils;
 
 import com.lvl6.aoc2.entitymanager.UserConsumableQueueEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
-import com.lvl6.aoc2.entitymanager.staticdata.UserStructureRetrieveUtils;
 
 import com.lvl6.aoc2.eventprotos.PurchaseGoldOrTonicEventProto.PurchaseGoldOrTonicRequestProto;
 import com.lvl6.aoc2.eventprotos.PurchaseGoldOrTonicEventProto.PurchaseGoldOrTonicResponseProto;
@@ -35,6 +34,7 @@ import com.lvl6.aoc2.po.UserStructure;
 
 import com.lvl6.aoc2.services.user.UserService;
 import com.lvl6.aoc2.services.userconsumablequeue.UserConsumableQueueService;
+import com.lvl6.aoc2.services.userstructure.UserStructureService;
 
 
 
@@ -51,7 +51,7 @@ public class PurchaseGoldOrTonicController extends EventController {
 	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
 	
 	@Autowired
-	protected UserStructureRetrieveUtils userStructureRetrieveUtils;
+	protected UserStructureService userStructureService;
 
 	@Autowired
 	protected UserEntityManager userEntityManager;
@@ -100,11 +100,11 @@ public class PurchaseGoldOrTonicController extends EventController {
 		try {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
-			List<UserStructure> usList = getUserStructureRetrieveUtils().getAllUserStructuresForUser(inDb.getId());
+			List<UserStructure> usList = getUserStructureService().getAllUserStructuresForUser(inDb.getId());
 			int maxGoldStorage = 0;
 			int maxTonicStorage = 0;
 			for(UserStructure us : usList) {
-				Structure s = getUserStructureRetrieveUtils().getStructureCorrespondingToUserStructure(us);
+				Structure s = getUserStructureService().getStructureCorrespondingToUserStructure(us);
 				if(s.getFunctionalityType() == FunctionalityType.RESOURCE_STORAGE_VALUE) { 
 						if(s.getFunctionalityType() == ResourceType.GOLD_VALUE) {
 							maxGoldStorage += s.getFunctionalityCapacity();
@@ -282,16 +282,14 @@ public class PurchaseGoldOrTonicController extends EventController {
 		this.userConsumableQueueEntityManager = userConsumableQueueEntityManager;
 	}
 
-	public UserStructureRetrieveUtils getUserStructureRetrieveUtils() {
-		return userStructureRetrieveUtils;
+	public UserStructureService getUserStructureService() {
+		return userStructureService;
 	}
 
-	public void setUserStructureRetrieveUtils(
-			UserStructureRetrieveUtils userStructureRetrieveUtils) {
-		this.userStructureRetrieveUtils = userStructureRetrieveUtils;
+	public void setUserStructureService(UserStructureService userStructureService) {
+		this.userStructureService = userStructureService;
 	}
 
-	
 
 }
 

@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,14 +20,13 @@ public class UserStructure extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = UUID.randomUUID();
 	
-	//refers to type of structure, not random generated uuid row key
+	//refers to structure table row key
 	@Column(name="structure_id")
-	protected UUID structureId = UUID.randomUUID();
-	
-	@Column(name="lvl")
-	protected int lvl = 0;
+	@Index
+	protected UUID structureId = null;
 	
 	@Column(name="x_coordinate")
 	protected int xCoordinate = 0;
@@ -34,21 +35,34 @@ public class UserStructure extends BasePersistentObject{
 	protected int yCoordinate = 0;
 
 	@Column(name="last_collect_time")
+	@Index
 	protected Date lastCollectTime = new Date();
 
 	@Column(name="purchase_time")
+	@Index
 	protected Date purchaseTime = new Date();
 
 	@Column(name="start_upgrade_time")
+	@Index
 	protected Date startUpgradeTime = new Date();
 
 	@Column(name="is_finished_constructing")
+	@Index
 	protected boolean isFinishedConstructing = false;
 
+	//for tracking purposes
 	@Column(name="level_of_user_when_upgrading")
 	protected int levelOfUserWhenUpgrading = 0;
 	
+	//since user can build more than one of any building,
+	//this keeps track of how many of the same building
+	//the user has
+	@Column(name="nth_copy")
+	protected int nthCopy = 1;
 	
+
+	
+
 	public UUID getId() {
 		return id;
 	}
@@ -76,16 +90,6 @@ public class UserStructure extends BasePersistentObject{
 
 	public void setStructureId(UUID structureId) {
 		this.structureId = structureId;
-	}
-
-
-	public int getLvl() {
-		return lvl;
-	}
-
-
-	public void setLvl(int lvl) {
-		this.lvl = lvl;
 	}
 
 
@@ -138,7 +142,7 @@ public class UserStructure extends BasePersistentObject{
 		this.startUpgradeTime = startUpgradeTime;
 	}
 
-	
+
 	public boolean isFinishedConstructing() {
 		return isFinishedConstructing;
 	}
@@ -159,37 +163,28 @@ public class UserStructure extends BasePersistentObject{
 	}
 
 
+	public int getNthCopy() {
+		return nthCopy;
+	}
+
+
+	public void setNthCopy(int nthCopy) {
+		this.nthCopy = nthCopy;
+	}
+
+
 	@Override
 	public String toString() {
 		return "UserStructure [id=" + id + ", userId=" + userId
-				+ ", structureId=" + structureId + ", lvl=" + lvl
-				+ ", xCoordinate=" + xCoordinate + ", yCoordinate="
-				+ yCoordinate + ", lastCollectTime=" + lastCollectTime
-				+ ", purchaseTime=" + purchaseTime + ", startUpgradeTime="
-				+ startUpgradeTime + ", isFinishedConstructing="
-				+ isFinishedConstructing + ", levelOfUserWhenUpgrading="
-				+ levelOfUserWhenUpgrading + "]";
+				+ ", structureId=" + structureId + ", xCoordinate="
+				+ xCoordinate + ", yCoordinate=" + yCoordinate
+				+ ", lastCollectTime=" + lastCollectTime + ", purchaseTime="
+				+ purchaseTime + ", startUpgradeTime=" + startUpgradeTime
+				+ ", isFinishedConstructing=" + isFinishedConstructing
+				+ ", levelOfUserWhenUpgrading=" + levelOfUserWhenUpgrading
+				+ ", nthCopy=" + nthCopy + "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table user_structure (" +
-				" id uuid," +
-				" user_id uuid," +
-				" structure_id uuid," +
-				" lvl int," +
-				" x_coordinate int," +
-				" y_coordinate int," +
-				" last_collect_time timestamp," +
-				" purchase_time timestamp," +
-				" start_upgrade_time timestamp," +
-				" is_finished_constructing boolean," +
-				" level_of_user_when_upgrading int," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -197,19 +192,6 @@ public class UserStructure extends BasePersistentObject{
 		
 		return indexes;
 	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_structure_is_upgrading_index on user_structure (is_upgrading);");
-		indexes.add("create index user_structure_last_collect_time_index on user_structure (last_collect_time);");
-		indexes.add("create index user_structure_user_id_index on user_structure (user_id);");
-		indexes.add("create index user_structure_structure_id_index on user_structure (structure_id);");
-		return indexes;
-	}
-	
-	
 	
 	
 	

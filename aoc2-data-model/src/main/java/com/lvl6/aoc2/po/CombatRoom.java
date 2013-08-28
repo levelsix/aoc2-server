@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,17 +20,21 @@ public class CombatRoom extends BasePersistentObject{
 	
 	//room type = dungeon, specifies to which dungeon this room belongs
 	@Column(name="type")
+	@Index
 	protected int type = 1;
 	
 	//if this room comes first, second, ... in this dungeon
-	@Column(name="order")
-	protected int order = 1;
+	@Column(name="ordering")
+	protected int ordering = 1;
 	
 	@Column(name="lvl_required")
+	@Index
 	protected int lvlRequired = 0;
 	
-	@Column(name="name")
-	protected String name = "Inferno";
+	//flavor text for the user
+	@Column(name="room_name")
+	@Index
+	protected String roomName = "Inferno";
 	
 	//for all stars
 	@Column(name="time_millis_one")
@@ -41,6 +47,16 @@ public class CombatRoom extends BasePersistentObject{
 	//for one star
 	@Column(name="time_millis_three")
 	protected int timeMillisThree = 240000;
+
+	// links a map-a-user-plays-in to a room
+	// Using AoC terms,
+	// world map (tapping on map button) = a dungeon
+	// a city (kirin village, venetia,...) = a combat room
+	// With this column, instead of each city/combat room correlating
+	// to only one map, two or three cities/rooms can use the same map.
+	@Column(name="map_index")
+	@Index
+	protected int mapIndex = 0;
 
 
 
@@ -64,13 +80,13 @@ public class CombatRoom extends BasePersistentObject{
 	}
 
 
-	public int getOrder() {
-		return order;
+	public int getOrdering() {
+		return ordering;
 	}
 
 
-	public void setOrder(int order) {
-		this.order = order;
+	public void setOrdering(int ordering) {
+		this.ordering = ordering;
 	}
 
 
@@ -84,13 +100,13 @@ public class CombatRoom extends BasePersistentObject{
 	}
 
 
-	public String getName() {
-		return name;
+	public String getRoomName() {
+		return roomName;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
 	}
 
 
@@ -124,45 +140,29 @@ public class CombatRoom extends BasePersistentObject{
 	}
 
 
+	public int getMapIndex() {
+		return mapIndex;
+	}
+
+
+	public void setMapIndex(int mapIndex) {
+		this.mapIndex = mapIndex;
+	}
+
 
 	@Override
 	public String toString() {
-		return "CombatRoom [id=" + id + ", type=" + type + ", order=" + order
-				+ ", lvlRequired=" + lvlRequired + ", name=" + name
-				+ ", timeMillisOne=" + timeMillisOne + ", timeMillisTwo="
-				+ timeMillisTwo + ", timeMillisThree=" + timeMillisThree + "]";
+		return "CombatRoom [id=" + id + ", type=" + type + ", ordering="
+				+ ordering + ", lvlRequired=" + lvlRequired + ", roomName="
+				+ roomName + ", timeMillisOne=" + timeMillisOne
+				+ ", timeMillisTwo=" + timeMillisTwo + ", timeMillisThree="
+				+ timeMillisThree + ", mapIndex=" + mapIndex + "]";
 	}
 
 
-	@Override
-	public String getTableCreateStatement() {
-		return "create table combat_room (" +
-				" id uuid," +
-				" type int," +
-				" order int," +
-				" lvl_required int," +
-				" name varchar," +
-				" time_milllis_one int," +
-				" time_millis_two int," +
-				" time_millis_three int," +
-				" num_rooms int," +
-				" primary key (id))" +
-				" with compact storage;";
-	}
-	
-	
 	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
-		
-		return indexes;
-	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index combat_room_type_index on combat_room (type);");
 		
 		return indexes;
 	}

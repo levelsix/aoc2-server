@@ -17,8 +17,6 @@ import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEquipEntityManager;
 import com.lvl6.aoc2.entitymanager.UserItemEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.StructureRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserEquipRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserStructureRetrieveUtils;
 import com.lvl6.aoc2.eventprotos.CompleteDungeonEventProto.CompleteDungeonRequestProto;
 import com.lvl6.aoc2.eventprotos.CompleteDungeonEventProto.CompleteDungeonResponseProto;
 import com.lvl6.aoc2.eventprotos.CompleteDungeonEventProto.CompleteDungeonResponseProto.CompleteDungeonStatus;
@@ -38,6 +36,7 @@ import com.lvl6.aoc2.po.UserEquip;
 import com.lvl6.aoc2.po.UserItem;
 import com.lvl6.aoc2.services.equipment.EquipmentService;
 import com.lvl6.aoc2.services.userequip.UserEquipService;
+import com.lvl6.aoc2.services.userstructure.UserStructureService;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
 
@@ -58,12 +57,9 @@ public class CompleteDungeonController extends EventController {
 	
 	@Autowired
 	protected UserDungeonStatusHistoryEntityManager userDungeonStatusHistoryEntityManager;
-	
-	@Autowired
-	protected UserEquipRetrieveUtils userEquipRetrieveUtils; 
 
 	@Autowired
-	protected UserStructureRetrieveUtils userStructureRetrieveUtils;
+	protected UserStructureService userStructureService;
 		
 	@Autowired
 	protected StructureRetrieveUtils structureRetrieveUtils;
@@ -119,7 +115,7 @@ public class CompleteDungeonController extends EventController {
 		try {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
-			List<UserEquip> ueList = getUserEquipRetrieveUtils().getAllUserEquipsForUser(userId);
+			List<UserEquip> ueList = getUserEquipService().getAllUserEquipsForUser(userId);
 
 			List<UserEquip> equippedEquips = new ArrayList<UserEquip>();
 			getUserEquipService().getEquippedUserEquips(ueList, equippedEquips);
@@ -202,7 +198,7 @@ public class CompleteDungeonController extends EventController {
 				uc.setChestId(chestId);
 				uc.setDungeonRoomAcquiredIn(dungeonRoomName);
 				uc.setId(newId);
-				uc.setLevelOfUserWhenAcquired(inDb.getLevel());
+				uc.setLevelOfUserWhenAcquired(inDb.getLvl());
 				uc.setTimeAcquired(clientDate);
 				uc.setUserId(inDb.getId());
 				getUserChestEntityManager().get().put(uc);
@@ -212,8 +208,8 @@ public class CompleteDungeonController extends EventController {
 				UUID newId = UUID.randomUUID();
 				ui.setDungeonRoomAcquiredIn(dungeonRoomName);
 				ui.setId(newId);
-				ui.setItemId(UUID.fromString(ip.getItemID()));
-				ui.setLevelOfUserWhenAcquired(inDb.getLevel());
+				ui.setName(ip.getItemName());
+				ui.setLevelOfUserWhenAcquired(inDb.getLvl());
 				ui.setTimeAcquired(clientDate);
 				ui.setUserId(inDb.getId());
 				getUserItemEntityManager().get().put(ui);
@@ -221,15 +217,14 @@ public class CompleteDungeonController extends EventController {
 			for(EquipmentProto ep : equipmentsRewarded) {
 				UserEquip ue = new UserEquip();
 				UUID newId = UUID.randomUUID();
-				UUID equipId = UUID.fromString(ep.getEquipID());
 				ue.setDungeonRoomOrChestAcquiredFrom(dungeonRoomName);
-				ue.setLevelOfUserWhenAcquired(inDb.getLevel());
+				ue.setLevelOfUserWhenAcquired(inDb.getLvl());
 				ue.setTimeAcquired(clientDate);
 				ue.setId(newId);
 				ue.setUserId(inDb.getId());
 				ue.setEquipped(false);
 				ue.setEquipLevel(1);
-				ue.setEquipId(equipId);
+				ue.setName(ep.getName());
 				ue.setDurability(100.0);
 				getUserEquipEntityManager().get().put(ue);
 				
@@ -294,22 +289,13 @@ public class CompleteDungeonController extends EventController {
 		this.userDungeonStatusHistoryEntityManager = userDungeonStatusHistoryEntityManager;
 	}
 
-	public UserEquipRetrieveUtils getUserEquipRetrieveUtils() {
-		return userEquipRetrieveUtils;
+
+	public UserStructureService getUserStructureService() {
+		return userStructureService;
 	}
 
-	public void setUserEquipRetrieveUtils(
-			UserEquipRetrieveUtils userEquipRetrieveUtils) {
-		this.userEquipRetrieveUtils = userEquipRetrieveUtils;
-	}
-
-	public UserStructureRetrieveUtils getUserStructureRetrieveUtils() {
-		return userStructureRetrieveUtils;
-	}
-
-	public void setUserStructureRetrieveUtils(
-			UserStructureRetrieveUtils userStructureRetrieveUtils) {
-		this.userStructureRetrieveUtils = userStructureRetrieveUtils;
+	public void setUserStructureService(UserStructureService userStructureService) {
+		this.userStructureService = userStructureService;
 	}
 
 	public StructureRetrieveUtils getStructureRetrieveUtils() {

@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,22 +20,23 @@ public class UserEquip extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = null;
 	
-	//the 'equip_id' column in equipment table, not the 'id' column
+	//the 'id' column in equipment table
 	@Column(name="equip_id")
+	@Index
 	protected UUID equipId = null;
-	
-	@Column(name="equip_level")
-	protected int equipLevel = 0;
 	
 	@Column(name="durability")
 	protected double durability = 0.0;
 	
 	@Column(name="equipped")
+	@Index
 	protected boolean equipped = false;
 	
 	@Column(name="time_acquired")
+	@Index
 	protected Date timeAcquired = new Date();
 	
 	@Column(name="level_of_user_when_acquired")
@@ -41,6 +44,7 @@ public class UserEquip extends BasePersistentObject{
 	
 	@Column(name="dungeon_room_or_chest_acquired_from")
 	protected String dungeonRoomOrChestAcquiredFrom = "";
+
 
 
 
@@ -71,16 +75,6 @@ public class UserEquip extends BasePersistentObject{
 
 	public void setEquipId(UUID equipId) {
 		this.equipId = equipId;
-	}
-
-
-	public int getEquipLevel() {
-		return equipLevel;
-	}
-
-
-	public void setEquipLevel(int equipLevel) {
-		this.equipLevel = equipLevel;
 	}
 
 
@@ -133,53 +127,23 @@ public class UserEquip extends BasePersistentObject{
 			String dungeonRoomOrChestAcquiredFrom) {
 		this.dungeonRoomOrChestAcquiredFrom = dungeonRoomOrChestAcquiredFrom;
 	}
-	
-	
 
 
 	@Override
 	public String toString() {
 		return "UserEquip [id=" + id + ", userId=" + userId + ", equipId="
-				+ equipId + ", equipLevel=" + equipLevel + ", durability="
-				+ durability + ", equipped=" + equipped + ", timeAcquired="
-				+ timeAcquired + ", levelOfUserWhenAcquired="
-				+ levelOfUserWhenAcquired + ", dungeonRoomOrChestAcquiredFrom="
+				+ equipId + ", durability=" + durability + ", equipped="
+				+ equipped + ", timeAcquired=" + timeAcquired
+				+ ", levelOfUserWhenAcquired=" + levelOfUserWhenAcquired
+				+ ", dungeonRoomOrChestAcquiredFrom="
 				+ dungeonRoomOrChestAcquiredFrom + "]";
 	}
 
 
 	@Override
-	public String getTableCreateStatement() {
-		return "create table user_equip (" +
-				" id uuid," +
-				" user_id uuid," +
-				" equip_id uuid," +
-				" equip_level int," +
-				" durability double," +
-				" equipped boolean," +
-				" time_acquired timestamp," +
-				" level_of_user_when_acquired int," +
-				" dungeon_room_or_chest_acquired_from varchar," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
-	
-	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		
-		return indexes;
-	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_equip_user_id_index on user_equip (user_id);");
-		indexes.add("create index user_equip_equip_id_index on user_equip (equip_id);");
-		indexes.add("create index user_equip_equip_level_index on user_equip (equip_level);");
-		indexes.add("create index user_equip_equipped_index on user_equip (equipped);");
 		return indexes;
 	}
 	

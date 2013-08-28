@@ -19,7 +19,7 @@ import com.lvl6.aoc2.po.Equipment;
 			new Object() { }.getClass().getEnclosingClass());
 
 	private  Map<UUID, Equipment> idsToEquipments;
-	private Map<UUID, Map<Integer, Equipment>> equipIdsToLevelsToEquips;
+	private Map<String, Map<Integer, Equipment>> equipIdsToLevelsToEquips;
 
 	//private  final String TABLE_NAME = DBConstants.CONSUMABLE;
 
@@ -79,24 +79,34 @@ import com.lvl6.aoc2.po.Equipment;
 			//populate map: (equipId->
 			//					(level->equip)
 			//				)
-			UUID equipId = e.getEquipId();
+			String equipName = e.getName();
 			int level = e.getLevel();
 			
 			//get the map containing the different levels of this equip
 			Map<Integer, Equipment> existing =
-					equipIdsToLevelsToEquips.get(equipId);
+					equipIdsToLevelsToEquips.get(equipName);
 			
 			if (null == existing) {
 				//base case: create a new map to store all diff levels
 				//of this equip
 				existing = new HashMap<Integer, Equipment>();
-				equipIdsToLevelsToEquips.put(equipId, existing);
+				equipIdsToLevelsToEquips.put(equipName, existing);
 			}
 			
 			existing.put(level, e);
 		}
 	}
 
+	public Equipment getEquipmentCorrespondingToName(String name) {
+		if (idsToEquipments == null) {
+			setMaps();      
+		}
+		for(Equipment value : idsToEquipments.values()) {
+			if(value.getName() == name)
+				return value;
+		}
+		return null;
+	}
 
 	public  void reload() {
 		setMaps();

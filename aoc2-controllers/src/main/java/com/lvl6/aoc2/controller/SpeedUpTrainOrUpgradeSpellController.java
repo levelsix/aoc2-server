@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.UserSpellEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.SpellRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserSpellRetrieveUtils;
 //import com.lvl6.aoc2.entitymanager.staticdata.UserSpellRetrieveUtils;
 import com.lvl6.aoc2.eventprotos.SpeedUpTrainOrUpgradeSpellEventProto.SpeedUpTrainOrUpgradeSpellRequestProto;
 import com.lvl6.aoc2.eventprotos.SpeedUpTrainOrUpgradeSpellEventProto.SpeedUpTrainOrUpgradeSpellResponseProto;
@@ -26,6 +25,7 @@ import com.lvl6.aoc2.po.Spell;
 import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserSpell;
 import com.lvl6.aoc2.services.user.UserService;
+import com.lvl6.aoc2.services.userspell.UserSpellService;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
 
@@ -44,7 +44,7 @@ public class SpeedUpTrainOrUpgradeSpellController extends EventController {
 	protected UserService userService; 
 
 	@Autowired
-	protected UserSpellRetrieveUtils userSpellRetrieveUtils; 
+	protected UserSpellService userSpellService; 
 	
 	@Autowired
 	protected UserSpellEntityManager userSpellEntityManager;
@@ -86,7 +86,7 @@ public class SpeedUpTrainOrUpgradeSpellController extends EventController {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
 			UserSpell us = getUserSpellEntityManager().get().get(userSpellId);
-			Spell s = getUserSpellRetrieveUtils().getSpellCorrespondingToUserSpell(us);;
+			Spell s = getUserSpellService().getSpellCorrespondingToUserSpell(us);;
 
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender, inDb,
@@ -169,15 +169,16 @@ public class SpeedUpTrainOrUpgradeSpellController extends EventController {
 	
 	
 	
-	public UserSpellRetrieveUtils getUserSpellRetrieveUtils() {
-		return userSpellRetrieveUtils;
+
+	
+	public UserSpellService getUserSpellService() {
+		return userSpellService;
 	}
 
-	public void setUserSpellRetrieveUtils(
-			UserSpellRetrieveUtils userSpellRetrieveUtils) {
-		this.userSpellRetrieveUtils = userSpellRetrieveUtils;
+	public void setUserSpellService(UserSpellService userSpellService) {
+		this.userSpellService = userSpellService;
 	}
-	
+
 	public SpellRetrieveUtils getSpellRetrieveUtils() {
 		return spellRetrieveUtils;
 	}

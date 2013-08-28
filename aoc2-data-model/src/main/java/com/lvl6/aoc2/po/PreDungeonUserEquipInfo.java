@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -17,14 +19,16 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = UUID.randomUUID();
 	
-	//the 'equip_id' column in equipment table, not the 'id' column
+	//the 'id' column in equipment table
 	@Column(name="equip_id")
-	protected UUID equipId = UUID.randomUUID();
+	@Index
+	protected UUID equipId = UUID.randomUUID();;
 	
-	@Column(name="level")
-	protected int level = 0;
+	@Column(name="lvl")
+	protected int lvl = 0;
 	
 	@Column(name="durability")
 	protected double durability = 0.0;
@@ -49,7 +53,6 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 		this.userId = userId;
 	}
 
-
 	public UUID getEquipId() {
 		return equipId;
 	}
@@ -60,13 +63,13 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 	}
 
 
-	public int getLevel() {
-		return level;
+	public int getLvl() {
+		return lvl;
 	}
 
 
-	public void setLevel(int level) {
-		this.level = level;
+	public void setLvl(int lvl) {
+		this.lvl = lvl;
 	}
 
 
@@ -83,23 +86,10 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 	@Override
 	public String toString() {
 		return "PreDungeonUserEquipInfo [id=" + id + ", userId=" + userId
-				+ ", equipId=" + equipId + ", level=" + level + ", durability="
+				+ ", equipId=" + equipId + ", lvl=" + lvl + ", durability="
 				+ durability + "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create pre_dungeon_user_equip_info (" +
-				" id uuid," +
-				" user_id uuid," +
-				" equip_id uuid," +
-				" level int," +
-				" durability double," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -107,15 +97,5 @@ public class PreDungeonUserEquipInfo extends BasePersistentObject{
 		
 		return indexes;
 	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index room_reward_chest_id_index on room_reward (chest_id);");
-		indexes.add("create index room_reward_equip_id_index on room_reward (equip_id);");
-		return indexes;
-	}
-	
 	
 }

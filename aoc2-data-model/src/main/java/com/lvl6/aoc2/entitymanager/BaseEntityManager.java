@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.google.common.collect.ImmutableMap;
 import com.lvl6.aoc2.cassandra.Cassandra;
 import com.lvl6.aoc2.po.BasePersistentObject;
 import com.netflix.astyanax.Keyspace;
@@ -72,9 +71,12 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 		.build();
 		try {
 			Clas cls = this.type.newInstance();
-			createTable(cls);
-			updateTable(cls);
-			addOrRemoveIndexes(cls);
+			if(getCassandra().getCreateTables().equals("create")) {
+				log.info("Creating tables");
+				createTable(cls);
+				updateTable(cls);
+				addOrRemoveIndexes(cls);
+			}
 		}catch(Exception e) {
 			log.warn("Error creating storage for {}", type.getSimpleName(), e);
 		}
@@ -83,6 +85,7 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 	
 	protected void createTable(Clas cls) {
 		try {
+			log.info("Creating table: {}", cls.getTableCreateStatement());
 			getKeyspace()
 			    .prepareQuery(columnFamily)
 			    .withCql(cls.getTableCreateStatement())
@@ -113,6 +116,7 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 	protected void addOrRemoveIndexes(Clas cls) {
 		for(String index : cls.getIndexCreateStatements()) {
 			try {
+				log.info("Creating index: {}",index);
 				getKeyspace()
 				    .prepareQuery(columnFamily)
 				    .withCql(index)
@@ -124,16 +128,6 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 	}
 	
 
-	
-	abstract protected ImmutableMap<String, Object> getIndexes();
-
-	protected ImmutableMap<String, Object> getIndexProps(String propertyName) {
-		return ImmutableMap.<String, Object>builder()
-	    .put("validation_class", "UTF8Type")
-	    .put("index_name",       getClass().getName().toLowerCase()+"_"+propertyName+"_index")
-	    .put("index_type",       "KEYS")
-	    .build();
-	}
 
 	public EntityManager<Clas, Ky> getEm() {
 		return em;

@@ -15,6 +15,16 @@ public final class LevelUpEventProto {
     boolean hasMup();
     com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto getMup();
     com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProtoOrBuilder getMupOrBuilder();
+    
+    // repeated .proto.DungeonProto allDungeonRooms = 2;
+    java.util.List<com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto> 
+        getAllDungeonRoomsList();
+    com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto getAllDungeonRooms(int index);
+    int getAllDungeonRoomsCount();
+    java.util.List<? extends com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder> 
+        getAllDungeonRoomsOrBuilderList();
+    com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder getAllDungeonRoomsOrBuilder(
+        int index);
   }
   public static final class LevelUpRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -58,8 +68,30 @@ public final class LevelUpEventProto {
       return mup_;
     }
     
+    // repeated .proto.DungeonProto allDungeonRooms = 2;
+    public static final int ALLDUNGEONROOMS_FIELD_NUMBER = 2;
+    private java.util.List<com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto> allDungeonRooms_;
+    public java.util.List<com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto> getAllDungeonRoomsList() {
+      return allDungeonRooms_;
+    }
+    public java.util.List<? extends com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder> 
+        getAllDungeonRoomsOrBuilderList() {
+      return allDungeonRooms_;
+    }
+    public int getAllDungeonRoomsCount() {
+      return allDungeonRooms_.size();
+    }
+    public com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto getAllDungeonRooms(int index) {
+      return allDungeonRooms_.get(index);
+    }
+    public com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder getAllDungeonRoomsOrBuilder(
+        int index) {
+      return allDungeonRooms_.get(index);
+    }
+    
     private void initFields() {
       mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
+      allDungeonRooms_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -76,6 +108,9 @@ public final class LevelUpEventProto {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeMessage(1, mup_);
       }
+      for (int i = 0; i < allDungeonRooms_.size(); i++) {
+        output.writeMessage(2, allDungeonRooms_.get(i));
+      }
       getUnknownFields().writeTo(output);
     }
     
@@ -88,6 +123,10 @@ public final class LevelUpEventProto {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, mup_);
+      }
+      for (int i = 0; i < allDungeonRooms_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, allDungeonRooms_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -206,6 +245,7 @@ public final class LevelUpEventProto {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getMupFieldBuilder();
+          getAllDungeonRoomsFieldBuilder();
         }
       }
       private static Builder create() {
@@ -220,6 +260,12 @@ public final class LevelUpEventProto {
           mupBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
+        if (allDungeonRoomsBuilder_ == null) {
+          allDungeonRooms_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+        } else {
+          allDungeonRoomsBuilder_.clear();
+        }
         return this;
       }
       
@@ -266,6 +312,15 @@ public final class LevelUpEventProto {
         } else {
           result.mup_ = mupBuilder_.build();
         }
+        if (allDungeonRoomsBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            allDungeonRooms_ = java.util.Collections.unmodifiableList(allDungeonRooms_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.allDungeonRooms_ = allDungeonRooms_;
+        } else {
+          result.allDungeonRooms_ = allDungeonRoomsBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -284,6 +339,32 @@ public final class LevelUpEventProto {
         if (other == com.lvl6.aoc2.eventprotos.LevelUpEventProto.LevelUpRequestProto.getDefaultInstance()) return this;
         if (other.hasMup()) {
           mergeMup(other.getMup());
+        }
+        if (allDungeonRoomsBuilder_ == null) {
+          if (!other.allDungeonRooms_.isEmpty()) {
+            if (allDungeonRooms_.isEmpty()) {
+              allDungeonRooms_ = other.allDungeonRooms_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureAllDungeonRoomsIsMutable();
+              allDungeonRooms_.addAll(other.allDungeonRooms_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.allDungeonRooms_.isEmpty()) {
+            if (allDungeonRoomsBuilder_.isEmpty()) {
+              allDungeonRoomsBuilder_.dispose();
+              allDungeonRoomsBuilder_ = null;
+              allDungeonRooms_ = other.allDungeonRooms_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              allDungeonRoomsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getAllDungeonRoomsFieldBuilder() : null;
+            } else {
+              allDungeonRoomsBuilder_.addAllMessages(other.allDungeonRooms_);
+            }
+          }
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -323,6 +404,12 @@ public final class LevelUpEventProto {
               }
               input.readMessage(subBuilder, extensionRegistry);
               setMup(subBuilder.buildPartial());
+              break;
+            }
+            case 18: {
+              com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder subBuilder = com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addAllDungeonRooms(subBuilder.buildPartial());
               break;
             }
           }
@@ -421,6 +508,192 @@ public final class LevelUpEventProto {
         return mupBuilder_;
       }
       
+      // repeated .proto.DungeonProto allDungeonRooms = 2;
+      private java.util.List<com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto> allDungeonRooms_ =
+        java.util.Collections.emptyList();
+      private void ensureAllDungeonRoomsIsMutable() {
+        if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          allDungeonRooms_ = new java.util.ArrayList<com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto>(allDungeonRooms_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder> allDungeonRoomsBuilder_;
+      
+      public java.util.List<com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto> getAllDungeonRoomsList() {
+        if (allDungeonRoomsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(allDungeonRooms_);
+        } else {
+          return allDungeonRoomsBuilder_.getMessageList();
+        }
+      }
+      public int getAllDungeonRoomsCount() {
+        if (allDungeonRoomsBuilder_ == null) {
+          return allDungeonRooms_.size();
+        } else {
+          return allDungeonRoomsBuilder_.getCount();
+        }
+      }
+      public com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto getAllDungeonRooms(int index) {
+        if (allDungeonRoomsBuilder_ == null) {
+          return allDungeonRooms_.get(index);
+        } else {
+          return allDungeonRoomsBuilder_.getMessage(index);
+        }
+      }
+      public Builder setAllDungeonRooms(
+          int index, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto value) {
+        if (allDungeonRoomsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllDungeonRoomsIsMutable();
+          allDungeonRooms_.set(index, value);
+          onChanged();
+        } else {
+          allDungeonRoomsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setAllDungeonRooms(
+          int index, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder builderForValue) {
+        if (allDungeonRoomsBuilder_ == null) {
+          ensureAllDungeonRoomsIsMutable();
+          allDungeonRooms_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          allDungeonRoomsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllDungeonRooms(com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto value) {
+        if (allDungeonRoomsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllDungeonRoomsIsMutable();
+          allDungeonRooms_.add(value);
+          onChanged();
+        } else {
+          allDungeonRoomsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addAllDungeonRooms(
+          int index, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto value) {
+        if (allDungeonRoomsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureAllDungeonRoomsIsMutable();
+          allDungeonRooms_.add(index, value);
+          onChanged();
+        } else {
+          allDungeonRoomsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addAllDungeonRooms(
+          com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder builderForValue) {
+        if (allDungeonRoomsBuilder_ == null) {
+          ensureAllDungeonRoomsIsMutable();
+          allDungeonRooms_.add(builderForValue.build());
+          onChanged();
+        } else {
+          allDungeonRoomsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllDungeonRooms(
+          int index, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder builderForValue) {
+        if (allDungeonRoomsBuilder_ == null) {
+          ensureAllDungeonRoomsIsMutable();
+          allDungeonRooms_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          allDungeonRoomsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllAllDungeonRooms(
+          java.lang.Iterable<? extends com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto> values) {
+        if (allDungeonRoomsBuilder_ == null) {
+          ensureAllDungeonRoomsIsMutable();
+          super.addAll(values, allDungeonRooms_);
+          onChanged();
+        } else {
+          allDungeonRoomsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearAllDungeonRooms() {
+        if (allDungeonRoomsBuilder_ == null) {
+          allDungeonRooms_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          allDungeonRoomsBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeAllDungeonRooms(int index) {
+        if (allDungeonRoomsBuilder_ == null) {
+          ensureAllDungeonRoomsIsMutable();
+          allDungeonRooms_.remove(index);
+          onChanged();
+        } else {
+          allDungeonRoomsBuilder_.remove(index);
+        }
+        return this;
+      }
+      public com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder getAllDungeonRoomsBuilder(
+          int index) {
+        return getAllDungeonRoomsFieldBuilder().getBuilder(index);
+      }
+      public com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder getAllDungeonRoomsOrBuilder(
+          int index) {
+        if (allDungeonRoomsBuilder_ == null) {
+          return allDungeonRooms_.get(index);  } else {
+          return allDungeonRoomsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder> 
+           getAllDungeonRoomsOrBuilderList() {
+        if (allDungeonRoomsBuilder_ != null) {
+          return allDungeonRoomsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(allDungeonRooms_);
+        }
+      }
+      public com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder addAllDungeonRoomsBuilder() {
+        return getAllDungeonRoomsFieldBuilder().addBuilder(
+            com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.getDefaultInstance());
+      }
+      public com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder addAllDungeonRoomsBuilder(
+          int index) {
+        return getAllDungeonRoomsFieldBuilder().addBuilder(
+            index, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.getDefaultInstance());
+      }
+      public java.util.List<com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder> 
+           getAllDungeonRoomsBuilderList() {
+        return getAllDungeonRoomsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder> 
+          getAllDungeonRoomsFieldBuilder() {
+        if (allDungeonRoomsBuilder_ == null) {
+          allDungeonRoomsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder>(
+                  allDungeonRooms_,
+                  ((bitField0_ & 0x00000002) == 0x00000002),
+                  getParentForChildren(),
+                  isClean());
+          allDungeonRooms_ = null;
+        }
+        return allDungeonRoomsBuilder_;
+      }
+      
       // @@protoc_insertion_point(builder_scope:proto.LevelUpRequestProto)
     }
     
@@ -455,6 +728,16 @@ public final class LevelUpEventProto {
     // optional int32 experienceRequiredForNewNextLevel = 5;
     boolean hasExperienceRequiredForNewNextLevel();
     int getExperienceRequiredForNewNextLevel();
+    
+    // repeated .proto.DungeonProto dungeonsNewlyAvailableToUser = 6;
+    java.util.List<com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto> 
+        getDungeonsNewlyAvailableToUserList();
+    com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto getDungeonsNewlyAvailableToUser(int index);
+    int getDungeonsNewlyAvailableToUserCount();
+    java.util.List<? extends com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder> 
+        getDungeonsNewlyAvailableToUserOrBuilderList();
+    com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder getDungeonsNewlyAvailableToUserOrBuilder(
+        int index);
     
     // optional int32 newHp = 8;
     boolean hasNewHp();
@@ -629,6 +912,27 @@ public final class LevelUpEventProto {
       return experienceRequiredForNewNextLevel_;
     }
     
+    // repeated .proto.DungeonProto dungeonsNewlyAvailableToUser = 6;
+    public static final int DUNGEONSNEWLYAVAILABLETOUSER_FIELD_NUMBER = 6;
+    private java.util.List<com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto> dungeonsNewlyAvailableToUser_;
+    public java.util.List<com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto> getDungeonsNewlyAvailableToUserList() {
+      return dungeonsNewlyAvailableToUser_;
+    }
+    public java.util.List<? extends com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder> 
+        getDungeonsNewlyAvailableToUserOrBuilderList() {
+      return dungeonsNewlyAvailableToUser_;
+    }
+    public int getDungeonsNewlyAvailableToUserCount() {
+      return dungeonsNewlyAvailableToUser_.size();
+    }
+    public com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto getDungeonsNewlyAvailableToUser(int index) {
+      return dungeonsNewlyAvailableToUser_.get(index);
+    }
+    public com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder getDungeonsNewlyAvailableToUserOrBuilder(
+        int index) {
+      return dungeonsNewlyAvailableToUser_.get(index);
+    }
+    
     // optional int32 newHp = 8;
     public static final int NEWHP_FIELD_NUMBER = 8;
     private int newHp_;
@@ -675,6 +979,7 @@ public final class LevelUpEventProto {
       newLevel_ = 0;
       newNextLevel_ = 0;
       experienceRequiredForNewNextLevel_ = 0;
+      dungeonsNewlyAvailableToUser_ = java.util.Collections.emptyList();
       newHp_ = 0;
       newMana_ = 0;
       newAttack_ = 0;
@@ -706,6 +1011,9 @@ public final class LevelUpEventProto {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeInt32(5, experienceRequiredForNewNextLevel_);
+      }
+      for (int i = 0; i < dungeonsNewlyAvailableToUser_.size(); i++) {
+        output.writeMessage(6, dungeonsNewlyAvailableToUser_.get(i));
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         output.writeInt32(8, newHp_);
@@ -747,6 +1055,10 @@ public final class LevelUpEventProto {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(5, experienceRequiredForNewNextLevel_);
+      }
+      for (int i = 0; i < dungeonsNewlyAvailableToUser_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, dungeonsNewlyAvailableToUser_.get(i));
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
@@ -881,6 +1193,7 @@ public final class LevelUpEventProto {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getMupFieldBuilder();
+          getDungeonsNewlyAvailableToUserFieldBuilder();
         }
       }
       private static Builder create() {
@@ -903,14 +1216,20 @@ public final class LevelUpEventProto {
         bitField0_ = (bitField0_ & ~0x00000008);
         experienceRequiredForNewNextLevel_ = 0;
         bitField0_ = (bitField0_ & ~0x00000010);
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          dungeonsNewlyAvailableToUser_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000020);
+        } else {
+          dungeonsNewlyAvailableToUserBuilder_.clear();
+        }
         newHp_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        newMana_ = 0;
         bitField0_ = (bitField0_ & ~0x00000040);
-        newAttack_ = 0;
+        newMana_ = 0;
         bitField0_ = (bitField0_ & ~0x00000080);
-        newDefense_ = 0;
+        newAttack_ = 0;
         bitField0_ = (bitField0_ & ~0x00000100);
+        newDefense_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000200);
         return this;
       }
       
@@ -973,19 +1292,28 @@ public final class LevelUpEventProto {
           to_bitField0_ |= 0x00000010;
         }
         result.experienceRequiredForNewNextLevel_ = experienceRequiredForNewNextLevel_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          if (((bitField0_ & 0x00000020) == 0x00000020)) {
+            dungeonsNewlyAvailableToUser_ = java.util.Collections.unmodifiableList(dungeonsNewlyAvailableToUser_);
+            bitField0_ = (bitField0_ & ~0x00000020);
+          }
+          result.dungeonsNewlyAvailableToUser_ = dungeonsNewlyAvailableToUser_;
+        } else {
+          result.dungeonsNewlyAvailableToUser_ = dungeonsNewlyAvailableToUserBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
           to_bitField0_ |= 0x00000020;
         }
         result.newHp_ = newHp_;
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
           to_bitField0_ |= 0x00000040;
         }
         result.newMana_ = newMana_;
-        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
           to_bitField0_ |= 0x00000080;
         }
         result.newAttack_ = newAttack_;
-        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
           to_bitField0_ |= 0x00000100;
         }
         result.newDefense_ = newDefense_;
@@ -1019,6 +1347,32 @@ public final class LevelUpEventProto {
         }
         if (other.hasExperienceRequiredForNewNextLevel()) {
           setExperienceRequiredForNewNextLevel(other.getExperienceRequiredForNewNextLevel());
+        }
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          if (!other.dungeonsNewlyAvailableToUser_.isEmpty()) {
+            if (dungeonsNewlyAvailableToUser_.isEmpty()) {
+              dungeonsNewlyAvailableToUser_ = other.dungeonsNewlyAvailableToUser_;
+              bitField0_ = (bitField0_ & ~0x00000020);
+            } else {
+              ensureDungeonsNewlyAvailableToUserIsMutable();
+              dungeonsNewlyAvailableToUser_.addAll(other.dungeonsNewlyAvailableToUser_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.dungeonsNewlyAvailableToUser_.isEmpty()) {
+            if (dungeonsNewlyAvailableToUserBuilder_.isEmpty()) {
+              dungeonsNewlyAvailableToUserBuilder_.dispose();
+              dungeonsNewlyAvailableToUserBuilder_ = null;
+              dungeonsNewlyAvailableToUser_ = other.dungeonsNewlyAvailableToUser_;
+              bitField0_ = (bitField0_ & ~0x00000020);
+              dungeonsNewlyAvailableToUserBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getDungeonsNewlyAvailableToUserFieldBuilder() : null;
+            } else {
+              dungeonsNewlyAvailableToUserBuilder_.addAllMessages(other.dungeonsNewlyAvailableToUser_);
+            }
+          }
         }
         if (other.hasNewHp()) {
           setNewHp(other.getNewHp());
@@ -1098,23 +1452,29 @@ public final class LevelUpEventProto {
               experienceRequiredForNewNextLevel_ = input.readInt32();
               break;
             }
+            case 50: {
+              com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder subBuilder = com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addDungeonsNewlyAvailableToUser(subBuilder.buildPartial());
+              break;
+            }
             case 64: {
-              bitField0_ |= 0x00000020;
+              bitField0_ |= 0x00000040;
               newHp_ = input.readInt32();
               break;
             }
             case 72: {
-              bitField0_ |= 0x00000040;
+              bitField0_ |= 0x00000080;
               newMana_ = input.readInt32();
               break;
             }
             case 80: {
-              bitField0_ |= 0x00000080;
+              bitField0_ |= 0x00000100;
               newAttack_ = input.readInt32();
               break;
             }
             case 88: {
-              bitField0_ |= 0x00000100;
+              bitField0_ |= 0x00000200;
               newDefense_ = input.readInt32();
               break;
             }
@@ -1301,22 +1661,208 @@ public final class LevelUpEventProto {
         return this;
       }
       
+      // repeated .proto.DungeonProto dungeonsNewlyAvailableToUser = 6;
+      private java.util.List<com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto> dungeonsNewlyAvailableToUser_ =
+        java.util.Collections.emptyList();
+      private void ensureDungeonsNewlyAvailableToUserIsMutable() {
+        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+          dungeonsNewlyAvailableToUser_ = new java.util.ArrayList<com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto>(dungeonsNewlyAvailableToUser_);
+          bitField0_ |= 0x00000020;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder> dungeonsNewlyAvailableToUserBuilder_;
+      
+      public java.util.List<com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto> getDungeonsNewlyAvailableToUserList() {
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(dungeonsNewlyAvailableToUser_);
+        } else {
+          return dungeonsNewlyAvailableToUserBuilder_.getMessageList();
+        }
+      }
+      public int getDungeonsNewlyAvailableToUserCount() {
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          return dungeonsNewlyAvailableToUser_.size();
+        } else {
+          return dungeonsNewlyAvailableToUserBuilder_.getCount();
+        }
+      }
+      public com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto getDungeonsNewlyAvailableToUser(int index) {
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          return dungeonsNewlyAvailableToUser_.get(index);
+        } else {
+          return dungeonsNewlyAvailableToUserBuilder_.getMessage(index);
+        }
+      }
+      public Builder setDungeonsNewlyAvailableToUser(
+          int index, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto value) {
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDungeonsNewlyAvailableToUserIsMutable();
+          dungeonsNewlyAvailableToUser_.set(index, value);
+          onChanged();
+        } else {
+          dungeonsNewlyAvailableToUserBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setDungeonsNewlyAvailableToUser(
+          int index, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder builderForValue) {
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          ensureDungeonsNewlyAvailableToUserIsMutable();
+          dungeonsNewlyAvailableToUser_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          dungeonsNewlyAvailableToUserBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addDungeonsNewlyAvailableToUser(com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto value) {
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDungeonsNewlyAvailableToUserIsMutable();
+          dungeonsNewlyAvailableToUser_.add(value);
+          onChanged();
+        } else {
+          dungeonsNewlyAvailableToUserBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addDungeonsNewlyAvailableToUser(
+          int index, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto value) {
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDungeonsNewlyAvailableToUserIsMutable();
+          dungeonsNewlyAvailableToUser_.add(index, value);
+          onChanged();
+        } else {
+          dungeonsNewlyAvailableToUserBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addDungeonsNewlyAvailableToUser(
+          com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder builderForValue) {
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          ensureDungeonsNewlyAvailableToUserIsMutable();
+          dungeonsNewlyAvailableToUser_.add(builderForValue.build());
+          onChanged();
+        } else {
+          dungeonsNewlyAvailableToUserBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addDungeonsNewlyAvailableToUser(
+          int index, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder builderForValue) {
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          ensureDungeonsNewlyAvailableToUserIsMutable();
+          dungeonsNewlyAvailableToUser_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          dungeonsNewlyAvailableToUserBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllDungeonsNewlyAvailableToUser(
+          java.lang.Iterable<? extends com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto> values) {
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          ensureDungeonsNewlyAvailableToUserIsMutable();
+          super.addAll(values, dungeonsNewlyAvailableToUser_);
+          onChanged();
+        } else {
+          dungeonsNewlyAvailableToUserBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearDungeonsNewlyAvailableToUser() {
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          dungeonsNewlyAvailableToUser_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000020);
+          onChanged();
+        } else {
+          dungeonsNewlyAvailableToUserBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeDungeonsNewlyAvailableToUser(int index) {
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          ensureDungeonsNewlyAvailableToUserIsMutable();
+          dungeonsNewlyAvailableToUser_.remove(index);
+          onChanged();
+        } else {
+          dungeonsNewlyAvailableToUserBuilder_.remove(index);
+        }
+        return this;
+      }
+      public com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder getDungeonsNewlyAvailableToUserBuilder(
+          int index) {
+        return getDungeonsNewlyAvailableToUserFieldBuilder().getBuilder(index);
+      }
+      public com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder getDungeonsNewlyAvailableToUserOrBuilder(
+          int index) {
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          return dungeonsNewlyAvailableToUser_.get(index);  } else {
+          return dungeonsNewlyAvailableToUserBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder> 
+           getDungeonsNewlyAvailableToUserOrBuilderList() {
+        if (dungeonsNewlyAvailableToUserBuilder_ != null) {
+          return dungeonsNewlyAvailableToUserBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(dungeonsNewlyAvailableToUser_);
+        }
+      }
+      public com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder addDungeonsNewlyAvailableToUserBuilder() {
+        return getDungeonsNewlyAvailableToUserFieldBuilder().addBuilder(
+            com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.getDefaultInstance());
+      }
+      public com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder addDungeonsNewlyAvailableToUserBuilder(
+          int index) {
+        return getDungeonsNewlyAvailableToUserFieldBuilder().addBuilder(
+            index, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.getDefaultInstance());
+      }
+      public java.util.List<com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder> 
+           getDungeonsNewlyAvailableToUserBuilderList() {
+        return getDungeonsNewlyAvailableToUserFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder> 
+          getDungeonsNewlyAvailableToUserFieldBuilder() {
+        if (dungeonsNewlyAvailableToUserBuilder_ == null) {
+          dungeonsNewlyAvailableToUserBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProto.Builder, com.lvl6.aoc2.noneventprotos.Dungeon.DungeonProtoOrBuilder>(
+                  dungeonsNewlyAvailableToUser_,
+                  ((bitField0_ & 0x00000020) == 0x00000020),
+                  getParentForChildren(),
+                  isClean());
+          dungeonsNewlyAvailableToUser_ = null;
+        }
+        return dungeonsNewlyAvailableToUserBuilder_;
+      }
+      
       // optional int32 newHp = 8;
       private int newHp_ ;
       public boolean hasNewHp() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       public int getNewHp() {
         return newHp_;
       }
       public Builder setNewHp(int value) {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         newHp_ = value;
         onChanged();
         return this;
       }
       public Builder clearNewHp() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         newHp_ = 0;
         onChanged();
         return this;
@@ -1325,19 +1871,19 @@ public final class LevelUpEventProto {
       // optional int32 newMana = 9;
       private int newMana_ ;
       public boolean hasNewMana() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return ((bitField0_ & 0x00000080) == 0x00000080);
       }
       public int getNewMana() {
         return newMana_;
       }
       public Builder setNewMana(int value) {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000080;
         newMana_ = value;
         onChanged();
         return this;
       }
       public Builder clearNewMana() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000080);
         newMana_ = 0;
         onChanged();
         return this;
@@ -1346,19 +1892,19 @@ public final class LevelUpEventProto {
       // optional int32 newAttack = 10;
       private int newAttack_ ;
       public boolean hasNewAttack() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
+        return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       public int getNewAttack() {
         return newAttack_;
       }
       public Builder setNewAttack(int value) {
-        bitField0_ |= 0x00000080;
+        bitField0_ |= 0x00000100;
         newAttack_ = value;
         onChanged();
         return this;
       }
       public Builder clearNewAttack() {
-        bitField0_ = (bitField0_ & ~0x00000080);
+        bitField0_ = (bitField0_ & ~0x00000100);
         newAttack_ = 0;
         onChanged();
         return this;
@@ -1367,19 +1913,19 @@ public final class LevelUpEventProto {
       // optional int32 newDefense = 11;
       private int newDefense_ ;
       public boolean hasNewDefense() {
-        return ((bitField0_ & 0x00000100) == 0x00000100);
+        return ((bitField0_ & 0x00000200) == 0x00000200);
       }
       public int getNewDefense() {
         return newDefense_;
       }
       public Builder setNewDefense(int value) {
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000200;
         newDefense_ = value;
         onChanged();
         return this;
       }
       public Builder clearNewDefense() {
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000200);
         newDefense_ = 0;
         onChanged();
         return this;
@@ -1416,19 +1962,22 @@ public final class LevelUpEventProto {
   static {
     java.lang.String[] descriptorData = {
       "\n\022LevelUpEvent.proto\022\005proto\032\023FullUserPro" +
-      "to.proto\";\n\023LevelUpRequestProto\022$\n\003mup\030\001" +
-      " \001(\0132\027.proto.MinimumUserProto\"\367\002\n\024LevelU" +
-      "pResponseProto\022$\n\003mup\030\001 \001(\0132\027.proto.Mini" +
-      "mumUserProto\0229\n\006status\030\002 \001(\0162).proto.Lev" +
-      "elUpResponseProto.LevelUpStatus\022\020\n\010newLe" +
-      "vel\030\003 \001(\005\022\024\n\014newNextLevel\030\004 \001(\005\022)\n!exper" +
-      "ienceRequiredForNewNextLevel\030\005 \001(\005\022\r\n\005ne" +
-      "wHp\030\010 \001(\005\022\017\n\007newMana\030\t \001(\005\022\021\n\tnewAttack\030" +
-      "\n \001(\005\022\022\n\nnewDefense\030\013 \001(\005\"d\n\rLevelUpStat",
-      "us\022\013\n\007SUCCESS\020\000\022\027\n\023FAIL_NOT_ENOUGH_EXP\020\001" +
-      "\022\035\n\031FAIL_ALREADY_AT_MAX_LEVEL\020\002\022\016\n\nFAIL_" +
-      "OTHER\020\003B.\n\031com.lvl6.aoc2.eventprotosB\021Le" +
-      "velUpEventProto"
+      "to.proto\032\022DungeonProto.proto\"i\n\023LevelUpR" +
+      "equestProto\022$\n\003mup\030\001 \001(\0132\027.proto.Minimum" +
+      "UserProto\022,\n\017allDungeonRooms\030\002 \003(\0132\023.pro" +
+      "to.DungeonProto\"\262\003\n\024LevelUpResponseProto" +
+      "\022$\n\003mup\030\001 \001(\0132\027.proto.MinimumUserProto\0229" +
+      "\n\006status\030\002 \001(\0162).proto.LevelUpResponsePr" +
+      "oto.LevelUpStatus\022\020\n\010newLevel\030\003 \001(\005\022\024\n\014n" +
+      "ewNextLevel\030\004 \001(\005\022)\n!experienceRequiredF" +
+      "orNewNextLevel\030\005 \001(\005\0229\n\034dungeonsNewlyAva",
+      "ilableToUser\030\006 \003(\0132\023.proto.DungeonProto\022" +
+      "\r\n\005newHp\030\010 \001(\005\022\017\n\007newMana\030\t \001(\005\022\021\n\tnewAt" +
+      "tack\030\n \001(\005\022\022\n\nnewDefense\030\013 \001(\005\"d\n\rLevelU" +
+      "pStatus\022\013\n\007SUCCESS\020\000\022\027\n\023FAIL_NOT_ENOUGH_" +
+      "EXP\020\001\022\035\n\031FAIL_ALREADY_AT_MAX_LEVEL\020\002\022\016\n\n" +
+      "FAIL_OTHER\020\003B.\n\031com.lvl6.aoc2.eventproto" +
+      "sB\021LevelUpEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1440,7 +1989,7 @@ public final class LevelUpEventProto {
           internal_static_proto_LevelUpRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_LevelUpRequestProto_descriptor,
-              new java.lang.String[] { "Mup", },
+              new java.lang.String[] { "Mup", "AllDungeonRooms", },
               com.lvl6.aoc2.eventprotos.LevelUpEventProto.LevelUpRequestProto.class,
               com.lvl6.aoc2.eventprotos.LevelUpEventProto.LevelUpRequestProto.Builder.class);
           internal_static_proto_LevelUpResponseProto_descriptor =
@@ -1448,7 +1997,7 @@ public final class LevelUpEventProto {
           internal_static_proto_LevelUpResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_LevelUpResponseProto_descriptor,
-              new java.lang.String[] { "Mup", "Status", "NewLevel", "NewNextLevel", "ExperienceRequiredForNewNextLevel", "NewHp", "NewMana", "NewAttack", "NewDefense", },
+              new java.lang.String[] { "Mup", "Status", "NewLevel", "NewNextLevel", "ExperienceRequiredForNewNextLevel", "DungeonsNewlyAvailableToUser", "NewHp", "NewMana", "NewAttack", "NewDefense", },
               com.lvl6.aoc2.eventprotos.LevelUpEventProto.LevelUpResponseProto.class,
               com.lvl6.aoc2.eventprotos.LevelUpEventProto.LevelUpResponseProto.Builder.class);
           return null;
@@ -1458,6 +2007,7 @@ public final class LevelUpEventProto {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
           com.lvl6.aoc2.noneventprotos.FullUser.getDescriptor(),
+          com.lvl6.aoc2.noneventprotos.Dungeon.getDescriptor(),
         }, assigner);
   }
   

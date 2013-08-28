@@ -11,9 +11,9 @@ public final class FullUser {
   public interface FullUserProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional int32 userID = 1;
+    // optional string userID = 1;
     boolean hasUserID();
-    int getUserID();
+    String getUserID();
     
     // optional int32 level = 2;
     boolean hasLevel();
@@ -67,17 +67,17 @@ public final class FullUser {
     boolean hasLastManaRecovery();
     long getLastManaRecovery();
     
-    // optional int32 gameCenterID = 15;
+    // optional string gameCenterID = 15;
     boolean hasGameCenterID();
-    int getGameCenterID();
+    String getGameCenterID();
     
     // optional int64 dateCreated = 16;
     boolean hasDateCreated();
     long getDateCreated();
     
-    // optional int32 clanID = 17;
+    // optional string clanID = 17;
     boolean hasClanID();
-    int getClanID();
+    String getClanID();
   }
   public static final class FullUserProto extends
       com.google.protobuf.GeneratedMessage
@@ -108,14 +108,36 @@ public final class FullUser {
     }
     
     private int bitField0_;
-    // optional int32 userID = 1;
+    // optional string userID = 1;
     public static final int USERID_FIELD_NUMBER = 1;
-    private int userID_;
+    private java.lang.Object userID_;
     public boolean hasUserID() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public int getUserID() {
-      return userID_;
+    public String getUserID() {
+      java.lang.Object ref = userID_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          userID_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getUserIDBytes() {
+      java.lang.Object ref = userID_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        userID_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     // optional int32 level = 2;
@@ -270,14 +292,36 @@ public final class FullUser {
       return lastManaRecovery_;
     }
     
-    // optional int32 gameCenterID = 15;
+    // optional string gameCenterID = 15;
     public static final int GAMECENTERID_FIELD_NUMBER = 15;
-    private int gameCenterID_;
+    private java.lang.Object gameCenterID_;
     public boolean hasGameCenterID() {
       return ((bitField0_ & 0x00004000) == 0x00004000);
     }
-    public int getGameCenterID() {
-      return gameCenterID_;
+    public String getGameCenterID() {
+      java.lang.Object ref = gameCenterID_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          gameCenterID_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getGameCenterIDBytes() {
+      java.lang.Object ref = gameCenterID_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        gameCenterID_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     // optional int64 dateCreated = 16;
@@ -290,18 +334,40 @@ public final class FullUser {
       return dateCreated_;
     }
     
-    // optional int32 clanID = 17;
+    // optional string clanID = 17;
     public static final int CLANID_FIELD_NUMBER = 17;
-    private int clanID_;
+    private java.lang.Object clanID_;
     public boolean hasClanID() {
       return ((bitField0_ & 0x00010000) == 0x00010000);
     }
-    public int getClanID() {
-      return clanID_;
+    public String getClanID() {
+      java.lang.Object ref = clanID_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          clanID_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getClanIDBytes() {
+      java.lang.Object ref = clanID_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        clanID_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
     }
     
     private void initFields() {
-      userID_ = 0;
+      userID_ = "";
       level_ = 0;
       name_ = "";
       exp_ = 0;
@@ -315,9 +381,9 @@ public final class FullUser {
       lastMana_ = 0;
       maxMana_ = 0;
       lastManaRecovery_ = 0L;
-      gameCenterID_ = 0;
+      gameCenterID_ = "";
       dateCreated_ = 0L;
-      clanID_ = 0;
+      clanID_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -336,7 +402,7 @@ public final class FullUser {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, userID_);
+        output.writeBytes(1, getUserIDBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeInt32(2, level_);
@@ -378,13 +444,13 @@ public final class FullUser {
         output.writeInt64(14, lastManaRecovery_);
       }
       if (((bitField0_ & 0x00004000) == 0x00004000)) {
-        output.writeInt32(15, gameCenterID_);
+        output.writeBytes(15, getGameCenterIDBytes());
       }
       if (((bitField0_ & 0x00008000) == 0x00008000)) {
         output.writeInt64(16, dateCreated_);
       }
       if (((bitField0_ & 0x00010000) == 0x00010000)) {
-        output.writeInt32(17, clanID_);
+        output.writeBytes(17, getClanIDBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -397,7 +463,7 @@ public final class FullUser {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, userID_);
+          .computeBytesSize(1, getUserIDBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -453,7 +519,7 @@ public final class FullUser {
       }
       if (((bitField0_ & 0x00004000) == 0x00004000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(15, gameCenterID_);
+          .computeBytesSize(15, getGameCenterIDBytes());
       }
       if (((bitField0_ & 0x00008000) == 0x00008000)) {
         size += com.google.protobuf.CodedOutputStream
@@ -461,7 +527,7 @@ public final class FullUser {
       }
       if (((bitField0_ & 0x00010000) == 0x00010000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(17, clanID_);
+          .computeBytesSize(17, getClanIDBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -587,7 +653,7 @@ public final class FullUser {
       
       public Builder clear() {
         super.clear();
-        userID_ = 0;
+        userID_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
         level_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
@@ -615,11 +681,11 @@ public final class FullUser {
         bitField0_ = (bitField0_ & ~0x00001000);
         lastManaRecovery_ = 0L;
         bitField0_ = (bitField0_ & ~0x00002000);
-        gameCenterID_ = 0;
+        gameCenterID_ = "";
         bitField0_ = (bitField0_ & ~0x00004000);
         dateCreated_ = 0L;
         bitField0_ = (bitField0_ & ~0x00008000);
-        clanID_ = 0;
+        clanID_ = "";
         bitField0_ = (bitField0_ & ~0x00010000);
         return this;
       }
@@ -829,9 +895,9 @@ public final class FullUser {
               }
               break;
             }
-            case 8: {
+            case 10: {
               bitField0_ |= 0x00000001;
-              userID_ = input.readInt32();
+              userID_ = input.readBytes();
               break;
             }
             case 16: {
@@ -905,9 +971,9 @@ public final class FullUser {
               lastManaRecovery_ = input.readInt64();
               break;
             }
-            case 120: {
+            case 122: {
               bitField0_ |= 0x00004000;
-              gameCenterID_ = input.readInt32();
+              gameCenterID_ = input.readBytes();
               break;
             }
             case 128: {
@@ -915,9 +981,9 @@ public final class FullUser {
               dateCreated_ = input.readInt64();
               break;
             }
-            case 136: {
+            case 138: {
               bitField0_ |= 0x00010000;
-              clanID_ = input.readInt32();
+              clanID_ = input.readBytes();
               break;
             }
           }
@@ -926,25 +992,40 @@ public final class FullUser {
       
       private int bitField0_;
       
-      // optional int32 userID = 1;
-      private int userID_ ;
+      // optional string userID = 1;
+      private java.lang.Object userID_ = "";
       public boolean hasUserID() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public int getUserID() {
-        return userID_;
+      public String getUserID() {
+        java.lang.Object ref = userID_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          userID_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setUserID(int value) {
-        bitField0_ |= 0x00000001;
+      public Builder setUserID(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
         userID_ = value;
         onChanged();
         return this;
       }
       public Builder clearUserID() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        userID_ = 0;
+        userID_ = getDefaultInstance().getUserID();
         onChanged();
         return this;
+      }
+      void setUserID(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        userID_ = value;
+        onChanged();
       }
       
       // optional int32 level = 2;
@@ -1238,25 +1319,40 @@ public final class FullUser {
         return this;
       }
       
-      // optional int32 gameCenterID = 15;
-      private int gameCenterID_ ;
+      // optional string gameCenterID = 15;
+      private java.lang.Object gameCenterID_ = "";
       public boolean hasGameCenterID() {
         return ((bitField0_ & 0x00004000) == 0x00004000);
       }
-      public int getGameCenterID() {
-        return gameCenterID_;
+      public String getGameCenterID() {
+        java.lang.Object ref = gameCenterID_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          gameCenterID_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setGameCenterID(int value) {
-        bitField0_ |= 0x00004000;
+      public Builder setGameCenterID(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00004000;
         gameCenterID_ = value;
         onChanged();
         return this;
       }
       public Builder clearGameCenterID() {
         bitField0_ = (bitField0_ & ~0x00004000);
-        gameCenterID_ = 0;
+        gameCenterID_ = getDefaultInstance().getGameCenterID();
         onChanged();
         return this;
+      }
+      void setGameCenterID(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00004000;
+        gameCenterID_ = value;
+        onChanged();
       }
       
       // optional int64 dateCreated = 16;
@@ -1280,25 +1376,40 @@ public final class FullUser {
         return this;
       }
       
-      // optional int32 clanID = 17;
-      private int clanID_ ;
+      // optional string clanID = 17;
+      private java.lang.Object clanID_ = "";
       public boolean hasClanID() {
         return ((bitField0_ & 0x00010000) == 0x00010000);
       }
-      public int getClanID() {
-        return clanID_;
+      public String getClanID() {
+        java.lang.Object ref = clanID_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          clanID_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
       }
-      public Builder setClanID(int value) {
-        bitField0_ |= 0x00010000;
+      public Builder setClanID(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00010000;
         clanID_ = value;
         onChanged();
         return this;
       }
       public Builder clearClanID() {
         bitField0_ = (bitField0_ & ~0x00010000);
-        clanID_ = 0;
+        clanID_ = getDefaultInstance().getClanID();
         onChanged();
         return this;
+      }
+      void setClanID(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00010000;
+        clanID_ = value;
+        onChanged();
       }
       
       // @@protoc_insertion_point(builder_scope:proto.FullUserProto)
@@ -1989,15 +2100,15 @@ public final class FullUser {
   static {
     java.lang.String[] descriptorData = {
       "\n\023FullUserProto.proto\022\005proto\032\017ClassType." +
-      "proto\"\321\002\n\rFullUserProto\022\016\n\006userID\030\001 \001(\005\022" +
+      "proto\"\321\002\n\rFullUserProto\022\016\n\006userID\030\001 \001(\t\022" +
       "\r\n\005level\030\002 \001(\005\022\014\n\004name\030\003 \001(\t\022\013\n\003exp\030\004 \001(" +
       "\005\022\014\n\004gold\030\005 \001(\005\022\r\n\005tonic\030\006 \001(\005\022\014\n\004gems\030\007" +
       " \001(\005\022#\n\tclassType\030\010 \002(\0162\020.proto.ClassTyp" +
       "e\022\022\n\nlastHealth\030\t \001(\005\022\021\n\tmaxHealth\030\n \001(\005" +
       "\022\027\n\017lastHealthRegen\030\013 \001(\003\022\020\n\010lastMana\030\014 " +
       "\001(\005\022\017\n\007maxMana\030\r \001(\005\022\030\n\020lastManaRecovery" +
-      "\030\016 \001(\003\022\024\n\014gameCenterID\030\017 \001(\005\022\023\n\013dateCrea" +
-      "ted\030\020 \001(\003\022\016\n\006clanID\030\021 \001(\005\"T\n\020MinimumUser",
+      "\030\016 \001(\003\022\024\n\014gameCenterID\030\017 \001(\t\022\023\n\013dateCrea" +
+      "ted\030\020 \001(\003\022\016\n\006clanID\030\021 \001(\t\"T\n\020MinimumUser",
       "Proto\022\016\n\006userID\030\001 \001(\t\022\024\n\014gameCenterId\030\002 " +
       "\001(\t\022\014\n\004udid\030\003 \001(\t\022\014\n\004name\030\004 \001(\tB(\n\034com.l" +
       "vl6.aoc2.noneventprotosB\010FullUser"

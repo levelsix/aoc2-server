@@ -8,22 +8,36 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import com.lvl6.aoc2.entitymanager.EquipmentEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEquipRepairEntityManager;
-import com.lvl6.aoc2.entitymanager.staticdata.UserEquipRepairRetrieveUtils;
+import com.lvl6.aoc2.entitymanager.staticdata.EquipmentRetrieveUtils;
 import com.lvl6.aoc2.noneventprotos.UserEquipRepair.UserEquipRepairProto;
+import com.lvl6.aoc2.po.Equipment;
 import com.lvl6.aoc2.po.UserEquip;
 import com.lvl6.aoc2.po.UserEquipRepair;
 
-
+@Component
 public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 	
 	@Autowired
 	protected UserEquipRepairEntityManager userEquipRepairEntityManager;
+		
+	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
+
+	private  Map<UUID, UserEquipRepair> idsToUserEquipRepairs;
+	
 	
 	@Autowired
-	protected UserEquipRepairRetrieveUtils userEquipRepairRetrieveUtils;
+	protected EquipmentEntityManager equipmentEntityManager;
+	
+	@Autowired
+	protected EquipmentRetrieveUtils equipmentRetrieveUtils;
+	
 	
 	@Override
 	public Map<UUID, UserEquipRepair> getEquipsBeingRepaired(String userIdString) {
@@ -52,6 +66,7 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 		return new HashMap<Integer, Integer>();
 	}
 	
+	@Override
 	public int calculateSingleUserEquipRepairCost(UserEquip ue) {
 		//TODO: implement
 		return 1000000;
@@ -82,7 +97,7 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 		
 		int secondsRemaining = 0;
 		for(UserEquipRepair uer2 : queuedEquipsList) {
-			double durabilityTimeConstant = getUserEquipRepairRetrieveUtils().getEquipmentCorrespondingToUserEquipRepair(uer2).getDurabilityFixTimeConstant();
+			double durabilityTimeConstant = getEquipmentCorrespondingToUserEquipRepair(uer2).getDurabilityFixTimeConstant();
 			double amountDamaged = 100.0-uer2.getDurability();
 			int secondsToRepair = (int)(durabilityTimeConstant * amountDamaged);
 			if(uer2.getExpectedStart().getTime() < currentTime.getTime()) {
@@ -95,7 +110,53 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 		return secondsRemaining;
 	}
 
+	@Override
+	public UserEquipRepair getUserEquipRepairForId(UUID id)
+	 {
+		log.debug("retrieve UserEquipRepair data for id " + id);
+		if (idsToUserEquipRepairs == null) {
+			setStaticIdsToUserEquipRepairs();      
+		}
+		return idsToUserEquipRepairs.get(id);
+	}
+
+	@Override
+	public  Map<UUID, UserEquipRepair> getUserEquipRepairsForIds(List<UUID> ids) {
+		log.debug("retrieve UserEquipRepairs data for ids " + ids);
+		if (idsToUserEquipRepairs == null) {
+			setStaticIdsToUserEquipRepairs();      
+		}
+		Map<UUID, UserEquipRepair> toreturn = new HashMap<UUID, UserEquipRepair>();
+		for (UUID id : ids) {
+			toreturn.put(id,  idsToUserEquipRepairs.get(id));
+		}
+		return toreturn;
+	}
+
+	private  void setStaticIdsToUserEquipRepairs() {
+		log.debug("setting  map of UserEquipRepairIds to UserEquipRepairs");
+
+		String cqlquery = "select * from user_equip_repair;"; 
+		List <UserEquipRepair> list = getUserEquipRepairEntityManager().get().find(cqlquery);
+		idsToUserEquipRepairs = new HashMap<UUID, UserEquipRepair>();
+		for(UserEquipRepair us : list) {
+			UUID id= us.getId();
+			idsToUserEquipRepairs.put(id, us);
+		}
+					
+	}
+
+	@Override
+	public  List<UserEquipRepair> getAllUserEquipRepairsForUser(UUID userId) {
+		String cqlquery = "select * from user_equip_repair where user_id=" + userId + ";"; 
+		List <UserEquipRepair> list = getUserEquipRepairEntityManager().get().find(cqlquery);
+		return list;
+	}
 	
+	@Override
+	public Equipment getEquipmentCorrespondingToUserEquipRepair(UserEquipRepair ue) {
+		return getEquipmentRetrieveUtils().getEquipmentCorrespondingToName(ue.getName());
+	}
 	
 	
 	
@@ -119,15 +180,27 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 		this.userEquipRepairEntityManager = userEquipRepairEntityManager;
 	}
 
-	public UserEquipRepairRetrieveUtils getUserEquipRepairRetrieveUtils() {
-		return userEquipRepairRetrieveUtils;
+	public EquipmentEntityManager getEquipmentEntityManager() {
+		return equipmentEntityManager;
 	}
 
-	public void setUserEquipRepairRetrieveUtils(
-			UserEquipRepairRetrieveUtils userEquipRepairRetrieveUtils) {
-		this.userEquipRepairRetrieveUtils = userEquipRepairRetrieveUtils;
+	public void setEquipmentEntityManager(
+			EquipmentEntityManager equipmentEntityManager) {
+		this.equipmentEntityManager = equipmentEntityManager;
 	}
-	
-	
-	
+
+	public EquipmentRetrieveUtils getEquipmentRetrieveUtils() {
+		return equipmentRetrieveUtils;
+	}
+
+	public void setEquipmentRetrieveUtils(
+			EquipmentRetrieveUtils equipmentRetrieveUtils) {
+		this.equipmentRetrieveUtils = equipmentRetrieveUtils;
+	}
+
 }
+
+
+	
+	
+	

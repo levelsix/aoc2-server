@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -17,18 +19,20 @@ public class RoomReward extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="chest_id")
-	protected UUID chestId = UUID.randomUUID();
+	@Index
+	protected UUID chestId = UUID.randomUUID();;
 	
 	@Column(name="chest_drop_rate")
+	@Index
 	protected double chestDropRate = 0.0;
 	
 	@Column(name="equip_id")
-	protected UUID equipId = UUID.randomUUID();
+	@Index
+	protected UUID equipId = UUID.randomUUID();;
 
 	@Column(name="equip_drop_rate")
 	protected double equipDropRate = 0.0;
 
-	
 
 
 	public UUID getId() {
@@ -80,6 +84,7 @@ public class RoomReward extends BasePersistentObject{
 		this.equipDropRate = equipDropRate;
 	}
 
+	
 
 	@Override
 	public String toString() {
@@ -88,33 +93,11 @@ public class RoomReward extends BasePersistentObject{
 				+ ", equipDropRate=" + equipDropRate + "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table room_reward (" +
-				" id uuid," +
-				" chest_id int," +
-				" chest_drop_rate double," +
-				" equip_id int," +
-				" equip_drop_rate double," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		
-		return indexes;
-	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index room_reward_chest_id_index on room_reward (chest_id);");
-		indexes.add("create index room_reward_equip_id_index on room_reward (equip_id);");
 		return indexes;
 	}
 	

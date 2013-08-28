@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -17,17 +19,20 @@ public class MonsterAndRoom extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="monster_id")
-	protected UUID monsterId = null;
+	@Index
+	protected UUID monsterId = UUID.randomUUID();;
 	
-	@Column(name="room_id")
-	protected UUID roomId = null;
+	@Column(name="combat_room_id")
+	@Index
+	protected String combatRoomId = "";
 	
 	@Column(name="quantity")
 	protected int quantity = 0;
 	
-	//(monster appears in the first wave, or second, and so on)
-	@Column(name="wave_num")
-	protected int wave_num = 0;
+	//where monster spawns in a particular map of a combat room
+	@Column(name="spawn_point")
+	protected int spawnPoint = 0;
+
 
 
 
@@ -51,13 +56,13 @@ public class MonsterAndRoom extends BasePersistentObject{
 	}
 
 
-	public UUID getRoomId() {
-		return roomId;
+	public String getCombatRoomId() {
+		return combatRoomId;
 	}
 
 
-	public void setRoomId(UUID roomId) {
-		this.roomId = roomId;
+	public void setCombatRoomId(String combatRoomId) {
+		this.combatRoomId = combatRoomId;
 	}
 
 
@@ -71,51 +76,28 @@ public class MonsterAndRoom extends BasePersistentObject{
 	}
 
 
-	public int getWave_num() {
-		return wave_num;
+	public int getSpawnPoint() {
+		return spawnPoint;
 	}
 
 
-	public void setWave_num(int wave_num) {
-		this.wave_num = wave_num;
+	public void setSpawnPoint(int spawnPoint) {
+		this.spawnPoint = spawnPoint;
 	}
-
 
 
 	@Override
 	public String toString() {
 		return "MonsterAndRoom [id=" + id + ", monsterId=" + monsterId
-				+ ", roomId=" + roomId + ", quantity=" + quantity
-				+ ", wave_num=" + wave_num + "]";
+				+ ", combatRoomId=" + combatRoomId + ", quantity=" + quantity
+				+ ", spawnPoint=" + spawnPoint + "]";
 	}
 
 
-	@Override
-	public String getTableCreateStatement() {
-		return "create table monster_and_room (" +
-				" id uuid," +
-				" monster_id uuid," +
-				" room_id uuid," +
-				" quantity int," +
-				" wave_num int," +
-				" primary key (id))" +
-				" with compact storage;";
-	}
-	
-	
 	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		
-		return indexes;
-	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index monster_and_room_monster_id_index on monster_and_room (monster_id);");
-		indexes.add("create index monster_and_room_room_id_index on monster_and_room (room_id);");
 		return indexes;
 	}
 	

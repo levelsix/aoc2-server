@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -17,18 +19,24 @@ public class ChestEvent extends BasePersistentObject{
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
+	@Column(name="chest_id")
+	@Index
+	protected UUID chestId = UUID.randomUUID();
+	
 	@Column(name="start_time")
+	@Index
 	protected Date startTime = new Date();
 	
 	@Column(name="end_time")
+	@Index
 	protected Date endTime = new Date();
 	
 	@Column(name="event_name")
+	@Index
 	protected String eventName = "";
 	
-	@Column(name="chest_id")
-	protected UUID chestId = null;
-	
+
+
 
 	public UUID getId() {
 		return id;
@@ -37,6 +45,16 @@ public class ChestEvent extends BasePersistentObject{
 
 	public void setId(UUID id) {
 		this.id = id;
+	}
+
+
+	public UUID getChestId() {
+		return chestId;
+	}
+
+
+	public void setChestId(UUID chestId) {
+		this.chestId = chestId;
 	}
 
 
@@ -70,54 +88,17 @@ public class ChestEvent extends BasePersistentObject{
 	}
 
 
-	public UUID getChestId() {
-		return chestId;
-	}
-
-
-	public void setChestId(UUID chestId) {
-		this.chestId = chestId;
-	}
-
-
-	
 	@Override
 	public String toString() {
-		return "ChestEvent [id=" + id + ", startTime=" + startTime
-				+ ", endTime=" + endTime + ", eventName=" + eventName
-				+ ", chestId=" + chestId + "]";
+		return "ChestEvent [id=" + id + ", chestId=" + chestId + ", startTime="
+				+ startTime + ", endTime=" + endTime + ", eventName="
+				+ eventName + "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table ChestEvent (" +
-				" id uuid," +
-				" start_time timestamp," +
-				" end_time timestamp," +
-				" event_name varchar," +
-				" chest_id uuid," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
-	
 	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		
-		return indexes;
-	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index ChestEvent_type_index on ChestEvent (type);");
-		indexes.add("create index ChestEvent_rarity_index on ChestEvent (rarity);");
-		indexes.add("create index ChestEvent_class_required_index on ChestEvent (class_required);");
-		indexes.add("create index ChestEvent_lvl_required_index on ChestEvent (lvl_required);");
-		indexes.add("create index ChestEvent_equip_id_index on ChestEvent (equip_id);");
 		return indexes;
 	}
 	

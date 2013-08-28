@@ -23,6 +23,8 @@
 		">
 
 
+	<import resource="classpath:spring-services.xml" />
+
 
 	<bean id="rabbitConnectionFactory" class="com.rabbitmq.client.ConnectionFactory">
 		<property name="host" value="${amqp.host}" />
@@ -99,10 +101,10 @@
 		connection-factory="amqpConnectionFactory" channel-transacted="true"
 		exchange="${amqp.chat.exchange}" />
 
-	<bean id="clientEventHandler" class="com.lvl6.gamesuite.eventhandlers.AmqpGameEventHandler" />
-	<bean id="serverEventHandler" class="com.lvl6.gamesuite.eventhandlers.AmqpServerEventHandler" />
-	<bean id="amqpErrorHandler" class="com.lvl6.gamesuite.eventhandlers.AmqpErrorHandler" />
-	<bean id="serverMessageHandler" class="com.lvl6.gamesuite.eventhandlers.ServerEventHandler" lazy-init="false" scope="singleton" />
+	<bean id="clientEventHandler" class="com.lvl6.aoc2.eventhandlers.AmqpGameEventHandler" />
+	<bean id="serverEventHandler" class="com.lvl6.aoc2.eventhandlers.AmqpServerEventHandler" />
+	<bean id="amqpErrorHandler" class="com.lvl6.aoc2.eventhandlers.AmqpErrorHandler" />
+	<bean id="serverMessageHandler" class="com.lvl6.aoc2.eventhandlers.ServerEventHandler" lazy-init="false" scope="singleton" />
 	
 	
 

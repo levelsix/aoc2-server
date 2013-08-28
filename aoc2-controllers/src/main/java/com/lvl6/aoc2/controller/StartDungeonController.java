@@ -19,8 +19,6 @@ import com.lvl6.aoc2.entitymanager.PreDungeonUserInfoEntityManager;
 import com.lvl6.aoc2.entitymanager.UserConsumableQueueEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.CombatRoomRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserEquipRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserStructureRetrieveUtils;
 
 import com.lvl6.aoc2.eventprotos.StartDungeonEventProto.StartDungeonRequestProto;
 import com.lvl6.aoc2.eventprotos.StartDungeonEventProto.StartDungeonResponseProto;
@@ -47,6 +45,8 @@ import com.lvl6.aoc2.po.UserStructure;
 import com.lvl6.aoc2.services.user.UserService;
 import com.lvl6.aoc2.services.userconsumable.UserConsumableService;
 import com.lvl6.aoc2.services.userconsumablequeue.UserConsumableQueueService;
+import com.lvl6.aoc2.services.userequip.UserEquipService;
+import com.lvl6.aoc2.services.userstructure.UserStructureService;
 
 
 
@@ -63,13 +63,13 @@ public class StartDungeonController extends EventController {
 	protected UserConsumableQueueEntityManager userConsumableQueueEntityManager;
 	
 	@Autowired
-	protected UserStructureRetrieveUtils userStructureRetrieveUtils;
+	protected UserStructureService userStructureService;
 
 	@Autowired
 	protected UserEntityManager userEntityManager;
 	
 	@Autowired
-	protected UserEquipRetrieveUtils userEquipRetrieveUtils;
+	protected UserEquipService userEquipService;
 	
 	@Autowired
 	protected UserConsumableService userConsumableService;
@@ -133,7 +133,7 @@ public class StartDungeonController extends EventController {
 			User inDb = getUserEntityManager().get().get(userId);
 			
 			Map<UserConsumable, Integer> userConsumablesMap = getUserConsumableService().convertListToMap(ucpList);
-			List<UserEquip> equippedList = getUserEquipRetrieveUtils().getAllEquippedUserEquipsForUser(inDb.getId());
+			List<UserEquip> equippedList = getUserEquipService().getAllEquippedUserEquipsForUser(inDb.getId());
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender, inDb, 
 					uepList, equippedList, userConsumablesMap, dungeonName, clientDate);
@@ -182,10 +182,10 @@ public class StartDungeonController extends EventController {
 		}
 		
 		//user can't enter dungeon with full storage
-		List<UserStructure> usList = getUserStructureRetrieveUtils().getAllUserStructuresForUser(inDb.getId());
+		List<UserStructure> usList = getUserStructureService().getAllUserStructuresForUser(inDb.getId());
 		int equipStorageSize = 0;
 		for(UserStructure us : usList) {
-			Structure s = getUserStructureRetrieveUtils().getStructureCorrespondingToUserStructure(us);
+			Structure s = getUserStructureService().getStructureCorrespondingToUserStructure(us);
 			if(s.getFunctionalityType() == FunctionalityType.STORAGE_VALUE) {
 				equipStorageSize = s.getFunctionalityCapacity();
 			}
@@ -206,7 +206,7 @@ public class StartDungeonController extends EventController {
 		
 		//check if user is high enough lvl to enter particular dungeon
 		CombatRoom dungeonRoom = getCombatRoomRetrieveUtils().getCombatRoomForName(dungeonName);
-		if(inDb.getLevel() < dungeonRoom.getLvlRequired()) {
+		if(inDb.getLvl() < dungeonRoom.getLvlRequired()) {
 			log.error("user's lvl not high enough for room");
 			responseBuilder.setStatus(StartDungeonStatus.FAIL_NOT_AT_REQUIRED_LEVEL);
 			return false;
@@ -234,7 +234,7 @@ public class StartDungeonController extends EventController {
 			pdui.setCombatRoomName(dungeonName);
 			pdui.setHealth(inDb.getHp());
 			pdui.setId(UUID.randomUUID());
-			pdui.setLevelOfUser(inDb.getLevel());
+			pdui.setLevelOfUser(inDb.getLvl());
 			pdui.setMana(inDb.getMana());
 			pdui.setTimeUserEntersDungeon(clientDate);
 			pdui.setUserId(inDb.getId());
@@ -243,9 +243,9 @@ public class StartDungeonController extends EventController {
 			for(UserEquip ue : equippedList) {
 				PreDungeonUserEquipInfo pduei = new PreDungeonUserEquipInfo();
 				pduei.setDurability(ue.getDurability());
-				pduei.setEquipId(ue.getEquipId());
+				pduei.setEquipId(ue.getId());
 				pduei.setId(UUID.randomUUID());
-				pduei.setLevel(ue.getEquipLevel());
+				pduei.setLvl(ue.getEquipLevel());
 				pduei.setUserId(inDb.getId());
 				getPreDungeonUserEquipInfoEntityManager().get().put(pduei);
 			}
@@ -255,7 +255,7 @@ public class StartDungeonController extends EventController {
 				Integer quantity = entry.getValue();
 				PreDungeonUserConsumableInfo pduci = new PreDungeonUserConsumableInfo();
 				pduci.setId(UUID.randomUUID());
-				pduci.setName(uc.getName());
+				pduci.setConsumableId(uc.getId());
 				pduci.setQuantity(quantity);
 				pduci.setUserId(inDb.getId());
 			}
@@ -321,13 +321,14 @@ public class StartDungeonController extends EventController {
 		this.userConsumableService = userConsumableService;
 	}
 
-	public UserStructureRetrieveUtils getUserStructureRetrieveUtils() {
-		return userStructureRetrieveUtils;
+
+
+	public UserStructureService getUserStructureService() {
+		return userStructureService;
 	}
 
-	public void setUserStructureRetrieveUtils(
-			UserStructureRetrieveUtils userStructureRetrieveUtils) {
-		this.userStructureRetrieveUtils = userStructureRetrieveUtils;
+	public void setUserStructureService(UserStructureService userStructureService) {
+		this.userStructureService = userStructureService;
 	}
 
 	public CombatRoomRetrieveUtils getCombatRoomRetrieveUtils() {
@@ -366,16 +367,13 @@ public class StartDungeonController extends EventController {
 		this.preDungeonUserConsumableInfoEntityManager = preDungeonUserConsumableInfoEntityManager;
 	}
 
-	public UserEquipRetrieveUtils getUserEquipRetrieveUtils() {
-		return userEquipRetrieveUtils;
+	public UserEquipService getUserEquipService() {
+		return userEquipService;
 	}
 
-	public void setUserEquipRetrieveUtils(
-			UserEquipRetrieveUtils userEquipRetrieveUtils) {
-		this.userEquipRetrieveUtils = userEquipRetrieveUtils;
+	public void setUserEquipService(UserEquipService userEquipService) {
+		this.userEquipService = userEquipService;
 	}
-
-	
 
 }
 

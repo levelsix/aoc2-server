@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.UserStructureEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.StructureRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserStructureRetrieveUtils;
 import com.lvl6.aoc2.eventprotos.RetrieveResourceEventProto.RetrieveResourceRequestProto;
 import com.lvl6.aoc2.eventprotos.RetrieveResourceEventProto.RetrieveResourceResponseProto;
 import com.lvl6.aoc2.eventprotos.RetrieveResourceEventProto.RetrieveResourceResponseProto.RetrieveResourceStatus;
@@ -26,6 +25,7 @@ import com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType;
 import com.lvl6.aoc2.po.Structure;
 import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserStructure;
+import com.lvl6.aoc2.services.userstructure.UserStructureService;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
 
@@ -38,7 +38,7 @@ public class RetrieveResourceController extends EventController {
 	protected StructureRetrieveUtils structureRetrieveUtils; 
 	
 	@Autowired
-	protected UserStructureRetrieveUtils userStructureRetrieveUtils; 
+	protected UserStructureService userStructureService; 
 
 	@Autowired
 	protected UserStructureEntityManager userStructureEntityManager;
@@ -83,7 +83,7 @@ public class RetrieveResourceController extends EventController {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
 			UserStructure us = getUserStructureEntityManager().get().get(userStructureId);
-			Structure s = getUserStructureRetrieveUtils().getStructureCorrespondingToUserStructure(us);
+			Structure s = getUserStructureService().getStructureCorrespondingToUserStructure(us);
 
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender, inDb,
@@ -127,10 +127,10 @@ public class RetrieveResourceController extends EventController {
 			return false;
 		}
 
-		UUID structureId = us.getStructureId();
+		String structureName = us.getName();
 		
 		if (null == s) {
-			log.error("unexpected error: no structure with id exists. id=" + structureId);
+			log.error("unexpected error: no structure with id exists. id=" + structureName);
 			responseBuilder.setStatus(RetrieveResourceStatus.FAIL_NO_STRUCTURE_OR_USER_EXISTS);
 			return false;
 		}
@@ -149,11 +149,11 @@ public class RetrieveResourceController extends EventController {
 	private boolean writeChangesToDb(User inDb, UserStructure us, Structure s, Date clientDate) {
 		try {
 			int amountBuiltUp = AmountOfResourceRetrieved(us, s, clientDate);
-			List<UserStructure> usList = getUserStructureRetrieveUtils().getAllUserStructuresForUser(inDb.getId());
+			List<UserStructure> usList = getUserStructureService().getAllUserStructuresForUser(inDb.getId());
 			if(s.getFunctionalityResourceType() == ResourceType.GOLD_VALUE) {
 				int goldCapacity = 0;
 				for(UserStructure us2 : usList) {
-					Structure s2 = getUserStructureRetrieveUtils().getStructureCorrespondingToUserStructure(us2);
+					Structure s2 = getUserStructureService().getStructureCorrespondingToUserStructure(us2);
 					if(s2.getFunctionalityResourceType() == ResourceType.GOLD_VALUE) {
 						goldCapacity = goldCapacity + s2.getFunctionalityCapacity();
 					}
@@ -166,7 +166,7 @@ public class RetrieveResourceController extends EventController {
 			else {
 				int tonicCapacity = 0;
 				for(UserStructure us2 : usList) {
-					Structure s2 = getUserStructureRetrieveUtils().getStructureCorrespondingToUserStructure(us2);
+					Structure s2 = getUserStructureService().getStructureCorrespondingToUserStructure(us2);
 					if(s2.getFunctionalityResourceType() == ResourceType.TONIC_VALUE) {
 						tonicCapacity = tonicCapacity + s2.getFunctionalityCapacity();
 					}
@@ -197,15 +197,16 @@ public class RetrieveResourceController extends EventController {
 	}
 	
 	
-	public UserStructureRetrieveUtils getUserStructureRetrieveUtils() {
-		return userStructureRetrieveUtils;
+
+	
+	public UserStructureService getUserStructureService() {
+		return userStructureService;
 	}
 
-	public void setUserStructureRetrieveUtils(
-			UserStructureRetrieveUtils userStructureRetrieveUtils) {
-		this.userStructureRetrieveUtils = userStructureRetrieveUtils;
+	public void setUserStructureService(UserStructureService userStructureService) {
+		this.userStructureService = userStructureService;
 	}
-	
+
 	public StructureRetrieveUtils getStructureRetrieveUtils() {
 		return structureRetrieveUtils;
 	}

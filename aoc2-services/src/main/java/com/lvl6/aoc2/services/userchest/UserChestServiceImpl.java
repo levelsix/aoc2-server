@@ -1,4 +1,4 @@
-package com.lvl6.aoc2.entitymanager.staticdata;
+package com.lvl6.aoc2.services.userchest;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,21 +10,28 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.lvl6.aoc2.entitymanager.ConsumableEntityManager;
 import com.lvl6.aoc2.entitymanager.UserChestEntityManager;
+import com.lvl6.aoc2.entitymanager.UserConsumableEntityManager;
 import com.lvl6.aoc2.po.UserChest;
-import com.lvl6.aoc2.po.UserEquip;
 
-@Component public class UserChestRetrieveUtils {
-
+@Component
+public class UserChestServiceImpl implements UserChestService {
+	
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	private  Map<UUID, UserChest> idsToUserChests;
-
-	//private  final String TABLE_NAME = DBConstants.CONSUMABLE;
-
+	
+	@Autowired
+	protected UserConsumableEntityManager userConsumableEntityManager;
+	
+	@Autowired
+	protected ConsumableEntityManager consumableEntityManager;
+	
 	@Autowired
 	protected UserChestEntityManager userChestEntityManager;
 
+	@Override
 	public  UserChest getUserChestForId(UUID id) {
 		log.debug("retrieve userChest data for id " + id);
 		if (idsToUserChests == null) {
@@ -32,7 +39,8 @@ import com.lvl6.aoc2.po.UserEquip;
 		}
 		return idsToUserChests.get(id);
 	}
-
+	
+	@Override
 	public  Map<UUID, UserChest> getUserChestsForIds(List<UUID> ids) {
 		log.debug("retrieve userChests data for ids " + ids);
 		if (idsToUserChests == null) {
@@ -57,6 +65,7 @@ import com.lvl6.aoc2.po.UserEquip;
 		}
 	}
 
+	@Override
 	public  List<UserChest> getAllUserChestsForUser(UUID userId) {
 		String cqlquery = "select * from user_chest where user_id=" + userId + ";"; 
 		List <UserChest> list = getUserChestEntityManager().get().find(cqlquery);
@@ -64,12 +73,29 @@ import com.lvl6.aoc2.po.UserEquip;
 	}
 	
 	
+	
+	
+	
+	
+	
 
-	public  void reload() {
-		setStaticIdsToUserChests();
+	public UserConsumableEntityManager getUserConsumableEntityManager() {
+		return userConsumableEntityManager;
 	}
-	
-	
+
+	public void setUserConsumableEntityManager(
+			UserConsumableEntityManager userConsumableEntityManager) {
+		this.userConsumableEntityManager = userConsumableEntityManager;
+	}
+
+	public ConsumableEntityManager getConsumableEntityManager() {
+		return consumableEntityManager;
+	}
+
+	public void setConsumableEntityManager(
+			ConsumableEntityManager consumableEntityManager) {
+		this.consumableEntityManager = consumableEntityManager;
+	}
 
 	public UserChestEntityManager getUserChestEntityManager() {
 		return userChestEntityManager;
@@ -79,4 +105,7 @@ import com.lvl6.aoc2.po.UserEquip;
 			UserChestEntityManager userChestEntityManager) {
 		this.userChestEntityManager = userChestEntityManager;
 	}
+
+
+	
 }

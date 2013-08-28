@@ -570,10 +570,10 @@ public final class StartupEventProto {
   public interface StartupResponseProtoOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional .proto.FullUserProto mup = 1;
-    boolean hasMup();
-    com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto getMup();
-    com.lvl6.aoc2.noneventprotos.FullUser.FullUserProtoOrBuilder getMupOrBuilder();
+    // optional .proto.FullUserProto fup = 1;
+    boolean hasFup();
+    com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto getFup();
+    com.lvl6.aoc2.noneventprotos.FullUser.FullUserProtoOrBuilder getFupOrBuilder();
     
     // optional int64 currentServerTime = 2;
     boolean hasCurrentServerTime();
@@ -687,17 +687,17 @@ public final class StartupEventProto {
     }
     
     private int bitField0_;
-    // optional .proto.FullUserProto mup = 1;
-    public static final int MUP_FIELD_NUMBER = 1;
-    private com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto mup_;
-    public boolean hasMup() {
+    // optional .proto.FullUserProto fup = 1;
+    public static final int FUP_FIELD_NUMBER = 1;
+    private com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto fup_;
+    public boolean hasFup() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto getMup() {
-      return mup_;
+    public com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto getFup() {
+      return fup_;
     }
-    public com.lvl6.aoc2.noneventprotos.FullUser.FullUserProtoOrBuilder getMupOrBuilder() {
-      return mup_;
+    public com.lvl6.aoc2.noneventprotos.FullUser.FullUserProtoOrBuilder getFupOrBuilder() {
+      return fup_;
     }
     
     // optional int64 currentServerTime = 2;
@@ -721,7 +721,7 @@ public final class StartupEventProto {
     }
     
     private void initFields() {
-      mup_ = com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.getDefaultInstance();
+      fup_ = com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.getDefaultInstance();
       currentServerTime_ = 0L;
       status_ = com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.StartupStatus.SUCCESS_GAME_CENTER_ID;
     }
@@ -730,8 +730,8 @@ public final class StartupEventProto {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
       
-      if (hasMup()) {
-        if (!getMup().isInitialized()) {
+      if (hasFup()) {
+        if (!getFup().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
@@ -744,7 +744,7 @@ public final class StartupEventProto {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(1, mup_);
+        output.writeMessage(1, fup_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeInt64(2, currentServerTime_);
@@ -763,7 +763,7 @@ public final class StartupEventProto {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, mup_);
+          .computeMessageSize(1, fup_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
@@ -889,7 +889,7 @@ public final class StartupEventProto {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getMupFieldBuilder();
+          getFupFieldBuilder();
         }
       }
       private static Builder create() {
@@ -898,10 +898,10 @@ public final class StartupEventProto {
       
       public Builder clear() {
         super.clear();
-        if (mupBuilder_ == null) {
-          mup_ = com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.getDefaultInstance();
+        if (fupBuilder_ == null) {
+          fup_ = com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.getDefaultInstance();
         } else {
-          mupBuilder_.clear();
+          fupBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
         currentServerTime_ = 0L;
@@ -949,10 +949,10 @@ public final class StartupEventProto {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        if (mupBuilder_ == null) {
-          result.mup_ = mup_;
+        if (fupBuilder_ == null) {
+          result.fup_ = fup_;
         } else {
-          result.mup_ = mupBuilder_.build();
+          result.fup_ = fupBuilder_.build();
         }
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
@@ -978,8 +978,8 @@ public final class StartupEventProto {
       
       public Builder mergeFrom(com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto other) {
         if (other == com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.getDefaultInstance()) return this;
-        if (other.hasMup()) {
-          mergeMup(other.getMup());
+        if (other.hasFup()) {
+          mergeFup(other.getFup());
         }
         if (other.hasCurrentServerTime()) {
           setCurrentServerTime(other.getCurrentServerTime());
@@ -992,8 +992,8 @@ public final class StartupEventProto {
       }
       
       public final boolean isInitialized() {
-        if (hasMup()) {
-          if (!getMup().isInitialized()) {
+        if (hasFup()) {
+          if (!getFup().isInitialized()) {
             
             return false;
           }
@@ -1026,11 +1026,11 @@ public final class StartupEventProto {
             }
             case 10: {
               com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.Builder subBuilder = com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.newBuilder();
-              if (hasMup()) {
-                subBuilder.mergeFrom(getMup());
+              if (hasFup()) {
+                subBuilder.mergeFrom(getFup());
               }
               input.readMessage(subBuilder, extensionRegistry);
-              setMup(subBuilder.buildPartial());
+              setFup(subBuilder.buildPartial());
               break;
             }
             case 16: {
@@ -1055,94 +1055,94 @@ public final class StartupEventProto {
       
       private int bitField0_;
       
-      // optional .proto.FullUserProto mup = 1;
-      private com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto mup_ = com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.getDefaultInstance();
+      // optional .proto.FullUserProto fup = 1;
+      private com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto fup_ = com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto, com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.FullUserProtoOrBuilder> mupBuilder_;
-      public boolean hasMup() {
+          com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto, com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.FullUserProtoOrBuilder> fupBuilder_;
+      public boolean hasFup() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
-      public com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto getMup() {
-        if (mupBuilder_ == null) {
-          return mup_;
+      public com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto getFup() {
+        if (fupBuilder_ == null) {
+          return fup_;
         } else {
-          return mupBuilder_.getMessage();
+          return fupBuilder_.getMessage();
         }
       }
-      public Builder setMup(com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto value) {
-        if (mupBuilder_ == null) {
+      public Builder setFup(com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto value) {
+        if (fupBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          mup_ = value;
+          fup_ = value;
           onChanged();
         } else {
-          mupBuilder_.setMessage(value);
+          fupBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder setMup(
+      public Builder setFup(
           com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.Builder builderForValue) {
-        if (mupBuilder_ == null) {
-          mup_ = builderForValue.build();
+        if (fupBuilder_ == null) {
+          fup_ = builderForValue.build();
           onChanged();
         } else {
-          mupBuilder_.setMessage(builderForValue.build());
+          fupBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder mergeMup(com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto value) {
-        if (mupBuilder_ == null) {
+      public Builder mergeFup(com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto value) {
+        if (fupBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001) &&
-              mup_ != com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.getDefaultInstance()) {
-            mup_ =
-              com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.newBuilder(mup_).mergeFrom(value).buildPartial();
+              fup_ != com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.getDefaultInstance()) {
+            fup_ =
+              com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.newBuilder(fup_).mergeFrom(value).buildPartial();
           } else {
-            mup_ = value;
+            fup_ = value;
           }
           onChanged();
         } else {
-          mupBuilder_.mergeFrom(value);
+          fupBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000001;
         return this;
       }
-      public Builder clearMup() {
-        if (mupBuilder_ == null) {
-          mup_ = com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.getDefaultInstance();
+      public Builder clearFup() {
+        if (fupBuilder_ == null) {
+          fup_ = com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.getDefaultInstance();
           onChanged();
         } else {
-          mupBuilder_.clear();
+          fupBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
-      public com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.Builder getMupBuilder() {
+      public com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.Builder getFupBuilder() {
         bitField0_ |= 0x00000001;
         onChanged();
-        return getMupFieldBuilder().getBuilder();
+        return getFupFieldBuilder().getBuilder();
       }
-      public com.lvl6.aoc2.noneventprotos.FullUser.FullUserProtoOrBuilder getMupOrBuilder() {
-        if (mupBuilder_ != null) {
-          return mupBuilder_.getMessageOrBuilder();
+      public com.lvl6.aoc2.noneventprotos.FullUser.FullUserProtoOrBuilder getFupOrBuilder() {
+        if (fupBuilder_ != null) {
+          return fupBuilder_.getMessageOrBuilder();
         } else {
-          return mup_;
+          return fup_;
         }
       }
       private com.google.protobuf.SingleFieldBuilder<
           com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto, com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.FullUserProtoOrBuilder> 
-          getMupFieldBuilder() {
-        if (mupBuilder_ == null) {
-          mupBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          getFupFieldBuilder() {
+        if (fupBuilder_ == null) {
+          fupBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto, com.lvl6.aoc2.noneventprotos.FullUser.FullUserProto.Builder, com.lvl6.aoc2.noneventprotos.FullUser.FullUserProtoOrBuilder>(
-                  mup_,
+                  fup_,
                   getParentForChildren(),
                   isClean());
-          mup_ = null;
+          fup_ = null;
         }
-        return mupBuilder_;
+        return fupBuilder_;
       }
       
       // optional int64 currentServerTime = 2;
@@ -1225,7 +1225,7 @@ public final class StartupEventProto {
       "\001 \001(\0132\027.proto.MinimumUserProto\0227\n\tloginT" +
       "ype\030\002 \001(\0162$.proto.StartupRequestProto.Lo" +
       "ginType\")\n\tLoginType\022\022\n\016GAME_CENTER_ID\020\000" +
-      "\022\010\n\004UDID\020\001\"\364\001\n\024StartupResponseProto\022!\n\003m" +
+      "\022\010\n\004UDID\020\001\"\364\001\n\024StartupResponseProto\022!\n\003f" +
       "up\030\001 \001(\0132\024.proto.FullUserProto\022\031\n\021curren" +
       "tServerTime\030\002 \001(\003\0229\n\006status\030\003 \001(\0162).prot" +
       "o.StartupResponseProto.StartupStatus\"c\n\r" +
@@ -1252,7 +1252,7 @@ public final class StartupEventProto {
           internal_static_proto_StartupResponseProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StartupResponseProto_descriptor,
-              new java.lang.String[] { "Mup", "CurrentServerTime", "Status", },
+              new java.lang.String[] { "Fup", "CurrentServerTime", "Status", },
               com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.class,
               com.lvl6.aoc2.eventprotos.StartupEventProto.StartupResponseProto.Builder.class);
           return null;

@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -17,9 +19,11 @@ public class Consumable extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="name")
+	@Index
 	protected String name = "";
 	
 	@Column(name="functionality_type")
+	@Index
 	protected int functionalityType = 0;
 	
 	//(if (Float: < 1) ? percent : flat) 
@@ -27,13 +31,14 @@ public class Consumable extends BasePersistentObject{
 	protected double functionalityConstant = 0;
 	
 	@Column(name="cost")
+	@Index
 	protected int cost = 0;
 	
 	@Column(name="cost_resouce_type")
 	protected int costResourceType = 0;
 	
-	@Column(name="limit")
-	protected int limit = 0;
+	@Column(name="max_limit")
+	protected int maxLimit = 0;
 	
 	@Column(name="create_time_seconds")
 	protected int createTimeSeconds = 0;
@@ -103,13 +108,13 @@ public class Consumable extends BasePersistentObject{
 	}
 
 
-	public int getLimit() {
-		return limit;
+	public int getMaxLimit() {
+		return maxLimit;
 	}
 
 
-	public void setLimit(int limit) {
-		this.limit = limit;
+	public void setMaxLimit(int maxLimit) {
+		this.maxLimit = maxLimit;
 	}
 
 
@@ -134,34 +139,18 @@ public class Consumable extends BasePersistentObject{
 
 
 
+
 	@Override
 	public String toString() {
 		return "Consumable [id=" + id + ", name=" + name
 				+ ", functionalityType=" + functionalityType
 				+ ", functionalityConstant=" + functionalityConstant
 				+ ", cost=" + cost + ", costResourceType=" + costResourceType
-				+ ", limit=" + limit + ", createTimeSeconds="
-				+ createTimeSeconds + ", baseSpeedupCost="
-				+ baseSpeedupCost + "]";
+				+ ", maxLimit=" + maxLimit + ", createTimeSeconds="
+				+ createTimeSeconds + ", baseSpeedupCost=" + baseSpeedupCost
+				+ "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table consumable (" +
-				" id uuid," +
-				" name varchar," +
-				" functionality_type int," +
-				" functionality_constant double," +
-				" cost int," +
-				" cost_resource_type int," +
-				" limit int," +
-				" create_time_seconds int," +
-				" base_speedup_cost int," +
-				" primary key (id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -170,14 +159,4 @@ public class Consumable extends BasePersistentObject{
 		return indexes;
 	}
 	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index consumable_name_index on consumable (name);");
-		indexes.add("create index consumable_functionality_type_index on consumable (functionality_type);");
-		return indexes;
-	}
-	
-
 }

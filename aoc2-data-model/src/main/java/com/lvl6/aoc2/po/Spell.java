@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -17,18 +19,22 @@ public class Spell extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="name")
+	@Index
 	protected String name = "";
 	
 	@Column(name="class_type")
+	@Index
 	protected int classType = 0;
 	
 	@Column(name="function_type")
+	@Index
 	protected int functionType = 0;
 	
 	@Column(name="function_constant")
 	protected int functionConstant = 0;
 	
 	@Column(name="mana_cost")
+	@Index
 	protected int manaCost = 0;
 	
 	@Column(name="animation_effect")
@@ -40,6 +46,7 @@ public class Spell extends BasePersistentObject{
 
 	//we'll just leave this for now...
 	@Column(name="elemental_type")
+	@Index
 	protected int elementalType = 0;
 	
 	@Column(name="speed")
@@ -61,18 +68,22 @@ public class Spell extends BasePersistentObject{
 	protected int range = 0;
 	
 	@Column(name="user_level_required")
+	@Index
 	protected int userLevelRequired = 0;
 	
-	@Column(name="level")
-	protected int level = 0;
+	@Column(name="lvl")
+	protected int lvl = 0;
 	
 	@Column(name="research_cost")
+	@Index
 	protected int researchCost = 0;
 	
 	@Column(name="research_cost_resource")
+	@Index
 	protected int researchCostResource = 0;
 	
 	@Column(name="research_time_millis")
+	@Index
 	protected int researchTimeMillis = 0;
 	
 	@Column(name="research_speedup_base_cost")
@@ -241,13 +252,13 @@ public class Spell extends BasePersistentObject{
 	}
 
 
-	public int getLevel() {
-		return level;
+	public int getLvl() {
+		return lvl;
 	}
 
 
-	public void setLevel(int level) {
-		this.level = level;
+	public void setLevel(int lvl) {
+		this.lvl = lvl;
 	}
 
 
@@ -303,56 +314,18 @@ public class Spell extends BasePersistentObject{
 				+ targetted + ", size=" + size + ", castTimeMillis="
 				+ castTimeMillis + ", cooldownMillis=" + cooldownMillis
 				+ ", range=" + range + ", userLevelRequired="
-				+ userLevelRequired + ", level=" + level + ", researchCost="
+				+ userLevelRequired + ", lvl=" + lvl + ", researchCost="
 				+ researchCost + ", researchCostResource="
 				+ researchCostResource + ", researchTimeMillis="
 				+ researchTimeMillis + ", researchSpeedupBaseCost="
 				+ researchSpeedupBaseCost + "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table spell (" +
-				" id uuid," +
-				" name varchar," +
-				" class_type int," +
-				" function_type int," +
-				" function_constant int," +
-				" mana_cost int," +
-				" animation_effect int," +
-				" duration_millis int," +
-				" elemental_type int," +
-				" speed int," +
-				" targetted bool," +
-				" size int, " +
-				" cast_time_millis int" +
-				" cooldown_millis int," +
-				" range int," +
-				" user_level_required int," +
-				" level int," +
-				" research_cost int," +
-				" research_cost_resource int," +
-				" research_time_millis int," +
-				" research_speedup_base_cost int," +
-				" primary key (id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		
-		return indexes;
-	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index spell_elemental_type_index on spell (elemental_type);");
-		indexes.add("create index spell_class_type_index on spell (class_type);");
 		return indexes;
 	}
 	

@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.lvl6.aoc2.entitymanager.UserEquipEntityManager;
+import com.lvl6.aoc2.po.Equipment;
 import com.lvl6.aoc2.po.UserEquip;
 
 public interface UserEquipService {
@@ -20,5 +21,14 @@ public interface UserEquipService {
 	
 	public abstract void setUserEquipEntityManager(UserEquipEntityManager userEquipEntityManager);
 	
+	public abstract UserEquip getUserEquipForId(UUID id);
+	
+	public abstract Map<UUID, UserEquip> getUserEquipsForIds(List<UUID> ids);
+	
+	public abstract List<UserEquip> getAllUserEquipsForUser(UUID userId);
+	
+	public abstract Equipment getEquipmentCorrespondingToUserEquip(UserEquip ue);
+	
+	public abstract List<UserEquip> getAllEquippedUserEquipsForUser(UUID userId);
 	
 }

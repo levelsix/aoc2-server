@@ -13,6 +13,7 @@
 		<module>aoc2-services</module>
 		<module>aoc2-amqp</module>
 		<module>aoc2-controllers</module>
+		<module>aoc2-webapp</module>
 	</modules>
 	<organization>
 		<name>Lvl 6</name>
@@ -25,8 +26,7 @@
 	<inceptionYear>July 2013</inceptionYear>
 
 	<properties>
-		<astyanax.version>1.56.42</astyanax.version>
-		<org.springframework.version>3.2.3.RELEASE</org.springframework.version>
+		<!-- Cassandra -->
 		<cassandra.clusterName>Test Cluster</cassandra.clusterName>
 		<cassandra.keyspaceName>aoc2dev</cassandra.keyspaceName>
 		<cassandra.cqlVersion>3.0.0</cassandra.cqlVersion>
@@ -35,6 +35,46 @@
 		<cassandra.seeds>robot.lvl6.com:9160</cassandra.seeds>
 		<cassandra.connectionsPerHost>5</cassandra.connectionsPerHost>
 		<cassandra.port>9160</cassandra.port>
+		<cassandra.createTables>off</cassandra.createTables>
+
+
+		<!-- Hazelcast -->
+		<hazelcast.group>aoc2</hazelcast.group>
+		<hazelcast.pass>lvl6</hazelcast.pass>
+		<hazelcast.config>dev</hazelcast.config>
+		<hazelcast.port>8701</hazelcast.port>
+		<hazelcast.dev.ips>5.9.28.212</hazelcast.dev.ips>
+
+
+		<!-- Game properties -->
+		<globals.isSandbox>true</globals.isSandbox>
+		<globals.iddictionOn>false</globals.iddictionOn>
+		<globals.kabamEnabled>false</globals.kabamEnabled>
+		<globals.appStoreUrl><![CDATA[itms-apps://itunes.com/apps/???]]></globals.appStoreUrl>
+		<globals.appleBundleId>com.lvl6.???</globals.appleBundleId>
+		<globals.reviewPageUrl><![CDATA[itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=???]]></globals.reviewPageUrl>
+		<lvl6.application.version>0.1f</lvl6.application.version>
+		<apns.path.to.cert>/usr/share/tomcat7/???</apns.path.to.cert>
+		<apns.cert.password>robashen123</apns.cert.password>
+        <lvl6.server.log.location>/var/log/tomcat7/aoc2</lvl6.server.log.location>
+        <application.release.name>AoC2</application.release.name>
+
+
+		<!-- AMQP -->
+		<amqp.host>robot.lvl6.com</amqp.host>
+		<amqp.user>lvl6server</amqp.user>
+		<amqp.pass>devserver</amqp.pass>
+		<amqp.vhost>devaoc2</amqp.vhost>
+		<amqp.exchange>gamemessages</amqp.exchange>
+		<amqp.chat.exchange>chatmessages</amqp.chat.exchange>
+		<amqp.client.messages.routing.key>messagesFromPlayers</amqp.client.messages.routing.key>
+
+		<!-- Dependencies -->
+		<astyanax.version>1.56.42</astyanax.version>
+		<org.springframework.version>3.2.3.RELEASE</org.springframework.version>
+		<spring.version>3.2.3.RELEASE</spring.version>
+		<spring.security.version>3.1.1.RELEASE</spring.security.version>
+
 	</properties>
 
 
@@ -137,6 +177,11 @@
 				<scope>test</scope>
 			</dependency>
 			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>org.springframework.security</groupId>
 				<artifactId>spring-security-web</artifactId>
 				<version>${spring.security.version}</version>
@@ -157,6 +202,12 @@
 				<version>2.2.3.RELEASE</version>
 			</dependency>
 			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>3.0.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
 				<groupId>joda-time</groupId>
 				<artifactId>joda-time</artifactId>
 				<version>2.1</version>
@@ -169,7 +220,64 @@
 			<dependency>
 				<groupId>com.hazelcast</groupId>
 				<artifactId>hazelcast-all</artifactId>
-				<version>2.6</version>
+				<version>3.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-core</artifactId>
+				<version>1.5.7</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-datetime</artifactId>
+				<version>1.5.7</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>3.0.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>4.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket</artifactId>
+				<version>6.8.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-core</artifactId>
+				<version>6.8.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.wicket</groupId>
+				<artifactId>wicket-datetime</artifactId>
+				<version>6.8.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-http</artifactId>
+				<version>${spring.security.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

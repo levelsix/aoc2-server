@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -17,11 +19,12 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = UUID.randomUUID();
 	
-	//the 'equip_id' column in equipment table, not the 'id' column
-	@Column(name="name")
-	protected String name = "";
+	@Column(name="consumable_id")
+	@Index
+	protected UUID consumableId = UUID.randomUUID();;
 	
 	@Column(name="quantity")
 	protected int quantity = 0;
@@ -47,13 +50,13 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 	}
 
 
-	public String getName() {
-		return name;
+	public UUID getConsumableId() {
+		return consumableId;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setConsumableId(UUID consumableId) {
+		this.consumableId = consumableId;
 	}
 
 
@@ -66,39 +69,19 @@ public class PreDungeonUserConsumableInfo extends BasePersistentObject{
 		this.quantity = quantity;
 	}
 
-
 	@Override
 	public String toString() {
 		return "PreDungeonUserConsumableInfo [id=" + id + ", userId=" + userId
-				+ ", name=" + name + ", quantity=" + quantity + "]";
+				+ ", consumableId=" + consumableId + ", quantity=" + quantity
+				+ "]";
 	}
 
 
-	@Override
-	public String getTableCreateStatement() {
-		return "create pre_dungeon_user_consumable_info (" +
-				" id uuid," +
-				" user_id uuid," +
-				" name varchar," +
-				" quantity int," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		
-		return indexes;
-	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index room_reward_chest_id_index on room_reward (chest_id);");
-		indexes.add("create index room_reward_equip_id_index on room_reward (equip_id);");
 		return indexes;
 	}
 	

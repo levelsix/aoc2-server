@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,18 +20,22 @@ public class UserConsumableQueue extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = null;
 	
-	@Column(name="name")
-	protected String name = "";
+	@Column(name="consumable_id")
+	@Index
+	protected UUID consumableId = null;
 	
 	@Column(name="quantity")
 	protected int quantity = 0;
 	
 	@Column(name="expected_start")
+	@Index
 	protected Date expectedStart = null;
 	
 	@Column(name="entered_queue")
+	@Index
 	protected Date enteredQueue = null;
 
 	@Column(name="is_finished_building")
@@ -57,13 +63,13 @@ public class UserConsumableQueue extends BasePersistentObject{
 	}
 
 
-	public String getName() {
-		return name;
+	public UUID getConsumableId() {
+		return consumableId;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
+	public void setConsumableId(UUID consumableId) {
+		this.consumableId = consumableId;
 	}
 
 
@@ -110,44 +116,17 @@ public class UserConsumableQueue extends BasePersistentObject{
 	@Override
 	public String toString() {
 		return "UserConsumableQueue [id=" + id + ", userId=" + userId
-				+ ", name=" + name + ", quantity=" + quantity
+				+ ", consumableId=" + consumableId + ", quantity=" + quantity
 				+ ", expectedStart=" + expectedStart + ", enteredQueue="
 				+ enteredQueue + ", isFinishedBuilding=" + isFinishedBuilding
 				+ "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table user_consumable_queue (" +
-				" id uuid," +
-				" user_id uuid," +
-				" name varchar," +
-				" quantity int," +
-				" expected_start timestamp" +
-				" entered_queue timestamp," +
-				" is_finished_building boolean," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		
-		return indexes;
-	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_consumable_queue_user_id_index on user_consumable_queue (user_id);");
-		indexes.add("create index user_equip_repair_equip_id_index on user_equip_repair (equip_id);");
-		indexes.add("create index user_equip_repair_equip_level_index on user_equip_repair (equip_level);");
-		indexes.add("create index user_equip_repair_expected_start_index on user_equip_repair (expected_start);");
-		indexes.add("create index user_equip_repair_entered_queue_index on user_equip_repair (entered_queue);");
 		return indexes;
 	}
 	

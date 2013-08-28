@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,19 +20,24 @@ public class UserChest extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = null;
 	
 	@Column(name="chest_id")
+	@Index
 	protected UUID chestId = null;
+	
+	@Column(name="combat_room_id")
+	@Index
+	protected UUID combatRoomId = null;
 
 	@Column(name="time_acquired")
+	@Index
 	protected Date timeAcquired = new Date();
 	
 	@Column(name="level_of_user_when_acquired")
 	protected int levelOfUserWhenAcquired = 0;
-	
-	@Column(name="dungeon_room_acquired_in")
-	protected String dungeonRoomAcquiredIn = "";
+
 
 
 	public UUID getId() {
@@ -63,6 +70,16 @@ public class UserChest extends BasePersistentObject{
 	}
 
 
+	public UUID getCombatRoomId() {
+		return combatRoomId;
+	}
+
+
+	public void setCombatRoomId(UUID combatRoomId) {
+		this.combatRoomId = combatRoomId;
+	}
+
+
 	public Date getTimeAcquired() {
 		return timeAcquired;
 	}
@@ -81,61 +98,22 @@ public class UserChest extends BasePersistentObject{
 	public void setLevelOfUserWhenAcquired(int levelOfUserWhenAcquired) {
 		this.levelOfUserWhenAcquired = levelOfUserWhenAcquired;
 	}
-	
 
-	public String getDungeonRoomAcquiredIn() {
-		return dungeonRoomAcquiredIn;
-	}
-
-
-	public void setDungeonRoomAcquiredIn(String dungeonRoomAcquiredIn) {
-		this.dungeonRoomAcquiredIn = dungeonRoomAcquiredIn;
-	}
-
-	
-	
 
 	@Override
 	public String toString() {
 		return "UserChest [id=" + id + ", userId=" + userId + ", chestId="
-				+ chestId + ", timeAcquired=" + timeAcquired
-				+ ", levelOfUserWhenAcquired=" + levelOfUserWhenAcquired
-				+ ", dungeonRoomAcquiredIn=" + dungeonRoomAcquiredIn + "]";
+				+ chestId + ", combatRoomId=" + combatRoomId
+				+ ", timeAcquired=" + timeAcquired
+				+ ", levelOfUserWhenAcquired=" + levelOfUserWhenAcquired + "]";
 	}
 
 
-	@Override
-	public String getTableCreateStatement() {
-		return "create table user_chest (" +
-				" id uuid," +
-				" user_id uuid," +
-				" chest_id uuid," +
-				" time_acquired timestamp," +
-				" level_of_user_when_acquired int," +
-				" dungeon_room_acquired_in int," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
-	
 	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		
 		return indexes;
 	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_spell_user_id_index on user_spell (user_id);");
-		indexes.add("create index user_spell_spell_id_index on user_spell (spell_id);");
-		return indexes;
-	}
-	
-	
-	
-	
 	
 }

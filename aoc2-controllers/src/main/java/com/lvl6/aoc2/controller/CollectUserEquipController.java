@@ -14,7 +14,6 @@ import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEquipEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEquipRepairEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.EquipmentRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserEquipRepairRetrieveUtils;
 import com.lvl6.aoc2.eventprotos.CollectUserEquipEventProto.CollectUserEquipRequestProto;
 import com.lvl6.aoc2.eventprotos.CollectUserEquipEventProto.CollectUserEquipResponseProto;
 import com.lvl6.aoc2.eventprotos.CollectUserEquipEventProto.CollectUserEquipResponseProto.CollectUserEquipStatus;
@@ -30,6 +29,7 @@ import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserEquip;
 import com.lvl6.aoc2.po.UserEquipRepair;
 import com.lvl6.aoc2.services.user.UserService;
+import com.lvl6.aoc2.services.userequiprepair.UserEquipRepairService;
 import com.lvl6.aoc2.widerows.RestrictionOnNumberOfUserStructure;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
@@ -43,7 +43,7 @@ public class CollectUserEquipController extends EventController {
 	protected EquipmentRetrieveUtils equipmentRetrieveUtils; 
 	
 	@Autowired
-	protected UserEquipRepairRetrieveUtils userEquipRepairRetrieveUtils; 
+	protected UserEquipRepairService userEquipRepairService; 
 
 	@Autowired
 	protected UserEquipRepairEntityManager userEquipRepairEntityManager;
@@ -141,9 +141,8 @@ public class CollectUserEquipController extends EventController {
 		boolean bool = false;
 		
 		for(UserEquipRepairProto uer: uerList) {
-			String equipIdString = uer.getEquipID();
-			UUID equipId = UUID.fromString(equipIdString);
-			Equipment e = getEquipmentRetrieveUtils().getEquipmentForId(equipId);
+			String equipName = uer.getEquipName();
+			Equipment e = getEquipmentRetrieveUtils().getEquipmentCorrespondingToName(equipName);
 			long finishTime = uer.getExpectedStartMillis() + e.getDurabilityFixTimeConstant()*(long)(1-e.getDurability()); 
 			if(finishTime > clientDate.getTime()) {
 				bool = true;
@@ -173,7 +172,7 @@ public class CollectUserEquipController extends EventController {
 				UserEquip ue = new UserEquip();
 				ue.setDungeonRoomOrChestAcquiredFrom(uer2.getDungeonRoomOrChestAcquiredFrom());
 				ue.setDurability(100.0);
-				ue.setEquipId(uer2.getEquipId());
+				ue.setName(uer2.getName());
 				ue.setEquipLevel(uer2.getEquipLevel());
 				ue.setEquipped(false);
 				ue.setId(UUID.randomUUID());
@@ -196,13 +195,13 @@ public class CollectUserEquipController extends EventController {
 
 
 
-	public UserEquipRepairRetrieveUtils getUserEquipRepairRetrieveUtils() {
-		return userEquipRepairRetrieveUtils;
+	public UserEquipRepairService getUserEquipRepairService() {
+		return userEquipRepairService;
 	}
 
-	public void setUserEquipRepairRetrieveUtils(
-			UserEquipRepairRetrieveUtils userEquipRepairRetrieveUtils) {
-		this.userEquipRepairRetrieveUtils = userEquipRepairRetrieveUtils;
+	public void setUserEquipRepairService(
+			UserEquipRepairService userEquipRepairService) {
+		this.userEquipRepairService = userEquipRepairService;
 	}
 
 	public UserEquipRepairEntityManager getUserEquipRepairEntityManager() {

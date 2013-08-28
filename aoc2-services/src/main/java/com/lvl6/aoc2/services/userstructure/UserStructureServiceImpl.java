@@ -1,4 +1,5 @@
-package com.lvl6.aoc2.entitymanager.staticdata;
+package com.lvl6.aoc2.services.userstructure;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,23 +11,31 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.lvl6.aoc2.entitymanager.UserStructureEntityManager;
 import com.lvl6.aoc2.entitymanager.StructureEntityManager;
+import com.lvl6.aoc2.entitymanager.UserStructureEntityManager;
+import com.lvl6.aoc2.entitymanager.staticdata.StructureRetrieveUtils;
 import com.lvl6.aoc2.po.Structure;
 import com.lvl6.aoc2.po.UserStructure;
 
-@Component public class UserStructureRetrieveUtils {
 
+@Component
+public class UserStructureServiceImpl implements UserStructureService {
+	
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	private  Map<UUID, UserStructure> idsToUserStructures;
 	
 	@Autowired
-	protected UserStructureEntityManager UserStructureEntityManager;
+	protected UserStructureEntityManager userStructureEntityManager;
 
 	@Autowired
-	protected StructureEntityManager StructureEntityManager;
+	protected StructureEntityManager structureEntityManager;
 	
+	@Autowired
+	protected StructureRetrieveUtils structureRetrieveUtils;
+	
+	
+	@Override
 	public  UserStructure getUserStructureForId(UUID id) {
 		log.debug("retrieve UserStructure data for id " + id);
 		if (idsToUserStructures == null) {
@@ -35,6 +44,7 @@ import com.lvl6.aoc2.po.UserStructure;
 		return idsToUserStructures.get(id);
 	}
 
+	@Override
 	public  Map<UUID, UserStructure> getUserStructuresForIds(List<UUID> ids) {
 		log.debug("retrieve UserStructures data for ids " + ids);
 		if (idsToUserStructures == null) {
@@ -59,46 +69,56 @@ import com.lvl6.aoc2.po.UserStructure;
 		}
 					
 	}
-
+	
+	@Override
 	public  List<UserStructure> getAllUserStructuresForUser(UUID userId) {
 		String cqlquery = "select * from user_structure where user_id=" + userId + ";"; 
 		List <UserStructure> list = getUserStructureEntityManager().get().find(cqlquery);
 		return list;
 	}
 	
+	@Override
 	public Structure getStructureCorrespondingToUserStructure(UserStructure us) {
-		UUID structureId = us.getStructureId();
-		String cqlquery = "select * from Structure where structureId= " + structureId + ";";
-		List<Structure> s = getStructureEntityManager().get().find(cqlquery);
-		return s.get(0);
-	}
-	
-	
-	
-	
-	public  void reload() {
-		setStaticIdsToUserStructures();
+		String structureName = us.getName();
+		int level = us.getLvl();
+		return getStructureRetrieveUtils().getStructureWithNameAndLevel(structureName, level);
 	}
 	
 	
 
 	public UserStructureEntityManager getUserStructureEntityManager() {
-		return UserStructureEntityManager;
+		return userStructureEntityManager;
 	}
 
 	public void setUserStructureEntityManager(
-			UserStructureEntityManager UserStructureEntityManager) {
-		this.UserStructureEntityManager = UserStructureEntityManager;
+			UserStructureEntityManager userStructureEntityManager) {
+		this.userStructureEntityManager = userStructureEntityManager;
 	}
 
 	public StructureEntityManager getStructureEntityManager() {
-		return StructureEntityManager;
+		return structureEntityManager;
 	}
 
 	public void setStructureEntityManager(
 			StructureEntityManager structureEntityManager) {
-		StructureEntityManager = structureEntityManager;
+		this.structureEntityManager = structureEntityManager;
 	}
+
+	public StructureRetrieveUtils getStructureRetrieveUtils() {
+		return structureRetrieveUtils;
+	}
+
+	public void setStructureRetrieveUtils(
+			StructureRetrieveUtils structureRetrieveUtils) {
+		this.structureRetrieveUtils = structureRetrieveUtils;
+	}
+
+
+	
+	
+	
+	
+	
 	
 	
 }

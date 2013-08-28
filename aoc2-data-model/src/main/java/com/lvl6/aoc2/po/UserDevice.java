@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,9 +20,11 @@ public class UserDevice extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = null;
 	
 	@Column(name="udid")
+	@Index
 	protected String udid = null;
 
 	@Column(name="device_id")
@@ -30,9 +34,11 @@ public class UserDevice extends BasePersistentObject{
 	protected Date dateLinked = new Date();
 	
 	@Column(name="last_login")
+	@Index
 	protected Date lastLogin = null;
 
 	@Column(name="last_logout")
+	@Index
 	protected Date lastLogout = null;
 
 
@@ -117,40 +123,11 @@ public class UserDevice extends BasePersistentObject{
 
 
 	@Override
-	public String getTableCreateStatement() {
-		return "create table user_device (" +
-				" id uuid," +
-				" user_id uuid," +
-				" udid uuid," +
-				" device_id varchar," +
-				" date_linked timestamp," +
-				" last_login timestamp," +
-				" last_logout timestamp," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
-	
-	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		
 		return indexes;
 	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_device_user_id_index on user_device (user_id);");
-		indexes.add("create index user_device_udid_index on user_device (udid);");
-		indexes.add("create index user_device_last_login_index on user_device (last_login);");
-		indexes.add("create index user_device_last_logout_index on user_device (last_logout);");
-		return indexes;
-	}
-	
-	
-	
 	
 	
 }

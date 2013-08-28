@@ -13,7 +13,6 @@ import com.lvl6.aoc2.entitymanager.UserEquipEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEquipRepairEntityManager;
 import com.lvl6.aoc2.entitymanager.UserStructureEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.EquipmentRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserStructureRetrieveUtils;
 import com.lvl6.aoc2.eventprotos.CollectUserStructureEventProto.CollectUserStructureRequestProto;
 import com.lvl6.aoc2.eventprotos.CollectUserStructureEventProto.CollectUserStructureResponseProto;
 import com.lvl6.aoc2.eventprotos.CollectUserStructureEventProto.CollectUserStructureResponseProto.CollectUserStructureStatus;
@@ -27,6 +26,7 @@ import com.lvl6.aoc2.po.Structure;
 import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserStructure;
 import com.lvl6.aoc2.services.user.UserService;
+import com.lvl6.aoc2.services.userstructure.UserStructureService;
 import com.lvl6.aoc2.widerows.RestrictionOnNumberOfUserStructure;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
@@ -40,7 +40,7 @@ public class CollectUserStructureController extends EventController {
 	protected EquipmentRetrieveUtils equipmentRetrieveUtils; 
 	
 	@Autowired
-	protected UserStructureRetrieveUtils userStructureRetrieveUtils; 
+	protected UserStructureService userStructureService; 
 	
 	@Autowired
 	protected UserStructureEntityManager userStructureEntityManager;
@@ -97,7 +97,7 @@ public class CollectUserStructureController extends EventController {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
 			UserStructure us = getUserStructureEntityManager().get().get(userStructureId);
-			Structure s = getUserStructureRetrieveUtils().getStructureCorrespondingToUserStructure(us);
+			Structure s = getUserStructureService().getStructureCorrespondingToUserStructure(us);
 			
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender, inDb,
@@ -174,13 +174,13 @@ public class CollectUserStructureController extends EventController {
 		
 
 
-	public UserStructureRetrieveUtils getUserStructureRetrieveUtils() {
-		return userStructureRetrieveUtils;
+
+	public UserStructureService getUserStructureService() {
+		return userStructureService;
 	}
 
-	public void setUserStructureRetrieveUtils(
-			UserStructureRetrieveUtils userStructureRetrieveUtils) {
-		this.userStructureRetrieveUtils = userStructureRetrieveUtils;
+	public void setUserStructureService(UserStructureService userStructureService) {
+		this.userStructureService = userStructureService;
 	}
 
 	public UserEquipRepairEntityManager getUserEquipRepairEntityManager() {

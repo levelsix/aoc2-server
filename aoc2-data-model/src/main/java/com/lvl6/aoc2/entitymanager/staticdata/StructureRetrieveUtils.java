@@ -17,7 +17,7 @@ import com.lvl6.aoc2.po.Structure;
 
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
-	private  Map<UUID, Map<Integer, Structure>> structIdToLevelsToStructure;
+	private  Map<String, Map<Integer, Structure>> structNameToLevelsToStructure;
 
 	private  Map<UUID, Structure> idsToStructures;
 	//private  final String TABLE_NAME = DBConstants.CONSUMABLE;
@@ -50,13 +50,14 @@ import com.lvl6.aoc2.po.Structure;
 
 		String cqlquery = "select * from structure;"; 
 		List <Structure> list = getStructureEntityManager().get().find(cqlquery);
-		structIdToLevelsToStructure = new HashMap<UUID,Map<Integer, Structure>>();
+		structNameToLevelsToStructure = new HashMap<String,Map<Integer, Structure>>();
 		for(Structure c : list) {
-			UUID structId = c.getStructureId();
-			Map<Integer, Structure> innerMap = structIdToLevelsToStructure.get(structId);
+			idsToStructures.put(c.getId(), c);
+			String structureName = c.getName();
+			Map<Integer, Structure> innerMap = structNameToLevelsToStructure.get(structureName);
 			if(innerMap == null) {
 				innerMap = new HashMap<Integer, Structure>();
-				structIdToLevelsToStructure.put(structId, innerMap);
+				structNameToLevelsToStructure.put(structureName, innerMap);
 			}
 			innerMap.put(c.getLvl(), c);
 		}
@@ -64,18 +65,36 @@ import com.lvl6.aoc2.po.Structure;
 	}
 	
 	public Structure getUpgradedStructure(Structure s) {
-		if(structIdToLevelsToStructure == null) {
+		if(structNameToLevelsToStructure == null) {
 			setStaticIdsToStructures();
 		}
 		Structure upgradedStructure;
 		int level = s.getLvl();
-		UUID structId = s.getStructureId();
-		Map<Integer, Structure> sMap = structIdToLevelsToStructure.get(structId);
+		String structureName = s.getName();
+		Map<Integer, Structure> sMap = structNameToLevelsToStructure.get(structureName);
 		upgradedStructure = sMap.get(level+1);
 		if(upgradedStructure != null) {
 			return upgradedStructure;
 		}
 		else return null;
+	}
+	
+	public Structure getStructureWithNameAndLevel(String name, int level) {
+		Structure s = new Structure();
+		for(Map.Entry<String, Map<Integer, Structure>> entry : structNameToLevelsToStructure.entrySet()) {
+			String structureName = entry.getKey();
+			Map<Integer, Structure> map = entry.getValue();
+			if(name == structureName) {
+				for(Map.Entry<Integer, Structure> entry2 : map.entrySet()) {
+					if(level == entry2.getKey()) {
+						s = entry2.getValue();
+					}
+				}
+			
+			}
+		}
+		return s;
+		
 	}
 	
 

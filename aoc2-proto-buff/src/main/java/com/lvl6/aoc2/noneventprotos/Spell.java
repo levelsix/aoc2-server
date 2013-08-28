@@ -23,63 +23,103 @@ public final class Spell {
     boolean hasName();
     String getName();
     
-    // optional .proto.SpellProto.FunctionType function = 4;
+    // optional .proto.SpellProto.SpellFunctionType function = 4;
     boolean hasFunction();
-    com.lvl6.aoc2.noneventprotos.Spell.SpellProto.FunctionType getFunction();
+    com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellFunctionType getFunction();
     
-    // optional int32 strength = 5;
+    // optional .proto.SpellProto.SpellTargetType targetType = 5;
+    boolean hasTargetType();
+    com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellTargetType getTargetType();
+    
+    // optional .proto.SpellProto.SpellDirectionType directionType = 7;
+    boolean hasDirectionType();
+    com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellDirectionType getDirectionType();
+    
+    // optional float strength = 8;
     boolean hasStrength();
-    int getStrength();
+    float getStrength();
     
-    // optional int32 manaCost = 6;
+    // optional float force = 9;
+    boolean hasForce();
+    float getForce();
+    
+    // optional int32 manaCost = 10;
     boolean hasManaCost();
     int getManaCost();
     
-    // optional int32 duration = 7;
-    boolean hasDuration();
-    int getDuration();
+    // optional float deliveryDuration = 11;
+    boolean hasDeliveryDuration();
+    float getDeliveryDuration();
     
-    // optional int32 speed = 8;
-    boolean hasSpeed();
-    int getSpeed();
+    // optional int32 numberParticles = 12;
+    boolean hasNumberParticles();
+    int getNumberParticles();
     
-    // optional bool targetted = 9;
+    // optional float particleSpeed = 13;
+    boolean hasParticleSpeed();
+    float getParticleSpeed();
+    
+    // optional int32 particleDuration = 14;
+    boolean hasParticleDuration();
+    int getParticleDuration();
+    
+    // optional int32 hitsPerParticle = 15;
+    boolean hasHitsPerParticle();
+    int getHitsPerParticle();
+    
+    // optional float deliverySpeed = 16;
+    boolean hasDeliverySpeed();
+    float getDeliverySpeed();
+    
+    // optional bool targetted = 17;
     boolean hasTargetted();
     boolean getTargetted();
     
-    // optional float size = 10;
+    // optional float size = 18;
     boolean hasSize();
     float getSize();
     
-    // optional float castTime = 11;
+    // optional float castTime = 19;
     boolean hasCastTime();
     float getCastTime();
     
-    // optional float coolDown = 12;
+    // optional float coolDown = 20;
     boolean hasCoolDown();
     float getCoolDown();
     
-    // optional float range = 13;
+    // optional float retargetTime = 21;
+    boolean hasRetargetTime();
+    float getRetargetTime();
+    
+    // optional float range = 22;
     boolean hasRange();
     float getRange();
     
-    // optional int32 levelReq = 14;
+    // optional float angle = 23;
+    boolean hasAngle();
+    float getAngle();
+    
+    // optional float area = 24;
+    boolean hasArea();
+    float getArea();
+    
+    // optional int32 levelReq = 25;
     boolean hasLevelReq();
     int getLevelReq();
     
-    // optional int32 spellLvl = 15;
+    // optional int32 spellLvl = 26;
     boolean hasSpellLvl();
     int getSpellLvl();
     
-    // optional int32 researchCost = 16;
+    // optional int32 researchCost = 27;
     boolean hasResearchCost();
     int getResearchCost();
     
-    // optional int32 researchTime = 17;
+    // optional int32 researchTime = 28;
     boolean hasResearchTime();
     int getResearchTime();
     
-    // required .proto.ResourceType researchResource = 18;
+    // required .proto.ResourceType researchResource = 29;
     boolean hasResearchResource();
     com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType getResearchResource();
   }
@@ -111,44 +151,38 @@ public final class Spell {
       return com.lvl6.aoc2.noneventprotos.Spell.internal_static_proto_SpellProto_fieldAccessorTable;
     }
     
-    public enum FunctionType
+    public enum SpellFunctionType
         implements com.google.protobuf.ProtocolMessageEnum {
       ATTACK(0, 0),
-      FLAT_BUFF(1, 1),
-      SCALE_BUFF(2, 2),
-      HEAL_SELF(3, 3),
-      HEAL_OTHER(4, 4),
+      BUFF(1, 1),
+      HEAL(2, 2),
       ;
       
       public static final int ATTACK_VALUE = 0;
-      public static final int FLAT_BUFF_VALUE = 1;
-      public static final int SCALE_BUFF_VALUE = 2;
-      public static final int HEAL_SELF_VALUE = 3;
-      public static final int HEAL_OTHER_VALUE = 4;
+      public static final int BUFF_VALUE = 1;
+      public static final int HEAL_VALUE = 2;
       
       
       public final int getNumber() { return value; }
       
-      public static FunctionType valueOf(int value) {
+      public static SpellFunctionType valueOf(int value) {
         switch (value) {
           case 0: return ATTACK;
-          case 1: return FLAT_BUFF;
-          case 2: return SCALE_BUFF;
-          case 3: return HEAL_SELF;
-          case 4: return HEAL_OTHER;
+          case 1: return BUFF;
+          case 2: return HEAL;
           default: return null;
         }
       }
       
-      public static com.google.protobuf.Internal.EnumLiteMap<FunctionType>
+      public static com.google.protobuf.Internal.EnumLiteMap<SpellFunctionType>
           internalGetValueMap() {
         return internalValueMap;
       }
-      private static com.google.protobuf.Internal.EnumLiteMap<FunctionType>
+      private static com.google.protobuf.Internal.EnumLiteMap<SpellFunctionType>
           internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<FunctionType>() {
-              public FunctionType findValueByNumber(int number) {
-                return FunctionType.valueOf(number);
+            new com.google.protobuf.Internal.EnumLiteMap<SpellFunctionType>() {
+              public SpellFunctionType findValueByNumber(int number) {
+                return SpellFunctionType.valueOf(number);
               }
             };
       
@@ -165,11 +199,11 @@ public final class Spell {
         return com.lvl6.aoc2.noneventprotos.Spell.SpellProto.getDescriptor().getEnumTypes().get(0);
       }
       
-      private static final FunctionType[] VALUES = {
-        ATTACK, FLAT_BUFF, SCALE_BUFF, HEAL_SELF, HEAL_OTHER, 
+      private static final SpellFunctionType[] VALUES = {
+        ATTACK, BUFF, HEAL, 
       };
       
-      public static FunctionType valueOf(
+      public static SpellFunctionType valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
@@ -181,12 +215,156 @@ public final class Spell {
       private final int index;
       private final int value;
       
-      private FunctionType(int index, int value) {
+      private SpellFunctionType(int index, int value) {
         this.index = index;
         this.value = value;
       }
       
-      // @@protoc_insertion_point(enum_scope:proto.SpellProto.FunctionType)
+      // @@protoc_insertion_point(enum_scope:proto.SpellProto.SpellFunctionType)
+    }
+    
+    public enum SpellTargetType
+        implements com.google.protobuf.ProtocolMessageEnum {
+      SELF(0, 0),
+      PERSONAL(1, 1),
+      TARGETTED(2, 2),
+      ;
+      
+      public static final int SELF_VALUE = 0;
+      public static final int PERSONAL_VALUE = 1;
+      public static final int TARGETTED_VALUE = 2;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static SpellTargetType valueOf(int value) {
+        switch (value) {
+          case 0: return SELF;
+          case 1: return PERSONAL;
+          case 2: return TARGETTED;
+          default: return null;
+        }
+      }
+      
+      public static com.google.protobuf.Internal.EnumLiteMap<SpellTargetType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<SpellTargetType>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<SpellTargetType>() {
+              public SpellTargetType findValueByNumber(int number) {
+                return SpellTargetType.valueOf(number);
+              }
+            };
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.lvl6.aoc2.noneventprotos.Spell.SpellProto.getDescriptor().getEnumTypes().get(1);
+      }
+      
+      private static final SpellTargetType[] VALUES = {
+        SELF, PERSONAL, TARGETTED, 
+      };
+      
+      public static SpellTargetType valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+      
+      private final int index;
+      private final int value;
+      
+      private SpellTargetType(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+      
+      // @@protoc_insertion_point(enum_scope:proto.SpellProto.SpellTargetType)
+    }
+    
+    public enum SpellDirectionType
+        implements com.google.protobuf.ProtocolMessageEnum {
+      STRAIGHT(0, 0),
+      ARC(1, 1),
+      SCATTERED(2, 2),
+      ;
+      
+      public static final int STRAIGHT_VALUE = 0;
+      public static final int ARC_VALUE = 1;
+      public static final int SCATTERED_VALUE = 2;
+      
+      
+      public final int getNumber() { return value; }
+      
+      public static SpellDirectionType valueOf(int value) {
+        switch (value) {
+          case 0: return STRAIGHT;
+          case 1: return ARC;
+          case 2: return SCATTERED;
+          default: return null;
+        }
+      }
+      
+      public static com.google.protobuf.Internal.EnumLiteMap<SpellDirectionType>
+          internalGetValueMap() {
+        return internalValueMap;
+      }
+      private static com.google.protobuf.Internal.EnumLiteMap<SpellDirectionType>
+          internalValueMap =
+            new com.google.protobuf.Internal.EnumLiteMap<SpellDirectionType>() {
+              public SpellDirectionType findValueByNumber(int number) {
+                return SpellDirectionType.valueOf(number);
+              }
+            };
+      
+      public final com.google.protobuf.Descriptors.EnumValueDescriptor
+          getValueDescriptor() {
+        return getDescriptor().getValues().get(index);
+      }
+      public final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptorForType() {
+        return getDescriptor();
+      }
+      public static final com.google.protobuf.Descriptors.EnumDescriptor
+          getDescriptor() {
+        return com.lvl6.aoc2.noneventprotos.Spell.SpellProto.getDescriptor().getEnumTypes().get(2);
+      }
+      
+      private static final SpellDirectionType[] VALUES = {
+        STRAIGHT, ARC, SCATTERED, 
+      };
+      
+      public static SpellDirectionType valueOf(
+          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+        if (desc.getType() != getDescriptor()) {
+          throw new java.lang.IllegalArgumentException(
+            "EnumValueDescriptor is not for this type.");
+        }
+        return VALUES[desc.getIndex()];
+      }
+      
+      private final int index;
+      private final int value;
+      
+      private SpellDirectionType(int index, int value) {
+        this.index = index;
+        this.value = value;
+      }
+      
+      // @@protoc_insertion_point(enum_scope:proto.SpellProto.SpellDirectionType)
     }
     
     private int bitField0_;
@@ -242,151 +420,251 @@ public final class Spell {
       }
     }
     
-    // optional .proto.SpellProto.FunctionType function = 4;
+    // optional .proto.SpellProto.SpellFunctionType function = 4;
     public static final int FUNCTION_FIELD_NUMBER = 4;
-    private com.lvl6.aoc2.noneventprotos.Spell.SpellProto.FunctionType function_;
+    private com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellFunctionType function_;
     public boolean hasFunction() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
-    public com.lvl6.aoc2.noneventprotos.Spell.SpellProto.FunctionType getFunction() {
+    public com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellFunctionType getFunction() {
       return function_;
     }
     
-    // optional int32 strength = 5;
-    public static final int STRENGTH_FIELD_NUMBER = 5;
-    private int strength_;
-    public boolean hasStrength() {
+    // optional .proto.SpellProto.SpellTargetType targetType = 5;
+    public static final int TARGETTYPE_FIELD_NUMBER = 5;
+    private com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellTargetType targetType_;
+    public boolean hasTargetType() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
-    public int getStrength() {
+    public com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellTargetType getTargetType() {
+      return targetType_;
+    }
+    
+    // optional .proto.SpellProto.SpellDirectionType directionType = 7;
+    public static final int DIRECTIONTYPE_FIELD_NUMBER = 7;
+    private com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellDirectionType directionType_;
+    public boolean hasDirectionType() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellDirectionType getDirectionType() {
+      return directionType_;
+    }
+    
+    // optional float strength = 8;
+    public static final int STRENGTH_FIELD_NUMBER = 8;
+    private float strength_;
+    public boolean hasStrength() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    public float getStrength() {
       return strength_;
     }
     
-    // optional int32 manaCost = 6;
-    public static final int MANACOST_FIELD_NUMBER = 6;
+    // optional float force = 9;
+    public static final int FORCE_FIELD_NUMBER = 9;
+    private float force_;
+    public boolean hasForce() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    public float getForce() {
+      return force_;
+    }
+    
+    // optional int32 manaCost = 10;
+    public static final int MANACOST_FIELD_NUMBER = 10;
     private int manaCost_;
     public boolean hasManaCost() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     public int getManaCost() {
       return manaCost_;
     }
     
-    // optional int32 duration = 7;
-    public static final int DURATION_FIELD_NUMBER = 7;
-    private int duration_;
-    public boolean hasDuration() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+    // optional float deliveryDuration = 11;
+    public static final int DELIVERYDURATION_FIELD_NUMBER = 11;
+    private float deliveryDuration_;
+    public boolean hasDeliveryDuration() {
+      return ((bitField0_ & 0x00000200) == 0x00000200);
     }
-    public int getDuration() {
-      return duration_;
-    }
-    
-    // optional int32 speed = 8;
-    public static final int SPEED_FIELD_NUMBER = 8;
-    private int speed_;
-    public boolean hasSpeed() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
-    }
-    public int getSpeed() {
-      return speed_;
+    public float getDeliveryDuration() {
+      return deliveryDuration_;
     }
     
-    // optional bool targetted = 9;
-    public static final int TARGETTED_FIELD_NUMBER = 9;
+    // optional int32 numberParticles = 12;
+    public static final int NUMBERPARTICLES_FIELD_NUMBER = 12;
+    private int numberParticles_;
+    public boolean hasNumberParticles() {
+      return ((bitField0_ & 0x00000400) == 0x00000400);
+    }
+    public int getNumberParticles() {
+      return numberParticles_;
+    }
+    
+    // optional float particleSpeed = 13;
+    public static final int PARTICLESPEED_FIELD_NUMBER = 13;
+    private float particleSpeed_;
+    public boolean hasParticleSpeed() {
+      return ((bitField0_ & 0x00000800) == 0x00000800);
+    }
+    public float getParticleSpeed() {
+      return particleSpeed_;
+    }
+    
+    // optional int32 particleDuration = 14;
+    public static final int PARTICLEDURATION_FIELD_NUMBER = 14;
+    private int particleDuration_;
+    public boolean hasParticleDuration() {
+      return ((bitField0_ & 0x00001000) == 0x00001000);
+    }
+    public int getParticleDuration() {
+      return particleDuration_;
+    }
+    
+    // optional int32 hitsPerParticle = 15;
+    public static final int HITSPERPARTICLE_FIELD_NUMBER = 15;
+    private int hitsPerParticle_;
+    public boolean hasHitsPerParticle() {
+      return ((bitField0_ & 0x00002000) == 0x00002000);
+    }
+    public int getHitsPerParticle() {
+      return hitsPerParticle_;
+    }
+    
+    // optional float deliverySpeed = 16;
+    public static final int DELIVERYSPEED_FIELD_NUMBER = 16;
+    private float deliverySpeed_;
+    public boolean hasDeliverySpeed() {
+      return ((bitField0_ & 0x00004000) == 0x00004000);
+    }
+    public float getDeliverySpeed() {
+      return deliverySpeed_;
+    }
+    
+    // optional bool targetted = 17;
+    public static final int TARGETTED_FIELD_NUMBER = 17;
     private boolean targetted_;
     public boolean hasTargetted() {
-      return ((bitField0_ & 0x00000100) == 0x00000100);
+      return ((bitField0_ & 0x00008000) == 0x00008000);
     }
     public boolean getTargetted() {
       return targetted_;
     }
     
-    // optional float size = 10;
-    public static final int SIZE_FIELD_NUMBER = 10;
+    // optional float size = 18;
+    public static final int SIZE_FIELD_NUMBER = 18;
     private float size_;
     public boolean hasSize() {
-      return ((bitField0_ & 0x00000200) == 0x00000200);
+      return ((bitField0_ & 0x00010000) == 0x00010000);
     }
     public float getSize() {
       return size_;
     }
     
-    // optional float castTime = 11;
-    public static final int CASTTIME_FIELD_NUMBER = 11;
+    // optional float castTime = 19;
+    public static final int CASTTIME_FIELD_NUMBER = 19;
     private float castTime_;
     public boolean hasCastTime() {
-      return ((bitField0_ & 0x00000400) == 0x00000400);
+      return ((bitField0_ & 0x00020000) == 0x00020000);
     }
     public float getCastTime() {
       return castTime_;
     }
     
-    // optional float coolDown = 12;
-    public static final int COOLDOWN_FIELD_NUMBER = 12;
+    // optional float coolDown = 20;
+    public static final int COOLDOWN_FIELD_NUMBER = 20;
     private float coolDown_;
     public boolean hasCoolDown() {
-      return ((bitField0_ & 0x00000800) == 0x00000800);
+      return ((bitField0_ & 0x00040000) == 0x00040000);
     }
     public float getCoolDown() {
       return coolDown_;
     }
     
-    // optional float range = 13;
-    public static final int RANGE_FIELD_NUMBER = 13;
+    // optional float retargetTime = 21;
+    public static final int RETARGETTIME_FIELD_NUMBER = 21;
+    private float retargetTime_;
+    public boolean hasRetargetTime() {
+      return ((bitField0_ & 0x00080000) == 0x00080000);
+    }
+    public float getRetargetTime() {
+      return retargetTime_;
+    }
+    
+    // optional float range = 22;
+    public static final int RANGE_FIELD_NUMBER = 22;
     private float range_;
     public boolean hasRange() {
-      return ((bitField0_ & 0x00001000) == 0x00001000);
+      return ((bitField0_ & 0x00100000) == 0x00100000);
     }
     public float getRange() {
       return range_;
     }
     
-    // optional int32 levelReq = 14;
-    public static final int LEVELREQ_FIELD_NUMBER = 14;
+    // optional float angle = 23;
+    public static final int ANGLE_FIELD_NUMBER = 23;
+    private float angle_;
+    public boolean hasAngle() {
+      return ((bitField0_ & 0x00200000) == 0x00200000);
+    }
+    public float getAngle() {
+      return angle_;
+    }
+    
+    // optional float area = 24;
+    public static final int AREA_FIELD_NUMBER = 24;
+    private float area_;
+    public boolean hasArea() {
+      return ((bitField0_ & 0x00400000) == 0x00400000);
+    }
+    public float getArea() {
+      return area_;
+    }
+    
+    // optional int32 levelReq = 25;
+    public static final int LEVELREQ_FIELD_NUMBER = 25;
     private int levelReq_;
     public boolean hasLevelReq() {
-      return ((bitField0_ & 0x00002000) == 0x00002000);
+      return ((bitField0_ & 0x00800000) == 0x00800000);
     }
     public int getLevelReq() {
       return levelReq_;
     }
     
-    // optional int32 spellLvl = 15;
-    public static final int SPELLLVL_FIELD_NUMBER = 15;
+    // optional int32 spellLvl = 26;
+    public static final int SPELLLVL_FIELD_NUMBER = 26;
     private int spellLvl_;
     public boolean hasSpellLvl() {
-      return ((bitField0_ & 0x00004000) == 0x00004000);
+      return ((bitField0_ & 0x01000000) == 0x01000000);
     }
     public int getSpellLvl() {
       return spellLvl_;
     }
     
-    // optional int32 researchCost = 16;
-    public static final int RESEARCHCOST_FIELD_NUMBER = 16;
+    // optional int32 researchCost = 27;
+    public static final int RESEARCHCOST_FIELD_NUMBER = 27;
     private int researchCost_;
     public boolean hasResearchCost() {
-      return ((bitField0_ & 0x00008000) == 0x00008000);
+      return ((bitField0_ & 0x02000000) == 0x02000000);
     }
     public int getResearchCost() {
       return researchCost_;
     }
     
-    // optional int32 researchTime = 17;
-    public static final int RESEARCHTIME_FIELD_NUMBER = 17;
+    // optional int32 researchTime = 28;
+    public static final int RESEARCHTIME_FIELD_NUMBER = 28;
     private int researchTime_;
     public boolean hasResearchTime() {
-      return ((bitField0_ & 0x00010000) == 0x00010000);
+      return ((bitField0_ & 0x04000000) == 0x04000000);
     }
     public int getResearchTime() {
       return researchTime_;
     }
     
-    // required .proto.ResourceType researchResource = 18;
-    public static final int RESEARCHRESOURCE_FIELD_NUMBER = 18;
+    // required .proto.ResourceType researchResource = 29;
+    public static final int RESEARCHRESOURCE_FIELD_NUMBER = 29;
     private com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType researchResource_;
     public boolean hasResearchResource() {
-      return ((bitField0_ & 0x00020000) == 0x00020000);
+      return ((bitField0_ & 0x08000000) == 0x08000000);
     }
     public com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType getResearchResource() {
       return researchResource_;
@@ -396,16 +674,26 @@ public final class Spell {
       spellID_ = 0;
       classType_ = com.lvl6.aoc2.noneventprotos.ClassEnum.ClassType.WARRIOR;
       name_ = "";
-      function_ = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.FunctionType.ATTACK;
-      strength_ = 0;
+      function_ = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellFunctionType.ATTACK;
+      targetType_ = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellTargetType.SELF;
+      directionType_ = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellDirectionType.STRAIGHT;
+      strength_ = 0F;
+      force_ = 0F;
       manaCost_ = 0;
-      duration_ = 0;
-      speed_ = 0;
+      deliveryDuration_ = 0F;
+      numberParticles_ = 0;
+      particleSpeed_ = 0F;
+      particleDuration_ = 0;
+      hitsPerParticle_ = 0;
+      deliverySpeed_ = 0F;
       targetted_ = false;
       size_ = 0F;
       castTime_ = 0F;
       coolDown_ = 0F;
+      retargetTime_ = 0F;
       range_ = 0F;
+      angle_ = 0F;
+      area_ = 0F;
       levelReq_ = 0;
       spellLvl_ = 0;
       researchCost_ = 0;
@@ -445,46 +733,76 @@ public final class Spell {
         output.writeEnum(4, function_.getNumber());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeInt32(5, strength_);
+        output.writeEnum(5, targetType_.getNumber());
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeInt32(6, manaCost_);
+        output.writeEnum(7, directionType_.getNumber());
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeInt32(7, duration_);
+        output.writeFloat(8, strength_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeInt32(8, speed_);
+        output.writeFloat(9, force_);
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeBool(9, targetted_);
+        output.writeInt32(10, manaCost_);
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
-        output.writeFloat(10, size_);
+        output.writeFloat(11, deliveryDuration_);
       }
       if (((bitField0_ & 0x00000400) == 0x00000400)) {
-        output.writeFloat(11, castTime_);
+        output.writeInt32(12, numberParticles_);
       }
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
-        output.writeFloat(12, coolDown_);
+        output.writeFloat(13, particleSpeed_);
       }
       if (((bitField0_ & 0x00001000) == 0x00001000)) {
-        output.writeFloat(13, range_);
+        output.writeInt32(14, particleDuration_);
       }
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
-        output.writeInt32(14, levelReq_);
+        output.writeInt32(15, hitsPerParticle_);
       }
       if (((bitField0_ & 0x00004000) == 0x00004000)) {
-        output.writeInt32(15, spellLvl_);
+        output.writeFloat(16, deliverySpeed_);
       }
       if (((bitField0_ & 0x00008000) == 0x00008000)) {
-        output.writeInt32(16, researchCost_);
+        output.writeBool(17, targetted_);
       }
       if (((bitField0_ & 0x00010000) == 0x00010000)) {
-        output.writeInt32(17, researchTime_);
+        output.writeFloat(18, size_);
       }
       if (((bitField0_ & 0x00020000) == 0x00020000)) {
-        output.writeEnum(18, researchResource_.getNumber());
+        output.writeFloat(19, castTime_);
+      }
+      if (((bitField0_ & 0x00040000) == 0x00040000)) {
+        output.writeFloat(20, coolDown_);
+      }
+      if (((bitField0_ & 0x00080000) == 0x00080000)) {
+        output.writeFloat(21, retargetTime_);
+      }
+      if (((bitField0_ & 0x00100000) == 0x00100000)) {
+        output.writeFloat(22, range_);
+      }
+      if (((bitField0_ & 0x00200000) == 0x00200000)) {
+        output.writeFloat(23, angle_);
+      }
+      if (((bitField0_ & 0x00400000) == 0x00400000)) {
+        output.writeFloat(24, area_);
+      }
+      if (((bitField0_ & 0x00800000) == 0x00800000)) {
+        output.writeInt32(25, levelReq_);
+      }
+      if (((bitField0_ & 0x01000000) == 0x01000000)) {
+        output.writeInt32(26, spellLvl_);
+      }
+      if (((bitField0_ & 0x02000000) == 0x02000000)) {
+        output.writeInt32(27, researchCost_);
+      }
+      if (((bitField0_ & 0x04000000) == 0x04000000)) {
+        output.writeInt32(28, researchTime_);
+      }
+      if (((bitField0_ & 0x08000000) == 0x08000000)) {
+        output.writeEnum(29, researchResource_.getNumber());
       }
       getUnknownFields().writeTo(output);
     }
@@ -513,59 +831,99 @@ public final class Spell {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(5, strength_);
+          .computeEnumSize(5, targetType_.getNumber());
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(6, manaCost_);
+          .computeEnumSize(7, directionType_.getNumber());
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(7, duration_);
+          .computeFloatSize(8, strength_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(8, speed_);
+          .computeFloatSize(9, force_);
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(9, targetted_);
+          .computeInt32Size(10, manaCost_);
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(10, size_);
+          .computeFloatSize(11, deliveryDuration_);
       }
       if (((bitField0_ & 0x00000400) == 0x00000400)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(11, castTime_);
+          .computeInt32Size(12, numberParticles_);
       }
       if (((bitField0_ & 0x00000800) == 0x00000800)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(12, coolDown_);
+          .computeFloatSize(13, particleSpeed_);
       }
       if (((bitField0_ & 0x00001000) == 0x00001000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(13, range_);
+          .computeInt32Size(14, particleDuration_);
       }
       if (((bitField0_ & 0x00002000) == 0x00002000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(14, levelReq_);
+          .computeInt32Size(15, hitsPerParticle_);
       }
       if (((bitField0_ & 0x00004000) == 0x00004000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(15, spellLvl_);
+          .computeFloatSize(16, deliverySpeed_);
       }
       if (((bitField0_ & 0x00008000) == 0x00008000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(16, researchCost_);
+          .computeBoolSize(17, targetted_);
       }
       if (((bitField0_ & 0x00010000) == 0x00010000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(17, researchTime_);
+          .computeFloatSize(18, size_);
       }
       if (((bitField0_ & 0x00020000) == 0x00020000)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(18, researchResource_.getNumber());
+          .computeFloatSize(19, castTime_);
+      }
+      if (((bitField0_ & 0x00040000) == 0x00040000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(20, coolDown_);
+      }
+      if (((bitField0_ & 0x00080000) == 0x00080000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(21, retargetTime_);
+      }
+      if (((bitField0_ & 0x00100000) == 0x00100000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(22, range_);
+      }
+      if (((bitField0_ & 0x00200000) == 0x00200000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(23, angle_);
+      }
+      if (((bitField0_ & 0x00400000) == 0x00400000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(24, area_);
+      }
+      if (((bitField0_ & 0x00800000) == 0x00800000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(25, levelReq_);
+      }
+      if (((bitField0_ & 0x01000000) == 0x01000000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(26, spellLvl_);
+      }
+      if (((bitField0_ & 0x02000000) == 0x02000000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(27, researchCost_);
+      }
+      if (((bitField0_ & 0x04000000) == 0x04000000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(28, researchTime_);
+      }
+      if (((bitField0_ & 0x08000000) == 0x08000000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(29, researchResource_.getNumber());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -697,36 +1055,56 @@ public final class Spell {
         bitField0_ = (bitField0_ & ~0x00000002);
         name_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
-        function_ = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.FunctionType.ATTACK;
+        function_ = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellFunctionType.ATTACK;
         bitField0_ = (bitField0_ & ~0x00000008);
-        strength_ = 0;
+        targetType_ = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellTargetType.SELF;
         bitField0_ = (bitField0_ & ~0x00000010);
-        manaCost_ = 0;
+        directionType_ = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellDirectionType.STRAIGHT;
         bitField0_ = (bitField0_ & ~0x00000020);
-        duration_ = 0;
+        strength_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000040);
-        speed_ = 0;
+        force_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000080);
-        targetted_ = false;
+        manaCost_ = 0;
         bitField0_ = (bitField0_ & ~0x00000100);
-        size_ = 0F;
+        deliveryDuration_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000200);
-        castTime_ = 0F;
+        numberParticles_ = 0;
         bitField0_ = (bitField0_ & ~0x00000400);
-        coolDown_ = 0F;
+        particleSpeed_ = 0F;
         bitField0_ = (bitField0_ & ~0x00000800);
-        range_ = 0F;
+        particleDuration_ = 0;
         bitField0_ = (bitField0_ & ~0x00001000);
-        levelReq_ = 0;
+        hitsPerParticle_ = 0;
         bitField0_ = (bitField0_ & ~0x00002000);
-        spellLvl_ = 0;
+        deliverySpeed_ = 0F;
         bitField0_ = (bitField0_ & ~0x00004000);
-        researchCost_ = 0;
+        targetted_ = false;
         bitField0_ = (bitField0_ & ~0x00008000);
-        researchTime_ = 0;
+        size_ = 0F;
         bitField0_ = (bitField0_ & ~0x00010000);
-        researchResource_ = com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType.GOLD;
+        castTime_ = 0F;
         bitField0_ = (bitField0_ & ~0x00020000);
+        coolDown_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00040000);
+        retargetTime_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00080000);
+        range_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00100000);
+        angle_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00200000);
+        area_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00400000);
+        levelReq_ = 0;
+        bitField0_ = (bitField0_ & ~0x00800000);
+        spellLvl_ = 0;
+        bitField0_ = (bitField0_ & ~0x01000000);
+        researchCost_ = 0;
+        bitField0_ = (bitField0_ & ~0x02000000);
+        researchTime_ = 0;
+        bitField0_ = (bitField0_ & ~0x04000000);
+        researchResource_ = com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType.GOLD;
+        bitField0_ = (bitField0_ & ~0x08000000);
         return this;
       }
       
@@ -784,57 +1162,97 @@ public final class Spell {
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.strength_ = strength_;
+        result.targetType_ = targetType_;
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
         }
-        result.manaCost_ = manaCost_;
+        result.directionType_ = directionType_;
         if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
           to_bitField0_ |= 0x00000040;
         }
-        result.duration_ = duration_;
+        result.strength_ = strength_;
         if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
           to_bitField0_ |= 0x00000080;
         }
-        result.speed_ = speed_;
+        result.force_ = force_;
         if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
           to_bitField0_ |= 0x00000100;
         }
-        result.targetted_ = targetted_;
+        result.manaCost_ = manaCost_;
         if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
           to_bitField0_ |= 0x00000200;
         }
-        result.size_ = size_;
+        result.deliveryDuration_ = deliveryDuration_;
         if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
           to_bitField0_ |= 0x00000400;
         }
-        result.castTime_ = castTime_;
+        result.numberParticles_ = numberParticles_;
         if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
           to_bitField0_ |= 0x00000800;
         }
-        result.coolDown_ = coolDown_;
+        result.particleSpeed_ = particleSpeed_;
         if (((from_bitField0_ & 0x00001000) == 0x00001000)) {
           to_bitField0_ |= 0x00001000;
         }
-        result.range_ = range_;
+        result.particleDuration_ = particleDuration_;
         if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
           to_bitField0_ |= 0x00002000;
         }
-        result.levelReq_ = levelReq_;
+        result.hitsPerParticle_ = hitsPerParticle_;
         if (((from_bitField0_ & 0x00004000) == 0x00004000)) {
           to_bitField0_ |= 0x00004000;
         }
-        result.spellLvl_ = spellLvl_;
+        result.deliverySpeed_ = deliverySpeed_;
         if (((from_bitField0_ & 0x00008000) == 0x00008000)) {
           to_bitField0_ |= 0x00008000;
         }
-        result.researchCost_ = researchCost_;
+        result.targetted_ = targetted_;
         if (((from_bitField0_ & 0x00010000) == 0x00010000)) {
           to_bitField0_ |= 0x00010000;
         }
-        result.researchTime_ = researchTime_;
+        result.size_ = size_;
         if (((from_bitField0_ & 0x00020000) == 0x00020000)) {
           to_bitField0_ |= 0x00020000;
+        }
+        result.castTime_ = castTime_;
+        if (((from_bitField0_ & 0x00040000) == 0x00040000)) {
+          to_bitField0_ |= 0x00040000;
+        }
+        result.coolDown_ = coolDown_;
+        if (((from_bitField0_ & 0x00080000) == 0x00080000)) {
+          to_bitField0_ |= 0x00080000;
+        }
+        result.retargetTime_ = retargetTime_;
+        if (((from_bitField0_ & 0x00100000) == 0x00100000)) {
+          to_bitField0_ |= 0x00100000;
+        }
+        result.range_ = range_;
+        if (((from_bitField0_ & 0x00200000) == 0x00200000)) {
+          to_bitField0_ |= 0x00200000;
+        }
+        result.angle_ = angle_;
+        if (((from_bitField0_ & 0x00400000) == 0x00400000)) {
+          to_bitField0_ |= 0x00400000;
+        }
+        result.area_ = area_;
+        if (((from_bitField0_ & 0x00800000) == 0x00800000)) {
+          to_bitField0_ |= 0x00800000;
+        }
+        result.levelReq_ = levelReq_;
+        if (((from_bitField0_ & 0x01000000) == 0x01000000)) {
+          to_bitField0_ |= 0x01000000;
+        }
+        result.spellLvl_ = spellLvl_;
+        if (((from_bitField0_ & 0x02000000) == 0x02000000)) {
+          to_bitField0_ |= 0x02000000;
+        }
+        result.researchCost_ = researchCost_;
+        if (((from_bitField0_ & 0x04000000) == 0x04000000)) {
+          to_bitField0_ |= 0x04000000;
+        }
+        result.researchTime_ = researchTime_;
+        if (((from_bitField0_ & 0x08000000) == 0x08000000)) {
+          to_bitField0_ |= 0x08000000;
         }
         result.researchResource_ = researchResource_;
         result.bitField0_ = to_bitField0_;
@@ -865,17 +1283,38 @@ public final class Spell {
         if (other.hasFunction()) {
           setFunction(other.getFunction());
         }
+        if (other.hasTargetType()) {
+          setTargetType(other.getTargetType());
+        }
+        if (other.hasDirectionType()) {
+          setDirectionType(other.getDirectionType());
+        }
         if (other.hasStrength()) {
           setStrength(other.getStrength());
+        }
+        if (other.hasForce()) {
+          setForce(other.getForce());
         }
         if (other.hasManaCost()) {
           setManaCost(other.getManaCost());
         }
-        if (other.hasDuration()) {
-          setDuration(other.getDuration());
+        if (other.hasDeliveryDuration()) {
+          setDeliveryDuration(other.getDeliveryDuration());
         }
-        if (other.hasSpeed()) {
-          setSpeed(other.getSpeed());
+        if (other.hasNumberParticles()) {
+          setNumberParticles(other.getNumberParticles());
+        }
+        if (other.hasParticleSpeed()) {
+          setParticleSpeed(other.getParticleSpeed());
+        }
+        if (other.hasParticleDuration()) {
+          setParticleDuration(other.getParticleDuration());
+        }
+        if (other.hasHitsPerParticle()) {
+          setHitsPerParticle(other.getHitsPerParticle());
+        }
+        if (other.hasDeliverySpeed()) {
+          setDeliverySpeed(other.getDeliverySpeed());
         }
         if (other.hasTargetted()) {
           setTargetted(other.getTargetted());
@@ -889,8 +1328,17 @@ public final class Spell {
         if (other.hasCoolDown()) {
           setCoolDown(other.getCoolDown());
         }
+        if (other.hasRetargetTime()) {
+          setRetargetTime(other.getRetargetTime());
+        }
         if (other.hasRange()) {
           setRange(other.getRange());
+        }
+        if (other.hasAngle()) {
+          setAngle(other.getAngle());
+        }
+        if (other.hasArea()) {
+          setArea(other.getArea());
         }
         if (other.hasLevelReq()) {
           setLevelReq(other.getLevelReq());
@@ -969,7 +1417,7 @@ public final class Spell {
             }
             case 32: {
               int rawValue = input.readEnum();
-              com.lvl6.aoc2.noneventprotos.Spell.SpellProto.FunctionType value = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.FunctionType.valueOf(rawValue);
+              com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellFunctionType value = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellFunctionType.valueOf(rawValue);
               if (value == null) {
                 unknownFields.mergeVarintField(4, rawValue);
               } else {
@@ -979,77 +1427,139 @@ public final class Spell {
               break;
             }
             case 40: {
-              bitField0_ |= 0x00000010;
-              strength_ = input.readInt32();
-              break;
-            }
-            case 48: {
-              bitField0_ |= 0x00000020;
-              manaCost_ = input.readInt32();
+              int rawValue = input.readEnum();
+              com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellTargetType value = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellTargetType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(5, rawValue);
+              } else {
+                bitField0_ |= 0x00000010;
+                targetType_ = value;
+              }
               break;
             }
             case 56: {
+              int rawValue = input.readEnum();
+              com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellDirectionType value = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellDirectionType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(7, rawValue);
+              } else {
+                bitField0_ |= 0x00000020;
+                directionType_ = value;
+              }
+              break;
+            }
+            case 69: {
               bitField0_ |= 0x00000040;
-              duration_ = input.readInt32();
+              strength_ = input.readFloat();
               break;
             }
-            case 64: {
+            case 77: {
               bitField0_ |= 0x00000080;
-              speed_ = input.readInt32();
+              force_ = input.readFloat();
               break;
             }
-            case 72: {
+            case 80: {
               bitField0_ |= 0x00000100;
-              targetted_ = input.readBool();
-              break;
-            }
-            case 85: {
-              bitField0_ |= 0x00000200;
-              size_ = input.readFloat();
+              manaCost_ = input.readInt32();
               break;
             }
             case 93: {
-              bitField0_ |= 0x00000400;
-              castTime_ = input.readFloat();
+              bitField0_ |= 0x00000200;
+              deliveryDuration_ = input.readFloat();
               break;
             }
-            case 101: {
-              bitField0_ |= 0x00000800;
-              coolDown_ = input.readFloat();
+            case 96: {
+              bitField0_ |= 0x00000400;
+              numberParticles_ = input.readInt32();
               break;
             }
             case 109: {
-              bitField0_ |= 0x00001000;
-              range_ = input.readFloat();
+              bitField0_ |= 0x00000800;
+              particleSpeed_ = input.readFloat();
               break;
             }
             case 112: {
-              bitField0_ |= 0x00002000;
-              levelReq_ = input.readInt32();
+              bitField0_ |= 0x00001000;
+              particleDuration_ = input.readInt32();
               break;
             }
             case 120: {
-              bitField0_ |= 0x00004000;
-              spellLvl_ = input.readInt32();
+              bitField0_ |= 0x00002000;
+              hitsPerParticle_ = input.readInt32();
               break;
             }
-            case 128: {
-              bitField0_ |= 0x00008000;
-              researchCost_ = input.readInt32();
+            case 133: {
+              bitField0_ |= 0x00004000;
+              deliverySpeed_ = input.readFloat();
               break;
             }
             case 136: {
+              bitField0_ |= 0x00008000;
+              targetted_ = input.readBool();
+              break;
+            }
+            case 149: {
               bitField0_ |= 0x00010000;
+              size_ = input.readFloat();
+              break;
+            }
+            case 157: {
+              bitField0_ |= 0x00020000;
+              castTime_ = input.readFloat();
+              break;
+            }
+            case 165: {
+              bitField0_ |= 0x00040000;
+              coolDown_ = input.readFloat();
+              break;
+            }
+            case 173: {
+              bitField0_ |= 0x00080000;
+              retargetTime_ = input.readFloat();
+              break;
+            }
+            case 181: {
+              bitField0_ |= 0x00100000;
+              range_ = input.readFloat();
+              break;
+            }
+            case 189: {
+              bitField0_ |= 0x00200000;
+              angle_ = input.readFloat();
+              break;
+            }
+            case 197: {
+              bitField0_ |= 0x00400000;
+              area_ = input.readFloat();
+              break;
+            }
+            case 200: {
+              bitField0_ |= 0x00800000;
+              levelReq_ = input.readInt32();
+              break;
+            }
+            case 208: {
+              bitField0_ |= 0x01000000;
+              spellLvl_ = input.readInt32();
+              break;
+            }
+            case 216: {
+              bitField0_ |= 0x02000000;
+              researchCost_ = input.readInt32();
+              break;
+            }
+            case 224: {
+              bitField0_ |= 0x04000000;
               researchTime_ = input.readInt32();
               break;
             }
-            case 144: {
+            case 232: {
               int rawValue = input.readEnum();
               com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType value = com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType.valueOf(rawValue);
               if (value == null) {
-                unknownFields.mergeVarintField(18, rawValue);
+                unknownFields.mergeVarintField(29, rawValue);
               } else {
-                bitField0_ |= 0x00020000;
+                bitField0_ |= 0x08000000;
                 researchResource_ = value;
               }
               break;
@@ -1141,15 +1651,15 @@ public final class Spell {
         onChanged();
       }
       
-      // optional .proto.SpellProto.FunctionType function = 4;
-      private com.lvl6.aoc2.noneventprotos.Spell.SpellProto.FunctionType function_ = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.FunctionType.ATTACK;
+      // optional .proto.SpellProto.SpellFunctionType function = 4;
+      private com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellFunctionType function_ = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellFunctionType.ATTACK;
       public boolean hasFunction() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      public com.lvl6.aoc2.noneventprotos.Spell.SpellProto.FunctionType getFunction() {
+      public com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellFunctionType getFunction() {
         return function_;
       }
-      public Builder setFunction(com.lvl6.aoc2.noneventprotos.Spell.SpellProto.FunctionType value) {
+      public Builder setFunction(com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellFunctionType value) {
         if (value == null) {
           throw new NullPointerException();
         }
@@ -1160,288 +1670,504 @@ public final class Spell {
       }
       public Builder clearFunction() {
         bitField0_ = (bitField0_ & ~0x00000008);
-        function_ = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.FunctionType.ATTACK;
+        function_ = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellFunctionType.ATTACK;
         onChanged();
         return this;
       }
       
-      // optional int32 strength = 5;
-      private int strength_ ;
-      public boolean hasStrength() {
+      // optional .proto.SpellProto.SpellTargetType targetType = 5;
+      private com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellTargetType targetType_ = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellTargetType.SELF;
+      public boolean hasTargetType() {
         return ((bitField0_ & 0x00000010) == 0x00000010);
       }
-      public int getStrength() {
+      public com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellTargetType getTargetType() {
+        return targetType_;
+      }
+      public Builder setTargetType(com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellTargetType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000010;
+        targetType_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearTargetType() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        targetType_ = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellTargetType.SELF;
+        onChanged();
+        return this;
+      }
+      
+      // optional .proto.SpellProto.SpellDirectionType directionType = 7;
+      private com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellDirectionType directionType_ = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellDirectionType.STRAIGHT;
+      public boolean hasDirectionType() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellDirectionType getDirectionType() {
+        return directionType_;
+      }
+      public Builder setDirectionType(com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellDirectionType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000020;
+        directionType_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearDirectionType() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        directionType_ = com.lvl6.aoc2.noneventprotos.Spell.SpellProto.SpellDirectionType.STRAIGHT;
+        onChanged();
+        return this;
+      }
+      
+      // optional float strength = 8;
+      private float strength_ ;
+      public boolean hasStrength() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      public float getStrength() {
         return strength_;
       }
-      public Builder setStrength(int value) {
-        bitField0_ |= 0x00000010;
+      public Builder setStrength(float value) {
+        bitField0_ |= 0x00000040;
         strength_ = value;
         onChanged();
         return this;
       }
       public Builder clearStrength() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        strength_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        strength_ = 0F;
         onChanged();
         return this;
       }
       
-      // optional int32 manaCost = 6;
+      // optional float force = 9;
+      private float force_ ;
+      public boolean hasForce() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      public float getForce() {
+        return force_;
+      }
+      public Builder setForce(float value) {
+        bitField0_ |= 0x00000080;
+        force_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearForce() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        force_ = 0F;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 manaCost = 10;
       private int manaCost_ ;
       public boolean hasManaCost() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000100) == 0x00000100);
       }
       public int getManaCost() {
         return manaCost_;
       }
       public Builder setManaCost(int value) {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000100;
         manaCost_ = value;
         onChanged();
         return this;
       }
       public Builder clearManaCost() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000100);
         manaCost_ = 0;
         onChanged();
         return this;
       }
       
-      // optional int32 duration = 7;
-      private int duration_ ;
-      public boolean hasDuration() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+      // optional float deliveryDuration = 11;
+      private float deliveryDuration_ ;
+      public boolean hasDeliveryDuration() {
+        return ((bitField0_ & 0x00000200) == 0x00000200);
       }
-      public int getDuration() {
-        return duration_;
+      public float getDeliveryDuration() {
+        return deliveryDuration_;
       }
-      public Builder setDuration(int value) {
-        bitField0_ |= 0x00000040;
-        duration_ = value;
+      public Builder setDeliveryDuration(float value) {
+        bitField0_ |= 0x00000200;
+        deliveryDuration_ = value;
         onChanged();
         return this;
       }
-      public Builder clearDuration() {
-        bitField0_ = (bitField0_ & ~0x00000040);
-        duration_ = 0;
-        onChanged();
-        return this;
-      }
-      
-      // optional int32 speed = 8;
-      private int speed_ ;
-      public boolean hasSpeed() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
-      }
-      public int getSpeed() {
-        return speed_;
-      }
-      public Builder setSpeed(int value) {
-        bitField0_ |= 0x00000080;
-        speed_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearSpeed() {
-        bitField0_ = (bitField0_ & ~0x00000080);
-        speed_ = 0;
+      public Builder clearDeliveryDuration() {
+        bitField0_ = (bitField0_ & ~0x00000200);
+        deliveryDuration_ = 0F;
         onChanged();
         return this;
       }
       
-      // optional bool targetted = 9;
+      // optional int32 numberParticles = 12;
+      private int numberParticles_ ;
+      public boolean hasNumberParticles() {
+        return ((bitField0_ & 0x00000400) == 0x00000400);
+      }
+      public int getNumberParticles() {
+        return numberParticles_;
+      }
+      public Builder setNumberParticles(int value) {
+        bitField0_ |= 0x00000400;
+        numberParticles_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearNumberParticles() {
+        bitField0_ = (bitField0_ & ~0x00000400);
+        numberParticles_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional float particleSpeed = 13;
+      private float particleSpeed_ ;
+      public boolean hasParticleSpeed() {
+        return ((bitField0_ & 0x00000800) == 0x00000800);
+      }
+      public float getParticleSpeed() {
+        return particleSpeed_;
+      }
+      public Builder setParticleSpeed(float value) {
+        bitField0_ |= 0x00000800;
+        particleSpeed_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearParticleSpeed() {
+        bitField0_ = (bitField0_ & ~0x00000800);
+        particleSpeed_ = 0F;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 particleDuration = 14;
+      private int particleDuration_ ;
+      public boolean hasParticleDuration() {
+        return ((bitField0_ & 0x00001000) == 0x00001000);
+      }
+      public int getParticleDuration() {
+        return particleDuration_;
+      }
+      public Builder setParticleDuration(int value) {
+        bitField0_ |= 0x00001000;
+        particleDuration_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearParticleDuration() {
+        bitField0_ = (bitField0_ & ~0x00001000);
+        particleDuration_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 hitsPerParticle = 15;
+      private int hitsPerParticle_ ;
+      public boolean hasHitsPerParticle() {
+        return ((bitField0_ & 0x00002000) == 0x00002000);
+      }
+      public int getHitsPerParticle() {
+        return hitsPerParticle_;
+      }
+      public Builder setHitsPerParticle(int value) {
+        bitField0_ |= 0x00002000;
+        hitsPerParticle_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearHitsPerParticle() {
+        bitField0_ = (bitField0_ & ~0x00002000);
+        hitsPerParticle_ = 0;
+        onChanged();
+        return this;
+      }
+      
+      // optional float deliverySpeed = 16;
+      private float deliverySpeed_ ;
+      public boolean hasDeliverySpeed() {
+        return ((bitField0_ & 0x00004000) == 0x00004000);
+      }
+      public float getDeliverySpeed() {
+        return deliverySpeed_;
+      }
+      public Builder setDeliverySpeed(float value) {
+        bitField0_ |= 0x00004000;
+        deliverySpeed_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearDeliverySpeed() {
+        bitField0_ = (bitField0_ & ~0x00004000);
+        deliverySpeed_ = 0F;
+        onChanged();
+        return this;
+      }
+      
+      // optional bool targetted = 17;
       private boolean targetted_ ;
       public boolean hasTargetted() {
-        return ((bitField0_ & 0x00000100) == 0x00000100);
+        return ((bitField0_ & 0x00008000) == 0x00008000);
       }
       public boolean getTargetted() {
         return targetted_;
       }
       public Builder setTargetted(boolean value) {
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00008000;
         targetted_ = value;
         onChanged();
         return this;
       }
       public Builder clearTargetted() {
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00008000);
         targetted_ = false;
         onChanged();
         return this;
       }
       
-      // optional float size = 10;
+      // optional float size = 18;
       private float size_ ;
       public boolean hasSize() {
-        return ((bitField0_ & 0x00000200) == 0x00000200);
+        return ((bitField0_ & 0x00010000) == 0x00010000);
       }
       public float getSize() {
         return size_;
       }
       public Builder setSize(float value) {
-        bitField0_ |= 0x00000200;
+        bitField0_ |= 0x00010000;
         size_ = value;
         onChanged();
         return this;
       }
       public Builder clearSize() {
-        bitField0_ = (bitField0_ & ~0x00000200);
+        bitField0_ = (bitField0_ & ~0x00010000);
         size_ = 0F;
         onChanged();
         return this;
       }
       
-      // optional float castTime = 11;
+      // optional float castTime = 19;
       private float castTime_ ;
       public boolean hasCastTime() {
-        return ((bitField0_ & 0x00000400) == 0x00000400);
+        return ((bitField0_ & 0x00020000) == 0x00020000);
       }
       public float getCastTime() {
         return castTime_;
       }
       public Builder setCastTime(float value) {
-        bitField0_ |= 0x00000400;
+        bitField0_ |= 0x00020000;
         castTime_ = value;
         onChanged();
         return this;
       }
       public Builder clearCastTime() {
-        bitField0_ = (bitField0_ & ~0x00000400);
+        bitField0_ = (bitField0_ & ~0x00020000);
         castTime_ = 0F;
         onChanged();
         return this;
       }
       
-      // optional float coolDown = 12;
+      // optional float coolDown = 20;
       private float coolDown_ ;
       public boolean hasCoolDown() {
-        return ((bitField0_ & 0x00000800) == 0x00000800);
+        return ((bitField0_ & 0x00040000) == 0x00040000);
       }
       public float getCoolDown() {
         return coolDown_;
       }
       public Builder setCoolDown(float value) {
-        bitField0_ |= 0x00000800;
+        bitField0_ |= 0x00040000;
         coolDown_ = value;
         onChanged();
         return this;
       }
       public Builder clearCoolDown() {
-        bitField0_ = (bitField0_ & ~0x00000800);
+        bitField0_ = (bitField0_ & ~0x00040000);
         coolDown_ = 0F;
         onChanged();
         return this;
       }
       
-      // optional float range = 13;
+      // optional float retargetTime = 21;
+      private float retargetTime_ ;
+      public boolean hasRetargetTime() {
+        return ((bitField0_ & 0x00080000) == 0x00080000);
+      }
+      public float getRetargetTime() {
+        return retargetTime_;
+      }
+      public Builder setRetargetTime(float value) {
+        bitField0_ |= 0x00080000;
+        retargetTime_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearRetargetTime() {
+        bitField0_ = (bitField0_ & ~0x00080000);
+        retargetTime_ = 0F;
+        onChanged();
+        return this;
+      }
+      
+      // optional float range = 22;
       private float range_ ;
       public boolean hasRange() {
-        return ((bitField0_ & 0x00001000) == 0x00001000);
+        return ((bitField0_ & 0x00100000) == 0x00100000);
       }
       public float getRange() {
         return range_;
       }
       public Builder setRange(float value) {
-        bitField0_ |= 0x00001000;
+        bitField0_ |= 0x00100000;
         range_ = value;
         onChanged();
         return this;
       }
       public Builder clearRange() {
-        bitField0_ = (bitField0_ & ~0x00001000);
+        bitField0_ = (bitField0_ & ~0x00100000);
         range_ = 0F;
         onChanged();
         return this;
       }
       
-      // optional int32 levelReq = 14;
+      // optional float angle = 23;
+      private float angle_ ;
+      public boolean hasAngle() {
+        return ((bitField0_ & 0x00200000) == 0x00200000);
+      }
+      public float getAngle() {
+        return angle_;
+      }
+      public Builder setAngle(float value) {
+        bitField0_ |= 0x00200000;
+        angle_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearAngle() {
+        bitField0_ = (bitField0_ & ~0x00200000);
+        angle_ = 0F;
+        onChanged();
+        return this;
+      }
+      
+      // optional float area = 24;
+      private float area_ ;
+      public boolean hasArea() {
+        return ((bitField0_ & 0x00400000) == 0x00400000);
+      }
+      public float getArea() {
+        return area_;
+      }
+      public Builder setArea(float value) {
+        bitField0_ |= 0x00400000;
+        area_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearArea() {
+        bitField0_ = (bitField0_ & ~0x00400000);
+        area_ = 0F;
+        onChanged();
+        return this;
+      }
+      
+      // optional int32 levelReq = 25;
       private int levelReq_ ;
       public boolean hasLevelReq() {
-        return ((bitField0_ & 0x00002000) == 0x00002000);
+        return ((bitField0_ & 0x00800000) == 0x00800000);
       }
       public int getLevelReq() {
         return levelReq_;
       }
       public Builder setLevelReq(int value) {
-        bitField0_ |= 0x00002000;
+        bitField0_ |= 0x00800000;
         levelReq_ = value;
         onChanged();
         return this;
       }
       public Builder clearLevelReq() {
-        bitField0_ = (bitField0_ & ~0x00002000);
+        bitField0_ = (bitField0_ & ~0x00800000);
         levelReq_ = 0;
         onChanged();
         return this;
       }
       
-      // optional int32 spellLvl = 15;
+      // optional int32 spellLvl = 26;
       private int spellLvl_ ;
       public boolean hasSpellLvl() {
-        return ((bitField0_ & 0x00004000) == 0x00004000);
+        return ((bitField0_ & 0x01000000) == 0x01000000);
       }
       public int getSpellLvl() {
         return spellLvl_;
       }
       public Builder setSpellLvl(int value) {
-        bitField0_ |= 0x00004000;
+        bitField0_ |= 0x01000000;
         spellLvl_ = value;
         onChanged();
         return this;
       }
       public Builder clearSpellLvl() {
-        bitField0_ = (bitField0_ & ~0x00004000);
+        bitField0_ = (bitField0_ & ~0x01000000);
         spellLvl_ = 0;
         onChanged();
         return this;
       }
       
-      // optional int32 researchCost = 16;
+      // optional int32 researchCost = 27;
       private int researchCost_ ;
       public boolean hasResearchCost() {
-        return ((bitField0_ & 0x00008000) == 0x00008000);
+        return ((bitField0_ & 0x02000000) == 0x02000000);
       }
       public int getResearchCost() {
         return researchCost_;
       }
       public Builder setResearchCost(int value) {
-        bitField0_ |= 0x00008000;
+        bitField0_ |= 0x02000000;
         researchCost_ = value;
         onChanged();
         return this;
       }
       public Builder clearResearchCost() {
-        bitField0_ = (bitField0_ & ~0x00008000);
+        bitField0_ = (bitField0_ & ~0x02000000);
         researchCost_ = 0;
         onChanged();
         return this;
       }
       
-      // optional int32 researchTime = 17;
+      // optional int32 researchTime = 28;
       private int researchTime_ ;
       public boolean hasResearchTime() {
-        return ((bitField0_ & 0x00010000) == 0x00010000);
+        return ((bitField0_ & 0x04000000) == 0x04000000);
       }
       public int getResearchTime() {
         return researchTime_;
       }
       public Builder setResearchTime(int value) {
-        bitField0_ |= 0x00010000;
+        bitField0_ |= 0x04000000;
         researchTime_ = value;
         onChanged();
         return this;
       }
       public Builder clearResearchTime() {
-        bitField0_ = (bitField0_ & ~0x00010000);
+        bitField0_ = (bitField0_ & ~0x04000000);
         researchTime_ = 0;
         onChanged();
         return this;
       }
       
-      // required .proto.ResourceType researchResource = 18;
+      // required .proto.ResourceType researchResource = 29;
       private com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType researchResource_ = com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType.GOLD;
       public boolean hasResearchResource() {
-        return ((bitField0_ & 0x00020000) == 0x00020000);
+        return ((bitField0_ & 0x08000000) == 0x08000000);
       }
       public com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType getResearchResource() {
         return researchResource_;
@@ -1450,13 +2176,13 @@ public final class Spell {
         if (value == null) {
           throw new NullPointerException();
         }
-        bitField0_ |= 0x00020000;
+        bitField0_ |= 0x08000000;
         researchResource_ = value;
         onChanged();
         return this;
       }
       public Builder clearResearchResource() {
-        bitField0_ = (bitField0_ & ~0x00020000);
+        bitField0_ = (bitField0_ & ~0x08000000);
         researchResource_ = com.lvl6.aoc2.noneventprotos.ResourceEnum.ResourceType.GOLD;
         onChanged();
         return this;
@@ -1488,21 +2214,30 @@ public final class Spell {
   static {
     java.lang.String[] descriptorData = {
       "\n\020SpellProto.proto\022\005proto\032\017ClassType.pro" +
-      "to\032\022ResourceType.proto\"\364\003\n\nSpellProto\022\017\n" +
+      "to\032\022ResourceType.proto\"\363\006\n\nSpellProto\022\017\n" +
       "\007spellID\030\001 \001(\005\022#\n\tclassType\030\002 \002(\0162\020.prot" +
-      "o.ClassType\022\014\n\004name\030\003 \001(\t\0220\n\010function\030\004 " +
-      "\001(\0162\036.proto.SpellProto.FunctionType\022\020\n\010s" +
-      "trength\030\005 \001(\005\022\020\n\010manaCost\030\006 \001(\005\022\020\n\010durat" +
-      "ion\030\007 \001(\005\022\r\n\005speed\030\010 \001(\005\022\021\n\ttargetted\030\t " +
-      "\001(\010\022\014\n\004size\030\n \001(\002\022\020\n\010castTime\030\013 \001(\002\022\020\n\010c" +
-      "oolDown\030\014 \001(\002\022\r\n\005range\030\r \001(\002\022\020\n\010levelReq" +
-      "\030\016 \001(\005\022\020\n\010spellLvl\030\017 \001(\005\022\024\n\014researchCost",
-      "\030\020 \001(\005\022\024\n\014researchTime\030\021 \001(\005\022-\n\020research" +
-      "Resource\030\022 \002(\0162\023.proto.ResourceType\"X\n\014F" +
-      "unctionType\022\n\n\006ATTACK\020\000\022\r\n\tFLAT_BUFF\020\001\022\016" +
-      "\n\nSCALE_BUFF\020\002\022\r\n\tHEAL_SELF\020\003\022\016\n\nHEAL_OT" +
-      "HER\020\004B%\n\034com.lvl6.aoc2.noneventprotosB\005S" +
-      "pell"
+      "o.ClassType\022\014\n\004name\030\003 \001(\t\0225\n\010function\030\004 " +
+      "\001(\0162#.proto.SpellProto.SpellFunctionType" +
+      "\0225\n\ntargetType\030\005 \001(\0162!.proto.SpellProto." +
+      "SpellTargetType\022;\n\rdirectionType\030\007 \001(\0162$" +
+      ".proto.SpellProto.SpellDirectionType\022\020\n\010" +
+      "strength\030\010 \001(\002\022\r\n\005force\030\t \001(\002\022\020\n\010manaCos" +
+      "t\030\n \001(\005\022\030\n\020deliveryDuration\030\013 \001(\002\022\027\n\017num",
+      "berParticles\030\014 \001(\005\022\025\n\rparticleSpeed\030\r \001(" +
+      "\002\022\030\n\020particleDuration\030\016 \001(\005\022\027\n\017hitsPerPa" +
+      "rticle\030\017 \001(\005\022\025\n\rdeliverySpeed\030\020 \001(\002\022\021\n\tt" +
+      "argetted\030\021 \001(\010\022\014\n\004size\030\022 \001(\002\022\020\n\010castTime" +
+      "\030\023 \001(\002\022\020\n\010coolDown\030\024 \001(\002\022\024\n\014retargetTime" +
+      "\030\025 \001(\002\022\r\n\005range\030\026 \001(\002\022\r\n\005angle\030\027 \001(\002\022\014\n\004" +
+      "area\030\030 \001(\002\022\020\n\010levelReq\030\031 \001(\005\022\020\n\010spellLvl" +
+      "\030\032 \001(\005\022\024\n\014researchCost\030\033 \001(\005\022\024\n\014research" +
+      "Time\030\034 \001(\005\022-\n\020researchResource\030\035 \002(\0162\023.p" +
+      "roto.ResourceType\"3\n\021SpellFunctionType\022\n",
+      "\n\006ATTACK\020\000\022\010\n\004BUFF\020\001\022\010\n\004HEAL\020\002\"8\n\017SpellT" +
+      "argetType\022\010\n\004SELF\020\000\022\014\n\010PERSONAL\020\001\022\r\n\tTAR" +
+      "GETTED\020\002\":\n\022SpellDirectionType\022\014\n\010STRAIG" +
+      "HT\020\000\022\007\n\003ARC\020\001\022\r\n\tSCATTERED\020\002B%\n\034com.lvl6" +
+      ".aoc2.noneventprotosB\005Spell"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1514,7 +2249,7 @@ public final class Spell {
           internal_static_proto_SpellProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_SpellProto_descriptor,
-              new java.lang.String[] { "SpellID", "ClassType", "Name", "Function", "Strength", "ManaCost", "Duration", "Speed", "Targetted", "Size", "CastTime", "CoolDown", "Range", "LevelReq", "SpellLvl", "ResearchCost", "ResearchTime", "ResearchResource", },
+              new java.lang.String[] { "SpellID", "ClassType", "Name", "Function", "TargetType", "DirectionType", "Strength", "Force", "ManaCost", "DeliveryDuration", "NumberParticles", "ParticleSpeed", "ParticleDuration", "HitsPerParticle", "DeliverySpeed", "Targetted", "Size", "CastTime", "CoolDown", "RetargetTime", "Range", "Angle", "Area", "LevelReq", "SpellLvl", "ResearchCost", "ResearchTime", "ResearchResource", },
               com.lvl6.aoc2.noneventprotos.Spell.SpellProto.class,
               com.lvl6.aoc2.noneventprotos.Spell.SpellProto.Builder.class);
           return null;

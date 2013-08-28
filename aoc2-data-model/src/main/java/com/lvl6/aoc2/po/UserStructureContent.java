@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,18 +20,22 @@ public class UserStructureContent extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_structure_id")
+	@Index
 	protected UUID userStructureId = UUID.randomUUID();
 	
 	@Column(name="content_type")
+	@Index
 	protected int contentType = 0;
 	
 	@Column(name="content_id")
+	@Index
 	protected UUID contentId = null;
 
 	@Column(name="queue_time")
 	protected Date queueTime = new Date();
 
 	@Column(name="start_time")
+	@Index
 	protected Date startTime = new Date();
 
 	
@@ -103,19 +109,6 @@ public class UserStructureContent extends BasePersistentObject{
 	}
 
 
-	@Override
-	public String getTableCreateStatement() {
-		return "create table user_structure_content (" +
-				" id uuid," +
-				" user_structure_id uuid," +
-				" content_type int," +
-				" content_id uuid," +
-				" queue_time timestamp," +
-				" start_time timestamp," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -123,18 +116,6 @@ public class UserStructureContent extends BasePersistentObject{
 		
 		return indexes;
 	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_structure_content_content_type_index on user_structure_content (content_type);");
-		indexes.add("create index user_structure_content_user_structure_id_index on user_structure_content (user_structure_id);");
-		return indexes;
-	}
-	
-	
-	
 	
 	
 }

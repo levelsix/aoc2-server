@@ -20,7 +20,7 @@ message StartupRequestProto {
 }
 
 message StartupResponseProto {
-	optional FullUserProto mup = 1;
+	optional FullUserProto fup = 1;
 	optional int64 currentServerTime = 2; //"approximate server time, and some lag"
 	optional StartupStatus status = 3;
 	

@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,12 +20,15 @@ public class UserItem extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = null;
 	
 	@Column(name="item_id")
+	@Index
 	protected UUID itemId = null;
 	
 	@Column(name="time_acquired")
+	@Index
 	protected Date timeAcquired = new Date();
 	
 	@Column(name="level_of_user_when_acquired")
@@ -50,16 +55,6 @@ public class UserItem extends BasePersistentObject{
 
 	public void setUserId(UUID userId) {
 		this.userId = userId;
-	}
-
-
-	public UUID getItemId() {
-		return itemId;
-	}
-
-
-	public void setItemId(UUID itemId) {
-		this.itemId = itemId;
 	}
 
 
@@ -93,6 +88,17 @@ public class UserItem extends BasePersistentObject{
 	}
 
 
+	public UUID getItemId() {
+		return itemId;
+	}
+
+
+	public void setItemId(UUID itemId) {
+		this.itemId = itemId;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "UserItem [id=" + id + ", userId=" + userId + ", itemId="
@@ -101,36 +107,11 @@ public class UserItem extends BasePersistentObject{
 				+ ", dungeonRoomAcquiredIn=" + dungeonRoomAcquiredIn + "]";
 	}
 
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table user_item (" +
-				" id uuid," +
-				" user_id uuid," +
-				" item_id uuid," +
-				" time_acquired timestamp," +
-				" level_of_user_when_acquired int," +
-				" dungeon_room_acquired_in int," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		
-		return indexes;
-	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_equip_user_id_index on user_equip (user_id);");
-		indexes.add("create index user_equip_equip_id_index on user_equip (equip_id);");
-		indexes.add("create index user_equip_equip_level_index on user_equip (equip_level);");
-		indexes.add("create index user_equip_equipped_index on user_equip (equipped);");
 		return indexes;
 	}
 	

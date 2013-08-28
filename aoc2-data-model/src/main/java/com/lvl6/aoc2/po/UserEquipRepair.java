@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,24 +20,27 @@ public class UserEquipRepair extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = null;
 	
 	@Column(name="equip_id")
-	protected UUID equipId = null;
-	
-	@Column(name="equip_level")
-	protected int equipLevel = 0;
+	@Index
+	protected UUID equip_id = null;
 	
 	@Column(name="durability")
 	protected double durability = 0;
 	
 	@Column(name="expected_start")
+	@Index
 	protected Date expectedStart = null;
 	
 	@Column(name="entered_queue")
+	@Index
 	protected Date enteredQueue = null;
 	
+	//keeping track of when the user first got this equip
 	@Column(name="time_acquired")
+	@Index
 	protected Date timeAcquired = new Date();
 	
 	@Column(name="level_of_user_when_acquired")
@@ -43,7 +48,6 @@ public class UserEquipRepair extends BasePersistentObject{
 	
 	@Column(name="dungeon_room_or_chest_acquired_from")
 	protected String dungeonRoomOrChestAcquiredFrom = "";
-
 
 
 
@@ -64,26 +68,6 @@ public class UserEquipRepair extends BasePersistentObject{
 
 	public void setUserId(UUID userId) {
 		this.userId = userId;
-	}
-
-
-	public UUID getEquipId() {
-		return equipId;
-	}
-
-
-	public void setEquipId(UUID equipId) {
-		this.equipId = equipId;
-	}
-
-
-	public int getEquipLevel() {
-		return equipLevel;
-	}
-
-
-	public void setEquipLevel(int equipLevel) {
-		this.equipLevel = equipLevel;
 	}
 
 
@@ -149,52 +133,9 @@ public class UserEquipRepair extends BasePersistentObject{
 
 
 	@Override
-	public String toString() {
-		return "UserEquipRepair [id=" + id + ", userId=" + userId
-				+ ", equipId=" + equipId + ", equipLevel=" + equipLevel
-				+ ", durability=" + durability + ", expectedStart="
-				+ expectedStart + ", enteredQueue=" + enteredQueue
-				+ ", timeAcquired=" + timeAcquired
-				+ ", levelOfUserWhenAcquired=" + levelOfUserWhenAcquired
-				+ ", dungeonRoomOrChestAcquiredFrom="
-				+ dungeonRoomOrChestAcquiredFrom + "]";
-	}
-
-
-	@Override
-	public String getTableCreateStatement() {
-		return "create table user_equip_repair (" +
-				" id uuid," +
-				" user_id uuid," +
-				" equip_id uuid," +
-				" equip_level int," +
-				" durability double," +
-				" expected_start timestamp" +
-				" entered_queue timestamp," +
-				" time_acquired timestamp," +
-				" level_of_user_when_acquired int," +
-				" dungeon_room_or_chest_acquired_from varchar," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
-	
-	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		
-		return indexes;
-	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_equip_repair_user_id_index on user_equip_repair (user_id);");
-		indexes.add("create index user_equip_repair_equip_id_index on user_equip_repair (equip_id);");
-		indexes.add("create index user_equip_repair_equip_level_index on user_equip_repair (equip_level);");
-		indexes.add("create index user_equip_repair_expected_start_index on user_equip_repair (expected_start);");
-		indexes.add("create index user_equip_repair_entered_queue_index on user_equip_repair (entered_queue);");
 		return indexes;
 	}
 	

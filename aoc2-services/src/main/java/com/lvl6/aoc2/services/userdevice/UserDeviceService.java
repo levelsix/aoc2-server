@@ -1,5 +1,6 @@
 package com.lvl6.aoc2.services.userdevice;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.UUID;
 
@@ -10,6 +11,10 @@ public interface UserDeviceService {
 	
 	
 	public abstract Map<String, UserDevice> getUdidsToDevicesForUser(UUID userId);
+	
+	public abstract void saveUserDevices(Collection<UserDevice> devices);
+	
+	
 	
 	public abstract UserDeviceEntityManager getUserDeviceEntityManager();
 

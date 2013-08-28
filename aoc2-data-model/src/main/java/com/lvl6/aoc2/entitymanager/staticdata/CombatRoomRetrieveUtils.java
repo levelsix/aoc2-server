@@ -61,6 +61,12 @@ import com.lvl6.aoc2.po.CombatRoom;
 		List<CombatRoom> list = getCombatRoomEntityManager().get().find(cqlquery);
 		return list.get(0);
 	}
+	
+	public List<CombatRoom> getCombatRoomUnlockedAtLevel(int level) {
+		String cqlquery = "select * from combatRoom where lvl_required=" + level + ";";
+		List<CombatRoom> list = getCombatRoomEntityManager().get().find(cqlquery);
+		return list;
+	}
 
 	
 	public  void reload() {

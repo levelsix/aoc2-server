@@ -1,4 +1,4 @@
-package com.lvl6.aoc2.po.properties;
+package com.lvl6.aoc2.properties;
 
 public class AocTwoTableConstants {
 	//CONSTANTS PERTAINING TO THE DATABASE TABLES

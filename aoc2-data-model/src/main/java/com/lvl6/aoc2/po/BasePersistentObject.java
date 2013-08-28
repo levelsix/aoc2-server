@@ -1,15 +1,70 @@
 package com.lvl6.aoc2.po;
 
+import java.lang.reflect.Field;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import scala.actors.threadpool.Arrays;
+
+import com.lvl6.aoc2.cassandra.CQL3Util;
+import com.lvl6.aoc2.entitymanager.Index;
+
 abstract public class BasePersistentObject {
+	
+	
+	private static final Logger log = LoggerFactory.getLogger(BasePersistentObject.class);
 
 	/**
 	 * The CQL statement to create the table for this Object
 	 * @return
 	 */
-	abstract public String getTableCreateStatement();
+	public String getTableCreateStatement() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("create table ");
+		sb.append(tableName());
+		sb.append(" ( ");
+		addFieldsToTableCreateStatement(sb);
+		sb.append("primary key (id)) ");
+		sb.append(tableOptionsString());
+		return sb.toString();
+	}
+	
+	protected void addFieldsToTableCreateStatement(StringBuilder sb) {
+		@SuppressWarnings("unchecked")
+		List<Field> fields = Arrays.asList(this.getClass().getDeclaredFields());
+		for(Field field : fields) {
+			try {
+			if(field.isAnnotationPresent(Index.class)) {
+				Column clm = field.getAnnotation(Column.class);
+				String fieldName = clm.name();
+				sb.append(fieldName);
+				sb.append(" ");
+				sb.append(CQL3Util.getCql3Type(field.getType()));
+				sb.append(", ");
+			}else if(field.isAnnotationPresent(Id.class)) {
+				String fieldName = field.getName();
+				sb.append(fieldName);
+				sb.append(" ");
+				sb.append(CQL3Util.getCql3Type(field.getType()));
+				sb.append(", ");
+			}
+			}catch(Exception e) {
+				log.error("Error creating index create statement", e);
+			}
+		}
+	}
+	
+	protected String tableOptionsString() {
+		return " with compact storage;";
+	}
 	
 	/**
 	 * The CQL statements needed to add or remove columns from existing table for this object
@@ -19,10 +74,36 @@ abstract public class BasePersistentObject {
 	abstract public Set<String> getTableUpdateStatements();
 	
 	/**
-	 * The CQL statements needed to create or remove indexes on existing table for this object
+	 * The CQL statements needed to create or remove indexes for this object
 	 * @return
 	 */
-	abstract public Set<String> getIndexCreateStatements();
+	
+	private Set<String> indexCreateStatements = new HashSet<String>();
+	public Set<String> getIndexCreateStatements(){
+		@SuppressWarnings("unchecked")
+		List<Field> fields = Arrays.asList(this.getClass().getDeclaredFields());
+		for(Field field : fields) {
+			try {
+			if(field.isAnnotationPresent(Index.class)) {
+				Column clm = field.getAnnotation(Column.class);
+				String fieldName = clm.name();
+				indexCreateStatements.add(indexCreateStatement(field, fieldName));
+			}
+			}catch(Exception e) {
+				log.error("Error creating index create statement", e);
+			}
+		}
+		return indexCreateStatements;
+	}
+	
+	protected String indexCreateStatement(Field field, String fieldName) {
+		return "create index "+tableName()+"_"+fieldName+"_key on "+tableName()+" ("+fieldName+");";
+	}
+	
+	
+	public String tableName() {
+		return this.getClass().getSimpleName().toLowerCase();
+	}
 	
 	
 	abstract public UUID getId(); 

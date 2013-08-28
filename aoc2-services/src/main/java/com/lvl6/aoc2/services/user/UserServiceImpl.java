@@ -9,19 +9,22 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.UserDeviceEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.ClassLevelInfoRetrieveUtils;
-import com.lvl6.aoc2.po.ClassLevelInfo;
-import com.lvl6.aoc2.entitymanager.staticdata.UserStructureRetrieveUtils;
 import com.lvl6.aoc2.noneventprotos.FunctionalityTypeEnum.FunctionalityType;
+import com.lvl6.aoc2.po.ClassLevelInfo;
 import com.lvl6.aoc2.po.Structure;
 import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserDevice;
 import com.lvl6.aoc2.po.UserStructure;
-import com.lvl6.aoc2.po.properties.AocTwoTableConstants;
+import com.lvl6.aoc2.properties.AocTwoTableConstants;
+import com.lvl6.aoc2.services.userstructure.UserStructureService;
 
+
+@Component
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
@@ -34,7 +37,7 @@ public class UserServiceImpl implements UserService {
 	protected UserEntityManager userEntityManager;
 	
 	@Autowired
-	protected UserStructureRetrieveUtils userStructureRetrieveUtils;
+	protected UserStructureService userStructureService;
 
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 	
@@ -76,7 +79,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void levelUpUser(User u) {
 		int classType = u.getClassType();
-		int newLvl = u.getLevel() + 1;
+		int newLvl = u.getLvl() + 1;
 		
 		ClassLevelInfo cli = getClassLevelInfoRetrieveUtils()
 				.getClassLevelInfoForClassAndLevel(classType, newLvl);
@@ -84,7 +87,7 @@ public class UserServiceImpl implements UserService {
 		int maxHp = cli.getMaxHp();
 		int maxMana = cli.getMaxMana();
 		
-		u.setLevel(newLvl);
+		u.setLvl(newLvl);
 		u.setMaxHp(maxHp);
 		u.setMaxMana(maxMana);
 		
@@ -172,10 +175,10 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	public int calculateGemCostForMissingResources(User u, int missingResources, int missingResourcesType) {
-		List<UserStructure> usList = getUserStructureRetrieveUtils().getAllUserStructuresForUser(u.getId());
+		List<UserStructure> usList = getUserStructureService().getAllUserStructuresForUser(u.getId());
 		int maxStorage = 0;
 		for(UserStructure us : usList) {
-			Structure s = getUserStructureRetrieveUtils().getStructureCorrespondingToUserStructure(us);
+			Structure s = getUserStructureService().getStructureCorrespondingToUserStructure(us);
 			if((s.getFunctionalityResourceType() == missingResourcesType) && (s.getFunctionalityType() == FunctionalityType.RESOURCE_STORAGE_VALUE)) {
 				maxStorage = maxStorage + s.getFunctionalityCapacity();
 			}
@@ -252,13 +255,12 @@ public class UserServiceImpl implements UserService {
 		this.userEntityManager = userEntityManager;
 	}
 
-	public UserStructureRetrieveUtils getUserStructureRetrieveUtils() {
-		return userStructureRetrieveUtils;
+	public UserStructureService getUserStructureService() {
+		return userStructureService;
 	}
 
-	public void setUserStructureRetrieveUtils(
-			UserStructureRetrieveUtils userStructureRetrieveUtils) {
-		this.userStructureRetrieveUtils = userStructureRetrieveUtils;
+	public void setUserStructureService(UserStructureService userStructureService) {
+		this.userStructureService = userStructureService;
 	}
 
 

@@ -1,7 +1,6 @@
 package com.lvl6.aoc2.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -11,15 +10,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.google.common.collect.Iterables;
 import com.lvl6.aoc2.entitymanager.UserDungeonStatusEntityManager;
 import com.lvl6.aoc2.entitymanager.UserDungeonStatusHistoryEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEquipEntityManager;
-import com.lvl6.aoc2.entitymanager.staticdata.StructureRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserEquipRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserSpellRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserStructureRetrieveUtils;
+
 import com.lvl6.aoc2.eventprotos.ReturnHomeEventProto.ReturnHomeRequestProto;
 import com.lvl6.aoc2.eventprotos.ReturnHomeEventProto.ReturnHomeResponseProto;
 import com.lvl6.aoc2.eventprotos.ReturnHomeEventProto.ReturnHomeResponseProto.ReturnHomeStatus;
@@ -33,8 +28,7 @@ import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserEquip;
 import com.lvl6.aoc2.services.equipment.EquipmentService;
 import com.lvl6.aoc2.services.userequip.UserEquipService;
-import com.lvl6.aoc2.services.userequip.UserEquipServiceImpl;
-import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
+
 
 
 @Component
@@ -54,9 +48,7 @@ public class ReturnHomeController extends EventController {
 	
 	@Autowired
 	protected UserDungeonStatusHistoryEntityManager userDungeonStatusHistoryEntityManager;
-	
-	@Autowired
-	protected UserEquipRetrieveUtils userEquipRetrieveUtils; 
+
 
 	@Autowired
 	protected UserEquipService userEquipService; 
@@ -101,7 +93,7 @@ public class ReturnHomeController extends EventController {
 		try {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
-			List<UserEquip> ueList = getUserEquipRetrieveUtils().getAllUserEquipsForUser(userId);
+			List<UserEquip> ueList = getUserEquipService().getAllUserEquipsForUser(userId);
 			List<UserEquip> equippedEquips = new ArrayList<UserEquip>();
 			//List<Structure> sList = new ArrayList<Structure>(); 
 			getUserEquipService().getEquippedUserEquips(ueList, equippedEquips);
@@ -193,14 +185,6 @@ public class ReturnHomeController extends EventController {
 		this.userDungeonStatusHistoryEntityManager = userDungeonStatusHistoryEntityManager;
 	}
 
-	public UserEquipRetrieveUtils getUserEquipRetrieveUtils() {
-		return userEquipRetrieveUtils;
-	}
-
-	public void setUserEquipRetrieveUtils(
-			UserEquipRetrieveUtils userEquipRetrieveUtils) {
-		this.userEquipRetrieveUtils = userEquipRetrieveUtils;
-	}
 
 	public UserEquipService getUserEquipService() {
 		return userEquipService;

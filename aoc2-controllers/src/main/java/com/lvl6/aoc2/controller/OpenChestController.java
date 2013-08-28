@@ -17,9 +17,6 @@ import com.lvl6.aoc2.entitymanager.UserEquipEntityManager;
 import com.lvl6.aoc2.entitymanager.UserItemEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.ChestRetrieveUtils;
 import com.lvl6.aoc2.entitymanager.staticdata.ItemRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserChestRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserEquipRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserItemRetrieveUtils;
 import com.lvl6.aoc2.eventprotos.OpenChestEventProto.OpenChestRequestProto;
 import com.lvl6.aoc2.eventprotos.OpenChestEventProto.OpenChestResponseProto;
 import com.lvl6.aoc2.eventprotos.OpenChestEventProto.OpenChestResponseProto.OpenChestStatus;
@@ -37,6 +34,8 @@ import com.lvl6.aoc2.po.UserChest;
 import com.lvl6.aoc2.po.UserEquip;
 import com.lvl6.aoc2.po.UserItem;
 import com.lvl6.aoc2.services.equipment.EquipmentService;
+import com.lvl6.aoc2.services.userchest.UserChestService;
+import com.lvl6.aoc2.services.userequip.UserEquipService;
 import com.lvl6.aoc2.services.useritem.UserItemService;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
@@ -60,13 +59,13 @@ public class OpenChestController extends EventController {
 	protected ChestEntityManager chestEntityManager;
 	
 	@Autowired
-	protected UserEquipRetrieveUtils userEquipRetrieveUtils; 
+	protected UserEquipService userEquipService; 
 	
 	@Autowired
 	protected ChestRetrieveUtils chestRetrieveUtils; 
 	
 	@Autowired
-	protected UserChestRetrieveUtils userChestRetrieveUtils; 
+	protected UserChestService userChestService; 
 	
 	@Autowired
 	protected ItemRetrieveUtils itemRetrieveUtils; 
@@ -83,8 +82,7 @@ public class OpenChestController extends EventController {
 	@Autowired
 	protected UserItemEntityManager userItemEntityManager;
 	
-	@Autowired
-	protected UserItemRetrieveUtils userItemRetrieveUtils;
+
 	
 	
 	@Override
@@ -124,8 +122,8 @@ public class OpenChestController extends EventController {
 		try {
 			//get whatever we need from the database
 			User inDb = getUserEntityManager().get().get(userId);
-			List<UserItem> uiList = getUserItemRetrieveUtils().getAllUserItemsForUser(userId);
-			List<UserChest> ucList = getUserChestRetrieveUtils().getAllUserChestsForUser(userId);
+			List<UserItem> uiList = getUserItemService().getAllUserItemsForUser(userId);
+			List<UserChest> ucList = getUserChestService().getAllUserChestsForUser(userId);
 
 			
 			boolean validRequest = isValidRequest(responseBuilder, sender, inDb, chestId, usedKey, clientDate);
@@ -141,8 +139,8 @@ public class OpenChestController extends EventController {
 
 			//write to client
 			resEvent.setOpenChestResponseProto(responseBuilder.build());
-			String equipId = chooseEquipFromChest(chestId).getEquipId().toString(); 
-			responseBuilder.setEquipId(equipId);
+			String equipName = chooseEquipFromChest(chestId).getName(); 
+			responseBuilder.setEquipName(equipName);
 			log.info("Writing event: " + resEvent);
 			getEventWriter().handleEvent(resEvent);
 
@@ -173,7 +171,7 @@ public class OpenChestController extends EventController {
 		Chest chest = getChestRetrieveUtils().getChestForId(chestId);
 		if(usedKey){
 			Item key = getItemRetrieveUtils().findMatchingKeyToChest(chest.getChestType());
-			int numOfMatchingUserKeys = getUserItemService().getNumberOfSpecificUserKeys(key.getItemId(), inDb.getId());
+			int numOfMatchingUserKeys = getUserItemService().getNumberOfSpecificUserKeys(key.getName(), inDb.getId());
 			
 			if(numOfMatchingUserKeys < chest.getKeysRequiredToOpen()) {
 				log.error("user doesn't have key to open chest");
@@ -203,7 +201,7 @@ public class OpenChestController extends EventController {
 				int keysCount = chest.getKeysRequiredToOpen();
 				int count = 0;
 				for(UserItem ui : uiList) {
-					if((ui.getItemId() == key.getItemId()) && (count < keysCount)) {
+					if((ui.getName() == key.getName()) && (count < keysCount)) {
 						getUserItemEntityManager().get().delete(ui.getId());
 						count++;
 					}
@@ -220,11 +218,11 @@ public class OpenChestController extends EventController {
 			UserEquip ue = new UserEquip();
 			ue.setDungeonRoomOrChestAcquiredFrom(chest.getChestName());
 			ue.setDurability(100.0);
-			ue.setEquipId(equip.getEquipId());
+			ue.setName(equip.getName());
 			ue.setEquipLevel(1);
 			ue.setEquipped(false);
 			ue.setId(newId);
-			ue.setLevelOfUserWhenAcquired(inDb.getLevel());
+			ue.setLevelOfUserWhenAcquired(inDb.getLvl());
 			ue.setTimeAcquired(clientDate);
 			ue.setUserId(inDb.getId());
 			
@@ -233,7 +231,7 @@ public class OpenChestController extends EventController {
 			//remove chest from userchest
 			
 			for(UserChest uc : ucList) {
-				if(uc.getChestId() == chest.getChestId()) {
+				if(uc.getChestId() == chest.getId()) {
 					getUserItemEntityManager().get().delete(uc.getId());
 					break;
 				}
@@ -283,13 +281,12 @@ public class OpenChestController extends EventController {
 		this.userEntityManager = userEntityManager;
 	}
 
-	public UserEquipRetrieveUtils getUserEquipRetrieveUtils() {
-		return userEquipRetrieveUtils;
+	public UserEquipService getUserEquipService() {
+		return userEquipService;
 	}
 
-	public void setUserEquipRetrieveUtils(
-			UserEquipRetrieveUtils userEquipRetrieveUtils) {
-		this.userEquipRetrieveUtils = userEquipRetrieveUtils;
+	public void setUserEquipService(UserEquipService userEquipService) {
+		this.userEquipService = userEquipService;
 	}
 
 	public EquipmentService getEquipmentServices() {
@@ -325,14 +322,6 @@ public class OpenChestController extends EventController {
 		this.userItemEntityManager = userItemEntityManager;
 	}
 
-	public UserItemRetrieveUtils getUserItemRetrieveUtils() {
-		return userItemRetrieveUtils;
-	}
-
-	public void setUserItemRetrieveUtils(UserItemRetrieveUtils userItemRetrieveUtils) {
-		this.userItemRetrieveUtils = userItemRetrieveUtils;
-	}
-
 	public ItemRetrieveUtils getItemRetrieveUtils() {
 		return itemRetrieveUtils;
 	}
@@ -366,14 +355,14 @@ public class OpenChestController extends EventController {
 		this.equipmentEntityManager = equipmentEntityManager;
 	}
 
-	public UserChestRetrieveUtils getUserChestRetrieveUtils() {
-		return userChestRetrieveUtils;
+	public UserChestService getUserChestService() {
+		return userChestService;
 	}
 
-	public void setUserChestRetrieveUtils(
-			UserChestRetrieveUtils userChestRetrieveUtils) {
-		this.userChestRetrieveUtils = userChestRetrieveUtils;
+	public void setUserChestService(UserChestService userChestService) {
+		this.userChestService = userChestService;
 	}
+
 
 	
 	

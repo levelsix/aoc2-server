@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -16,24 +18,23 @@ public class Chest extends BasePersistentObject{
 	@Id
 	protected UUID id = UUID.randomUUID();
 	
-	//we'll set this manually
-	@Column(name="chest_id")
-	protected UUID chestId = null;
-	
 	@Column(name="chest_name")
+	@Index
 	protected String chestName = "";
 	
 	@Column(name="chest_drop_rate")
 	protected double chestDropRate = 0.0d;
 	
+	@Column(name="chest_type")
+	@Index
+	protected int chestType = 0;
+	
 	@Column(name="equip_id")
+	@Index
 	protected UUID equipId = UUID.randomUUID();
 	
 	@Column(name="equip_weight")
 	protected double equipWeight = 0.0;
-	
-	@Column(name="chest_type")
-	protected int chestType = 0;
 	
 	@Column(name="gems_required_to_open")
 	protected int gemsRequiredToOpen = 0;
@@ -42,10 +43,11 @@ public class Chest extends BasePersistentObject{
 	protected int keysRequiredToOpen = 0;
 	
 	
-
+	
 	public UUID getId() {
 		return id;
 	}
+
 
 
 	public void setId(UUID id) {
@@ -53,14 +55,17 @@ public class Chest extends BasePersistentObject{
 	}
 
 
-	public UUID getChestId() {
-		return chestId;
+
+	public String getChestName() {
+		return chestName;
 	}
 
 
-	public void setChestId(UUID chestId) {
-		this.chestId = chestId;
+
+	public void setChestName(String chestName) {
+		this.chestName = chestName;
 	}
+
 
 
 	public double getChestDropRate() {
@@ -68,34 +73,17 @@ public class Chest extends BasePersistentObject{
 	}
 
 
+
 	public void setChestDropRate(double chestDropRate) {
 		this.chestDropRate = chestDropRate;
 	}
 
 
-	public UUID getEquipId() {
-		return equipId;
-	}
-
-
-	public void setEquipId(UUID equipId) {
-		this.equipId = equipId;
-	}
-
-
-	public double getEquipWeight() {
-		return equipWeight;
-	}
-
-
-	public void setEquipWeight(double equipWeight) {
-		this.equipWeight = equipWeight;
-	}
-	
 
 	public int getChestType() {
 		return chestType;
 	}
+
 
 
 	public void setChestType(int chestType) {
@@ -103,18 +91,47 @@ public class Chest extends BasePersistentObject{
 	}
 
 
+
+	public UUID getEquipId() {
+		return equipId;
+	}
+
+
+
+	public void setEquipId(UUID equipId) {
+		this.equipId = equipId;
+	}
+
+
+
+	public double getEquipWeight() {
+		return equipWeight;
+	}
+
+
+
+	public void setEquipWeight(double equipWeight) {
+		this.equipWeight = equipWeight;
+	}
+
+
+
 	public int getGemsRequiredToOpen() {
 		return gemsRequiredToOpen;
 	}
 
 
+
 	public void setGemsRequiredToOpen(int gemsRequiredToOpen) {
 		this.gemsRequiredToOpen = gemsRequiredToOpen;
 	}
-	
+
+
+
 	public int getKeysRequiredToOpen() {
 		return keysRequiredToOpen;
 	}
+
 
 
 	public void setKeysRequiredToOpen(int keysRequiredToOpen) {
@@ -122,64 +139,23 @@ public class Chest extends BasePersistentObject{
 	}
 
 
-	public String getChestName() {
-		return chestName;
-	}
-
-
-	public void setChestName(String chestName) {
-		this.chestName = chestName;
-	}
-
-	
-	
-
 
 	@Override
 	public String toString() {
-		return "Chest [id=" + id + ", chestId=" + chestId + ", chestName="
-				+ chestName + ", chestDropRate=" + chestDropRate + ", equipId="
-				+ equipId + ", equipWeight=" + equipWeight + ", chestType="
-				+ chestType + ", gemsRequiredToOpen=" + gemsRequiredToOpen
+		return "Chest [id=" + id + ", chestName=" + chestName
+				+ ", chestDropRate=" + chestDropRate + ", chestType="
+				+ chestType + ", equipId=" + equipId + ", equipWeight="
+				+ equipWeight + ", gemsRequiredToOpen=" + gemsRequiredToOpen
 				+ ", keysRequiredToOpen=" + keysRequiredToOpen + "]";
 	}
 
 
-	@Override
-	public String getTableCreateStatement() {
-		return "create table chest (" +
-				" id uuid," +
-				" chest_id uuid," +
-				" chest_name varchar," +
-				" chest_drop_rate double," +
-				" equip_id uuid," +
-				" equip_weight double," +
-				" chest_type int," +
-				" gems_required_to_open int," +
-				" keys_required_to_open int," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
-	
+
 	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		
 		return indexes;
 	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index chest_reward_chest_id_index on chest_reward (chest_id);");
-		indexes.add("create index chest_reward_equip_id_index on chest_reward (equip_id);");
-		return indexes;
-	}
-	
-	
-	
-	
 	
 }

@@ -9,8 +9,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
 
 
+ 
 @Entity
 public class User extends BasePersistentObject{
 
@@ -18,25 +20,33 @@ public class User extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="name")
+	@Index
 	protected String name = "";
 	
-	@Column(name="level")
-	protected int level = 0;
+	@Column(name="lvl")
+	@Index
+	protected int lvl = 0;
 	
-	@Column(name="experience")
-	protected int experience = 0;
+	//total exp
+	@Column(name="exp")
+	@Index
+	protected int exp = 0;
 
 	@Column(name="gold")
+	@Index
 	protected int gold = 0;
 	
 	@Column(name="tonic")
+	@Index
 	protected int tonic = 0;
 	
 	//in game currency
 	@Column(name="gems")
+	@Index
 	protected int gems = 0;
 	
 	@Column(name="class_type")
+	@Index
 	protected int classType = 0;
 
 	@Column(name="max_hp")
@@ -57,20 +67,23 @@ public class User extends BasePersistentObject{
 	@Column(name="last_time_mana_regened")
 	protected Date lastTimeManaRegened = null;
 	
-	//if user has a gameCenterId use that id, else generate random string
+	//if has a gameCenterId use that id, else generate random string
 	@Column(name="game_center_id")
+	@Index
 	protected String gameCenterId = "";
 	
 	//@Column(name="signup_date")
 	//protected Date signupDate = null;
 	
 	@Column(name="clan_id")
-	protected int clanId = 0;
+	@Index
+	protected String clanId = null;
 	
 	//@Column(name="last_login")
 	//protected Date lastLogin = null;
 	
 	@Column(name="account_initialized")
+	@Index
 	protected boolean accountInitialized = false;
 	
 	
@@ -92,20 +105,20 @@ public class User extends BasePersistentObject{
 		this.name = name;
 	}
 
-	public int getLevel() {
-		return level;
+	public int getLvl() {
+		return lvl;
 	}
 
-	public void setLevel(int level) {
-		this.level = level;
+	public void setLvl(int lvl) {
+		this.lvl = lvl;
 	}
 
-	public int getExperience() {
-		return experience;
+	public int getExp() {
+		return exp;
 	}
 
-	public void setExperience(int experience) {
-		this.experience = experience;
+	public void setExp(int exp) {
+		this.exp = exp;
 	}
 
 	public int getGold() {
@@ -204,11 +217,11 @@ public class User extends BasePersistentObject{
 //		this.signupDate = signupDate;
 //	}
 
-	public int getClanId() {
+	public String getClanId() {
 		return clanId;
 	}
 
-	public void setClanId(int clanId) {
+	public void setClanId(String clanId) {
 		this.clanId = clanId;
 	}
 
@@ -238,8 +251,8 @@ public class User extends BasePersistentObject{
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", level=" + level
-				+ ", experience=" + experience + ", gold=" + gold + ", tonic="
+		return "User [id=" + id + ", name=" + name + ", lvl=" + lvl
+				+ ", exp=" + exp + ", gold=" + gold + ", tonic="
 				+ tonic + ", gems=" + gems + ", classType=" + classType
 				+ ", maxHp=" + maxHp + ", hp=" + hp + ", lastTimeHpRegened="
 				+ lastTimeHpRegened + ", maxMana=" + maxMana + ", mana=" + mana
@@ -248,49 +261,11 @@ public class User extends BasePersistentObject{
 				+ ", accountInitialized=" + accountInitialized + "]";
 	}
 
-	@Override
-	public String getTableCreateStatement() {
-		return "create table user (" +
-				" id uuid," +
-				" name varchar," +
-				" level int," +
-				" experience int," +
-				" gold int," +
-				" tonic int," +
-				" gems int," +
-				" class_type int," +
-				" max_hp int," +
-				" hp int," +
-				" last_time_hp_regened timestamp," +
-				" max_mana int," +
-				" mana int," +
-				" last_time_mana_regened timestamp," +
-				" game_center_id varchar," +
-//				" signup_date timestamp," +
-				" clan_id int," +
-//				" last_login timestamp," +
-				" account_initialized boolean," +
-				//" email varchar," +
-				" primary key (id))" +
-				" with compact storage;";
-	}
-	
 
 	@Override
 	public Set<String> getTableUpdateStatements() {
 		Set<String> indexes = new HashSet<String>();
 		
-		return indexes;
-	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		//indexes.add("create index user_email_index on user (email);");
-		indexes.add("create index user_name_index on user (name);");
-//		indexes.add("create index user_last_login_index on user (last_login);");
-		indexes.add("create index user_game_center_id_index on user (game_center_id);");
 		return indexes;
 	}
 	

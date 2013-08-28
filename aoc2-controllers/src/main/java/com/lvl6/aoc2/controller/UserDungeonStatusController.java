@@ -13,8 +13,6 @@ import com.lvl6.aoc2.entitymanager.UserDungeonStatusEntityManager;
 import com.lvl6.aoc2.entitymanager.UserDungeonStatusHistoryEntityManager;
 import com.lvl6.aoc2.entitymanager.UserEntityManager;
 import com.lvl6.aoc2.entitymanager.staticdata.CombatRoomRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserDungeonStatusHistoryRetrieveUtils;
-import com.lvl6.aoc2.entitymanager.staticdata.UserDungeonStatusRetrieveUtils;
 //import com.lvl6.aoc2.entitymanager.staticdata.UserSpellRetrieveUtils;
 import com.lvl6.aoc2.eventprotos.UserDungeonStatusProto.UserDungeonStatusRequestProto;
 import com.lvl6.aoc2.eventprotos.UserDungeonStatusProto.UserDungeonStatusResponseProto;
@@ -25,10 +23,11 @@ import com.lvl6.aoc2.events.request.UserDungeonStatusRequestEvent;
 import com.lvl6.aoc2.events.response.UserDungeonStatusResponseEvent;
 import com.lvl6.aoc2.noneventprotos.AocTwoEventProtocolProto.AocTwoEventProtocolRequest;
 import com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto;
-import com.lvl6.aoc2.po.CombatRoom;
 import com.lvl6.aoc2.po.User;
 import com.lvl6.aoc2.po.UserDungeonStatus;
 import com.lvl6.aoc2.po.UserDungeonStatusHistory;
+import com.lvl6.aoc2.services.userdungeonstatus.UserDungeonStatusService;
+import com.lvl6.aoc2.services.userdungeonstatushistory.UserDungeonStatusHistoryService;
 import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 
 
@@ -38,10 +37,10 @@ public class UserDungeonStatusController extends EventController {
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
 	@Autowired
-	protected UserDungeonStatusRetrieveUtils userDungeonStatusRetrieveUtils; 
+	protected UserDungeonStatusService userDungeonStatusService; 
 	
 	@Autowired
-	protected UserDungeonStatusHistoryRetrieveUtils userDungeonStatusHistoryRetrieveUtils;
+	protected UserDungeonStatusHistoryService userDungeonStatusHistoryService;
 	
 	@Autowired
 	protected UserDungeonStatusEntityManager userDungeonStatusEntityManager; 
@@ -196,23 +195,25 @@ public class UserDungeonStatusController extends EventController {
 	}
 	
 	
-	
-	public UserDungeonStatusRetrieveUtils getUserDungeonStatusRetrieveUtils() {
-		return userDungeonStatusRetrieveUtils;
+
+
+
+	public UserDungeonStatusService getUserDungeonStatusService() {
+		return userDungeonStatusService;
 	}
 
-	public void setUserDungeonStatusRetrieveUtils(
-			UserDungeonStatusRetrieveUtils userDungeonStatusRetrieveUtils) {
-		this.userDungeonStatusRetrieveUtils = userDungeonStatusRetrieveUtils;
+	public void setUserDungeonStatusService(
+			UserDungeonStatusService userDungeonStatusService) {
+		this.userDungeonStatusService = userDungeonStatusService;
 	}
 
-	public UserDungeonStatusHistoryRetrieveUtils getUserDungeonStatusHistoryRetrieveUtils() {
-		return userDungeonStatusHistoryRetrieveUtils;
+	public UserDungeonStatusHistoryService getUserDungeonStatusHistoryService() {
+		return userDungeonStatusHistoryService;
 	}
 
-	public void setUserDungeonStatusHistoryRetrieveUtils(
-			UserDungeonStatusHistoryRetrieveUtils userDungeonStatusHistoryRetrieveUtils) {
-		this.userDungeonStatusHistoryRetrieveUtils = userDungeonStatusHistoryRetrieveUtils;
+	public void setUserDungeonStatusHistoryService(
+			UserDungeonStatusHistoryService userDungeonStatusHistoryService) {
+		this.userDungeonStatusHistoryService = userDungeonStatusHistoryService;
 	}
 
 	public UserDungeonStatusEntityManager getUserDungeonStatusEntityManager() {

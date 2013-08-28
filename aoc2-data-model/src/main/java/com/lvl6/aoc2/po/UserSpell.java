@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import com.lvl6.aoc2.entitymanager.Index;
+
 
 
 @Entity
@@ -18,16 +20,16 @@ public class UserSpell extends BasePersistentObject{
 	protected UUID id = UUID.randomUUID();
 	
 	@Column(name="user_id")
+	@Index
 	protected UUID userId = null;
 	
-	@Column(name="name")
-	protected String name = "";
-	
-	@Column(name="spell_lvl")
-	protected int spellLvl = 0;
+	@Column(name="spell_id")
+	@Index
+	protected String spellId = "";
 	
 	//begin training
 	@Column(name="time_acquired")
+	@Index
 	protected Date timeAcquired = new Date();
 
 	@Column(name="is_training")
@@ -59,23 +61,13 @@ public class UserSpell extends BasePersistentObject{
 	}
 
 
-	public String getName() {
-		return name;
+	public String getSpellId() {
+		return spellId;
 	}
 
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-	public int getSpellLvl() {
-		return spellLvl;
-	}
-
-
-	public void setSpellLvl(int spellLvl) {
-		this.spellLvl = spellLvl;
+	public void setSpellId(String spellId) {
+		this.spellId = spellId;
 	}
 
 
@@ -109,30 +101,15 @@ public class UserSpell extends BasePersistentObject{
 	}
 
 
-
 	@Override
 	public String toString() {
-		return "UserSpell [id=" + id + ", userId=" + userId + ", name=" + name
-				+ ", spellLvl=" + spellLvl + ", timeAcquired=" + timeAcquired
-				+ ", isTraining=" + isTraining + ", levelOfUserWhenUpgrading="
+		return "UserSpell [id=" + id + ", userId=" + userId + ", spellId="
+				+ spellId + ", timeAcquired=" + timeAcquired + ", isTraining="
+				+ isTraining + ", levelOfUserWhenUpgrading="
 				+ levelOfUserWhenUpgrading + "]";
 	}
 
 
-	@Override
-	public String getTableCreateStatement() {
-		return "create table user_spell (" +
-				" id uuid," +
-				" user_id uuid," +
-				" name varchar," +
-				" spell_lvl int," +
-				" time_acquired timestamp," +
-				" is_training bool," +
-				" level_of_user_when_upgrading int," +
-				" primary key(id))" +
-				" with compact storage;";
-	}
-	
 	
 	@Override
 	public Set<String> getTableUpdateStatements() {
@@ -140,18 +117,6 @@ public class UserSpell extends BasePersistentObject{
 		
 		return indexes;
 	}
-	
-	
-	@Override
-	public Set<String> getIndexCreateStatements() {
-		Set<String> indexes = new HashSet<String>();
-		indexes.add("create index user_spell_user_id_index on user_spell (user_id);");
-		indexes.add("create index user_spell_spell_id_index on user_spell (spell_id);");
-		return indexes;
-	}
-	
-	
-	
 	
 	
 }

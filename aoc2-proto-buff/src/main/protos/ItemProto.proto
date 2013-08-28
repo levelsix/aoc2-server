@@ -5,7 +5,7 @@ option java_package = "com.lvl6.aoc2.noneventprotos";
 option java_outer_classname = "Item";
 
 message ItemProto {
-	optional string itemID = 1;
+	optional string itemName = 1;
 	optional int32 itemType = 2;
 }
 

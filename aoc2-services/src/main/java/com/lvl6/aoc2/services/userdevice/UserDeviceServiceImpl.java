@@ -1,5 +1,6 @@
 package com.lvl6.aoc2.services.userdevice;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,10 +9,13 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lvl6.aoc2.entitymanager.UserDeviceEntityManager;
 import com.lvl6.aoc2.po.UserDevice;
 
+
+@Component
 public class UserDeviceServiceImpl implements UserDeviceService {
 	
 	private static Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
@@ -38,8 +42,12 @@ public class UserDeviceServiceImpl implements UserDeviceService {
 		return udidsToDevices;
 	}
 	
+	@Override
+	public void saveUserDevices(Collection<UserDevice> devices) {
+		getUserDeviceEntityManager().get().put(devices);
+	}
 	
-	
+
 	@Override
 	public UserDeviceEntityManager getUserDeviceEntityManager() {
 		return userDeviceEntityManager;
