@@ -55,12 +55,13 @@ public class UserItemServiceImpl implements UserItemService {
 	}
 
 	@Override
-	public int getNumberOfSpecificUserKeys(String name, UUID userId) {
+	public int getNumberOfSpecificUserKeys(UUID keyId, UUID userId) {
 		List<UserItem> uiList = getAllUserItemsForUser(userId);
 		int specificKeyCount = 0;
 		for(UserItem ui : uiList) {
-			if(ui.getName() == name)
+			if(ui.getItemId() == keyId) {
 				specificKeyCount++;
+			}
 		}
 		return specificKeyCount;
 	}
@@ -110,7 +111,7 @@ public class UserItemServiceImpl implements UserItemService {
 	
 	@Override
 	public Item getItemCorrespondingToUserItem(UserItem ui) {
-		return getItemRetrieveUtils().getItemAccordingToName(ui.getName());
+		return getItemRetrieveUtils().getItemAccordingToName(ui.getItemId());
 	}
 	
 	

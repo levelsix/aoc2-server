@@ -24,57 +24,50 @@ public class UserConsumable extends BasePersistentObject{
 	
 	@Column(name="consumable_id")
 	@Index
-	protected String consumable_id = "";
+	protected UUID consumableId = null;
 	
 	@Column(name="quantity")
 	protected int quantity = 0;
 	
 	
-
+	
 	public UUID getId() {
 		return id;
 	}
-
 
 	public void setId(UUID id) {
 		this.id = id;
 	}
 
-
 	public UUID getUserId() {
 		return userId;
 	}
-
 
 	public void setUserId(UUID userId) {
 		this.userId = userId;
 	}
 
-
-	public String getConsumable_id() {
-		return consumable_id;
+	public UUID getConsumableId() {
+		return consumableId;
 	}
 
-
-	public void setConsumable_id(String consumable_id) {
-		this.consumable_id = consumable_id;
+	public void setConsumableId(UUID consumableId) {
+		this.consumableId = consumableId;
 	}
-
 
 	public int getQuantity() {
 		return quantity;
 	}
 
-
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
-
+	
 	@Override
 	public String toString() {
 		return "UserConsumable [id=" + id + ", userId=" + userId
-				+ ", consumable_id=" + consumable_id + ", quantity=" + quantity
+				+ ", consumableId=" + consumableId + ", quantity=" + quantity
 				+ "]";
 	}
 

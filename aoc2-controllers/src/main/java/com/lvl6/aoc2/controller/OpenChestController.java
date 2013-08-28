@@ -171,7 +171,8 @@ public class OpenChestController extends EventController {
 		Chest chest = getChestRetrieveUtils().getChestForId(chestId);
 		if(usedKey){
 			Item key = getItemRetrieveUtils().findMatchingKeyToChest(chest.getChestType());
-			int numOfMatchingUserKeys = getUserItemService().getNumberOfSpecificUserKeys(key.getName(), inDb.getId());
+			UUID keyId = key.getId();
+			int numOfMatchingUserKeys = getUserItemService().getNumberOfSpecificUserKeys(keyId, inDb.getId());
 			
 			if(numOfMatchingUserKeys < chest.getKeysRequiredToOpen()) {
 				log.error("user doesn't have key to open chest");
@@ -201,7 +202,7 @@ public class OpenChestController extends EventController {
 				int keysCount = chest.getKeysRequiredToOpen();
 				int count = 0;
 				for(UserItem ui : uiList) {
-					if((ui.getName() == key.getName()) && (count < keysCount)) {
+					if((ui.getItemId() == key.getId()) && (count < keysCount)) {
 						getUserItemEntityManager().get().delete(ui.getId());
 						count++;
 					}
@@ -218,8 +219,8 @@ public class OpenChestController extends EventController {
 			UserEquip ue = new UserEquip();
 			ue.setDungeonRoomOrChestAcquiredFrom(chest.getChestName());
 			ue.setDurability(100.0);
-			ue.setName(equip.getName());
-			ue.setEquipLevel(1);
+			ue.setEquipId(equip.getId());
+			//ue.setEquipLevel(1);
 			ue.setEquipped(false);
 			ue.setId(newId);
 			ue.setLevelOfUserWhenAcquired(inDb.getLvl());

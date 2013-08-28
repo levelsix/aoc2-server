@@ -73,8 +73,8 @@ public class UserConsumableQueueServiceImpl implements UserConsumableQueueServic
 	}
 	
 	@Override
-	public Consumable getConsumableCorrespondingToUserConsumableQueue(String consumableName) {
-		String cqlquery = "select * from consumable where name= " + consumableName + ";";
+	public Consumable getConsumableCorrespondingToUserConsumableQueue(String consumableId) {
+		String cqlquery = "select * from consumable where id= " + consumableId + ";";
 		List<Consumable> c = getConsumableEntityManager().get().find(cqlquery);
 		return c.get(0);
 	}
@@ -85,7 +85,8 @@ public class UserConsumableQueueServiceImpl implements UserConsumableQueueServic
 		for(Map.Entry<UserConsumableQueue, Integer> entry : ucqMap.entrySet()) {
 			UserConsumableQueue ucq = entry.getKey();
 			Integer quantity = entry.getValue();
-			totalBuildCost += getConsumableCorrespondingToUserConsumableQueue(ucq.getName()).getCost()*quantity;
+			String consumableId = ucq.getConsumableId().toString();
+			totalBuildCost += getConsumableCorrespondingToUserConsumableQueue(consumableId).getCost()*quantity;
 		}
 		
 		return totalBuildCost;
@@ -109,7 +110,8 @@ public class UserConsumableQueueServiceImpl implements UserConsumableQueueServic
 		for(Map.Entry<UserConsumableQueue, Integer> entry : queuedConsumables.entrySet()) {
 			UserConsumableQueue ucq = entry.getKey();
 			Integer quantity = entry.getValue();
-			totalBuildTime += getConsumableCorrespondingToUserConsumableQueue(ucq.getName()).getCreateTimeSeconds()*quantity;
+			String consumableId = ucq.getConsumableId().toString();
+			totalBuildTime += getConsumableCorrespondingToUserConsumableQueue(consumableId).getCreateTimeSeconds()*quantity;
 		}
 		
 		return totalBuildTime;
@@ -121,7 +123,7 @@ public class UserConsumableQueueServiceImpl implements UserConsumableQueueServic
 			Integer quantityRemoved = entry.getValue();
 			for(Map.Entry<UserConsumableQueue, Integer> entry2 : currentQueue.entrySet()) {
 				UserConsumableQueue consumableInQueue = entry2.getKey();
-				if(consumableRemoved.getName() == consumableInQueue.getName()) {
+				if(consumableRemoved.getConsumableId() == consumableInQueue.getConsumableId()) {
 					if(consumableInQueue.getQuantity() == quantityRemoved) {
 						getUserConsumableQueueEntityManager().get().delete(consumableInQueue.getId());
 					}

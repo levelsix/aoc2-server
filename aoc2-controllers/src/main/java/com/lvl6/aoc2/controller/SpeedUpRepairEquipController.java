@@ -184,8 +184,12 @@ public class SpeedUpRepairEquipController extends EventController {
 				UserEquip ue = new UserEquip();
 				ue.setDungeonRoomOrChestAcquiredFrom(uerp.getDungeonRoomOrChestAcquiredFrom());
 				ue.setDurability(100.0);
-				ue.setName(uerp.getEquipName());
-				ue.setEquipLevel(uerp.getEquipLevel());
+				
+				String equipIdStr = uerp.getEquipId();
+				UUID equipId = UUID.fromString(equipIdStr);
+				
+				ue.setEquipId(equipId);
+//				ue.setEquipLevel(uerp.getEquipLevel());
 				ue.setEquipped(false);
 				ue.setId(UUID.randomUUID());
 				ue.setLevelOfUserWhenAcquired(uerp.getLevelOfUserWhenAcquired());

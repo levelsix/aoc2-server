@@ -23,7 +23,7 @@ public class UserStructureServiceImpl implements UserStructureService {
 	
 	private  Logger log = LoggerFactory.getLogger(new Object() { }.getClass().getEnclosingClass());
 
-	private  Map<UUID, UserStructure> idsToUserStructures;
+//	private  Map<UUID, UserStructure> idsToUserStructures;
 	
 	@Autowired
 	protected UserStructureEntityManager userStructureEntityManager;
@@ -36,40 +36,38 @@ public class UserStructureServiceImpl implements UserStructureService {
 	
 	
 	@Override
-	public  UserStructure getUserStructureForId(UUID id) {
+	public  UserStructure getUserStructureForId(UUID id) throws Exception {
 		log.debug("retrieve UserStructure data for id " + id);
-		if (idsToUserStructures == null) {
-			setStaticIdsToUserStructures();      
+		String usId = id.toString();
+		String cqlquery = "select * from user_structure where user_id="+ usId +";"; 
+		List<UserStructure> usList = getUserStructureEntityManager().get().find(cqlquery);
+		
+		if (null == usList || usList.isEmpty()) {
+			log.error("unexpected error: no user_structure for" +
+					" user_structure_id=" + usId);
+			return null;
 		}
-		return idsToUserStructures.get(id);
+		if (usList.size() > 1) {
+			String msg = "unexpected error: multiple user_structures for" +
+					" id=" + usId + ".\t user_structures=" + usList;
+			Exception e = new Exception(msg);
+			log.error(msg);
+			throw e;
+		}
+		
+		return usList.get(0);
 	}
 
 	@Override
 	public  Map<UUID, UserStructure> getUserStructuresForIds(List<UUID> ids) {
 		log.debug("retrieve UserStructures data for ids " + ids);
-		if (idsToUserStructures == null) {
-			setStaticIdsToUserStructures();      
-		}
 		Map<UUID, UserStructure> toreturn = new HashMap<UUID, UserStructure>();
-		for (UUID id : ids) {
-			toreturn.put(id,  idsToUserStructures.get(id));
-		}
+//		for (UUID id : ids) {
+//			toreturn.put(id,  idsToUserStructures.get(id));
+//		}
 		return toreturn;
 	}
 
-	private  void setStaticIdsToUserStructures() {
-		log.debug("setting  map of UserStructureIds to UserStructures");
-
-		String cqlquery = "select * from UserStructure;"; 
-		List <UserStructure> list = getUserStructureEntityManager().get().find(cqlquery);
-		idsToUserStructures = new HashMap<UUID, UserStructure>();
-		for(UserStructure us : list) {
-			UUID id= us.getId();
-			idsToUserStructures.put(id, us);
-		}
-					
-	}
-	
 	@Override
 	public  List<UserStructure> getAllUserStructuresForUser(UUID userId) {
 		String cqlquery = "select * from user_structure where user_id=" + userId + ";"; 
@@ -79,9 +77,8 @@ public class UserStructureServiceImpl implements UserStructureService {
 	
 	@Override
 	public Structure getStructureCorrespondingToUserStructure(UserStructure us) {
-		String structureName = us.getName();
-		int level = us.getLvl();
-		return getStructureRetrieveUtils().getStructureWithNameAndLevel(structureName, level);
+		UUID structureId = us.getId();
+		return getStructureRetrieveUtils().getStructureForId(structureId);
 	}
 	
 	

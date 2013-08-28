@@ -45,11 +45,12 @@ public class UserConsumableServiceImpl implements UserConsumableService {
 		return returnVal;
 	}
 	
+	//TODO: CHANGE ARGUMENT TO ONLY ACCEPT List<String>
 	@Override
 	public Map<UserConsumable, Integer> convertListToMap(List<UserConsumablesProto> ucpList) {
 		Map <UserConsumable, Integer> returnMap = new HashMap<>();
 		for(UserConsumablesProto ucp : ucpList) {
-			String userConsumableName = ucp.getName();
+			String userConsumableName = "";//ucp.getName();
 			UserConsumable uc = getUserConsumableCorrespondingToUserConsumableProto(userConsumableName);
 					
 			if(returnMap.containsKey(uc)) {
@@ -88,14 +89,14 @@ public class UserConsumableServiceImpl implements UserConsumableService {
 		getUserEquipmentRepairEntityManager().get().put(newStuff);
 	}
 	
-
+	@Override
 	public void deleteFromQueue(Map<UserConsumable, Integer> ucqDeleteMap, Map<UserConsumable, Integer> currentQueue) {
 		for(Map.Entry<UserConsumable, Integer> entry : ucqDeleteMap.entrySet()) {
 			UserConsumable consumableRemoved = entry.getKey();
 			Integer quantityRemoved = entry.getValue();
 			for(Map.Entry<UserConsumable, Integer> entry2 : currentQueue.entrySet()) {
 				UserConsumable consumableInQueue = entry2.getKey();
-				if(consumableRemoved.getName() == consumableInQueue.getName()) {
+				if(consumableRemoved.getConsumableId() == consumableInQueue.getConsumableId()) {
 					if(consumableInQueue.getQuantity() == quantityRemoved) {
 						getUserConsumableEntityManager().get().delete(consumableInQueue.getId());
 					}
@@ -106,6 +107,7 @@ public class UserConsumableServiceImpl implements UserConsumableService {
 				}
 			}
 		}
+		
 	}
 	
 

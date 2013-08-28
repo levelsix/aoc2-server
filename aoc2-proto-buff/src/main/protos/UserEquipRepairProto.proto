@@ -7,7 +7,8 @@ option java_outer_classname = "UserEquipRepair";
 message UserEquipRepairProto {
 	optional string userEquipRepairID = 1;
 	optional string userID = 2;
-	optional string equipName = 3;
+	optional string equipId = 3;
+	//optional string equipName = 3;
 	optional int32 equipLevel = 4;
 	optional int32 durability = 5;
 	optional int64 expectedStartMillis = 6; //time equip should start being repaired

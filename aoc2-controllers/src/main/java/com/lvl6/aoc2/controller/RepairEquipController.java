@@ -278,8 +278,8 @@ public class RepairEquipController extends EventController {
 	private Set<UUID> getEquipIds(List<UserEquipRepairProto> uerpList) {
 		Set<UUID> uniqIds = new HashSet<UUID>();
 		for (UserEquipRepairProto uerp : uerpList) {
-			String equipName = uerp.getEquipName();
-			UUID equipId = UUID.fromString(equipName);
+			String equipIdStr = uerp.getEquipId();
+			UUID equipId = UUID.fromString(equipIdStr);
 			uniqIds.add(equipId);
 		}
 
@@ -330,8 +330,9 @@ public class RepairEquipController extends EventController {
 			UserEquip ue = new UserEquip();
 
 			ue.setUserId(uer.getUserId());
-			ue.setName(uer.getName());
-			ue.setEquipLevel(uer.getEquipLevel());
+			ue.setEquipId(uer.getEquipId());
+//			ue.setName(uer.getName());
+//			ue.setEquipLevel(uer.getEquipLevel());
 			ue.setDurability(uer.getDurability());
 			ue.setEquipped(false);
 
@@ -375,10 +376,12 @@ public class RepairEquipController extends EventController {
 			UUID userId = UUID.fromString(uerp.getUserID());
 			uer.setUserId(userId);
 
-			String equipName = uerp.getEquipName();
-			uer.setName(equipName);
-
-			uer.setEquipLevel(uerp.getEquipLevel());
+//			String equipName = uerp.getEquipName();
+//			uer.setName(equipName);
+			String equipIdStr = uerp.getEquipId();
+			UUID equipId = UUID.fromString(equipIdStr);
+			uer.setEquipId(equipId);
+//			uer.setEquipLevel(uerp.getEquipLevel());
 			uer.setDurability(uerp.getDurability());
 			Date expectedStart = new Date(uerp.getExpectedStartMillis());
 			uer.setExpectedStart(expectedStart);

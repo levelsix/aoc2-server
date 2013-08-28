@@ -156,30 +156,31 @@ public class BuildConsumableController extends EventController {
 		}
 
 		Set<UserConsumableQueue> alreadyQueuedConsumablesKeys = alreadyQueuedConsumables.keySet();
-		Set<String> alreadyQueuedConsumablesNames = new HashSet<>();
-		Set<String> deletedQueuedConsumablesNames = new HashSet<>();
+		Set<UUID> alreadyQueuedConsumablesIds = new HashSet<UUID>();
+		Set<UUID> deletedQueuedConsumablesIds = new HashSet<UUID>();
 		for(UserConsumableQueue ucq : alreadyQueuedConsumablesKeys) {
-			alreadyQueuedConsumablesNames.add(ucq.getName());
+			alreadyQueuedConsumablesIds.add(ucq.getConsumableId());
 		}
 
 		for(UserConsumableQueueProto ucqp : ucqDelete) {
-			deletedQueuedConsumablesNames.add(ucqp.getName());
+			UUID consumableId = UUID.fromString(ucqp.getConsumableId());
+			deletedQueuedConsumablesIds.add(consumableId);
 		}
 		
 		//check if what client deletes/updates are in the db.
-		if (!alreadyQueuedConsumablesNames.containsAll(deletedQueuedConsumablesNames)) {
+		if (!alreadyQueuedConsumablesIds.containsAll(deletedQueuedConsumablesIds)) {
 			log.error("unexpected error: either server did not modify" +
 					"equips-to-be-repaired, or client is sending incorrectly. " +
-					"uerDeleteIds=" + deletedQueuedConsumablesNames);
+					"uerDeleteIds=" + deletedQueuedConsumablesIds);
 			return false;
 		}
 		
 		Set<String> updatedQueuedConsumablesNames = new HashSet<>();
 		for(UserConsumableQueueProto ucqp : ucqUpdate) {
-			updatedQueuedConsumablesNames.add(ucqp.getName());
+			updatedQueuedConsumablesNames.add(ucqp.getConsumableId());
 		}
 		
-		if (!alreadyQueuedConsumablesNames.containsAll(updatedQueuedConsumablesNames)) {
+		if (!alreadyQueuedConsumablesIds.containsAll(updatedQueuedConsumablesNames)) {
 			log.error("unexpected error: either server did not modify" +
 					"equips-to-be-repaired, or client is sending incorrectly. " +
 					"uerUpdateIds=" + updatedQueuedConsumablesNames);

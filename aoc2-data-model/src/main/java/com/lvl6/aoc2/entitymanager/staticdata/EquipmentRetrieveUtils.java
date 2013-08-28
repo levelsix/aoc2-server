@@ -97,15 +97,15 @@ import com.lvl6.aoc2.po.Equipment;
 		}
 	}
 
-	public Equipment getEquipmentCorrespondingToName(String name) {
+	public Equipment getEquipmentCorrespondingToId(String equipIdStr, UUID equipId) {
 		if (idsToEquipments == null) {
 			setMaps();      
 		}
-		for(Equipment value : idsToEquipments.values()) {
-			if(value.getName() == name)
-				return value;
+		if (null == equipId) {
+			equipId = UUID.fromString(equipIdStr);
 		}
-		return null;
+		
+		return idsToEquipments.get(equipId);
 	}
 
 	public  void reload() {
