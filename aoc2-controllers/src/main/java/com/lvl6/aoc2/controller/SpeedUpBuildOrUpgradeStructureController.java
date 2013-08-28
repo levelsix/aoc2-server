@@ -133,14 +133,15 @@ public class SpeedUpBuildOrUpgradeStructureController extends EventController {
 	private boolean isValidRequest(Builder responseBuilder, MinimumUserProto sender,
 			User inDb, UserStructure us, Structure s, boolean constructing, Date clientDate) throws ConnectionException {
 		int secondsRemaining;
-		if(us.getLvl() == 1) {
-			long secondsPassed = (clientDate.getTime() - us.getPurchaseTime().getTime())/1000;
-			secondsRemaining = (int)(s.getBuildTimeSeconds() - secondsPassed);
-		}
-		else {
+		//TODO: FIX THIS
+//		if(us.getLvl() == 1) {
+//			long secondsPassed = (clientDate.getTime() - us.getPurchaseTime().getTime())/1000;
+//			secondsRemaining = (int)(s.getBuildTimeSeconds() - secondsPassed);
+//		}
+//		else {
 			long secondsPassed = (clientDate.getTime() - us.getStartUpgradeTime().getTime())/1000;
 			secondsRemaining = (int)(s.getBuildTimeSeconds() - secondsPassed);
-		}
+//		}
 		
 		if(getUserService().calculateGemCostForSpeedUp(secondsRemaining) > inDb.getGems()) {
 			log.error("user doesn't have enough gems to speed up");
@@ -161,16 +162,17 @@ public class SpeedUpBuildOrUpgradeStructureController extends EventController {
 	private boolean writeChangesToDb(User inDb, UserStructure us,
 			Structure s, Date clientDate) {
 		try {
-			if(us.getLvl() == 1) {
-				long secondsPassed = (clientDate.getTime() - us.getPurchaseTime().getTime())/1000;
-				int secondsRemaining = (int)(s.getBuildTimeSeconds() - secondsPassed);
-				inDb.setGems(inDb.getGems() - getUserService().calculateGemCostForSpeedUp(secondsRemaining));
-			}
-			else {
+			//TODO: FIX THIS
+//			if(us.getLvl() == 1) {
+//				long secondsPassed = (clientDate.getTime() - us.getPurchaseTime().getTime())/1000;
+//				int secondsRemaining = (int)(s.getBuildTimeSeconds() - secondsPassed);
+//				inDb.setGems(inDb.getGems() - getUserService().calculateGemCostForSpeedUp(secondsRemaining));
+//			}
+//			else {
 				long secondsPassed = (clientDate.getTime() - us.getStartUpgradeTime().getTime())/1000;
 				int secondsRemaining = (int)(s.getBuildTimeSeconds() - secondsPassed);
 				inDb.setGems(inDb.getGems() - getUserService().calculateGemCostForSpeedUp(secondsRemaining));
-			}
+//			}
 			
 			
 			//update user

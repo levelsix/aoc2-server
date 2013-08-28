@@ -77,10 +77,8 @@ public class UserSpellServiceImpl implements UserSpellService {
 
 	@Override
 	public Spell getSpellCorrespondingToUserSpell(UserSpell us) {
-		String name = us.getName();
-		int level = us.getSpellLvl();
-		return getSpellRetrieveUtils().getSpellAccordingToNameAndLevel(name, level);
-		
+		UUID spellId = us.getSpellId();
+		return getSpellRetrieveUtils().getSpellForId(spellId);
 	}
 
 	public UserSpellEntityManager getUserSpellEntityManager() {

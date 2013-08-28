@@ -69,15 +69,11 @@ import com.lvl6.aoc2.po.Item;
 		return i2;
 	}
 	
-	public Item getItemAccordingToName(String name) {
+	public Item getItemAccordingToName(UUID itemId) {
 		if(idsToItems == null) {
 			setStaticIdsToItems();
 		}
-		for(Item value : idsToItems.values()) {
-			if(value.getName() == name)
-				return value;
-		}
-		return null;
+		return idsToItems.get(itemId);
 	}
 	
 	

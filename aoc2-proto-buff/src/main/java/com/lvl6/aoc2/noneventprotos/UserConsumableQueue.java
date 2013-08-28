@@ -19,9 +19,9 @@ public final class UserConsumableQueue {
     boolean hasUserID();
     String getUserID();
     
-    // optional string name = 3;
-    boolean hasName();
-    String getName();
+    // optional string consumableId = 3;
+    boolean hasConsumableId();
+    String getConsumableId();
     
     // optional int32 quantity = 4;
     boolean hasQuantity();
@@ -132,14 +132,14 @@ public final class UserConsumableQueue {
       }
     }
     
-    // optional string name = 3;
-    public static final int NAME_FIELD_NUMBER = 3;
-    private java.lang.Object name_;
-    public boolean hasName() {
+    // optional string consumableId = 3;
+    public static final int CONSUMABLEID_FIELD_NUMBER = 3;
+    private java.lang.Object consumableId_;
+    public boolean hasConsumableId() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
-    public String getName() {
-      java.lang.Object ref = name_;
+    public String getConsumableId() {
+      java.lang.Object ref = consumableId_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -147,17 +147,17 @@ public final class UserConsumableQueue {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          name_ = s;
+          consumableId_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getNameBytes() {
-      java.lang.Object ref = name_;
+    private com.google.protobuf.ByteString getConsumableIdBytes() {
+      java.lang.Object ref = consumableId_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        name_ = b;
+        consumableId_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -207,7 +207,7 @@ public final class UserConsumableQueue {
     private void initFields() {
       userConsumableQueueID_ = "";
       userID_ = "";
-      name_ = "";
+      consumableId_ = "";
       quantity_ = 0;
       expectedStartMillis_ = 0L;
       queuedTimeMillis_ = 0L;
@@ -232,7 +232,7 @@ public final class UserConsumableQueue {
         output.writeBytes(2, getUserIDBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getNameBytes());
+        output.writeBytes(3, getConsumableIdBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeInt32(4, quantity_);
@@ -265,7 +265,7 @@ public final class UserConsumableQueue {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getNameBytes());
+          .computeBytesSize(3, getConsumableIdBytes());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -411,7 +411,7 @@ public final class UserConsumableQueue {
         bitField0_ = (bitField0_ & ~0x00000001);
         userID_ = "";
         bitField0_ = (bitField0_ & ~0x00000002);
-        name_ = "";
+        consumableId_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
         quantity_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
@@ -470,7 +470,7 @@ public final class UserConsumableQueue {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.name_ = name_;
+        result.consumableId_ = consumableId_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
@@ -509,8 +509,8 @@ public final class UserConsumableQueue {
         if (other.hasUserID()) {
           setUserID(other.getUserID());
         }
-        if (other.hasName()) {
-          setName(other.getName());
+        if (other.hasConsumableId()) {
+          setConsumableId(other.getConsumableId());
         }
         if (other.hasQuantity()) {
           setQuantity(other.getQuantity());
@@ -567,7 +567,7 @@ public final class UserConsumableQueue {
             }
             case 26: {
               bitField0_ |= 0x00000004;
-              name_ = input.readBytes();
+              consumableId_ = input.readBytes();
               break;
             }
             case 32: {
@@ -668,39 +668,39 @@ public final class UserConsumableQueue {
         onChanged();
       }
       
-      // optional string name = 3;
-      private java.lang.Object name_ = "";
-      public boolean hasName() {
+      // optional string consumableId = 3;
+      private java.lang.Object consumableId_ = "";
+      public boolean hasConsumableId() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public String getName() {
-        java.lang.Object ref = name_;
+      public String getConsumableId() {
+        java.lang.Object ref = consumableId_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          name_ = s;
+          consumableId_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setName(String value) {
+      public Builder setConsumableId(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000004;
-        name_ = value;
+        consumableId_ = value;
         onChanged();
         return this;
       }
-      public Builder clearName() {
+      public Builder clearConsumableId() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        name_ = getDefaultInstance().getName();
+        consumableId_ = getDefaultInstance().getConsumableId();
         onChanged();
         return this;
       }
-      void setName(com.google.protobuf.ByteString value) {
+      void setConsumableId(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000004;
-        name_ = value;
+        consumableId_ = value;
         onChanged();
       }
       
@@ -814,13 +814,13 @@ public final class UserConsumableQueue {
   static {
     java.lang.String[] descriptorData = {
       "\n\036UserConsumableQueueProto.proto\022\005proto\"" +
-      "\274\001\n\030UserConsumableQueueProto\022\035\n\025userCons" +
-      "umableQueueID\030\001 \001(\t\022\016\n\006userID\030\002 \001(\t\022\014\n\004n" +
-      "ame\030\003 \001(\t\022\020\n\010quantity\030\004 \001(\005\022\033\n\023expectedS" +
-      "tartMillis\030\006 \001(\003\022\030\n\020queuedTimeMillis\030\007 \001" +
-      "(\003\022\032\n\022isFinishedBuilding\030\010 \001(\010B3\n\034com.lv" +
-      "l6.aoc2.noneventprotosB\023UserConsumableQu" +
-      "eue"
+      "\304\001\n\030UserConsumableQueueProto\022\035\n\025userCons" +
+      "umableQueueID\030\001 \001(\t\022\016\n\006userID\030\002 \001(\t\022\024\n\014c" +
+      "onsumableId\030\003 \001(\t\022\020\n\010quantity\030\004 \001(\005\022\033\n\023e" +
+      "xpectedStartMillis\030\006 \001(\003\022\030\n\020queuedTimeMi" +
+      "llis\030\007 \001(\003\022\032\n\022isFinishedBuilding\030\010 \001(\010B3" +
+      "\n\034com.lvl6.aoc2.noneventprotosB\023UserCons" +
+      "umableQueue"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -832,7 +832,7 @@ public final class UserConsumableQueue {
           internal_static_proto_UserConsumableQueueProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_UserConsumableQueueProto_descriptor,
-              new java.lang.String[] { "UserConsumableQueueID", "UserID", "Name", "Quantity", "ExpectedStartMillis", "QueuedTimeMillis", "IsFinishedBuilding", },
+              new java.lang.String[] { "UserConsumableQueueID", "UserID", "ConsumableId", "Quantity", "ExpectedStartMillis", "QueuedTimeMillis", "IsFinishedBuilding", },
               com.lvl6.aoc2.noneventprotos.UserConsumableQueue.UserConsumableQueueProto.class,
               com.lvl6.aoc2.noneventprotos.UserConsumableQueue.UserConsumableQueueProto.Builder.class);
           return null;

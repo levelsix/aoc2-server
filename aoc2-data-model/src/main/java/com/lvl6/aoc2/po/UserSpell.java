@@ -25,7 +25,7 @@ public class UserSpell extends BasePersistentObject{
 	
 	@Column(name="spell_id")
 	@Index
-	protected String spellId = "";
+	protected UUID spellId = null;
 	
 	//begin training
 	@Column(name="time_acquired")
@@ -61,12 +61,12 @@ public class UserSpell extends BasePersistentObject{
 	}
 
 
-	public String getSpellId() {
+	public UUID getSpellId() {
 		return spellId;
 	}
 
 
-	public void setSpellId(String spellId) {
+	public void setSpellId(UUID spellId) {
 		this.spellId = spellId;
 	}
 

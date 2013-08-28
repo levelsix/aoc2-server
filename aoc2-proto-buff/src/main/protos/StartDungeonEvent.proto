@@ -12,7 +12,7 @@ message StartDungeonRequestProto {
 	optional MinimumUserProto mup = 1;
 	repeated UserEquipmentProto uerList = 2;	//all user equips
 	repeated UserConsumablesProto ucpList = 3;
-	optional string dungeonName = 4;
+	optional string combatRoomId = 4;
 	
 }
 

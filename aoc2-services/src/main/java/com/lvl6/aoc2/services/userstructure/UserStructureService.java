@@ -9,7 +9,7 @@ import com.lvl6.aoc2.po.UserStructure;
 
 public interface UserStructureService {
 		
-	public abstract UserStructure getUserStructureForId(UUID id);
+	public abstract UserStructure getUserStructureForId(UUID id) throws Exception;
 	
 	public abstract Map<UUID, UserStructure> getUserStructuresForIds(List<UUID> ids);
 	

@@ -11,7 +11,7 @@ message UserDungeonStatusRequestProto {
 	optional int32 userHp = 2;
 	optional int32 userMana = 3;
 	optional int32 actionsPerformed = 4; //calculating damage to equips 
-	optional string dungeonRoomName = 5;
+	optional string combatRoomId = 5;
 	//optional int32 monstersRemaining = 6;
 	
 }

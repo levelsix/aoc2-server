@@ -179,8 +179,9 @@ public class RepairEquipWhenMissingResourcesController extends EventController {
 			UserEquipRepair uer = new UserEquipRepair();
 			uer.setDurability(ue.getDurability());
 			uer.setEnteredQueue(clientDate);
-			uer.setName(e.getName());
-			uer.setEquipLevel(ue.getEquipLevel());
+			UUID equipId = e.getId();
+			uer.setEquipId(equipId);
+//			uer.setEquipLevel(ue.getEquipLevel());
 			uer.setId(UUID.randomUUID());
 			uer.setUserId(inDb.getId());
 			uer.setDungeonRoomOrChestAcquiredFrom(ue.getDungeonRoomOrChestAcquiredFrom());

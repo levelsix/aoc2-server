@@ -101,16 +101,17 @@ public class UserEquipServiceImpl implements UserEquipService {
 	}
 	
 	public Equipment getEquipmentCorrespondingToUserEquip(UserEquip ue) {
-		String equipName = ue.getName();
-		return getEquipmentRetrieveUtils().getEquipmentCorrespondingToName(equipName);
+		UUID equipId = ue.getEquipId();
+		return getEquipmentRetrieveUtils().getEquipmentCorrespondingToName(equipId);
 	}
 	
 	public List<UserEquip> getAllEquippedUserEquipsForUser(UUID userId) {
 		List<UserEquip> ueList = getAllUserEquipsForUser(userId);
 		List<UserEquip> equippedList = new ArrayList<>();
 		for(UserEquip ue : ueList) {
-			if(ue.isEquipped())
+			if(ue.isEquipped()) {
 				equippedList.add(ue);
+			}
 		}
 		return equippedList;
 	}

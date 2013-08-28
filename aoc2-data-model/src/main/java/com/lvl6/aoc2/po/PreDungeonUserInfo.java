@@ -31,7 +31,7 @@ public class PreDungeonUserInfo extends BasePersistentObject{
 	
 	@Column(name="combat_room_id")
 	@Index
-	protected String combatRoomId = "";
+	protected UUID combatRoomId = null;
 	
 	@Column(name="level_of_user")
 	protected int levelOfUser = 0;
@@ -82,12 +82,12 @@ public class PreDungeonUserInfo extends BasePersistentObject{
 	}
 
 
-	public String getCombatRoomId() {
+	public UUID getCombatRoomId() {
 		return combatRoomId;
 	}
 
 
-	public void setCombatRoomId(String combatRoomId) {
+	public void setCombatRoomId(UUID combatRoomId) {
 		this.combatRoomId = combatRoomId;
 	}
 

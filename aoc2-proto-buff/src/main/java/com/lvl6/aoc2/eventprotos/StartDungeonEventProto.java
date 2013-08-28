@@ -36,9 +36,9 @@ public final class StartDungeonEventProto {
     com.lvl6.aoc2.noneventprotos.UserConsumable.UserConsumablesProtoOrBuilder getUcpListOrBuilder(
         int index);
     
-    // optional string dungeonName = 4;
-    boolean hasDungeonName();
-    String getDungeonName();
+    // optional string combatRoomId = 4;
+    boolean hasCombatRoomId();
+    String getCombatRoomId();
   }
   public static final class StartDungeonRequestProto extends
       com.google.protobuf.GeneratedMessage
@@ -124,14 +124,14 @@ public final class StartDungeonEventProto {
       return ucpList_.get(index);
     }
     
-    // optional string dungeonName = 4;
-    public static final int DUNGEONNAME_FIELD_NUMBER = 4;
-    private java.lang.Object dungeonName_;
-    public boolean hasDungeonName() {
+    // optional string combatRoomId = 4;
+    public static final int COMBATROOMID_FIELD_NUMBER = 4;
+    private java.lang.Object combatRoomId_;
+    public boolean hasCombatRoomId() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
-    public String getDungeonName() {
-      java.lang.Object ref = dungeonName_;
+    public String getCombatRoomId() {
+      java.lang.Object ref = combatRoomId_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -139,17 +139,17 @@ public final class StartDungeonEventProto {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          dungeonName_ = s;
+          combatRoomId_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getDungeonNameBytes() {
-      java.lang.Object ref = dungeonName_;
+    private com.google.protobuf.ByteString getCombatRoomIdBytes() {
+      java.lang.Object ref = combatRoomId_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        dungeonName_ = b;
+        combatRoomId_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -160,7 +160,7 @@ public final class StartDungeonEventProto {
       mup_ = com.lvl6.aoc2.noneventprotos.FullUser.MinimumUserProto.getDefaultInstance();
       uerList_ = java.util.Collections.emptyList();
       ucpList_ = java.util.Collections.emptyList();
-      dungeonName_ = "";
+      combatRoomId_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -184,7 +184,7 @@ public final class StartDungeonEventProto {
         output.writeMessage(3, ucpList_.get(i));
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(4, getDungeonNameBytes());
+        output.writeBytes(4, getCombatRoomIdBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -209,7 +209,7 @@ public final class StartDungeonEventProto {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getDungeonNameBytes());
+          .computeBytesSize(4, getCombatRoomIdBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -356,7 +356,7 @@ public final class StartDungeonEventProto {
         } else {
           ucpListBuilder_.clear();
         }
-        dungeonName_ = "";
+        combatRoomId_ = "";
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
@@ -425,7 +425,7 @@ public final class StartDungeonEventProto {
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.dungeonName_ = dungeonName_;
+        result.combatRoomId_ = combatRoomId_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -497,8 +497,8 @@ public final class StartDungeonEventProto {
             }
           }
         }
-        if (other.hasDungeonName()) {
-          setDungeonName(other.getDungeonName());
+        if (other.hasCombatRoomId()) {
+          setCombatRoomId(other.getCombatRoomId());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -554,7 +554,7 @@ public final class StartDungeonEventProto {
             }
             case 34: {
               bitField0_ |= 0x00000008;
-              dungeonName_ = input.readBytes();
+              combatRoomId_ = input.readBytes();
               break;
             }
           }
@@ -1025,39 +1025,39 @@ public final class StartDungeonEventProto {
         return ucpListBuilder_;
       }
       
-      // optional string dungeonName = 4;
-      private java.lang.Object dungeonName_ = "";
-      public boolean hasDungeonName() {
+      // optional string combatRoomId = 4;
+      private java.lang.Object combatRoomId_ = "";
+      public boolean hasCombatRoomId() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      public String getDungeonName() {
-        java.lang.Object ref = dungeonName_;
+      public String getCombatRoomId() {
+        java.lang.Object ref = combatRoomId_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          dungeonName_ = s;
+          combatRoomId_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setDungeonName(String value) {
+      public Builder setCombatRoomId(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000008;
-        dungeonName_ = value;
+        combatRoomId_ = value;
         onChanged();
         return this;
       }
-      public Builder clearDungeonName() {
+      public Builder clearCombatRoomId() {
         bitField0_ = (bitField0_ & ~0x00000008);
-        dungeonName_ = getDefaultInstance().getDungeonName();
+        combatRoomId_ = getDefaultInstance().getCombatRoomId();
         onChanged();
         return this;
       }
-      void setDungeonName(com.google.protobuf.ByteString value) {
+      void setCombatRoomId(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000008;
-        dungeonName_ = value;
+        combatRoomId_ = value;
         onChanged();
       }
       
@@ -1664,20 +1664,20 @@ public final class StartDungeonEventProto {
     java.lang.String[] descriptorData = {
       "\n\027StartDungeonEvent.proto\022\005proto\032\023FullUs" +
       "erProto.proto\032\030UserEquipmentProto.proto\032" +
-      "\032UserConsumablesProto.proto\"\257\001\n\030StartDun" +
+      "\032UserConsumablesProto.proto\"\260\001\n\030StartDun" +
       "geonRequestProto\022$\n\003mup\030\001 \001(\0132\027.proto.Mi" +
       "nimumUserProto\022*\n\007uerList\030\002 \003(\0132\031.proto." +
       "UserEquipmentProto\022,\n\007ucpList\030\003 \003(\0132\033.pr" +
-      "oto.UserConsumablesProto\022\023\n\013dungeonName\030" +
-      "\004 \001(\t\"\247\002\n\031StartDungeonResponseProto\022$\n\003m" +
-      "up\030\001 \001(\0132\027.proto.MinimumUserProto\022C\n\006sta" +
-      "tus\030\002 \001(\01623.proto.StartDungeonResponsePr",
-      "oto.StartDungeonStatus\"\236\001\n\022StartDungeonS" +
-      "tatus\022\013\n\007SUCCESS\020\000\022\016\n\nFAIL_NO_HP\020\001\022\036\n\032FA" +
-      "IL_NOT_AT_REQUIRED_LEVEL\020\002\022\033\n\027FAIL_EQUIP" +
-      "_STORAGE_FULL\020\003\022\036\n\032FAIL_ZERO_DURABILITY_" +
-      "EQUIP\020\004\022\016\n\nFAIL_OTHER\020\005B3\n\031com.lvl6.aoc2" +
-      ".eventprotosB\026StartDungeonEventProto"
+      "oto.UserConsumablesProto\022\024\n\014combatRoomId" +
+      "\030\004 \001(\t\"\247\002\n\031StartDungeonResponseProto\022$\n\003" +
+      "mup\030\001 \001(\0132\027.proto.MinimumUserProto\022C\n\006st" +
+      "atus\030\002 \001(\01623.proto.StartDungeonResponseP",
+      "roto.StartDungeonStatus\"\236\001\n\022StartDungeon" +
+      "Status\022\013\n\007SUCCESS\020\000\022\016\n\nFAIL_NO_HP\020\001\022\036\n\032F" +
+      "AIL_NOT_AT_REQUIRED_LEVEL\020\002\022\033\n\027FAIL_EQUI" +
+      "P_STORAGE_FULL\020\003\022\036\n\032FAIL_ZERO_DURABILITY" +
+      "_EQUIP\020\004\022\016\n\nFAIL_OTHER\020\005B3\n\031com.lvl6.aoc" +
+      "2.eventprotosB\026StartDungeonEventProto"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1689,7 +1689,7 @@ public final class StartDungeonEventProto {
           internal_static_proto_StartDungeonRequestProto_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_proto_StartDungeonRequestProto_descriptor,
-              new java.lang.String[] { "Mup", "UerList", "UcpList", "DungeonName", },
+              new java.lang.String[] { "Mup", "UerList", "UcpList", "CombatRoomId", },
               com.lvl6.aoc2.eventprotos.StartDungeonEventProto.StartDungeonRequestProto.class,
               com.lvl6.aoc2.eventprotos.StartDungeonEventProto.StartDungeonRequestProto.Builder.class);
           internal_static_proto_StartDungeonResponseProto_descriptor =

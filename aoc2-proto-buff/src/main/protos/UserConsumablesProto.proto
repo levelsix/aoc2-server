@@ -7,6 +7,7 @@ option java_outer_classname = "UserConsumable";
 message UserConsumablesProto {
 	optional string id = 1;
 	optional string userID = 2;
-	optional string name = 3;
+	optional string consumableId = 3;
 	optional int32 quantity = 4;
+	//optional string name = 5;
 }

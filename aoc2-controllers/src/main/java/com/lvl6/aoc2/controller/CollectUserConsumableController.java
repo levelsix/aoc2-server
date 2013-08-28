@@ -142,8 +142,8 @@ public class CollectUserConsumableController extends EventController {
 		
 		boolean bool = false;
 		for(UserConsumableQueueProto ucqp: ucqpList) {
-			String consumableName = ucqp.getName();
-			Consumable c = getUserConsumableQueueService().getConsumableCorrespondingToUserConsumableQueue(consumableName);
+			String consumableId = ucqp.getConsumableId();
+			Consumable c = getUserConsumableQueueService().getConsumableCorrespondingToUserConsumableQueue(consumableId);
 			long finishTime = ucqp.getExpectedStartMillis() + c.getCreateTimeSeconds()*1000; 
 			if(finishTime > clientDate.getTime()) {
 				log.error("a consumable's expected finish time has not arrived yet");
@@ -178,7 +178,7 @@ public class CollectUserConsumableController extends EventController {
 				
 				UserConsumable uc = new UserConsumable();
 				uc.setId(UUID.randomUUID());
-				uc.setName(ucq.getName());
+				uc.setConsumableId(ucq.getConsumableId());
 				uc.setQuantity(quantityRemoved);
 				uc.setUserId(inDb.getId());
 				getUserConsumableEntityManager().get().put(uc);

@@ -85,7 +85,8 @@ public class UserDungeonStatusController extends EventController {
 		int actionsPerformed = reqProto.getActionsPerformed();	
 	
 		
-		String dungeonRoomName = reqProto.getDungeonRoomName();
+		String combatRoomIdStr = reqProto.getCombatRoomId();
+		UUID combatRoomId = UUID.fromString(combatRoomIdStr);
 //		UUID dungeonRoomId = UUID.fromString(dungeonRoomName);
 //		CombatRoom dungeonRoom = getCombatRoomRetrieveUtils().getCombatRoomForId(dungeonRoomId);
 		
@@ -108,7 +109,9 @@ public class UserDungeonStatusController extends EventController {
 
 			boolean successful = false;
 			if (validRequest) 
-				successful = writeChangesToDb(inDb, userHp, userMana, actionsPerformed, uds, userId, dungeonRoomName, clientDate);
+				successful = writeChangesToDb(inDb, userHp, userMana,
+						actionsPerformed, uds, userId, combatRoomId,
+						clientDate);
 			
 
 			if (successful) {
@@ -163,7 +166,7 @@ public class UserDungeonStatusController extends EventController {
 	}
 
 	private boolean writeChangesToDb(User inDb, int userHp, int userMana,
-			int actionsPerformed, UserDungeonStatus uds, UUID userId, String dungeonRoomName, Date clientDate) {
+			int actionsPerformed, UserDungeonStatus uds, UUID userId, UUID combatRoomId, Date clientDate) {
 			
 		try {
 			//update user dungeon status
@@ -171,7 +174,8 @@ public class UserDungeonStatusController extends EventController {
 			uds.setMana(userMana);
 			uds.setActionsPerformed(uds.getActionsPerformed() + actionsPerformed);
 			uds.setCurrentTime(clientDate);
-			uds.setDungeonRoomName(dungeonRoomName);
+			//TODO: FIX THIS
+//			uds.setDungeonRoomName(combatRoomId);
 			getUserDungeonStatusEntityManager().get().put(uds);
 			
 			//add to user dungeon status history
@@ -183,7 +187,8 @@ public class UserDungeonStatusController extends EventController {
 			udsh.setCurrentTime(clientDate);
 			udsh.setId(newId);
 			udsh.setUserId(userId);
-			udsh.setDungeonRoomName(dungeonRoomName);
+			//TODO: FIX THIS
+//			udsh.setDungeonRoomName(dungeonRoomName);
 			getUserDungeonStatusHistoryEntityManager().get().put(udsh);
 			
 			return true;

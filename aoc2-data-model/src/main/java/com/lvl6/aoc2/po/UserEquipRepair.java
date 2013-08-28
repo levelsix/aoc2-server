@@ -25,7 +25,7 @@ public class UserEquipRepair extends BasePersistentObject{
 	
 	@Column(name="equip_id")
 	@Index
-	protected UUID equip_id = null;
+	protected UUID equipId = null;
 	
 	@Column(name="durability")
 	protected double durability = 0;
@@ -50,7 +50,6 @@ public class UserEquipRepair extends BasePersistentObject{
 	protected String dungeonRoomOrChestAcquiredFrom = "";
 
 
-
 	public UUID getId() {
 		return id;
 	}
@@ -68,6 +67,16 @@ public class UserEquipRepair extends BasePersistentObject{
 
 	public void setUserId(UUID userId) {
 		this.userId = userId;
+	}
+
+
+	public UUID getEquipId() {
+		return equipId;
+	}
+
+
+	public void setEquipId(UUID equipId) {
+		this.equipId = equipId;
 	}
 
 

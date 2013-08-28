@@ -265,8 +265,8 @@ public class TrainOrUpgradeSpellController extends EventController {
 			
 			us2.setId(newId);
 			us2.setUserId(inDb.getId());
-			us2.setName(s.getName());
-			us2.setSpellLvl(s.getLvl());
+			us2.setSpellId(s.getId());
+//			us2.setSpellLvl(s.getLvl());
 			us2.setTimeAcquired(clientDate);
 			us2.setIsTraining(true);
 			us2.setLevelOfUserWhenUpgrading(inDb.getLvl());

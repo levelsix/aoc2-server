@@ -113,7 +113,8 @@ public class StartDungeonController extends EventController {
 		MinimumUserProto sender = reqProto.getMup();
 		List<UserConsumablesProto> ucpList = reqProto.getUcpListList();
 		List<UserEquipmentProto> uepList = reqProto.getUerListList();
-		String dungeonName = reqProto.getDungeonName();
+		String combatRoomIdStr = reqProto.getCombatRoomId();
+		UUID combatRoomId = UUID.fromString(combatRoomIdStr);
 				
 		Date clientDate = new Date();
 
@@ -136,12 +137,12 @@ public class StartDungeonController extends EventController {
 			List<UserEquip> equippedList = getUserEquipService().getAllEquippedUserEquipsForUser(inDb.getId());
 			//validate request
 			boolean validRequest = isValidRequest(responseBuilder, sender, inDb, 
-					uepList, equippedList, userConsumablesMap, dungeonName, clientDate);
+					uepList, equippedList, userConsumablesMap, combatRoomIdStr, clientDate);
 
 			boolean successful = false;
 			if (validRequest) {
 				successful = writeChangesToDb(inDb, 
-						uepList, equippedList, userConsumablesMap, dungeonName, clientDate);
+						uepList, equippedList, userConsumablesMap, combatRoomId, clientDate);
 			}
 
 			if (successful) {
@@ -227,11 +228,11 @@ public class StartDungeonController extends EventController {
 
 	private boolean writeChangesToDb(User inDb, 
 			List<UserEquipmentProto> uepList, List<UserEquip> equippedList, 
-			Map<UserConsumable, Integer> userConsumablesMap, String dungeonName, Date clientDate) {
+			Map<UserConsumable, Integer> userConsumablesMap, UUID combatRoomId, Date clientDate) {
 		try {
 			//save all the info
 			PreDungeonUserInfo pdui = new PreDungeonUserInfo();
-			pdui.setCombatRoomName(dungeonName);
+			pdui.setCombatRoomId(combatRoomId);
 			pdui.setHealth(inDb.getHp());
 			pdui.setId(UUID.randomUUID());
 			pdui.setLevelOfUser(inDb.getLvl());
@@ -245,7 +246,7 @@ public class StartDungeonController extends EventController {
 				pduei.setDurability(ue.getDurability());
 				pduei.setEquipId(ue.getId());
 				pduei.setId(UUID.randomUUID());
-				pduei.setLvl(ue.getEquipLevel());
+//				pduei.setLvl(ue.getEquipLevel());
 				pduei.setUserId(inDb.getId());
 				getPreDungeonUserEquipInfoEntityManager().get().put(pduei);
 			}

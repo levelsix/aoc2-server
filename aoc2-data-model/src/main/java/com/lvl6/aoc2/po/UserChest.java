@@ -27,6 +27,7 @@ public class UserChest extends BasePersistentObject{
 	@Index
 	protected UUID chestId = null;
 	
+	//where the user got this chest
 	@Column(name="combat_room_id")
 	@Index
 	protected UUID combatRoomId = null;
