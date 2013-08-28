@@ -102,7 +102,7 @@ public class UserEquipServiceImpl implements UserEquipService {
 	
 	public Equipment getEquipmentCorrespondingToUserEquip(UserEquip ue) {
 		UUID equipId = ue.getEquipId();
-		return getEquipmentRetrieveUtils().getEquipmentCorrespondingToName(equipId);
+		return getEquipmentRetrieveUtils().getEquipmentForId(equipId);
 	}
 	
 	public List<UserEquip> getAllEquippedUserEquipsForUser(UUID userId) {

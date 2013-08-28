@@ -156,7 +156,7 @@ public class UserEquipRepairServiceImpl implements UserEquipRepairService {
 	@Override
 	public Equipment getEquipmentCorrespondingToUserEquipRepair(UserEquipRepair ue) {
 		UUID equipId = ue.getEquipId();
-		return getEquipmentRetrieveUtils().getEquipmentCorrespondingToName(equipId);
+		return getEquipmentRetrieveUtils().getEquipmentForId(equipId);
 	}
 	
 	
