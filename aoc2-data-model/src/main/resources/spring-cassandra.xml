@@ -31,6 +31,7 @@
 		<property name="seeds" value="${cassandra.seeds}" />
 		<property name="connectionsPerHost" value="${cassandra.connectionsPerHost}" />
 		<property name="port" value="${cassandra.port}" />
+		<property name="createTables" value={cassandra.createTables} />
 	</bean>
 	
 	
