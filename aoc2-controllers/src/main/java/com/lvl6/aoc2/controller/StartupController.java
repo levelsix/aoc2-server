@@ -67,7 +67,7 @@ public class StartupController extends EventController {
 	protected void processRequestEvent(RequestEvent event) throws Exception {
 		StartupRequestProto reqProto = ((StartupRequestEvent) event).getStartupRequestProto();
 		DateTime loginTime = new DateTime();
-		//log.info("reqProto=" + reqProto);
+		log.info("reqProto=" + reqProto);
 
 		MinimumUserProto mup = reqProto.getMup(); //mup might not have userId
 		LoginType lt = reqProto.getLoginType();
