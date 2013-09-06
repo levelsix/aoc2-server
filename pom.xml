@@ -35,7 +35,7 @@
 		<cassandra.seeds>robot.lvl6.com:9160</cassandra.seeds>
 		<cassandra.connectionsPerHost>5</cassandra.connectionsPerHost>
 		<cassandra.port>9160</cassandra.port>
-		<cassandra.createTables>off</cassandra.createTables>
+		<cassandra.createTables>create</cassandra.createTables>
 
 
 		<!-- Hazelcast -->
