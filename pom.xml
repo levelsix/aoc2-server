@@ -35,7 +35,7 @@
 		<cassandra.seeds>robot.lvl6.com:9160</cassandra.seeds>
 		<cassandra.connectionsPerHost>5</cassandra.connectionsPerHost>
 		<cassandra.port>9160</cassandra.port>
-		<cassandra.createTables>create</cassandra.createTables>
+		<cassandra.createTables>off</cassandra.createTables>
 
 
 		<!-- Hazelcast -->
@@ -43,7 +43,7 @@
 		<hazelcast.pass>lvl6</hazelcast.pass>
 		<hazelcast.config>dev</hazelcast.config>
 		<hazelcast.port>8701</hazelcast.port>
-		<hazelcast.dev.ips>5.9.28.212</hazelcast.dev.ips>
+		<hazelcast.dev.ips>localhost</hazelcast.dev.ips>
 
 
 		<!-- Game properties -->

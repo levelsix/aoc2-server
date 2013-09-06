@@ -8,10 +8,6 @@ import com.lvl6.aoc2.po.User;
 
 @Component
 public class UserEntityManager extends BaseEntityManager<User, UUID>{
-
-	
-	
-	
 	
 	public UserEntityManager() {
 		super(User.class, UUID.class);

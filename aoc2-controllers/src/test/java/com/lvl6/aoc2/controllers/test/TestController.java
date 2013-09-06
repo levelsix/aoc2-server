@@ -1,4 +1,4 @@
-package com.lvl6.aoc2.entitymanager.test;
+package com.lvl6.aoc2.controllers.test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -22,7 +22,7 @@ import com.netflix.astyanax.model.ColumnList;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/spring-cassandra.xml")
+@ContextConfiguration("/spring-services.xml")
 public class TestController {
 
 	
