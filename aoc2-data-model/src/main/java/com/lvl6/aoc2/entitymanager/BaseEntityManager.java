@@ -71,6 +71,7 @@ abstract public class BaseEntityManager<Clas extends BasePersistentObject, Ky>  
 		.build();
 		try {
 			Clas cls = this.type.newInstance();
+			log.info("Creating table: {}", cls.getTableCreateStatement());
 			if(getCassandra().getCreateTables().equals("create")) {
 				log.info("Creating tables");
 				createTable(cls);
